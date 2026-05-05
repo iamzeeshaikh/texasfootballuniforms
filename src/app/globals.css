@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --color-navy: #0b1f3a;
+  --color-navy-soft: #30435d;
+  --color-red: #c8102e;
+  --color-ice: #f5f5f5;
+  --color-gold: #ffd166;
+  --color-shell: #eef2f7;
+  --color-panel: rgba(255, 255, 255, 0.92);
+  --color-border: rgba(11, 31, 58, 0.12);
+}
+
+@theme inline {
+  --font-display: "Bebas Neue", "Oswald", "Impact", sans-serif;
+  --font-body: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-[var(--color-border)];
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[var(--color-shell)] font-body text-[var(--color-navy)] antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(255, 209, 102, 0.16), transparent 24%),
+      radial-gradient(circle at top right, rgba(200, 16, 46, 0.14), transparent 18%),
+      linear-gradient(180deg, rgba(11, 31, 58, 0.03), transparent 30%);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display uppercase tracking-[0.06em];
+  }
+
+  p {
+    @apply text-[15px] leading-7 text-[var(--color-navy-soft)];
+  }
+
+  a,
+  button,
+  input,
+  textarea {
+    @apply outline-none;
+  }
+
+  ::selection {
+    background: rgba(255, 209, 102, 0.32);
+  }
+}
+
+@layer components {
+  .section-space {
+    @apply py-18 sm:py-24;
+  }
+
+  .surface-card {
+    @apply rounded-[30px] border border-white/70 bg-[var(--color-panel)] shadow-[0_18px_50px_rgba(11,31,58,0.10)] backdrop-blur;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center rounded-full border border-[rgba(255,255,255,0.16)] bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-gold)];
+  }
+
+  .input-shell {
+    @apply w-full rounded-2xl border border-[rgba(11,31,58,0.12)] bg-white px-4 py-3.5 text-sm text-[var(--color-navy)] shadow-[0_12px_25px_rgba(11,31,58,0.04)] placeholder:text-[var(--color-navy-soft)] focus:border-[var(--color-red)] focus:shadow-[0_0_0_4px_rgba(200,16,46,0.10)];
+  }
+}
