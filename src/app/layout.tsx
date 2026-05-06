@@ -15,6 +15,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: "Texas Football Uniforms",
+  verification: {
+    google: "C8wtjtViAPcmzX9QYIbHkaYWyPMkQ7X9qwFyRJ9JIbs",
+  },
   icons: {
     icon: "/icon.svg",
     apple: "/icon.svg",
