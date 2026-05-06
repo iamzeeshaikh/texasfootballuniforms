@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import { getAllProducts } from "@/lib/catalog";
+import { getCategorySlug, getProductsByCategoryGroup } from "@/lib/catalog";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
@@ -14,7 +14,7 @@ export const metadata: Metadata = createMetadata({
 });
 
 export default function AllCategoriesPage() {
-  const products = getAllProducts();
+  const groupedProducts = getProductsByCategoryGroup();
 
   return (
     <section className="section-space">
@@ -33,28 +33,55 @@ export default function AllCategoriesPage() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {products.map((product) => (
-            <Link key={product.slug} href={`/${product.slug}/`} className="surface-card group overflow-hidden">
-              <Image
-                src={product.heroImage}
-                alt={`${product.name} collection for custom football uniforms`}
-                width={900}
-                height={720}
-                className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-[1.04]"
-              />
-              <div className="p-6">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">
-                  {product.shortNiche}
-                </p>
-                <h2 className="mt-3 text-3xl text-[var(--color-navy)]">{product.name}</h2>
-                <p className="mt-3">{product.shortDescription.slice(0, 150)}...</p>
-                <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-red)]">
-                  View category
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+        <div className="mt-10 space-y-12">
+          {groupedProducts.map(({ group, products }) => (
+            <div key={group} id={group.toLowerCase().replace(/\s+/g, "-")}>
+              <div className="mb-6 flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">
+                    Category
+                  </p>
+                  <h2 className="mt-2 text-4xl text-[var(--color-navy)] sm:text-5xl">{group}</h2>
                 </div>
+                <p className="rounded-full bg-[var(--color-navy)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-gold)]">
+                  {products.length} options
+                </p>
               </div>
-            </Link>
+              <div className="mb-6">
+                <Link
+                  href={`/categories/${getCategorySlug(group)}/`}
+                  className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-red)]"
+                >
+                  Open {group} category page
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+
+              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                {products.map((product) => (
+                  <Link key={product.slug} href={`/${product.slug}/`} className="surface-card group overflow-hidden">
+                    <Image
+                      src={product.heroImage}
+                      alt={`${product.name} collection for custom football uniforms`}
+                      width={900}
+                      height={720}
+                      className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                    />
+                    <div className="p-6">
+                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">
+                        {product.shortNiche}
+                      </p>
+                      <h3 className="mt-3 text-3xl text-[var(--color-navy)]">{product.name}</h3>
+                      <p className="mt-3">{product.shortDescription.slice(0, 150)}...</p>
+                      <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-red)]">
+                        View category
+                        <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </div>

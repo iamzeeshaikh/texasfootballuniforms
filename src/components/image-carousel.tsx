@@ -8,9 +8,21 @@ type ImageCarouselProps = {
   images: string[];
   altBase: string;
   priority?: boolean;
+  imageClassName?: string;
+  frameClassName?: string;
+  thumbnailsClassName?: string;
+  thumbnailImageClassName?: string;
 };
 
-export function ImageCarousel({ images, altBase, priority = false }: ImageCarouselProps) {
+export function ImageCarousel({
+  images,
+  altBase,
+  priority = false,
+  imageClassName,
+  frameClassName,
+  thumbnailsClassName,
+  thumbnailImageClassName,
+}: ImageCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -29,14 +41,18 @@ export function ImageCarousel({ images, altBase, priority = false }: ImageCarous
 
   return (
     <div className="space-y-4">
-      <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5">
+      <div
+        className={`relative overflow-hidden rounded-[28px] border border-white/10 bg-white/5 ${
+          frameClassName ?? ""
+        }`}
+      >
         <Image
           src={activeImage}
           alt={`${altBase} image ${activeIndex + 1}`}
           width={1400}
           height={1100}
           priority={priority}
-          className="aspect-[4/3] w-full object-cover"
+          className={`aspect-[4/3] w-full object-cover ${imageClassName ?? ""}`}
         />
         {images.length > 1 ? (
           <>
@@ -59,7 +75,7 @@ export function ImageCarousel({ images, altBase, priority = false }: ImageCarous
           </>
         ) : null}
       </div>
-      <div className="grid grid-cols-5 gap-3">
+      <div className={`grid grid-cols-5 gap-3 ${thumbnailsClassName ?? ""}`}>
         {images.map((image, index) => (
           <button
             key={image}
@@ -76,7 +92,7 @@ export function ImageCarousel({ images, altBase, priority = false }: ImageCarous
               alt={`${altBase} thumbnail ${index + 1}`}
               width={240}
               height={240}
-              className="aspect-square w-full object-cover"
+              className={`aspect-square w-full object-cover ${thumbnailImageClassName ?? ""}`}
             />
           </button>
         ))}

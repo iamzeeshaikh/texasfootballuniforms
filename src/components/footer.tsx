@@ -1,14 +1,14 @@
 import Link from "next/link";
 
-import { getAllProducts } from "@/lib/catalog";
+import { categoryGroups, getAllProducts, getCategorySlug } from "@/lib/catalog";
 import { company } from "@/lib/site";
 
 export function Footer() {
-  const featured = getAllProducts().slice(0, 6);
+  const topProducts = getAllProducts().slice(0, 5);
 
   return (
     <footer className="border-t border-white/10 bg-[var(--color-navy)]">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 text-white sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 text-white sm:px-6 lg:grid-cols-[1.35fr_0.85fr_0.85fr_0.95fr] lg:px-8">
         <div className="space-y-5">
           <p className="font-display text-3xl uppercase tracking-[0.1em] text-[var(--color-gold)]">
             Built for Texas Programs
@@ -19,9 +19,9 @@ export function Footer() {
             stronger on-field identity without stock-product limitations.
           </p>
           <div className="space-y-1 text-sm text-white/70">
-            <p>{company.addressLines[0]}</p>
-            <p>{company.addressLines[1]}</p>
-            <p>{company.addressLines[2]}</p>
+            <p className="text-white">{company.addressLines[0]}</p>
+            <p className="text-white">{company.addressLines[1]}</p>
+            <p className="text-white">{company.addressLines[2]}</p>
             <a href={company.phoneHref} className="block transition hover:text-[var(--color-gold)]">
               {company.phoneDisplay}
             </a>
@@ -62,8 +62,29 @@ export function Footer() {
             Top Categories
           </p>
           <div className="grid gap-3 text-sm">
-            {featured.map((product) => (
-              <Link key={product.slug} href={`/${product.slug}/`} className="transition hover:text-[var(--color-gold)]">
+            {categoryGroups.map((group) => (
+              <Link
+                key={group}
+                href={`/categories/${getCategorySlug(group)}/`}
+                className="transition hover:text-[var(--color-gold)]"
+              >
+                {group}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <p className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-white/60">
+            Top Products
+          </p>
+          <div className="grid gap-3 text-sm">
+            {topProducts.map((product) => (
+              <Link
+                key={product.slug}
+                href={`/${product.slug}/`}
+                className="transition hover:text-[var(--color-gold)]"
+              >
                 {product.name}
               </Link>
             ))}

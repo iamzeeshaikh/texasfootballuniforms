@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { CheckCircle2, Layers3, Shirt, Timer, Trophy, Users2 } from "lucide-react";
 
 import { ImageCarousel } from "@/components/image-carousel";
+import { ProductLeadForm } from "@/components/product-lead-form";
 import {
   buildBreadcrumbSchema,
   buildFaqSchema,
@@ -136,6 +137,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </article>
 
           <div className="space-y-8">
+            <ProductLeadForm productName={product.name} />
+
             <div className="surface-card overflow-hidden">
               <Image
                 src={product.images[1] ?? product.heroImage}

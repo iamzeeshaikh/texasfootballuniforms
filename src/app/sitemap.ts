@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { getAllProducts } from "@/lib/catalog";
+import { getAllProducts, getCategoryPages } from "@/lib/catalog";
 import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -20,5 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...pageEntries, ...productEntries];
+  const categoryEntries = getCategoryPages().map((category) => ({
+    url: `${SITE_URL}/categories/${category.slug}/`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.85,
+  }));
+
+  return [...pageEntries, ...categoryEntries, ...productEntries];
 }

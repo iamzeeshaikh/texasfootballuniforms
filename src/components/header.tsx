@@ -1,15 +1,50 @@
 import Link from "next/link";
+import {
+  ChevronDown,
+  Package,
+  Shield,
+  Shirt,
+  ShoppingBag,
+  Trophy,
+} from "lucide-react";
 
+import { categoryGroups, getAllProducts, getCategoryGroup, getCategorySlug } from "@/lib/catalog";
 import { company } from "@/lib/site";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/all-categories/", label: "All Categories" },
-  { href: "/about-us/", label: "About Us" },
-  { href: "/contact-us/", label: "Contact Us" },
 ];
 
 export function Header() {
+  const products = getAllProducts();
+  const categoryIcons = {
+    Jerseys: Shirt,
+    Uniforms: Trophy,
+    "Practice Gear": Shield,
+    "Team Packages": Package,
+    "Team Apparel": ShoppingBag,
+  } as const;
+
+  const getProductIcon = (slug: string) => {
+    const category = getCategoryGroup(
+      products.find((product) => product.slug === slug) ?? products[0],
+    );
+
+    switch (category) {
+      case "Uniforms":
+        return Trophy;
+      case "Practice Gear":
+        return Shield;
+      case "Team Packages":
+        return Package;
+      case "Team Apparel":
+        return ShoppingBag;
+      case "Jerseys":
+      default:
+        return Shirt;
+    }
+  };
+
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[rgba(11,31,58,0.9)] backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
@@ -37,6 +72,60 @@ export function Header() {
               {item.label}
             </Link>
           ))}
+          <div className="group relative">
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-white/80 transition group-hover:text-[var(--color-gold)]"
+            >
+              Products
+              <ChevronDown className="h-4 w-4" />
+            </button>
+            <div className="pointer-events-none absolute left-0 top-full pt-4 opacity-0 transition group-hover:pointer-events-auto group-hover:opacity-100">
+              <div className="grid max-h-[420px] w-[380px] gap-2 overflow-y-auto rounded-[24px] border border-white/10 bg-[var(--color-navy)]/98 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.28)]">
+                {products.map((product) => {
+                  const Icon = getProductIcon(product.slug);
+
+                  return (
+                    <Link
+                      key={product.slug}
+                      href={`/${product.slug}/`}
+                      className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/8 hover:text-[var(--color-gold)]"
+                    >
+                      <Icon className="h-4 w-4 shrink-0 text-[var(--color-gold)]" />
+                      <span>{product.name}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+          <div className="group relative">
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-white/80 transition group-hover:text-[var(--color-gold)]"
+            >
+              Categories
+              <ChevronDown className="h-4 w-4" />
+            </button>
+            <div className="pointer-events-none absolute left-0 top-full pt-4 opacity-0 transition group-hover:pointer-events-auto group-hover:opacity-100">
+              <div className="grid w-[260px] gap-2 rounded-[24px] border border-white/10 bg-[var(--color-navy)]/98 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.28)]">
+                {categoryGroups.map((group) => {
+                  const Icon = categoryIcons[group];
+
+                  return (
+                    <Link
+                      key={group}
+                      href={`/categories/${getCategorySlug(group)}/`}
+                      className="flex items-center gap-3 rounded-2xl px-4 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/8 hover:text-[var(--color-gold)]"
+                    >
+                      <Icon className="h-4 w-4 shrink-0 text-[var(--color-gold)]" />
+                      <span>{group}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
         </nav>
 
         <div className="flex items-center gap-3">
