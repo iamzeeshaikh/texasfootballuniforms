@@ -1767,7 +1767,6 @@ const productLongSections: Record<string, (l: ContentLinks) => LongSection[]> = 
       }],
     },
   ],
-};
 
   "football-gloves": (l) => [
     {
