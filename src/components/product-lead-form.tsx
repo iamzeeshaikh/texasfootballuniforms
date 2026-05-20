@@ -2,32 +2,32 @@
 
 import { FormEvent, useState } from "react";
 
-import { company } from "@/lib/site";
-
 type ProductLeadFormProps = {
   productName: string;
 };
 
 export function ProductLeadForm({ productName }: ProductLeadFormProps) {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
-  const [files, setFiles] = useState<string[]>([]);
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setStatus("sending");
 
-    const subject = encodeURIComponent(`Quote Request: ${productName}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nProduct: ${productName}\nSelected Files: ${
-        files.length ? files.join(", ") : "None"
-      }\n\nMessage:\n${form.message}`,
-    );
+    const res = await fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        subject: `Quote Request: ${productName}`,
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        product: productName,
+        message: form.message,
+      }),
+    });
 
-    window.location.href = `mailto:${company.email}?subject=${subject}&body=${body}`;
+    setStatus(res.ok ? "sent" : "error");
   }
 
   return (
@@ -47,7 +47,7 @@ export function ProductLeadForm({ productName }: ProductLeadFormProps) {
           className="input-shell"
           placeholder="Your Name"
           value={form.name}
-          onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
+          onChange={(e) => setForm((c) => ({ ...c, name: e.target.value }))}
         />
         <input
           required
@@ -55,13 +55,13 @@ export function ProductLeadForm({ productName }: ProductLeadFormProps) {
           className="input-shell"
           placeholder="Email Address"
           value={form.email}
-          onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
+          onChange={(e) => setForm((c) => ({ ...c, email: e.target.value }))}
         />
         <input
           className="input-shell"
           placeholder="Phone Number"
           value={form.phone}
-          onChange={(event) => setForm((current) => ({ ...current, phone: event.target.value }))}
+          onChange={(e) => setForm((c) => ({ ...c, phone: e.target.value }))}
         />
         <textarea
           required
@@ -69,39 +69,24 @@ export function ProductLeadForm({ productName }: ProductLeadFormProps) {
           className="input-shell"
           placeholder="Tell us about your quantity, design needs, and timeline."
           value={form.message}
-          onChange={(event) => setForm((current) => ({ ...current, message: event.target.value }))}
+          onChange={(e) => setForm((c) => ({ ...c, message: e.target.value }))}
         />
-        <div className="rounded-[24px] border border-[var(--color-border)] bg-white p-4">
-          <label className="mb-2 block text-sm font-semibold text-[var(--color-navy)]">
-            Choose File
-          </label>
-          <input
-            type="file"
-            multiple
-            className="block w-full text-sm text-[var(--color-navy-soft)] file:mr-4 file:rounded-full file:border-0 file:bg-[var(--color-navy)] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-[var(--color-red)]"
-            onChange={(event) =>
-              setFiles(Array.from(event.target.files ?? []).map((file) => file.name))
-            }
-          />
-          {files.length ? (
-            <p className="mt-3 text-sm text-[var(--color-navy-soft)]">
-              Selected: {files.join(", ")}
-            </p>
-          ) : null}
-        </div>
       </div>
 
       <div className="mt-5 flex flex-col gap-3">
-        <button
-          type="submit"
-          className="inline-flex justify-center rounded-full bg-[var(--color-red)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-[var(--color-navy)]"
-        >
-          Submit
-        </button>
-        <p className="text-sm leading-6 text-[var(--color-navy-soft)]">
-          This opens your email client with the request pre-filled. Selected file names are
-          included in the message.
-        </p>
+        {status === "sent" ? (
+          <p className="font-semibold text-green-600">Message sent! We'll be in touch shortly.</p>
+        ) : status === "error" ? (
+          <p className="font-semibold text-red-600">Something went wrong. Please try again.</p>
+        ) : (
+          <button
+            type="submit"
+            disabled={status === "sending"}
+            className="inline-flex justify-center rounded-full bg-[var(--color-red)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-[var(--color-navy)] disabled:opacity-60"
+          >
+            {status === "sending" ? "Sending…" : "Submit"}
+          </button>
+        )}
       </div>
     </form>
   );

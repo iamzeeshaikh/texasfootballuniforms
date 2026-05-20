@@ -2,8 +2,6 @@
 
 import { FormEvent, useState } from "react";
 
-import { company } from "@/lib/site";
-
 export function QuoteForm() {
   const [form, setForm] = useState({
     name: "",
@@ -14,16 +12,22 @@ export function QuoteForm() {
     timeline: "",
     details: "",
   });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setStatus("sending");
 
-    const subject = encodeURIComponent(`Quote Request: ${form.product || "Custom Football Uniforms"}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nOrganization: ${form.organization}\nEmail: ${form.email}\nPhone: ${form.phone}\nProduct: ${form.product}\nTimeline: ${form.timeline}\n\nProject Details:\n${form.details}`,
-    );
+    const res = await fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        subject: `Quote Request: ${form.product || "Custom Football Uniforms"}`,
+        ...form,
+      }),
+    });
 
-    window.location.href = `mailto:${company.email}?subject=${subject}&body=${body}`;
+    setStatus(res.ok ? "sent" : "error");
   }
 
   return (
@@ -34,13 +38,13 @@ export function QuoteForm() {
           className="input-shell"
           placeholder="Your Name"
           value={form.name}
-          onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
+          onChange={(e) => setForm((c) => ({ ...c, name: e.target.value }))}
         />
         <input
           className="input-shell"
           placeholder="School, Club, or Organization"
           value={form.organization}
-          onChange={(event) => setForm((current) => ({ ...current, organization: event.target.value }))}
+          onChange={(e) => setForm((c) => ({ ...c, organization: e.target.value }))}
         />
         <input
           required
@@ -48,25 +52,25 @@ export function QuoteForm() {
           className="input-shell"
           placeholder="Email Address"
           value={form.email}
-          onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
+          onChange={(e) => setForm((c) => ({ ...c, email: e.target.value }))}
         />
         <input
           className="input-shell"
           placeholder="Phone Number"
           value={form.phone}
-          onChange={(event) => setForm((current) => ({ ...current, phone: event.target.value }))}
+          onChange={(e) => setForm((c) => ({ ...c, phone: e.target.value }))}
         />
         <input
           className="input-shell md:col-span-2"
           placeholder="Product Interest"
           value={form.product}
-          onChange={(event) => setForm((current) => ({ ...current, product: event.target.value }))}
+          onChange={(e) => setForm((c) => ({ ...c, product: e.target.value }))}
         />
         <input
           className="input-shell md:col-span-2"
           placeholder="Target Delivery Timeline"
           value={form.timeline}
-          onChange={(event) => setForm((current) => ({ ...current, timeline: event.target.value }))}
+          onChange={(e) => setForm((c) => ({ ...c, timeline: e.target.value }))}
         />
         <textarea
           required
@@ -74,19 +78,28 @@ export function QuoteForm() {
           className="input-shell md:col-span-2"
           placeholder="Tell us about quantities, customization needs, and any design direction."
           value={form.details}
-          onChange={(event) => setForm((current) => ({ ...current, details: event.target.value }))}
+          onChange={(e) => setForm((c) => ({ ...c, details: e.target.value }))}
         />
       </div>
       <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm leading-6 text-[var(--color-navy-soft)]">
-          This opens your email client with the quote details pre-filled for faster follow-up.
-        </p>
-        <button
-          type="submit"
-          className="inline-flex justify-center rounded-full bg-[var(--color-red)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-[var(--color-navy)]"
-        >
-          Send Quote Request
-        </button>
+        {status === "sent" ? (
+          <p className="font-semibold text-green-600">Message sent! We'll be in touch shortly.</p>
+        ) : status === "error" ? (
+          <p className="font-semibold text-red-600">Something went wrong. Please try again.</p>
+        ) : (
+          <>
+            <p className="text-sm leading-6 text-[var(--color-navy-soft)]">
+              We'll follow up within 1 business day.
+            </p>
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              className="inline-flex justify-center rounded-full bg-[var(--color-red)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-[var(--color-navy)] disabled:opacity-60"
+            >
+              {status === "sending" ? "Sending…" : "Send Quote Request"}
+            </button>
+          </>
+        )}
       </div>
     </form>
   );
