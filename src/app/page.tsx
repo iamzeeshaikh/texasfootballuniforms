@@ -27,23 +27,23 @@ import { company } from "@/lib/site";
 const whyChooseUs = [
   {
     icon: ShieldCheck,
-    title: "Elite Fabric Standards",
-    text: "Performance-driven materials, durable stitching, and color stability built for long Texas seasons.",
+    title: "Fabric Built for the Game",
+    text: "Game jerseys at 220gsm polyester with stretch mesh zones. Practice builds in heavy-duty mesh for daily contact. Fabric decisions made before design begins.",
   },
   {
     icon: Palette,
-    title: "Design-Led Customization",
-    text: "Every order is shaped around logos, trim placement, roster details, and cleaner program identity.",
+    title: "Design Confirmed Before Production",
+    text: "Color blocking, number sizing, nameplate spacing, and logo placement locked in at the artwork stage so delivery day matches exactly what was approved.",
   },
   {
     icon: Layers3,
-    title: "Full Program Coverage",
-    text: "Uniforms, warmups, coaches apparel, fanwear, and accessories aligned under one premium visual system.",
+    title: "Complete Program Coverage",
+    text: "Game uniforms, practice jerseys, sideline jackets, warmup suits, and fan gear ordered as one coordinated visual system rather than separate purchases from different vendors.",
   },
   {
     icon: Trophy,
-    title: "Built for Competitive Programs",
-    text: "Trusted for youth leagues, high school teams, clubs, camps, and serious 7-on-7 organizations.",
+    title: "Serving Texas Football at Every Level",
+    text: "From TYFCA youth leagues and UIL high school programs to adult recreational clubs, 7-on-7 circuits, and coaching staffs who treat sideline appearance as part of the job.",
   },
 ];
 
@@ -285,8 +285,8 @@ export default function HomePage() {
               </h2>
             </div>
             <p className="hidden max-w-sm text-right text-white/64 lg:block">
-              Cleaner execution, better fabric decisions, and a quote-first workflow made
-              for programs that care how they look on and off the field.
+              A quote-first workflow built around your roster size, competitive format, and
+              delivery window — not around generic stock that ignores program-specific requirements.
             </p>
           </div>
 
