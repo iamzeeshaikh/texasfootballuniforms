@@ -13,6 +13,7 @@ import { company } from "@/lib/site";
 
 const navItems = [
   { href: "/", label: "Home" },
+  { href: "/blog/", label: "Blog" },
 ];
 
 export function Header() {

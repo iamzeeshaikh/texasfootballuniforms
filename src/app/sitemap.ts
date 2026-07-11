@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { getAllProducts, getCategoryPages } from "@/lib/catalog";
+import { blogPosts } from "@/data/blogPosts";
 import { SITE_URL } from "@/lib/site";
 
 // Stable last-modified date. Bump this on real content updates. Using a fixed
@@ -9,7 +10,7 @@ import { SITE_URL } from "@/lib/site";
 const LASTMOD = new Date("2026-07-10");
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["/", "/all-categories/", "/about-us/", "/contact-us/", "/privacy-policy/", "/terms-conditions/"];
+  const staticPages = ["/", "/all-categories/", "/blog/", "/about-us/", "/contact-us/", "/privacy-policy/", "/terms-conditions/"];
 
   const pageEntries: MetadataRoute.Sitemap = staticPages.map((page) => ({
     url: `${SITE_URL}${page}`,
@@ -32,5 +33,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  return [...pageEntries, ...categoryEntries, ...productEntries];
+  const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${SITE_URL}/blog/${post.slug}/`,
+    lastModified: new Date(post.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  return [...pageEntries, ...categoryEntries, ...productEntries, ...blogEntries];
 }

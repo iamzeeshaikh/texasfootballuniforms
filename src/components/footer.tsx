@@ -45,6 +45,9 @@ export function Footer() {
             <Link href="/about-us/" className="transition hover:text-[var(--color-gold)]">
               About Us
             </Link>
+            <Link href="/blog/" className="transition hover:text-[var(--color-gold)]">
+              Blog
+            </Link>
             <Link href="/contact-us/" className="transition hover:text-[var(--color-gold)]">
               Contact Us
             </Link>
