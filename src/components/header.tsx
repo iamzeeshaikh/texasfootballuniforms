@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   ChevronDown,
+  MapPin,
   Package,
   Shield,
   Shirt,
@@ -10,10 +11,10 @@ import {
 
 import { categoryGroups, getAllProducts, getCategoryGroup, getCategorySlug } from "@/lib/catalog";
 import { company } from "@/lib/site";
+import { locationCities } from "@/data/locations";
 
 const navItems = [
   { href: "/", label: "Home" },
-  { href: "/locations/", label: "Locations" },
   { href: "/blog/", label: "Blog" },
 ];
 
@@ -125,6 +126,37 @@ export function Header() {
                     </Link>
                   );
                 })}
+              </div>
+            </div>
+          </div>
+          <div className="group relative">
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-white/80 transition group-hover:text-[var(--color-gold)]"
+            >
+              Locations
+              <ChevronDown className="h-4 w-4" />
+            </button>
+            <div className="pointer-events-none absolute right-0 top-full pt-4 opacity-0 transition group-hover:pointer-events-auto group-hover:opacity-100">
+              <div className="w-[360px] rounded-[24px] border border-white/10 bg-[var(--color-navy)]/98 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.28)]">
+                <Link
+                  href="/locations/"
+                  className="mb-2 flex items-center gap-2 rounded-2xl px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-gold)] transition hover:bg-white/8"
+                >
+                  <MapPin className="h-4 w-4 shrink-0" />
+                  All Texas Cities
+                </Link>
+                <div className="grid max-h-[360px] grid-cols-2 gap-1 overflow-y-auto">
+                  {locationCities.map((city) => (
+                    <Link
+                      key={city.slug}
+                      href={`/locations/${city.slug}/`}
+                      className="rounded-xl px-3 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/8 hover:text-[var(--color-gold)]"
+                    >
+                      {city.name}
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
