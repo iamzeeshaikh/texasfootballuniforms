@@ -13,6 +13,7 @@ import { company } from "@/lib/site";
 
 const navItems = [
   { href: "/", label: "Home" },
+  { href: "/locations/", label: "Locations" },
   { href: "/blog/", label: "Blog" },
 ];
 

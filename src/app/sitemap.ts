@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { getAllProducts, getCategoryPages } from "@/lib/catalog";
 import { blogPosts } from "@/data/blogPosts";
+import { locationCities } from "@/data/locations";
 import { SITE_URL } from "@/lib/site";
 
 // Stable last-modified date. Bump this on real content updates. Using a fixed
@@ -40,5 +41,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...pageEntries, ...categoryEntries, ...productEntries, ...blogEntries];
+  const locationEntries: MetadataRoute.Sitemap = [
+    { url: `${SITE_URL}/locations/`, lastModified: LASTMOD, changeFrequency: "monthly", priority: 0.8 },
+    ...locationCities.map((city) => ({
+      url: `${SITE_URL}/locations/${city.slug}/`,
+      lastModified: LASTMOD,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    })),
+  ];
+
+  return [...pageEntries, ...categoryEntries, ...productEntries, ...locationEntries, ...blogEntries];
 }
