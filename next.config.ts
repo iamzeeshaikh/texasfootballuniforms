@@ -17,6 +17,11 @@ const nextConfig: NextConfig = {
         destination: "https://texasfootballuniforms.com/:path*",
         permanent: true,
       },
+      {
+        source: "/locations/corpus-christi",
+        destination: "/corpus-christi-football-uniforms",
+        permanent: true,
+      },
     ];
   },
 };

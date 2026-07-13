@@ -401,6 +401,15 @@ export function fbPick<T>(arr: T[], seedText: string, off = 0): T {
   return arr[(fbSeed(seedText) + off) % arr.length];
 }
 
+// Per-city URL (with trailing slash). Corpus Christi uses a keyword-rich
+// top-level slug; the rest stay under /locations/. The old /locations/corpus-christi
+// URL 301-redirects to the new one (see next.config redirects).
+export function cityUrl(city: LocationCity): string {
+  return city.slug === "corpus-christi"
+    ? "/corpus-christi-football-uniforms/"
+    : `/locations/${city.slug}/`;
+}
+
 export function getLocationCity(slug: string): LocationCity | undefined {
   return locationCities.find((c) => c.slug === slug);
 }

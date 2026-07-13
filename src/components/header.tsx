@@ -11,7 +11,7 @@ import {
 
 import { categoryGroups, getAllProducts, getCategoryGroup, getCategorySlug } from "@/lib/catalog";
 import { company } from "@/lib/site";
-import { locationCities } from "@/data/locations";
+import { locationCities, cityUrl } from "@/data/locations";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -150,7 +150,7 @@ export function Header() {
                   {locationCities.map((city) => (
                     <Link
                       key={city.slug}
-                      href={`/locations/${city.slug}/`}
+                      href={cityUrl(city)}
                       className="rounded-xl px-3 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/8 hover:text-[var(--color-gold)]"
                     >
                       {city.name}

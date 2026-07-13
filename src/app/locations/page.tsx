@@ -4,7 +4,7 @@ import Link from "next/link";
 import { buildBreadcrumbSchema } from "@/lib/catalog";
 import { createMetadata } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
-import { locationCities } from "@/data/locations";
+import { locationCities, cityUrl } from "@/data/locations";
 
 export function generateMetadata(): Metadata {
   return createMetadata({
@@ -45,7 +45,7 @@ export default function LocationsHubPage() {
         "@type": "ListItem",
         position: i + 1,
         name: `Custom Football Uniforms in ${c.name}`,
-        url: `${SITE_URL}/locations/${c.slug}/`,
+        url: `${SITE_URL}${cityUrl(c)}`,
       })),
     },
   ];
@@ -73,7 +73,7 @@ export default function LocationsHubPage() {
             <h2 className="font-display text-2xl uppercase text-[var(--color-red)]">{group.region}</h2>
             <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {group.cities.map((c) => (
-                <Link key={c.slug} href={`/locations/${c.slug}/`} className="rounded-3xl border border-[var(--color-border)] bg-white p-5 transition-shadow hover:shadow-lg">
+                <Link key={c.slug} href={cityUrl(c)} className="rounded-3xl border border-[var(--color-border)] bg-white p-5 transition-shadow hover:shadow-lg">
                   <h3 className="font-display text-xl uppercase text-[var(--color-navy)]">{c.name}, TX</h3>
                   <p className="mt-1 text-sm text-[var(--color-navy-soft)]">{c.stat}.</p>
                   <span className="mt-2 inline-block text-sm font-semibold text-[var(--color-red)]">Football uniforms in {c.name} →</span>
