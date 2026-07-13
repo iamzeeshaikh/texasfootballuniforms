@@ -12,6 +12,7 @@ import {
 import { categoryGroups, getAllProducts, getCategoryGroup, getCategorySlug } from "@/lib/catalog";
 import { company } from "@/lib/site";
 import { locationCities, cityUrl } from "@/data/locations";
+import { MobileMenu } from "./mobile-menu";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -171,10 +172,11 @@ export function Header() {
           </a>
           <Link
             href="/contact-us/#quote-form"
-            className="rounded-full bg-[var(--color-red)] px-5 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white shadow-[0_18px_40px_rgba(200,16,46,0.35)] transition hover:-translate-y-0.5 hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)]"
+            className="hidden rounded-full bg-[var(--color-red)] px-5 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white shadow-[0_18px_40px_rgba(200,16,46,0.35)] transition hover:-translate-y-0.5 hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)] sm:inline-flex"
           >
             Get a Quote
           </Link>
+          <MobileMenu cities={locationCities.map((c) => ({ name: c.name, href: cityUrl(c) }))} />
         </div>
       </div>
     </header>
