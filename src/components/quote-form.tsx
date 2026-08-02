@@ -1,8 +1,10 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 export function QuoteForm() {
+  const router = useRouter();
   const [form, setForm] = useState({
     name: "",
     organization: "",
@@ -27,7 +29,11 @@ export function QuoteForm() {
       }),
     });
 
-    setStatus(res.ok ? "sent" : "error");
+    if (res.ok) {
+      router.push("/thank-you");
+      return;
+    }
+    setStatus("error");
   }
 
   return (

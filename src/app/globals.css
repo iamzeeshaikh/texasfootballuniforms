@@ -73,3 +73,29 @@
     @apply w-full rounded-2xl border border-[rgba(11,31,58,0.12)] bg-white px-4 py-3.5 text-sm text-[var(--color-navy)] shadow-[0_12px_25px_rgba(11,31,58,0.04)] placeholder:text-[var(--color-navy-soft)] focus:border-[var(--color-red)] focus:shadow-[0_0_0_4px_rgba(200,16,46,0.10)];
   }
 }
+
+/* Configurator summary: sticky beside the options on desktop, a fixed bar on
+   phones so the selections stay readable while the visitor scrolls the tool. */
+@media (max-width: 1023px) {
+  .cfg-summary {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 40;
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: translateY(110%);
+    transition: transform 0.2s ease;
+  }
+  .cfg-summary[data-visible="true"] {
+    transform: translateY(0);
+  }
+  .cfg-summary-card {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 -10px 30px rgba(11, 31, 58, 0.22);
+  }
+  .cfg-summary-list[data-open="false"] {
+    display: none;
+  }
+}

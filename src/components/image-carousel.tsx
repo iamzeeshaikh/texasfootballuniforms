@@ -37,7 +37,28 @@ export function ImageCarousel({
     return () => window.clearInterval(timer);
   }, [images.length]);
 
-  const activeImage = images[activeIndex] ?? images[0];
+  // Every slide is mounted once the page is idle, so switching is an opacity
+  // change rather than a fresh download of a 1400px image.
+  const [warmed, setWarmed] = useState(false);
+
+  useEffect(() => {
+    if (images.length < 2) {
+      return;
+    }
+
+    const idle = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 300));
+    const handle = idle(() => setWarmed(true));
+
+    return () => {
+      if (window.cancelIdleCallback) {
+        window.cancelIdleCallback(handle as number);
+      } else {
+        window.clearTimeout(handle as number);
+      }
+    };
+  }, [images.length]);
+
+  const slides = warmed ? images : [images[activeIndex] ?? images[0]];
 
   return (
     <div className="space-y-4">
@@ -46,14 +67,27 @@ export function ImageCarousel({
           frameClassName ?? ""
         }`}
       >
-        <Image
-          src={activeImage}
-          alt={`${altBase} image ${activeIndex + 1}`}
-          width={1400}
-          height={1100}
-          priority={priority}
-          className={`aspect-[4/3] w-full object-cover ${imageClassName ?? ""}`}
-        />
+        {slides.map((image, index) => {
+          const isActive = !warmed || index === activeIndex;
+          // The first slide stays in flow so the frame keeps its height; the
+          // rest are stacked on top of it and cross-faded.
+          return (
+            <Image
+              key={image}
+              src={image}
+              alt={`${altBase} image ${index + 1}`}
+              width={1400}
+              height={1100}
+              priority={priority && index === 0}
+              // Warmed slides fetch straight away so a thumbnail click is a fade, not a download.
+              loading={index === 0 ? undefined : "eager"}
+              className={`aspect-[4/3] w-full object-cover transition-opacity duration-150 ${
+                index > 0 ? "absolute inset-0 h-full" : ""
+              } ${isActive ? "opacity-100" : "opacity-0"} ${imageClassName ?? ""}`}
+              aria-hidden={!isActive}
+            />
+          );
+        })}
         {images.length > 1 ? (
           <>
             <button

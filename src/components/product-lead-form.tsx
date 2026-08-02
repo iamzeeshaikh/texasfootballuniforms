@@ -1,13 +1,18 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
+
+import { ARTWORK_ACCEPT, readArtwork } from "@/lib/artwork";
 
 type ProductLeadFormProps = {
   productName: string;
 };
 
 export function ProductLeadForm({ productName }: ProductLeadFormProps) {
+  const router = useRouter();
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [artwork, setArtwork] = useState<File | null>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -24,10 +29,15 @@ export function ProductLeadForm({ productName }: ProductLeadFormProps) {
         phone: form.phone,
         product: productName,
         message: form.message,
+        artwork: await readArtwork(artwork),
       }),
     });
 
-    setStatus(res.ok ? "sent" : "error");
+    if (res.ok) {
+      router.push("/thank-you");
+      return;
+    }
+    setStatus("error");
   }
 
   return (
@@ -71,6 +81,17 @@ export function ProductLeadForm({ productName }: ProductLeadFormProps) {
           value={form.message}
           onChange={(e) => setForm((c) => ({ ...c, message: e.target.value }))}
         />
+        <label className="grid gap-2 text-sm">
+          <span className="font-semibold text-[var(--color-navy)]">
+            Upload artwork <span className="font-normal text-[var(--color-navy-soft)]">(optional)</span>
+          </span>
+          <input
+            type="file"
+            accept={ARTWORK_ACCEPT}
+            className="input-shell py-2.5"
+            onChange={(e) => setArtwork(e.target.files?.[0] ?? null)}
+          />
+        </label>
       </div>
 
       <div className="mt-5 flex flex-col gap-3">

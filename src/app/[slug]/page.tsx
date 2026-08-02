@@ -6,6 +6,7 @@ import { CheckCircle2, Layers3, Shirt, Timer, Trophy, Users2 } from "lucide-reac
 
 import { ImageCarousel } from "@/components/image-carousel";
 import { ProductLeadForm } from "@/components/product-lead-form";
+import { UniformConfigurator } from "@/components/uniform-configurator";
 import {
   buildBreadcrumbSchema,
   buildFaqSchema,
@@ -109,7 +110,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
 
         <section className="mt-12 grid gap-10 lg:grid-cols-[1.08fr_0.92fr]">
-          <article className="surface-card p-8 sm:p-10">
+          <article className="surface-card order-2 p-8 sm:p-10 lg:order-none">
             {longSections.map((section) => (
               <div key={section.heading} className="mb-10 last:mb-0">
                 <h2 className="text-4xl text-[var(--color-navy)]">{section.heading}</h2>
@@ -136,7 +137,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             ))}
           </article>
 
-          <div className="space-y-8">
+          <div className="order-1 space-y-8 lg:order-none">
             <ProductLeadForm productName={product.name} />
 
             <div className="surface-card overflow-hidden">
@@ -199,6 +200,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </div>
           </div>
         </section>
+
+        <UniformConfigurator productName={product.name} />
 
         <section className="mt-12 surface-card p-8 sm:p-10">
           <div className="flex items-center gap-3">

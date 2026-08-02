@@ -15,7 +15,12 @@ export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
 
-    const lines = Object.entries(data)
+    // Artwork arrives as base64 so the whole request stays JSON.
+    const { artwork, ...fields } = data as Record<string, unknown> & {
+      artwork?: { name: string; type: string; data: string };
+    };
+
+    const lines = Object.entries(fields)
       .filter(([, v]) => v !== "" && v !== undefined)
       .map(([k, v]) => `${k.charAt(0).toUpperCase() + k.slice(1)}: ${v}`)
       .join("\n");
@@ -23,8 +28,11 @@ export async function POST(req: NextRequest) {
     await transporter.sendMail({
       from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
       to: process.env.SMTP_TO,
-      subject: data.subject || "New Quote Request – Texas Football Uniforms",
-      text: lines,
+      subject: (fields.subject as string) || "New Quote Request – Texas Football Uniforms",
+      text: artwork ? `${lines}\nArtwork: ${artwork.name} (attached)` : lines,
+      attachments: artwork
+        ? [{ filename: artwork.name, content: Buffer.from(artwork.data, "base64"), contentType: artwork.type }]
+        : undefined,
     });
 
     return NextResponse.json({ ok: true });

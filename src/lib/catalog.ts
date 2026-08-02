@@ -444,7 +444,8 @@ function getImagePaths(folder: string) {
   const assetDir = path.join(process.cwd(), "public", "assets", folder);
   return fs
     .readdirSync(assetDir)
-    .filter((file) => /\.(png|jpe?g|webp)$/i.test(file))
+    // Skip macOS AppleDouble sidecars (._name.jpg) the external drive leaves behind.
+    .filter((file) => !file.startsWith("._") && /\.(png|jpe?g|webp)$/i.test(file))
     .sort((a, b) => Number.parseInt(a, 10) - Number.parseInt(b, 10))
     .map((file) => `/assets/${folder}/${file}`);
 }

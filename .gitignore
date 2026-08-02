@@ -8,3 +8,6 @@ yarn-error.log*
 .vercel
 out
 Assets
+
+# macOS AppleDouble sidecars created on the external drive
+._*
