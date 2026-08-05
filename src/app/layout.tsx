@@ -58,7 +58,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
-        <script src="https://chat.zeeops.dev/widget.js?siteId=texasfootball" />
       </body>
     </html>
   );
