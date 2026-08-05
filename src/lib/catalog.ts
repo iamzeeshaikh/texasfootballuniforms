@@ -4083,7 +4083,48 @@ export function buildMetaDescription(product: Product) {
   return truncateAtWord(raw, 150, 140);
 }
 
+/**
+ * Indicative per-player starting prices in USD, taken from the on-site
+ * uniform configurator base prices (game jersey 38, jersey + pants 74,
+ * warm-up/shell 46, player bags 24).
+ */
+const familyStartingPrice: Record<Product["productFamily"], number> = {
+  jersey: 38,
+  uniform: 74,
+  outerwear: 46,
+  accessory: 24,
+};
+
+/**
+ * Parses a published turnaround string like "2 to 3 weeks" or
+ * "3 to 4 weeks after artwork approval" into a min/max day range.
+ * Falls back to 2-4 weeks if a string ever fails to match.
+ */
+function parseTurnaroundDays(turnaround: string) {
+  const match = turnaround.match(/(\d+)(?:\s+to\s+(\d+))?\s+weeks?/i);
+  if (!match) {
+    return { minDays: 14, maxDays: 28 };
+  }
+  const minWeeks = Number(match[1]);
+  const maxWeeks = match[2] ? Number(match[2]) : minWeeks;
+  return { minDays: minWeeks * 7, maxDays: maxWeeks * 7 };
+}
+
+/**
+ * Merchant-listing Product schema.
+ *
+ * Deliberately omitted fields (do not add without real backing content):
+ * - aggregateRating / review: the site has no on-site product reviews or
+ *   rated testimonials, so any rating value would be fabricated.
+ * - shippingRate: no shipping price is published anywhere on the site.
+ * - hasMerchantReturnPolicy: the site publishes no returns/refund policy
+ *   (quote-based, made-to-order custom apparel).
+ * handlingTime is derived from each product's published turnaround spec.
+ */
 export function buildProductSchema(product: Product) {
+  const url = `${SITE_URL}/${product.slug}/`;
+  const { minDays, maxDays } = parseTurnaroundDays(product.turnaround);
+
   return {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -4101,12 +4142,33 @@ export function buildProductSchema(product: Product) {
       "@type": "Audience",
       geographicArea: "Texas",
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "38",
+    offers: {
+      "@type": "Offer",
+      url,
+      priceCurrency: "USD",
+      price: familyStartingPrice[product.productFamily].toFixed(2),
+      priceValidUntil: "2027-08-04",
+      availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingDestination: {
+          "@type": "DefinedRegion",
+          addressCountry: "US",
+          addressRegion: "TX",
+        },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: {
+            "@type": "QuantitativeValue",
+            minValue: minDays,
+            maxValue: maxDays,
+            unitCode: "DAY",
+          },
+        },
+      },
     },
-    url: `${SITE_URL}/${product.slug}/`,
+    url,
   };
 }
 
