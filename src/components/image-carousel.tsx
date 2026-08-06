@@ -24,9 +24,12 @@ export function ImageCarousel({
   thumbnailImageClassName,
 }: ImageCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  // Once the visitor picks an image themselves, stop the auto-rotation so
+  // their selection stays put instead of being swapped away 4.5s later.
+  const [interacted, setInteracted] = useState(false);
 
   useEffect(() => {
-    if (images.length < 2) {
+    if (images.length < 2 || interacted) {
       return;
     }
 
@@ -35,7 +38,12 @@ export function ImageCarousel({
     }, 4500);
 
     return () => window.clearInterval(timer);
-  }, [images.length]);
+  }, [images.length, interacted]);
+
+  const selectImage = (index: number) => {
+    setInteracted(true);
+    setActiveIndex(index);
+  };
 
   // Every slide is mounted once the page is idle, so switching is an opacity
   // change rather than a fresh download of a 1400px image.
@@ -92,7 +100,7 @@ export function ImageCarousel({
           <>
             <button
               type="button"
-              onClick={() => setActiveIndex((activeIndex - 1 + images.length) % images.length)}
+              onClick={() => selectImage((activeIndex - 1 + images.length) % images.length)}
               className="absolute left-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[rgba(11,31,58,0.7)] text-white transition hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
               aria-label="Previous image"
             >
@@ -100,7 +108,7 @@ export function ImageCarousel({
             </button>
             <button
               type="button"
-              onClick={() => setActiveIndex((activeIndex + 1) % images.length)}
+              onClick={() => selectImage((activeIndex + 1) % images.length)}
               className="absolute right-4 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[rgba(11,31,58,0.7)] text-white transition hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
               aria-label="Next image"
             >
@@ -114,7 +122,12 @@ export function ImageCarousel({
           <button
             key={image}
             type="button"
-            onClick={() => setActiveIndex(index)}
+            onClick={() => selectImage(index)}
+            // Hovering / touching a thumb warms the full-size slides immediately
+            // (before the idle callback fires) so the swap is instant.
+            onPointerEnter={() => setWarmed(true)}
+            onTouchStart={() => setWarmed(true)}
+            aria-label={`View image ${index + 1} of ${altBase}`}
             className={`overflow-hidden rounded-2xl border transition ${
               index === activeIndex
                 ? "border-[var(--color-gold)] shadow-[0_14px_30px_rgba(255,209,102,0.28)]"

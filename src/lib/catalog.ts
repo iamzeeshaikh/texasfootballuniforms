@@ -4117,8 +4117,9 @@ function parseTurnaroundDays(turnaround: string) {
  * - aggregateRating / review: the site has no on-site product reviews or
  *   rated testimonials, so any rating value would be fabricated.
  * - shippingRate: no shipping price is published anywhere on the site.
- * - hasMerchantReturnPolicy: the site publishes no returns/refund policy
- *   (quote-based, made-to-order custom apparel).
+ * hasMerchantReturnPolicy is declared as MerchantReturnNotPermitted: the site
+ * publishes no returns/refund page and every order is quote-based,
+ * made-to-order custom apparel, so no return offer exists to describe.
  * handlingTime is derived from each product's published turnaround spec.
  */
 export function buildProductSchema(product: Product) {
@@ -4166,6 +4167,11 @@ export function buildProductSchema(product: Product) {
             unitCode: "DAY",
           },
         },
+      },
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "US",
+        returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
       },
     },
     url,
