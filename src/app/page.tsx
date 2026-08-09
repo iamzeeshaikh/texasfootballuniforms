@@ -253,6 +253,7 @@ export default function HomePage() {
                     alt={`${product.name} custom football apparel`}
                     width={900}
                     height={720}
+                    sizes="(min-width: 1024px) 380px, 100vw"
                     className="relative z-10 max-h-[240px] w-full object-contain transition duration-500 group-hover:scale-[1.06]"
                   />
                   <div className="absolute inset-x-0 bottom-0 z-20 flex translate-y-4 justify-center opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
@@ -364,6 +365,7 @@ export default function HomePage() {
                   alt="Custom football uniforms for Texas teams"
                   width={1400}
                   height={900}
+                  sizes="(min-width: 1024px) 760px, 100vw"
                   className="aspect-[16/9] w-full object-contain bg-[linear-gradient(180deg,#f8fafc_0%,#eff4f9_100%)] p-8"
                 />
               </div>
@@ -441,6 +443,7 @@ export default function HomePage() {
                   alt="Texas football warm up suits and sideline apparel"
                   width={900}
                   height={900}
+                  sizes="(min-width: 1024px) 380px, 100vw"
                   className="aspect-square w-full object-contain bg-[linear-gradient(180deg,#f8fafc_0%,#eef3f8_100%)] p-8"
                 />
               </div>

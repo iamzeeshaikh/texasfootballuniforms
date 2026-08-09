@@ -86,6 +86,10 @@ export function ImageCarousel({
               alt={`${altBase} image ${index + 1}`}
               width={1400}
               height={1100}
+              // Without `sizes` Next only emits a 1x/2x density srcset off the
+              // 1400px width, so a 412px phone was pulling the w=1920 and
+              // w=3840 renditions. A width-based srcset gets it w=640.
+              sizes="(min-width: 1024px) 620px, 100vw"
               priority={priority && index === 0}
               // Warmed slides fetch straight away so a thumbnail click is a fade, not a download.
               loading={index === 0 ? undefined : "eager"}
@@ -139,6 +143,7 @@ export function ImageCarousel({
               alt={`${altBase} thumbnail ${index + 1}`}
               width={240}
               height={240}
+              sizes="(min-width: 1024px) 120px, 20vw"
               className={`aspect-square w-full object-cover ${thumbnailImageClassName ?? ""}`}
             />
           </button>
