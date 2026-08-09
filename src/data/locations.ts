@@ -363,23 +363,31 @@ export const FB_LINK_POOL = [
   "football-warm-up-suits", "youth-football-jerseys", "college-football-uniforms",
   "football-hoodies",
 ];
+// Every variant is 3-8 words. Two-word anchors such as "coaches apparel" name
+// the product but do not tell the reader what the destination page holds, and
+// because this pool feeds every city page a short variant repeats site-wide.
 export const FB_ANCHORS: Record<string, string[]> = {
   "high-school-football-uniforms": ["high school football uniforms", "varsity football uniforms", "custom high school kits"],
-  "youth-football-uniforms": ["youth football uniforms", "youth league uniforms", "junior team kits"],
-  "7-on-7-football-uniforms": ["7-on-7 football uniforms", "7-on-7 tournament jerseys", "7v7 team kits"],
+  "youth-football-uniforms": ["youth football uniforms", "youth league uniforms", "junior team uniform kits"],
+  "7-on-7-football-uniforms": ["7-on-7 football uniforms", "7-on-7 tournament jerseys", "7v7 team uniform kits"],
   "custom-team-jerseys": ["custom team jerseys", "custom football jerseys", "made-to-order team jerseys"],
-  "sublimated-football-jerseys": ["sublimated football jerseys", "full-sublimation jerseys", "dye-sublimated jerseys"],
+  "sublimated-football-jerseys": ["sublimated football jerseys", "full-sublimation football jerseys", "dye-sublimated football jerseys"],
   "football-team-kits": ["full football team kits", "head-to-toe team kits", "complete team uniform kits"],
-  "custom-name-football-jerseys": ["custom name jerseys", "name-and-number jerseys"],
+  "custom-name-football-jerseys": ["custom name jerseys", "name-and-number football jerseys"],
   "custom-number-football-jerseys": ["custom number jerseys", "numbered team jerseys"],
-  "football-practice-jerseys": ["practice jerseys", "practice-day jerseys"],
-  "reversible-football-jerseys": ["reversible jerseys", "reversible practice jerseys"],
-  "flag-football-uniforms": ["flag football uniforms", "flag football kits"],
-  "coaches-apparel": ["coaches apparel", "sideline coaches gear"],
-  "football-warm-up-suits": ["warm-up suits", "team warm-up suits"],
+  "football-practice-jerseys": ["football practice jerseys", "practice-day team jerseys"],
+  "reversible-football-jerseys": ["reversible practice jerseys", "reversible football jerseys"],
+  "flag-football-uniforms": ["flag football uniforms", "flag football team kits"],
+  "coaches-apparel": ["sideline coaches apparel", "sideline coaches gear"],
+  "football-warm-up-suits": ["team warm-up suits", "football warm-up suits"],
   "youth-football-jerseys": ["youth football jerseys", "junior football jerseys"],
   "college-football-uniforms": ["college football uniforms", "college club uniforms"],
-  "football-hoodies": ["team hoodies", "custom football hoodies"],
+  "football-hoodies": ["custom football hoodies", "sideline team hoodies"],
+  // Slugs reachable from product copy rather than the pool. Without an entry
+  // the fallback turns the slug itself into a two-word anchor.
+  "football-socks": ["custom football team socks", "printed football socks"],
+  "football-gloves": ["custom football gloves", "team football gloves"],
+  "football-shorts": ["custom football shorts", "team football shorts"],
 };
 export function fbSeed(text: string): number {
   let h = 2166136261;

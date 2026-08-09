@@ -538,7 +538,15 @@ function getRelatedProducts(slug: string) {
 function getLinkTarget(product: ProductBlueprint, offset: number) {
   const related = getRelatedProducts(product.slug);
   const item = related[offset % related.length];
-  return { href: `/${item.slug}/`, label: item.name.toLowerCase() };
+  // Several product names are two words ("coaches apparel", "football
+  // socks"), which is below the 3-8 word anchor rule. Qualify those so the
+  // anchor describes the destination rather than just labelling it.
+  const name = item.name.toLowerCase();
+  const label =
+    name.split(" ").length < 3 && !name.startsWith("custom")
+      ? `custom ${name}`
+      : name;
+  return { href: `/${item.slug}/`, label };
 }
 
 export type LongSection = {

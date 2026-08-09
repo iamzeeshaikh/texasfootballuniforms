@@ -297,13 +297,13 @@ export const blogPosts: BlogPost[] = [
         heading: "Sideline and warm-up apparel",
         paragraphs: [
           "The sideline is part of the team's image, and coordinated warm-up and sideline apparel keeps the program looking sharp before and after the whistle. Warm-up suits, jackets, and hoodies in team colors mean players and coaches look like one organized program even off the field. On television and in photos, the sideline is often as visible as the game itself.",
-          "Coordinated off-field pieces like [football hoodies](/football-hoodies/) also double as team gear players wear proudly around school and town, extending the program's presence well beyond game day. It is branding and team pride in one order.",
+          "Coordinated off-field pieces like [custom football hoodies](/football-hoodies/) also double as team gear players wear proudly around school and town, extending the program's presence well beyond game day. It is branding and team pride in one order.",
         ],
       },
       {
         heading: "Plan quantities and reorders",
         paragraphs: [
-          "A complete kit is easier to manage when you plan quantities and reorders up front. Order accurate sizes for every player, add buffer stock in common sizes for replacements and new players, and keep a documented spec so mid-season additions match perfectly. Finishing details like [football socks](/football-socks/) are the highest-turnover items, so building in extras there saves reorder hassle.",
+          "A complete kit is easier to manage when you plan quantities and reorders up front. Order accurate sizes for every player, add buffer stock in common sizes for replacements and new players, and keep a documented spec so mid-season additions match perfectly. Finishing details like [custom football team socks](/football-socks/) are the highest-turnover items, so building in extras there saves reorder hassle.",
           "Thinking of the kit as a repeatable program rather than a one-time order is what keeps a team looking consistent year after year. Lock the design and quantities once, document them, and every future order — from a single replacement to a full roster refresh — stays perfectly on-brand.",
         ],
       },
