@@ -4225,6 +4225,8 @@ export function buildLocalBusinessSchema() {
     "@type": "SportingGoodsStore",
     name: company.name,
     url: SITE_URL,
+    logo: { "@type": "ImageObject", url: `${SITE_URL}/icon.svg` },
+    image: `${SITE_URL}/icon.svg`,
     telephone: company.phoneDisplay,
     email: company.email,
     address: {
