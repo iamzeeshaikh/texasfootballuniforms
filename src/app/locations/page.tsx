@@ -10,7 +10,7 @@ export function generateMetadata(): Metadata {
   return createMetadata({
     title: "Custom Football Uniforms Across Texas | City Locations | Texas Football Uniforms",
     description:
-      "Custom football uniforms and team kits for programs across Texas — Houston, Dallas, San Antonio, Austin, and every city in between. Find your city or get a free quote.",
+      "Custom football uniforms and team kits for programs across Texas — Houston, Dallas, San Antonio, Austin and every city in between.",
     path: "/locations/",
   });
 }

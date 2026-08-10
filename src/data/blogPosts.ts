@@ -148,7 +148,7 @@ export const blogPosts: BlogPost[] = [
     title: "Youth, High School & College Football Uniforms: A Buyer's Guide",
     metaTitle: "Youth, High School & College Football Uniforms | Buyer's Guide",
     metaDescription:
-      "How football uniform needs differ across youth, high school, and college levels — sizing, durability, budget, and design — so you order the right kit for your program.",
+      "How uniform needs differ across youth, high school and college — sizing, durability, budget and design — so you order the right kit.",
     excerpt:
       "Uniform needs change with the level of play. Here is how to buy football uniforms for youth, high school, and college programs.",
     badge: "Buyer's Guide",
@@ -205,7 +205,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "custom-names-and-numbers-on-football-jerseys",
     title: "Custom Names & Numbers: Personalizing Football Jerseys",
-    metaTitle: "Custom Names & Numbers on Football Jerseys | Personalization Guide",
+    metaTitle: "Custom Names & Numbers on Football Jerseys",
     metaDescription:
       "How to personalize football jerseys with custom names and numbers — fonts, sizing, placement, and durability — for a professional, unified team look.",
     excerpt:
