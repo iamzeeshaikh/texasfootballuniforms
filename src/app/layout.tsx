@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import WhatsAppButton from '@/components/whatsapp-button'
 
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
@@ -59,6 +60,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         <script src="https://chat.zeeops.dev/widget.js?siteId=texasfootball" />
+              {/* WhatsApp: bottom-LEFT, because the ZeeOps chat widget owns
+            bottom-right and two round buttons in one corner overlap on a
+            phone. In the root layout so every route carries it. */}
+        <WhatsAppButton />
       </body>
     </html>
   );
