@@ -7,7 +7,9 @@
 // already saying which brand it is about — one WhatsApp number serves all five
 // sports sites, and nothing else in the message would tell them apart.
 const NUMBER = '12134493746'
-const TEXT = "Hi! I'd like a quote for custom football uniforms."
+// The site URL rides in the prefill: one number serves every sports site, and
+// this line is how the CRM tells which site the customer came from.
+const TEXT = "Hi! I'd like a quote for custom football uniforms. https://texasfootballuniforms.com/"
 
 export default function WhatsAppButton() {
   const href = `https://wa.me/${NUMBER}?text=${encodeURIComponent(TEXT)}`
