@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import WhatsAppButton from '@/components/whatsapp-button'
 
 import { Footer } from "@/components/footer";
@@ -44,6 +45,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-J277MJQFD0"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-J277MJQFD0');`}
+        </Script>
         <Header />
         <main>{children}</main>
         <Footer />
