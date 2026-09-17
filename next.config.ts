@@ -9,6 +9,25 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  // No CSP here on purpose: the page loads the ZeeOps chat widget, gtag and
+  // inline JSON-LD, and a policy tight enough to be worth having would break
+  // one of them silently. These four are the headers that cost nothing.
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(), interest-cohort=(), payment=()",
+          },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       {

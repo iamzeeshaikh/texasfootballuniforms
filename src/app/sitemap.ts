@@ -2,34 +2,53 @@ import type { MetadataRoute } from "next";
 
 import { getAllProducts, getCategoryPages } from "@/lib/catalog";
 import { blogPosts } from "@/data/blogPosts";
+import lastmod from "@/data/lastmod.json";
 import { locationCities, cityUrl } from "@/data/locations";
 import { SITE_URL } from "@/lib/site";
 
-// Stable last-modified date. Bump this on real content updates. Using a fixed
-// date instead of new Date() stops every URL's lastmod resetting on each build,
-// which Google learns to distrust.
-const LASTMOD = new Date("2026-07-10");
+/**
+ * lastmod comes from src/data/lastmod.json, which `npm run lastmod` fills with
+ * the real git commit date of each page's source files.
+ *
+ * The previous frozen constant (2026-07-10) survived several content rewrites
+ * and told Google nothing had changed when plenty had. `new Date()` would tell
+ * it everything changed on every deploy, which Google learns to ignore just as
+ * fast. Committed commit dates are the only version that stays true on Vercel,
+ * where the build has no .git directory and every file's mtime is the checkout
+ * time.
+ */
+const at = (key: keyof typeof lastmod) => new Date(lastmod[key]);
+
+const PAGE_LASTMOD: Record<string, Date> = {
+  "/": at("home"),
+  "/all-categories/": at("allCategories"),
+  "/blog/": at("blog"),
+  "/about-us/": at("about"),
+  "/contact-us/": at("contact"),
+  "/privacy-policy/": at("privacy"),
+  "/terms-conditions/": at("terms"),
+};
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = ["/", "/all-categories/", "/blog/", "/about-us/", "/contact-us/", "/privacy-policy/", "/terms-conditions/"];
 
   const pageEntries: MetadataRoute.Sitemap = staticPages.map((page) => ({
     url: `${SITE_URL}${page}`,
-    lastModified: LASTMOD,
+    lastModified: PAGE_LASTMOD[page] ?? at("home"),
     changeFrequency: page === "/" ? "weekly" : "monthly",
     priority: page === "/" ? 1 : 0.8,
   }));
 
   const productEntries = getAllProducts().map((product) => ({
     url: `${SITE_URL}/${product.slug}/`,
-    lastModified: LASTMOD,
+    lastModified: at("products"),
     changeFrequency: "weekly" as const,
     priority: 0.9,
   }));
 
   const categoryEntries = getCategoryPages().map((category) => ({
     url: `${SITE_URL}/categories/${category.slug}/`,
-    lastModified: LASTMOD,
+    lastModified: at("categories"),
     changeFrequency: "weekly" as const,
     priority: 0.85,
   }));
@@ -42,10 +61,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const locationEntries: MetadataRoute.Sitemap = [
-    { url: `${SITE_URL}/locations/`, lastModified: LASTMOD, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${SITE_URL}/locations/`, lastModified: at("locations"), changeFrequency: "monthly", priority: 0.8 },
     ...locationCities.map((city) => ({
       url: `${SITE_URL}${cityUrl(city)}`,
-      lastModified: LASTMOD,
+      lastModified: at("cities"),
       changeFrequency: "monthly" as const,
       priority: 0.75,
     })),

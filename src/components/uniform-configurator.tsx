@@ -67,7 +67,7 @@ const ADD_ONS: Option[] = [
 const ROSTERS = [10, 15, 20, 25, 35, 50, 75];
 
 const ASSURANCES = [
-  "Free design mock-up before production",
+  "Free design mockup before production",
   "Team colors matched to your school",
   "Roster names and numbers included in setup",
   "Made-to-order, shipped across Texas",
