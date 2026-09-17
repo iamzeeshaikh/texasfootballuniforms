@@ -9,7 +9,7 @@ import { ImageCarousel } from "@/components/image-carousel";
 import { MoneySections } from "@/components/money-sections";
 import { PriceFacts, PriceNotes } from "@/components/price-facts";
 import { ProductLeadForm } from "@/components/product-lead-form";
-import { UniformConfigurator } from "@/components/uniform-configurator";
+import { DesignYourUniform } from "@/components/design-your-uniform";
 import {
   buildFaqSchema,
   buildMetaDescription,
@@ -24,6 +24,7 @@ import {
   getProductBySlug,
   getRelatedProductsBySlug,
 } from "@/lib/catalog";
+import { designAddOnForProduct, designGarmentForProduct, getDesignOptions } from "@/lib/design-tool";
 import { getMoneyPage } from "@/lib/money-pages";
 import { createMetadata } from "@/lib/seo";
 
@@ -62,6 +63,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   const longSections = getLongSections(product);
+  const designOptions = getDesignOptions();
   const moneyPage = getMoneyPage(product.slug);
   const relatedProducts = getRelatedProductsBySlug(product.slug);
   const faqSchema = buildFaqSchema(product);
@@ -98,6 +100,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 >
                   Get a Quote
                 </a>
+                <Link
+                  href={`/design-your-uniform/?product=${designGarmentForProduct(product.slug) ?? product.slug}`}
+                  className="inline-flex items-center justify-center rounded-full border-2 border-[var(--color-navy)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-navy)] transition hover:bg-[var(--color-navy)] hover:text-white"
+                >
+                  Design this uniform
+                </Link>
                 <Link
                   href="/all-categories/"
                   className="inline-flex items-center justify-center rounded-full border border-[var(--color-border)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-red)]"
@@ -241,7 +249,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
         <PriceNotes unit={product.priceUnit} minimum={moqCount(product)} />
 
-        <UniformConfigurator productName={product.name} />
+        <DesignYourUniform
+          options={designOptions}
+          productName={product.name}
+          preselectGarment={designGarmentForProduct(product.slug)}
+          preselectAddOn={designAddOnForProduct(product.slug)}
+          heading={`Design your ${product.name.toLowerCase()}`}
+        />
 
         <section className="mt-12 surface-card p-8 sm:p-10">
           <div className="flex items-center gap-3">

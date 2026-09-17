@@ -86,28 +86,57 @@
   }
 }
 
-/* Configurator summary: sticky beside the options on desktop, a fixed bar on
-   phones so the selections stay readable while the visitor scrolls the tool. */
+/* "Design Your Uniform" summary: sticky beside the options on desktop, a bar
+   pinned to the bottom of the viewport on phones and tablets so the running
+   price and the send button stay in reach while the visitor scrolls the tool.
+   Collapsed, the bar is just the price and "Send my spec"; expanding it shows
+   the chosen garment's photo, the colors and the full specification. */
 @media (max-width: 1023px) {
-  .cfg-summary {
+  .design-summary {
     position: fixed;
     inset-inline: 0;
-    bottom: 0;
-    z-index: 40;
-    max-height: 80vh;
+    /* Clears the sticky Call / WhatsApp / Quote bar, which owns the bottom
+       56px below 640px and is hidden above it. */
+    bottom: 3.5rem;
+    z-index: 39;
+    max-height: 82vh;
     overflow-y: auto;
-    transform: translateY(110%);
+    transform: translateY(130%);
     transition: transform 0.2s ease;
   }
-  .cfg-summary[data-visible="true"] {
+  .design-summary[data-visible="true"] {
     transform: translateY(0);
   }
-  .cfg-summary-card {
+  .design-summary-card {
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     box-shadow: 0 -10px 30px rgba(11, 31, 58, 0.22);
   }
-  .cfg-summary-list[data-open="false"] {
+  .design-summary[data-open="false"] .design-summary-body,
+  .design-summary[data-open="false"] .design-summary-fineprint,
+  .design-summary[data-open="false"] .design-summary-mockup,
+  .design-summary[data-open="false"] .design-summary-note {
     display: none;
+  }
+  .design-summary[data-open="false"] .design-summary-foot {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 0.75rem;
+  }
+  .design-summary[data-open="false"] .design-summary-price {
+    margin: 0;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+  .design-summary[data-open="false"] .design-summary-actions {
+    padding: 0;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .design-summary {
+    bottom: 0;
   }
 }

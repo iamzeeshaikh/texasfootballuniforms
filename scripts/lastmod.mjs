@@ -29,6 +29,11 @@ const SOURCES = {
   cities: ["src/data/locations.ts", "src/components/city-location.tsx"],
   locations: ["src/app/locations/page.tsx", "src/data/locations.ts"],
   allCategories: ["src/app/all-categories/page.tsx"],
+  designTool: [
+    "src/app/design-your-uniform/page.tsx",
+    "src/components/design-your-uniform.tsx",
+    "src/lib/design-tool.ts",
+  ],
   blog: ["src/app/blog/page.tsx", "src/data/blogPosts.ts"],
   about: ["src/app/about-us/page.tsx"],
   contact: ["src/app/contact-us/page.tsx", "src/components/quote-form.tsx"],

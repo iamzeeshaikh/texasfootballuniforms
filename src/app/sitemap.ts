@@ -26,18 +26,19 @@ const PAGE_LASTMOD: Record<string, Date> = {
   "/about-us/": at("about"),
   "/contact-us/": at("contact"),
   "/size-chart/": at("products"),
+  "/design-your-uniform/": at("designTool"),
   "/privacy-policy/": at("privacy"),
   "/terms-conditions/": at("terms"),
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["/", "/all-categories/", "/blog/", "/about-us/", "/contact-us/", "/size-chart/", "/privacy-policy/", "/terms-conditions/"];
+  const staticPages = ["/", "/all-categories/", "/design-your-uniform/", "/blog/", "/about-us/", "/contact-us/", "/size-chart/", "/privacy-policy/", "/terms-conditions/"];
 
   const pageEntries: MetadataRoute.Sitemap = staticPages.map((page) => ({
     url: `${SITE_URL}${page}`,
     lastModified: PAGE_LASTMOD[page] ?? at("home"),
-    changeFrequency: page === "/" ? "weekly" : "monthly",
-    priority: page === "/" ? 1 : 0.8,
+    changeFrequency: page === "/" || page === "/design-your-uniform/" ? "weekly" : "monthly",
+    priority: page === "/" ? 1 : page === "/design-your-uniform/" ? 0.9 : 0.8,
   }));
 
   const productEntries = getAllProducts().map((product) => ({
