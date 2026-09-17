@@ -59,8 +59,12 @@ export default function AboutUsPage() {
                 Contact
               </p>
               <p className="mt-3">{company.addressLines.join(", ")}</p>
-              <p className="mt-1">{company.phoneDisplay}</p>
-              <p className="mt-1">{company.email}</p>
+              <p className="mt-1">
+                <a href={company.phoneHref} className="font-semibold text-[var(--color-red)]">{company.phoneDisplay}</a>
+              </p>
+              <p className="mt-1">
+                <a href={`mailto:${company.email}`} className="font-semibold text-[var(--color-red)]">{company.email}</a>
+              </p>
             </div>
           </div>
         </div>

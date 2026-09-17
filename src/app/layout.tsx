@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { Bebas_Neue, Manrope } from "next/font/google";
 import Script from "next/script";
 import WhatsAppButton from '@/components/whatsapp-button'
 
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { MobileActionBar } from "@/components/mobile-action-bar";
 import {
   buildLocalBusinessSchema,
   buildOrganizationSchema,
@@ -13,6 +15,20 @@ import { createMetadata } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 
 import "./globals.css";
+
+// globals.css declares --font-display / --font-body with these families first;
+// until now nothing loaded them, so every visitor saw the Impact/Segoe fallbacks.
+const displayFont = Bebas_Neue({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-bebas",
+});
+const bodyFont = Manrope({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-manrope",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -43,8 +59,8 @@ export default function RootLayout({
   const websiteSchema = buildWebsiteSchema();
 
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className={`${displayFont.variable} ${bodyFont.variable}`}>
+      <body className="pb-14 sm:pb-0">
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-J277MJQFD0"
           strategy="afterInteractive"
@@ -68,11 +84,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
-        <script src="https://chat.zeeops.dev/widget.js?siteId=texasfootball" />
-              {/* WhatsApp: bottom-LEFT, because the ZeeOps chat widget owns
+        <Script src="https://chat.zeeops.dev/widget.js?siteId=texasfootball" strategy="lazyOnload" />
+        {/* WhatsApp: bottom-LEFT, because the ZeeOps chat widget owns
             bottom-right and two round buttons in one corner overlap on a
             phone. In the root layout so every route carries it. */}
         <WhatsAppButton />
+        <MobileActionBar />
       </body>
     </html>
   );

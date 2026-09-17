@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, MessageCircle, Phone, X } from "lucide-react";
+
+import { company } from "@/lib/site";
+import { whatsAppHref } from "./whatsapp-button";
 
 type City = { name: string; href: string };
 
@@ -38,7 +41,17 @@ export function MobileMenu({ cities }: { cities: City[] }) {
               ))}
             </div>
 
-            <Link href="/contact-us/#quote-form" onClick={close} className="mt-4 block rounded-full bg-[var(--color-red)] px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.12em] text-white">Get a Quote</Link>
+            <div className="mt-4 grid grid-cols-2 gap-2">
+              <a href={company.phoneHref} onClick={close} className="flex items-center justify-center gap-2 rounded-full border border-white/20 px-4 py-3 text-sm font-semibold text-white hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]">
+                <Phone className="h-4 w-4" aria-hidden />
+                {company.phoneDisplay}
+              </a>
+              <a href={whatsAppHref()} target="_blank" rel="noopener" onClick={close} aria-label="WhatsApp us" className="flex items-center justify-center gap-2 rounded-full bg-[#25d366] px-4 py-3 text-sm font-semibold text-white">
+                <MessageCircle className="h-4 w-4" aria-hidden />
+                WhatsApp
+              </a>
+            </div>
+            <Link href="/contact-us/#quote-form" onClick={close} className="mt-3 block rounded-full bg-[var(--color-red)] px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.12em] text-white">Get a Quote</Link>
           </nav>
         </div>
       )}

@@ -89,13 +89,13 @@ export function QuoteForm() {
       </div>
       <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         {status === "sent" ? (
-          <p className="font-semibold text-green-600">Message sent! We'll be in touch shortly.</p>
+          <p className="font-semibold text-green-600">Message sent! We&rsquo;ll be in touch shortly.</p>
         ) : status === "error" ? (
           <p className="font-semibold text-red-600">Something went wrong. Please try again.</p>
         ) : (
           <>
             <p className="text-sm leading-6 text-[var(--color-navy-soft)]">
-              We'll follow up within 1 business day.
+              We&rsquo;ll follow up within 1 business day.
             </p>
             <button
               type="submit"

@@ -12,8 +12,20 @@
 }
 
 @theme inline {
-  --font-display: "Bebas Neue", "Oswald", "Impact", sans-serif;
-  --font-body: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+  /* --font-bebas / --font-manrope are set on <html> by next/font in layout.tsx. */
+  --font-display: var(--font-bebas), "Bebas Neue", "Oswald", "Impact", sans-serif;
+  --font-body: var(--font-manrope), "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+}
+
+/* On phones the sticky Call / WhatsApp / Quote bar owns the bottom 56px, so the
+   ZeeOps chat launcher (bottom-right, 24px) moves up to clear it. */
+@media (max-width: 639px) {
+  #zee-chat-widget-btn {
+    bottom: 80px !important;
+  }
+  #zee-chat-widget {
+    bottom: 152px !important;
+  }
 }
 
 @layer base {

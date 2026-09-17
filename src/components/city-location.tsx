@@ -270,7 +270,7 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
       <section className="bg-[var(--color-red)] py-16 text-center text-white">
         <div className="mx-auto w-full max-w-2xl px-5">
           <h2 className="font-display text-4xl uppercase">Kit Out Your {loc.name} Team</h2>
-          <p className="mt-3 leading-relaxed text-white/85">Send your team name, colors, and roster for a free quote. We'll proof your design and deliver in time for the season.</p>
+          <p className="mt-3 leading-relaxed text-white/85">Send your team name, colors, and roster for a free quote. We&rsquo;ll proof your design and deliver in time for the season.</p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Link href="/contact-us/#quote-form" className="rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-navy)] transition hover:bg-[var(--color-gold)]">Get a Team Quote</Link>
             <Link href="/contact-us/" className="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:border-white">Contact Us</Link>

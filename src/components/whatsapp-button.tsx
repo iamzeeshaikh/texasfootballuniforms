@@ -11,18 +11,25 @@ const NUMBER = '12134493746'
 // this line is how the CRM tells which site the customer came from.
 const TEXT = "Hi! I'd like a quote for custom football uniforms. https://texasfootballuniforms.com/"
 
+/** Same number and prefill for every WhatsApp link on the site (bubble, sticky bar, drawer). */
+export function whatsAppHref() {
+  return `https://wa.me/${NUMBER}?text=${encodeURIComponent(TEXT)}`
+}
+
 export default function WhatsAppButton() {
-  const href = `https://wa.me/${NUMBER}?text=${encodeURIComponent(TEXT)}`
+  const href = whatsAppHref()
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener"
       aria-label="Chat with us on WhatsApp"
+      // Sits above the sticky Call/WhatsApp/Quote bar on phones (bottom-20 = 80px),
+      // back to the corner from the sm breakpoint where the bar is hidden.
+      className="bottom-20 sm:bottom-5"
       style={{
         position: 'fixed',
         left: 20,
-        bottom: 20,
         zIndex: 2147483000,
         width: 56,
         height: 56,

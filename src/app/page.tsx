@@ -14,7 +14,6 @@ import {
   Rocket,
   ShieldCheck,
   Sparkles,
-  TimerReset,
   Trophy,
   Truck,
 } from "lucide-react";
@@ -164,7 +163,7 @@ export default function HomePage() {
               {[
                 "Free Design Support",
                 "Fast Turnaround",
-                "No Minimum Order",
+                "Minimum 10 Per Design",
               ].map((item) => (
                 <div
                   key={item}
