@@ -64,7 +64,7 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
     { question: `Can you match our exact ${loc.name} school or club colors?`, answer: `Yes. Every uniform is printed to your exact colors, logo, and design with full sublimation, so your ${loc.name} team's identity is reproduced precisely on every jersey, every reorder.` },
     { question: `Are your football uniforms sublimated or screen printed?`, answer: `We specialize in full-sublimation football uniforms, where the design is dyed into the fabric so names, numbers, and logos never crack or peel — ideal for the wear a Texas season puts on a jersey.` },
     { question: `Can you print custom names and numbers?`, answer: `Absolutely. We handle custom names, numbers, patches, and captain designations as part of your team order, so every ${loc.name} player's jersey is game-ready out of the box.` },
-    { question: `Do you offer full team kits, not just jerseys?`, answer: `Yes. We outfit ${loc.name} teams head to toe — jerseys, pants, practice gear, warm-ups, sideline layers, and coaches apparel — so your whole program looks unified.` },
+    { question: `Do you offer full team kits, not just jerseys?`, answer: `Yes. We outfit ${loc.name} teams head to toe — jerseys, pants, practice gear, warm-ups, sideline layers, and coaches uniforms — so your whole program looks unified.` },
     { question: `How fast can you deliver before our season?`, answer: `We plan production around your season and event dates. Order early for the best turnaround, and if you have a jamboree or opening-week deadline in ${loc.name}, tell us and we'll confirm timing up front.` },
     { question: `Do you send a design proof before production?`, answer: `Always. You'll approve a design proof showing your colors, logo, and layout before anything is produced, so your ${loc.name} uniforms come out exactly as intended.` },
     { question: `Can you handle both youth leagues and high school programs?`, answer: `Yes. We outfit every level in ${loc.name}, from youth and select teams to varsity high school and college club programs, with sizing and pricing built for each.` },
@@ -234,6 +234,39 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
               <li key={x} className="flex items-start gap-2 text-[var(--color-navy)]"><span className="text-[var(--color-red)]">🏈</span>{x}</li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* Two fixed cluster links every city page carries. The randomized pool
+          above varies by city, which is right for variety but means the two
+          pages that most need city-page authority — high school uniforms
+          (ranks 36 while city pages rank 1.5) and reversible jerseys (162
+          impressions at position 58) — were linked from only some of them.
+          One link per heading section, per the internal-linking rule. */}
+      <section className="py-14">
+        <div className="mx-auto w-full max-w-4xl px-5">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">Most Ordered</span>
+          <h2 className="mt-2 font-display text-3xl uppercase text-[var(--color-navy)]">What {loc.name} Teams Order Most</h2>
+          <div className="mt-6 grid gap-6 sm:grid-cols-2">
+            <div>
+              <h3 className="font-display text-xl uppercase text-[var(--color-navy)]">Varsity and JV Game Kits</h3>
+              <p className="mt-2 leading-relaxed text-[var(--color-navy-soft)]">
+                The biggest orders out of {loc.name} are full game sets for {loc.signatureSector}, placed in
+                the spring so they land before August reporting. Our{" "}
+                <Link href="/high-school-football-uniforms/" className="font-semibold text-[var(--color-red)] underline">high school football uniforms</Link>{" "}
+                page covers what a varsity order contains and when a UIL program needs to place it.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-display text-xl uppercase text-[var(--color-navy)]">Two-Color Practice Jerseys</h3>
+              <p className="mt-2 leading-relaxed text-[var(--color-navy-soft)]">
+                Coaches in {loc.name} split a scrimmage every day of two-a-days, and one garment covers both
+                sides of it. Our{" "}
+                <Link href="/reversible-football-jerseys/" className="font-semibold text-[var(--color-red)] underline">reversible football jerseys</Link>{" "}
+                are built for that, on the youth block as well as the adult one.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

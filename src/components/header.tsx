@@ -16,6 +16,7 @@ import { MobileMenu } from "./mobile-menu";
 
 const navItems = [
   { href: "/", label: "Home" },
+  { href: "/size-chart/", label: "Size Chart" },
   { href: "/blog/", label: "Blog" },
 ];
 

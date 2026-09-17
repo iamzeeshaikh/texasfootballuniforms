@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { ARTWORK_ACCEPT, MAX_ARTWORK_BYTES, artworkTooLargeMessage, readArtwork } from "@/lib/artwork";
@@ -268,7 +269,12 @@ export function UniformConfigurator({ productName }: { productName: string }) {
           </h2>
           <p className="mt-3 text-[var(--color-navy-soft)]">
             Pick the garment, fabric, decoration and roster size to see an indicative price per
-            player, then send the specification to our uniform team.
+            player, then send the specification to our uniform team. Sizes run youth XS to adult
+            5XL —{" "}
+            <Link href="/size-chart/" className="font-semibold text-[var(--color-red)] underline">
+              check the size chart
+            </Link>{" "}
+            before you send the roster.
           </p>
         </div>
 

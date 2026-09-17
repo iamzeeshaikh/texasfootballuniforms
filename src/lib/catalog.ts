@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 
 import { company, SITE_URL } from "@/lib/site";
+import { moneyPages } from "@/lib/money-pages";
 import { productMeta } from "@/lib/product-meta";
 
 type ProductBlueprint = {
@@ -192,7 +193,7 @@ const blueprints: ProductBlueprint[] = [
     slug: "coaches-apparel",
     related: ["football-sideline-jackets", "football-hoodies", "football-warm-up-suits", "custom-team-jerseys"],
     folder: "coaches apparel",
-    name: "Coaches Apparel",
+    name: "Coaches Uniforms",
     fromPrice: 34.99,
     priceUnit: "shirt",
     shortNiche: "sideline staff gear",
@@ -578,7 +579,7 @@ const shortDescriptions: Record<string, string> = {
 
   "blank-football-jerseys": `Blank football jerseys solve a specific problem that full sublimation production cannot: speed and flexibility. When a program needs immediate stock for a new player, when a booster group wants to handle their own decoration, or when a camp organizer needs a large quantity of matching tops without a full custom production timeline, blank jerseys are the practical answer. Our blanks are produced in durable mesh polyester with consistent color quality that accepts screen print, heat transfer, or custom numbering cleanly without bleed or adhesion problems. Size availability covers youth through adult so a single blank order can cover an entire mixed roster. The consistent construction also means that decoration added later will look deliberate rather than improvised. If your program needs a reliable jersey base that ships quickly and decorates predictably, this collection is built for exactly that use case.`,
 
-  "coaches-apparel": `The sideline is a high-visibility environment. Coaches, coordinators, and support staff are photographed, filmed, and observed throughout every game, practice, and recruiting event, and the visual impression the staff makes shapes how families, athletes, and outside programs perceive the organization. Branded, coordinated coaches apparel signals that a program invests in presentation at every level, not just on the field. Our coaches apparel is produced in performance knit and softshell blends with layer-friendly cuts that allow active coaching movement without looking stiff or restrictive. Embroidery, heat transfer, and sublimation options give programs the flexibility to match logo complexity and color requirements. Title customization, staff identifier treatments, and program-wide color consistency ensure that every staff member on the sideline contributes to the same visual standard the team projects on the field.`,
+  "coaches-apparel": `The sideline is a high-visibility environment. Coaches, coordinators, and support staff are photographed, filmed, and observed throughout every game, practice, and recruiting event, and the visual impression the staff makes shapes how families, athletes, and outside programs perceive the organization. Branded, coordinated coaches uniforms signals that a program invests in presentation at every level, not just on the field. Our coaches uniforms is produced in performance knit and softshell blends with layer-friendly cuts that allow active coaching movement without looking stiff or restrictive. Embroidery, heat transfer, and sublimation options give programs the flexibility to match logo complexity and color requirements. Title customization, staff identifier treatments, and program-wide color consistency ensure that every staff member on the sideline contributes to the same visual standard the team projects on the field.`,
 
   "college-football-uniforms": `At the college level, the uniform is part of the recruiting pitch. Prospective athletes evaluate fabric quality, color saturation, typography precision, and how the full kit reads as a system before they look at anything else on a campus visit or recruiting graphic. Our college football uniforms are built with premium 220gsm performance polyester, stretch paneling, and decoration options including sublimation, tackle twill, and applique that create the kind of sharp, intentional look associated with programs that recruit and retain elite athletes. We support programs through the artwork development process so the final result feels like a genuine identity statement rather than a customized stock template. For college programs building their first premium uniform set or refreshing an established look ahead of a recruiting cycle, this collection brings the production quality and design support that higher-level presentation demands.`,
 
@@ -1165,7 +1166,7 @@ const productLongSections: Record<string, (l: ContentLinks) => LongSection[]> = 
       paragraphs: [{
         lead: `The sideline is one of the most observed spaces in football. Coaches, coordinators, and support staff are visible to athletes, families, opposing teams, and media throughout every game and practice, and the impression they create is part of how the program is evaluated by everyone watching. A staff that presents in coordinated, branded apparel signals organizational investment that extends beyond the field. Programs building out their sideline presentation often compare`,
         link: l.A,
-        tail: `alongside coaches apparel to understand how staff-specific and athlete-specific gear can work together to create a unified program image.`,
+        tail: `alongside coaches uniforms to understand how staff-specific and athlete-specific gear can work together to create a unified program image.`,
       }],
     },
     {
@@ -1187,12 +1188,12 @@ const productLongSections: Record<string, (l: ContentLinks) => LongSection[]> = 
       subheading: "Logo placement and title customization signal organizational structure.",
       paragraphs: [
         {
-          lead: `Coaches apparel decoration serves a different purpose than jersey decoration. Rather than creating visual drama from sideline distance, it needs to communicate structure and professionalism at close range: clean logo placement, readable title embroidery, and color alignment with the team identity without competing visually with the athletes on the field. We approach coaches apparel decoration with that balance in mind, keeping the branding disciplined and intentional. Programs reviewing premium decoration options for staff apparel often look at`,
+          lead: `Coaches uniforms decoration serves a different purpose than jersey decoration. Rather than creating visual drama from sideline distance, it needs to communicate structure and professionalism at close range: clean logo placement, readable title embroidery, and color alignment with the team identity without competing visually with the athletes on the field. We approach coaches uniforms decoration with that balance in mind, keeping the branding disciplined and intentional. Programs reviewing premium decoration options for staff apparel often look at`,
           link: l.C,
           tail: `as a reference for how color accuracy and placement consistency translate across different decoration methods.`,
         },
         {
-          lead: `Title customization for coaches apparel also helps visiting programs, media, and officials identify staff roles during games and events. Head coach, offensive coordinator, strength staff, and athletic trainer identifications all create useful organizational clarity in the high-traffic sideline environment.`,
+          lead: `Title customization for coaches uniforms also helps visiting programs, media, and officials identify staff roles during games and events. Head coach, offensive coordinator, strength staff, and athletic trainer identifications all create useful organizational clarity in the high-traffic sideline environment.`,
         },
       ],
     },
@@ -1200,9 +1201,9 @@ const productLongSections: Record<string, (l: ContentLinks) => LongSection[]> = 
       heading: "Staff Turnover and the Apparel Continuity Challenge in Coaching Programs",
       paragraphs: [
         {
-          lead: `Coaching staffs turn over. Assistant coaches move programs, graduate assistants rotate annually, and new staff members join at various points throughout the year. Coaches apparel that can be reordered accurately and quickly reduces the friction of those transitions. We maintain production records from the original order so new staff additions can be completed with matching garments rather than close approximations. Programs building out broader sideline presentation often include`,
+          lead: `Coaching staffs turn over. Assistant coaches move programs, graduate assistants rotate annually, and new staff members join at various points throughout the year. Coaches uniforms that can be reordered accurately and quickly reduces the friction of those transitions. We maintain production records from the original order so new staff additions can be completed with matching garments rather than close approximations. Programs building out broader sideline presentation often include`,
           link: l.D,
-          tail: `alongside coaches apparel to create a complete visual system for everyone on the sideline regardless of their role.`,
+          tail: `alongside coaches uniforms to create a complete visual system for everyone on the sideline regardless of their role.`,
         },
         {
           lead: `Staff size varies significantly between programs. A small youth league head coach may need only two or three pieces, while a high school program with a full staff of fifteen or more requires a much larger order with multiple role types and size breakdowns. The minimum is 10 pieces per design, and a small staff usually reaches it by combining coaching pieces with sideline or booster items in the same order rather than ordering coaching apparel alone.`,
@@ -1221,14 +1222,14 @@ const productLongSections: Record<string, (l: ContentLinks) => LongSection[]> = 
       ],
     },
     {
-      heading: "Season-Specific Coaches Apparel Planning and the Layering Decisions That Come With It",
+      heading: "Season-Specific Coaches Uniforms Planning and the Layering Decisions That Come With It",
       subheading: "Coordinating orders simplifies color matching.",
       paragraphs: [
         {
-          lead: `The cleanest approach to coaches apparel ordering is to include it in the same conversation as the team's main jersey or uniform order. When both are ordered together, color values can be confirmed across all pieces at the same time rather than approximated in separate production runs. That coordination prevents the subtle color drift that makes coaches apparel look almost-but-not-quite matched to the team gear.`,
+          lead: `The cleanest approach to coaches uniforms ordering is to include it in the same conversation as the team's main jersey or uniform order. When both are ordered together, color values can be confirmed across all pieces at the same time rather than approximated in separate production runs. That coordination prevents the subtle color drift that makes coaches uniforms look almost-but-not-quite matched to the team gear.`,
         },
         {
-          lead: `Programs that prefer a multi-season approach to coaches apparel — ordering new pieces each year for returning staff while gradually expanding the inventory — benefit from clear production records that maintain color consistency across annual additions.`,
+          lead: `Programs that prefer a multi-season approach to coaches uniforms — ordering new pieces each year for returning staff while gradually expanding the inventory — benefit from clear production records that maintain color consistency across annual additions.`,
         },
       ],
     },
@@ -2920,14 +2921,14 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
   "coaches-apparel": [
     { question: "What types of apparel are available for coaching staff?", answer: "We produce polo-style tops, pullover layering pieces, softshell jackets, sideline pullovers, and travel comfort pieces. The right combination depends on your staff's daily and game-day environment requirements." },
     { question: "Can coach titles be included in the decoration?", answer: "Yes. Title customization — head coach, offensive coordinator, defensive coordinator, strength staff, trainer — can be embroidered or printed on each piece so staff roles are identifiable from the apparel itself." },
-    { question: "What decoration methods are used for coaches apparel?", answer: "Embroidery, heat transfer, and sublimation panel options are available depending on the garment type and logo complexity. Embroidery is the most common choice for polo and jacket applications because it creates the dimensional quality associated with professional coaching apparel." },
-    { question: "Can coaches apparel be matched to our team jersey colors?", answer: "Yes. We confirm color values for coaches apparel alongside the team's main jersey or uniform order whenever possible so the staff's apparel aligns accurately with the team's established visual standards." },
-    { question: "What sizes are available for coaching staff?", answer: "Coaches apparel is available in Adult S through 4XL across most product types, covering the size range typical of football coaching staffs." },
-    { question: "How long does coaches apparel production take?", answer: "Most coaches apparel orders complete in two to three weeks after design and order confirmation." },
+    { question: "What decoration methods are used for coaches uniforms?", answer: "Embroidery, heat transfer, and sublimation panel options are available depending on the garment type and logo complexity. Embroidery is the most common choice for polo and jacket applications because it creates the dimensional quality associated with professional coaching apparel." },
+    { question: "Can coaches uniforms be matched to our team jersey colors?", answer: "Yes. We confirm color values for coaches uniforms alongside the team's main jersey or uniform order whenever possible so the staff's apparel aligns accurately with the team's established visual standards." },
+    { question: "What sizes are available for coaching staff?", answer: "Coaches uniforms is available in Adult S through 4XL across most product types, covering the size range typical of football coaching staffs." },
+    { question: "How long does coaches uniforms production take?", answer: "Most coaches uniforms orders complete in two to three weeks after design and order confirmation." },
     { question: "Can individual replacement pieces be ordered for new staff additions?", answer: "Yes. New staff additions can be accommodated with individual piece orders that match the original production once the color and style specifications are confirmed." },
-    { question: "Do you work with high school athletic departments on staff apparel?", answer: "Yes. High school athletic departments represent a significant portion of our coaches apparel business, and we understand the budget structures, color standards, and practical requirements that influence staff apparel decisions at that level." },
-    { question: "Can coaches apparel be ordered in the same production cycle as team jerseys?", answer: "Yes, and that approach is recommended so color values can be confirmed across all pieces simultaneously rather than approximated in separate production runs." },
-    { question: "How do I get a quote for coaches apparel?", answer: `Contact us through any Get a Quote link on the site, call ${company.phoneDisplay}, or email ${company.email} with your staff size, role types, and preferred apparel direction.` },
+    { question: "Do you work with high school athletic departments on staff apparel?", answer: "Yes. High school athletic departments represent a significant portion of our coaches uniforms business, and we understand the budget structures, color standards, and practical requirements that influence staff apparel decisions at that level." },
+    { question: "Can coaches uniforms be ordered in the same production cycle as team jerseys?", answer: "Yes, and that approach is recommended so color values can be confirmed across all pieces simultaneously rather than approximated in separate production runs." },
+    { question: "How do I get a quote for coaches uniforms?", answer: `Contact us through any Get a Quote link on the site, call ${company.phoneDisplay}, or email ${company.email} with your staff size, role types, and preferred apparel direction.` },
   ],
   "college-football-uniforms": [
     { question: "What makes college football uniforms different from high school builds?", answer: "College uniforms are produced to a higher material standard with more precise decoration quality, more sophisticated design options, and production specifications that hold up to broadcast-level visual scrutiny and the extended wear cycle of a college season." },
@@ -3184,8 +3185,14 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
 };
 
 function buildFaqs(product: ProductBlueprint): { question: string; answer: string }[] {
-  return (
-    productFaqs[product.slug] ?? [
+  // The money pages add price / minimum / turnaround answers in the wording
+  // people search with; they go first so the specific answer is what a reader
+  // and an answer engine hit before the generic ones, and they reach the FAQ
+  // schema through the same list.
+  const extra = moneyPages[product.slug]?.faqs ?? [];
+  return [
+    ...extra,
+    ...(productFaqs[product.slug] ?? [
       { question: `Can I fully customize ${product.name.toLowerCase()} with our team colors and logo?`, answer: `Yes. Every quote is built around your color palette, logo placement, numbers, and player details so the final ${product.name.toLowerCase()} match your program identity.` },
       { question: `What is the minimum order?`, answer: `The minimum is ${product.moq} per design. Discuss unusual structures during the quote process.` },
       { question: `What sizes are available?`, answer: `Available in ${product.sizes}. We help teams align roster measurements before production begins.` },
@@ -3196,8 +3203,8 @@ function buildFaqs(product: ProductBlueprint): { question: string; answer: strin
       { question: `Do you work with Texas football programs?`, answer: `Yes. We support youth leagues, school teams, club programs, booster groups, and event organizers across Texas.` },
       { question: `Can I reorder later?`, answer: `Yes. Organized artwork and production details make future add-on orders straightforward.` },
       { question: `How do I get a quote?`, answer: `Use any Get a Quote call to action on the site, call ${company.phoneDisplay}, or email ${company.email}.` },
-    ]
-  );
+    ]),
+  ];
 }
 
 export function getAllProducts(): Product[] {
@@ -3302,7 +3309,7 @@ export function getCategoryPages(): CategoryPage[] {
       "Team Apparel": {
         title: "Football Team Apparel",
         description:
-          "Browse football team apparel in Texas, including hoodies, coaches apparel, warm-up suits, and sideline jackets for complete program branding.",
+          "Browse football team apparel in Texas, including hoodies, coaches uniforms, warm-up suits, and sideline jackets for complete program branding.",
         intro:
           "Football team apparel in Texas helps programs extend their identity beyond the field. This category covers off-field and sideline essentials for Texas teams that want travel, coaching, and support apparel to look as premium as the uniforms themselves.",
       },
@@ -3462,7 +3469,7 @@ function getCategoryLinkMap() {
       { slug: "football-hoodies", label: "football hoodies for team travel comfort" },
       { slug: "football-warm-up-suits", label: "football warm up suits for coordinated pregame style" },
       { slug: "football-sideline-jackets", label: "football sideline jackets for weather-ready layering" },
-      { slug: "coaches-apparel", label: "coaches apparel for sideline staff identity" },
+      { slug: "coaches-apparel", label: "custom coaches uniforms for sideline staff" },
       { slug: "fan-football-jerseys", label: "fan football jerseys for supporter apparel programs" },
     ],
   } as const;
@@ -4127,11 +4134,11 @@ export function getCategoryFaqs(category: CategoryPage): CategoryFaq[] {
       { question: "Can team packages support Texas school and club programs?", answer: "Yes. The category is especially useful for Texas programs that need full-team coordination and stronger operational structure." },
     ],
     "Team Apparel": [
-      { question: "What products are included in football team apparel?", answer: "This category includes hoodies, warm-up suits, sideline jackets, and coaches apparel built for travel, sideline, and support use." },
+      { question: "What products are included in football team apparel?", answer: "This category includes hoodies, warm-up suits, sideline jackets, and coaches uniforms built for travel, sideline, and support use." },
       { question: "Can team apparel match our football uniform branding?", answer: "Yes. Team apparel can be customized to align with your colors, logos, and broader program identity." },
       { question: "Is this category only for players?", answer: "No. Team apparel can be used by athletes, coaches, support staff, and even related supporter programs depending on the product." },
       { question: "What is the difference between team apparel and game uniforms?", answer: "Team apparel focuses on travel, layering, sideline visibility, and off-field presentation rather than direct game-play use." },
-      { question: "Can coaches apparel be included in the same order?", answer: "Yes. Coaching apparel is part of this category and can be planned alongside other team layers." },
+      { question: "Can coaches uniforms be included in the same order?", answer: "Yes. Coaching apparel is part of this category and can be planned alongside other team layers." },
       { question: "How long does custom team apparel usually take?", answer: "Most team apparel orders are completed in about 2 to 3 weeks after artwork and product details are approved, with a minimum of 10 pieces per design." },
       { question: "Are these apparel products useful for booster and travel programs too?", answer: "Yes. Team apparel is often used to strengthen overall program image beyond the roster alone." },
       { question: "Can jackets and warm-up suits be ordered for full rosters?", answer: "Yes. Team apparel can be structured for full player groups, coaching staffs, and multi-piece program orders." },

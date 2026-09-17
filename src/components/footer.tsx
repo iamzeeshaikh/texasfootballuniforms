@@ -1,10 +1,28 @@
 import Link from "next/link";
 
-import { categoryGroups, getAllProducts, getCategorySlug } from "@/lib/catalog";
+import { categoryGroups, getCategorySlug, getProductBySlug } from "@/lib/catalog";
 import { company } from "@/lib/site";
 
+/**
+ * Chosen rather than sliced off the front of the catalog. The 7v7 and flag
+ * pages had no navigation link anywhere on the site and sat at position 78-95;
+ * the first five blueprints happened to be the ones the footer promoted.
+ */
+const FOOTER_PRODUCTS = [
+  "high-school-football-uniforms",
+  "youth-football-uniforms",
+  "reversible-football-jerseys",
+  "sublimated-football-jerseys",
+  "7-on-7-football-uniforms",
+  "flag-football-uniforms",
+  "football-team-kits",
+  "coaches-apparel",
+];
+
 export function Footer() {
-  const topProducts = getAllProducts().slice(0, 5);
+  const topProducts = FOOTER_PRODUCTS.map((slug) => getProductBySlug(slug)).filter(
+    (product): product is NonNullable<typeof product> => Boolean(product),
+  );
 
   return (
     <footer className="border-t border-white/10 bg-[var(--color-navy)]">
@@ -79,7 +97,7 @@ export function Footer() {
 
         <div>
           <p className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-white/60">
-            Top Products
+            Popular Pages
           </p>
           <div className="grid gap-3 text-sm">
             {topProducts.map((product) => (

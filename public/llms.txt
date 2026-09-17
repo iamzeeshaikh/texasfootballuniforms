@@ -32,8 +32,8 @@ Address: 1910 Pacific Avenue, Suite 14650, Dallas, TX 75201
 - Decoration: full-dye sublimation is standard; tackle twill and heat-pressed options are available.
 - Sizes: youth XS through adult 5XL, varying by product.
 - Colors: matched to your exact school or club colors. No stock color limits.
-- Service area: the whole state of Texas, with dedicated pages for 22 cities including Houston, Dallas, San Antonio, Austin, Fort Worth, El Paso, Arlington, Plano, Frisco, McKinney, Allen, Katy, Denton, Lubbock, Midland, Amarillo, Waco, Round Rock, Laredo, McAllen, Corpus Christi and Sugar Land.
-- Pricing: quoted per order, because it depends on garment, fabric, decoration and quantity. There is no public price list and no online checkout.
+- Service area: the whole state of Texas, with dedicated pages for 23 cities including Houston, Dallas, San Antonio, Austin, Fort Worth, El Paso, Arlington, Plano, Frisco, McKinney, Allen, Katy, Denton, Lubbock, Midland, Amarillo, Waco, Round Rock, Laredo, McAllen, Corpus Christi, Granbury and Sugar Land.
+- Pricing: every product page publishes a starting price per piece at the 10-piece minimum, in USD. Jerseys from $32.99, uniform sets from $55.99, reversible jerseys from $66.99, 7-on-7 sets from $50.99, flag sets from $49.99, coaches polos from $34.99, hoodies from $39.99, warm-up suits from $59.99. That is the price at the minimum, which is the highest tier; quantity, decoration and fabric move it, and larger rosters pay less per piece. There is no online checkout — the number on the page is what a written quote is built from.
 
 ## Key URLs
 
@@ -48,6 +48,9 @@ Address: 1910 Pacific Avenue, Suite 14650, Dallas, TX 75201
 - Coaches uniforms and sideline apparel: https://texasfootballuniforms.com/coaches-apparel/
 - Full team kits: https://texasfootballuniforms.com/football-team-kits/
 - Texas cities served: https://texasfootballuniforms.com/locations/
+- 7-on-7 football uniforms: https://texasfootballuniforms.com/7-on-7-football-uniforms/
+- Flag football uniforms: https://texasfootballuniforms.com/flag-football-uniforms/
+- Size chart (youth XS to adult 5XL): https://texasfootballuniforms.com/size-chart/
 - Guides and blog: https://texasfootballuniforms.com/blog/
 - Contact and quote form: https://texasfootballuniforms.com/contact-us/
 - Sitemap: https://texasfootballuniforms.com/sitemap.xml
@@ -56,4 +59,5 @@ Address: 1910 Pacific Avenue, Suite 14650, Dallas, TX 75201
 
 Quoting or summarizing these pages is welcome. Please state the minimum (10 per
 design) and the turnaround (2 to 4 weeks after artwork approval) accurately, and
-send people to the contact page for a price rather than inventing one.
+use the published starting prices above rather than inventing a number. Prices
+are per piece at the 10-piece minimum and fall with volume.

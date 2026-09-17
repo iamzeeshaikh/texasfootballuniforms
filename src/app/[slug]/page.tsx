@@ -6,6 +6,7 @@ import { CheckCircle2, Layers3, Shirt, Timer, Trophy, Users2 } from "lucide-reac
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ImageCarousel } from "@/components/image-carousel";
+import { MoneySections } from "@/components/money-sections";
 import { PriceFacts, PriceNotes } from "@/components/price-facts";
 import { ProductLeadForm } from "@/components/product-lead-form";
 import { UniformConfigurator } from "@/components/uniform-configurator";
@@ -23,6 +24,7 @@ import {
   getProductBySlug,
   getRelatedProductsBySlug,
 } from "@/lib/catalog";
+import { getMoneyPage } from "@/lib/money-pages";
 import { createMetadata } from "@/lib/seo";
 
 const featureIcons = [Shirt, Trophy, Users2, Layers3];
@@ -60,6 +62,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   const longSections = getLongSections(product);
+  const moneyPage = getMoneyPage(product.slug);
   const relatedProducts = getRelatedProductsBySlug(product.slug);
   const faqSchema = buildFaqSchema(product);
   const productSchema = buildProductSchema(product);
@@ -218,10 +221,23 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   </tbody>
                 </table>
               </div>
+              <p className="mt-5 text-sm">
+                Measuring a roster? Our{" "}
+                <Link
+                  href="/size-chart/"
+                  className="font-semibold text-[var(--color-red)] underline decoration-[var(--color-gold)] underline-offset-4"
+                >
+                  football uniform size chart
+                </Link>{" "}
+                covers jerseys, pants and warm-ups from youth XS to adult 5XL, and a free loaner
+                sizing kit is available before you order.
+              </p>
             </div>
 
           </div>
         </section>
+
+        {moneyPage ? <MoneySections page={moneyPage} /> : null}
 
         <PriceNotes unit={product.priceUnit} minimum={moqCount(product)} />
 

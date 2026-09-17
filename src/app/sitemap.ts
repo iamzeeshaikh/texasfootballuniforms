@@ -25,12 +25,13 @@ const PAGE_LASTMOD: Record<string, Date> = {
   "/blog/": at("blog"),
   "/about-us/": at("about"),
   "/contact-us/": at("contact"),
+  "/size-chart/": at("products"),
   "/privacy-policy/": at("privacy"),
   "/terms-conditions/": at("terms"),
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["/", "/all-categories/", "/blog/", "/about-us/", "/contact-us/", "/privacy-policy/", "/terms-conditions/"];
+  const staticPages = ["/", "/all-categories/", "/blog/", "/about-us/", "/contact-us/", "/size-chart/", "/privacy-policy/", "/terms-conditions/"];
 
   const pageEntries: MetadataRoute.Sitemap = staticPages.map((page) => ({
     url: `${SITE_URL}${page}`,

@@ -103,6 +103,55 @@ const testimonials = [
   },
 ];
 
+/**
+ * The generic "custom football uniforms" cluster earns 210 impressions spread
+ * across 14 URLs with the home page itself ranking 74. This block puts the
+ * whole cluster on one page with the query wording in the anchors so the
+ * intent consolidates on "/" instead of splitting.
+ */
+const uniformCluster = [
+  {
+    href: "/high-school-football-uniforms/",
+    label: "High school football uniforms",
+    text: "Varsity and JV kits built around the UIL calendar and district realignment, from $55.99 per player.",
+  },
+  {
+    href: "/youth-football-uniforms/",
+    label: "Youth football uniforms",
+    text: "Little league, rec and select packages on a true youth block, youth XS up, from $55.99 per player.",
+  },
+  {
+    href: "/sublimated-football-jerseys/",
+    label: "Sublimated football jerseys",
+    text: "Full-dye jerseys with unlimited colors and nothing to crack or peel, from $32.99 per jersey.",
+  },
+  {
+    href: "/reversible-football-jerseys/",
+    label: "Reversible football jerseys",
+    text: "Two team colors in one jersey for practice, 7v7 and travel, from $66.99 per jersey.",
+  },
+  {
+    href: "/7-on-7-football-uniforms/",
+    label: "7-on-7 football uniforms",
+    text: "No-pads cuts and summer-weight fabric for the Texas 7on7 state series, from $50.99 per player.",
+  },
+  {
+    href: "/flag-football-uniforms/",
+    label: "Flag football uniforms",
+    text: "Belt-friendly cuts for NFL Flag, rec divisions and UIL girls' flag, from $49.99 per player.",
+  },
+  {
+    href: "/football-team-kits/",
+    label: "Complete football team kits",
+    text: "Jerseys, pants, practice gear and sideline layers ordered as one job, from $55.99 per set.",
+  },
+  {
+    href: "/coaches-apparel/",
+    label: "Custom coaches uniforms",
+    text: "Polos, quarter-zips, jackets and hoodies to the same color standard, from $34.99 per shirt.",
+  },
+];
+
 export default function HomePage() {
   const products = getAllProducts();
   const featured = products.slice(0, 6);
@@ -271,6 +320,39 @@ export default function HomePage() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-space pt-0">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="surface-card p-8 sm:p-10">
+            <span className="rounded-full bg-[var(--color-red)]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">
+              Browse by Program
+            </span>
+            <h2 className="mt-5 max-w-3xl text-4xl text-[var(--color-navy)] sm:text-5xl">
+              Custom Football Uniforms for Texas Teams
+            </h2>
+            <p className="mt-5 max-w-3xl text-lg">
+              Every level of Texas football orders a different kit. Start from the one that matches
+              your program — each page publishes its starting price, its minimum and its turnaround
+              before you send anything.
+            </p>
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              {uniformCluster.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="group rounded-[22px] border border-[var(--color-border)] bg-white p-5 shadow-[0_10px_24px_rgba(11,31,58,0.04)] transition hover:-translate-y-0.5 hover:border-[var(--color-red)] hover:shadow-[0_18px_40px_rgba(11,31,58,0.10)]"
+                >
+                  <span className="inline-flex items-center gap-2 text-lg font-semibold text-[var(--color-navy)] group-hover:text-[var(--color-red)]">
+                    {item.label}
+                    <ArrowRight className="h-4 w-4 text-[var(--color-red)] transition group-hover:translate-x-1" />
+                  </span>
+                  <p className="mt-2 text-sm text-[var(--color-navy-soft)]">{item.text}</p>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
