@@ -3,7 +3,9 @@
 // Lights, real programs and stadiums, youth/select/7-on-7) so no two pages
 // read alike. Single-state site — cities only, no state layer.
 
-export interface LocationCity {
+import { cityFacts, type CityFacts, type LevelMix } from "@/data/city-facts";
+
+export interface LocationCityBase {
   slug: string;
   name: string;
   region: string;
@@ -21,7 +23,16 @@ export interface LocationCity {
   stat: string;
 }
 
-export const locationCities: LocationCity[] = [
+/**
+ * The page is the base entry plus the verified local facts in
+ * `city-facts.ts`. The facts are optional at the type level so a city can be
+ * added here and researched afterwards without breaking the build — the
+ * template skips any block whose facts are missing rather than printing an
+ * empty heading.
+ */
+export type LocationCity = LocationCityBase & Partial<CityFacts>;
+
+const baseCities: LocationCityBase[] = [
   {
     slug: "houston", name: "Houston", region: "Greater Houston",
     metaTitle: "Custom Football Uniforms in Houston, TX | 6A, Youth & Select",
@@ -370,6 +381,58 @@ export const locationCities: LocationCity[] = [
     stat: "Serving Fort Bend football country",
   },
 ];
+
+export const locationCities: LocationCity[] = baseCities.map((c) => ({
+  ...c,
+  ...(cityFacts[c.slug] ?? {}),
+}));
+
+/**
+ * The money page a city's level mix should point at, with the sentence ending
+ * varied by city so twenty-three pages do not repeat one line.
+ */
+export function levelMixPage(mix: LevelMix | undefined, seedText: string) {
+  const pages: Record<LevelMix, { href: string; anchor: string; tails: string[] }> = {
+    "high-school": {
+      href: "/high-school-football-uniforms/",
+      anchor: "high school football uniforms",
+      tails: [
+        "page sets out what a varsity order contains and when a UIL program has to place it.",
+        "page covers roster sizing, sub-varsity blocks and the order calendar a UIL season runs on.",
+        "page explains how a varsity, JV and freshman order is quoted as one production run.",
+      ],
+    },
+    youth: {
+      href: "/youth-football-uniforms/",
+      anchor: "youth football uniforms",
+      tails: [
+        "are cut on the youth block, with the shorter body length that keeps a jersey out of a ten-year-old's pads.",
+        "are built for league sizing, where one order spans several age divisions at once.",
+        "page shows the youth size run and how a league order is split by division.",
+      ],
+    },
+    "7-on-7": {
+      href: "/7-on-7-football-uniforms/",
+      anchor: "7-on-7 football uniforms",
+      tails: [
+        "are lighter than a game jersey because a summer tournament is four games in one day.",
+        "page covers what a summer tournament roster actually needs to carry.",
+        "are cut for the no-pads summer game rather than pulled from the fall set.",
+      ],
+    },
+    flag: {
+      href: "/flag-football-uniforms/",
+      anchor: "flag football uniforms",
+      tails: [
+        "are built for a belt and a flag rather than a shoulder pad, which changes the cut across the hips.",
+        "page covers the sizing a rec-league roster needs, from the smallest youth block up.",
+        "are made for leagues that buy every size in one order.",
+      ],
+    },
+  };
+  const page = pages[mix ?? "high-school"];
+  return { href: page.href, anchor: page.anchor, tail: fbPick(page.tails, seedText, 5) };
+}
 
 // ── Varied internal linking: unique target + anchor + sentence per page ──
 export const FB_LINK_POOL = [
