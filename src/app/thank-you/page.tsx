@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { SubmittedSpec } from "@/components/submitted-spec";
+
 export const metadata: Metadata = {
   title: "Thank you — your request is with us",
   description:
@@ -17,7 +19,7 @@ const steps = [
 export default function ThankYouPage() {
   return (
     <section className="py-16">
-      <div className="mx-auto max-w-2xl px-4 text-center">
+      <div className="mx-auto max-w-3xl px-4 text-center">
         <div
           className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full"
           style={{ backgroundColor: "rgba(200, 16, 46, 0.12)" }}
@@ -57,9 +59,14 @@ export default function ThankYouPage() {
           ))}
         </ol>
 
+        <SubmittedSpec />
+
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link href="/" className="inline-flex justify-center rounded-full bg-[var(--color-red)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-[var(--color-navy)] disabled:opacity-60">
             Back to home
+          </Link>
+          <Link href="/design-your-uniform/" className="inline-flex justify-center rounded-full border border-[var(--color-border)] bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-navy)] transition hover:border-[var(--color-red)]">
+            Design another uniform
           </Link>
           <Link href="/all-categories/" className="inline-flex justify-center rounded-full border border-[var(--color-border)] bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-navy)] transition hover:border-[var(--color-red)]">
             Browse uniforms
