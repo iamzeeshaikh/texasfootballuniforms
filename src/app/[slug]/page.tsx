@@ -4,17 +4,19 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CheckCircle2, Layers3, Shirt, Timer, Trophy, Users2 } from "lucide-react";
 
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ImageCarousel } from "@/components/image-carousel";
 import { PriceFacts, PriceNotes } from "@/components/price-facts";
 import { ProductLeadForm } from "@/components/product-lead-form";
 import { UniformConfigurator } from "@/components/uniform-configurator";
 import {
-  buildBreadcrumbSchema,
   buildFaqSchema,
   buildMetaDescription,
   buildMetaTitle,
   buildProductSchema,
   getAllProducts,
+  getCategoryGroup,
+  getCategorySlug,
   getPriceFacts,
   moqCount,
   getLongSections,
@@ -61,11 +63,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const relatedProducts = getRelatedProductsBySlug(product.slug);
   const faqSchema = buildFaqSchema(product);
   const productSchema = buildProductSchema(product);
-  const breadcrumbSchema = buildBreadcrumbSchema([
+  // The trail names the product's real category. It used to say
+  // "All Categories", which told Google and the reader nothing about where
+  // the page sits.
+  const categoryGroup = getCategoryGroup(product);
+  const crumbs = [
     { name: "Home", path: "/" },
-    { name: "All Categories", path: "/all-categories/" },
+    { name: categoryGroup, path: `/categories/${getCategorySlug(categoryGroup)}/` },
     { name: product.name, path: `/${product.slug}/` },
-  ]);
+  ];
 
   return (
     <div className="section-space">
@@ -73,6 +79,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <div className="surface-card p-8 sm:p-10">
+              <Breadcrumbs items={crumbs} />
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">
                 Custom Football Apparel in Texas
               </p>
@@ -280,10 +287,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
     </div>
   );

@@ -26,6 +26,13 @@ type ProductBlueprint = {
   sizes: string;
   moq: string;
   turnaround: string;
+  /**
+   * Hand-picked sibling pages, most relevant first. Related products used to
+   * be a positional slice of the blueprint array, so a socks page recommended
+   * college uniforms. Anything short of four is topped up from the same
+   * category.
+   */
+  related: string[];
 };
 
 export type Product = ProductBlueprint & {
@@ -87,6 +94,7 @@ export type CategoryComparison = {
 const blueprints: ProductBlueprint[] = [
   {
     slug: "football-team-kits",
+    related: ["american-football-uniforms", "high-school-football-uniforms", "football-warm-up-suits", "custom-team-jerseys"],
     folder: "football team kits",
     name: "Football Team Kits",
     fromPrice: 55.99,
@@ -102,6 +110,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "7-on-7-football-uniforms",
+    related: ["lightweight-football-jerseys", "reversible-football-jerseys", "flag-football-uniforms", "high-school-football-uniforms"],
     folder: "7 on 7 football uniforms",
     name: "7 on 7 Football Uniforms",
     fromPrice: 50.99,
@@ -117,6 +126,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "adult-football-jerseys",
+    related: ["american-football-jerseys", "custom-team-jerseys", "sublimated-football-jerseys", "college-football-uniforms"],
     folder: "adult football jerseys",
     name: "Adult Football Jerseys",
     fromPrice: 32.99,
@@ -132,6 +142,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "american-football-jerseys",
+    related: ["sublimated-football-jerseys", "custom-number-football-jerseys", "american-football-uniforms", "custom-team-jerseys"],
     folder: "american football jerseys",
     name: "American Football Jerseys",
     fromPrice: 32.99,
@@ -147,6 +158,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "american-football-uniforms",
+    related: ["football-team-kits", "high-school-football-uniforms", "youth-football-uniforms", "sublimated-football-jerseys"],
     folder: "american football uniforms",
     name: "American Football Uniforms",
     fromPrice: 55.99,
@@ -162,6 +174,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "blank-football-jerseys",
+    related: ["football-practice-jerseys", "custom-team-jerseys", "lightweight-football-jerseys", "football-shorts"],
     folder: "blank football jerseys",
     name: "Blank Football Jerseys",
     fromPrice: 32.99,
@@ -177,6 +190,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "coaches-apparel",
+    related: ["football-sideline-jackets", "football-hoodies", "football-warm-up-suits", "custom-team-jerseys"],
     folder: "coaches apparel",
     name: "Coaches Apparel",
     fromPrice: 34.99,
@@ -192,6 +206,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "college-football-uniforms",
+    related: ["high-school-football-uniforms", "american-football-uniforms", "football-team-kits", "adult-football-jerseys"],
     folder: "college football uniforms",
     name: "College Football Uniforms",
     fromPrice: 55.99,
@@ -207,6 +222,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "custom-name-football-jerseys",
+    related: ["custom-number-football-jerseys", "custom-team-jerseys", "sublimated-football-jerseys", "youth-football-jerseys"],
     folder: "custom name football jerseys",
     name: "Custom Name Football Jerseys",
     fromPrice: 32.99,
@@ -222,6 +238,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "custom-number-football-jerseys",
+    related: ["custom-name-football-jerseys", "custom-team-jerseys", "american-football-jerseys", "sublimated-football-jerseys"],
     folder: "custom number football jerseys",
     name: "Custom Number Football Jerseys",
     fromPrice: 32.99,
@@ -237,6 +254,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "football-warm-up-suits",
+    related: ["football-sideline-jackets", "coaches-apparel", "football-hoodies", "football-team-kits"],
     folder: "football warm up suits",
     name: "Football Warm Up Suits",
     fromPrice: 59.99,
@@ -252,6 +270,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "custom-team-jerseys",
+    related: ["sublimated-football-jerseys", "custom-name-football-jerseys", "custom-number-football-jerseys", "reversible-football-jerseys"],
     folder: "custom team jerseys",
     name: "Custom Team Jerseys",
     fromPrice: 32.99,
@@ -267,6 +286,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "fan-football-jerseys",
+    related: ["custom-team-jerseys", "football-hoodies", "sublimated-football-jerseys", "youth-football-jerseys"],
     folder: "fan football jerseys",
     name: "Fan Football Jerseys",
     fromPrice: 31.99,
@@ -282,6 +302,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "flag-football-jerseys",
+    related: ["flag-football-uniforms", "7-on-7-football-uniforms", "reversible-football-jerseys", "youth-football-jerseys"],
     folder: "flag football jerseys",
     name: "Flag Football Jerseys",
     fromPrice: 32.99,
@@ -297,6 +318,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "flag-football-uniforms",
+    related: ["flag-football-jerseys", "7-on-7-football-uniforms", "youth-football-uniforms", "football-shorts"],
     folder: "flag football uniforms",
     name: "Flag Football Uniforms",
     fromPrice: 49.99,
@@ -312,6 +334,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "football-gloves",
+    related: ["football-socks", "padded-football-shirts", "football-practice-jerseys", "football-shorts"],
     folder: "football gloves",
     name: "Football Gloves",
     fromPrice: 32.99,
@@ -327,6 +350,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "football-hoodies",
+    related: ["coaches-apparel", "football-sideline-jackets", "football-warm-up-suits", "fan-football-jerseys"],
     folder: "football hoodies",
     name: "Football Hoodies",
     fromPrice: 39.99,
@@ -342,6 +366,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "football-practice-jerseys",
+    related: ["reversible-football-jerseys", "blank-football-jerseys", "football-shorts", "padded-football-shirts"],
     folder: "football practice jerseys",
     name: "Football Practice Jerseys",
     fromPrice: 32.99,
@@ -357,6 +382,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "football-shorts",
+    related: ["football-practice-jerseys", "padded-football-shirts", "football-socks", "football-gloves"],
     folder: "football shorts",
     name: "Football Shorts",
     fromPrice: 29.99,
@@ -372,6 +398,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "football-sideline-jackets",
+    related: ["coaches-apparel", "football-warm-up-suits", "football-hoodies", "football-team-kits"],
     folder: "football sideline jackets",
     name: "Football Sideline Jackets",
     fromPrice: 39.99,
@@ -387,6 +414,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "high-school-football-uniforms",
+    related: ["american-football-uniforms", "football-team-kits", "college-football-uniforms", "7-on-7-football-uniforms"],
     folder: "high school football uniforms",
     name: "High School Football Uniforms",
     fromPrice: 55.99,
@@ -402,6 +430,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "football-socks",
+    related: ["football-gloves", "football-shorts", "football-team-kits", "football-practice-jerseys"],
     folder: "football socks",
     name: "Football Socks",
     fromPrice: 13.99,
@@ -417,6 +446,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "lightweight-football-jerseys",
+    related: ["7-on-7-football-uniforms", "football-practice-jerseys", "sublimated-football-jerseys", "flag-football-jerseys"],
     folder: "lightweight football jerseys",
     name: "Lightweight Football Jerseys",
     fromPrice: 32.99,
@@ -432,6 +462,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "padded-football-shirts",
+    related: ["football-practice-jerseys", "football-shorts", "football-gloves", "american-football-uniforms"],
     folder: "padded football shirts",
     name: "Padded Football Shirts",
     fromPrice: 32.99,
@@ -447,6 +478,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "reversible-football-jerseys",
+    related: ["football-practice-jerseys", "7-on-7-football-uniforms", "youth-football-jerseys", "flag-football-jerseys"],
     folder: "reversible football jerseys",
     name: "Reversible Football Jerseys",
     fromPrice: 66.99,
@@ -462,6 +494,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "sublimated-football-jerseys",
+    related: ["custom-team-jerseys", "american-football-jerseys", "reversible-football-jerseys", "football-socks"],
     folder: "sublimated football jerseys",
     name: "Sublimated Football Jerseys",
     fromPrice: 32.99,
@@ -477,6 +510,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "youth-football-jerseys",
+    related: ["youth-football-uniforms", "custom-name-football-jerseys", "reversible-football-jerseys", "flag-football-jerseys"],
     folder: "youth football jerseys",
     name: "Youth Football Jerseys",
     fromPrice: 32.99,
@@ -492,6 +526,7 @@ const blueprints: ProductBlueprint[] = [
   },
   {
     slug: "youth-football-uniforms",
+    related: ["youth-football-jerseys", "high-school-football-uniforms", "flag-football-uniforms", "football-team-kits"],
     folder: "youth football uniforms",
     name: "Youth Football Uniforms",
     fromPrice: 55.99,
@@ -595,11 +630,20 @@ function buildShortDescription(product: ProductBlueprint): string {
   );
 }
 
+/**
+ * Link targets for the in-copy internal links, taken from the blueprint's own
+ * `related` list rather than a positional slice of the array.
+ */
 function getRelatedProducts(slug: string) {
-  const index = blueprints.findIndex((item) => item.slug === slug);
-  return blueprints
-    .filter((item) => item.slug !== slug)
-    .slice(index % (blueprints.length - 4), (index % (blueprints.length - 4)) + 4);
+  const self = blueprints.find((item) => item.slug === slug);
+  const picked = (self?.related ?? [])
+    .map((related) => blueprints.find((item) => item.slug === related))
+    .filter((item): item is ProductBlueprint => Boolean(item));
+  if (picked.length >= 4) return picked.slice(0, 4);
+  const filler = blueprints.filter(
+    (item) => item.slug !== slug && !picked.some((p) => p.slug === item.slug),
+  );
+  return [...picked, ...filler].slice(0, 4);
 }
 
 function getLinkTarget(product: ProductBlueprint, offset: number) {
@@ -4139,12 +4183,31 @@ export function getProductBySlug(slug: string) {
   return getAllProducts().find((product) => product.slug === slug);
 }
 
-export function getRelatedProductsBySlug(slug: string) {
+/**
+ * Related products: the blueprint's own `related` list first, then anything
+ * else in the same category, then the rest of the catalog as a last resort.
+ *
+ * The old version sliced the blueprint array at an offset derived from the
+ * product's own index, which put college football uniforms under football
+ * socks and sent readers sideways out of the cluster they were browsing.
+ */
+export function getRelatedProductsBySlug(slug: string, count = 4) {
   const products = getAllProducts();
-  const index = products.findIndex((item) => item.slug === slug);
-  return products
-    .filter((item) => item.slug !== slug)
-    .slice(index % (products.length - 4), (index % (products.length - 4)) + 4);
+  const self = products.find((item) => item.slug === slug);
+  if (!self) return products.slice(0, count);
+
+  const bySlug = new Map(products.map((item) => [item.slug, item] as const));
+  const picked: Product[] = [];
+  const add = (item?: Product) => {
+    if (item && item.slug !== slug && !picked.some((p) => p.slug === item.slug)) picked.push(item);
+  };
+
+  self.related.forEach((related) => add(bySlug.get(related)));
+  const group = getCategoryGroup(self);
+  products.filter((item) => getCategoryGroup(item) === group).forEach(add);
+  products.forEach(add);
+
+  return picked.slice(0, count);
 }
 
 export function buildMetaTitle(product: Product) {

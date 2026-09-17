@@ -13,10 +13,10 @@ import {
   Truck,
 } from "lucide-react";
 
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { PriceFacts, PriceNotes } from "@/components/price-facts";
 import { ProductLeadForm } from "@/components/product-lead-form";
 import {
-  buildBreadcrumbSchema,
   buildCategoryCollectionSchema,
   buildCategoryFaqSchema,
   getCategoryBySlug,
@@ -92,11 +92,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   // Lowest published price in the category, so "from" is literally true.
   const priceLeader = getCategoryPriceLeader(grouped.products);
 
-  const breadcrumbSchema = buildBreadcrumbSchema([
+  const crumbs = [
     { name: "Home", path: "/" },
     { name: "All Categories", path: "/all-categories/" },
     { name: categoryPage.group, path: `/categories/${categoryPage.slug}/` },
-  ]);
+  ];
   const collectionSchema = buildCategoryCollectionSchema(categoryPage, grouped.products);
   const faqSchema = buildCategoryFaqSchema(categoryPage);
 
@@ -105,6 +105,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[1.02fr_0.98fr]">
           <div className="surface-card p-8 sm:p-10">
+            <Breadcrumbs items={crumbs} />
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">
               Football Category
             </p>
@@ -398,10 +399,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </section>
       </div>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}

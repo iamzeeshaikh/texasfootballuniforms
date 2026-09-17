@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { buildBreadcrumbSchema } from "@/lib/catalog";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { createMetadata } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { locationCities, cityUrl } from "@/data/locations";
@@ -32,11 +32,12 @@ export default function LocationsHubPage() {
     cities: locationCities.filter((c) => c.region === region),
   })).filter((g) => g.cities.length > 0);
 
+  const crumbs = [
+    { name: "Home", path: "/" },
+    { name: "Locations", path: "/locations/" },
+  ];
+
   const schema = [
-    buildBreadcrumbSchema([
-      { name: "Home", path: "/" },
-      { name: "Locations", path: "/locations/" },
-    ]),
     {
       "@context": "https://schema.org",
       "@type": "ItemList",
@@ -58,6 +59,7 @@ export default function LocationsHubPage() {
 
       <section className="bg-[var(--color-navy)] py-16 text-white">
         <div className="mx-auto w-full max-w-6xl px-5">
+          <Breadcrumbs items={crumbs} tone="dark" />
           <span className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-gold)]">Statewide · Texas</span>
           <h1 className="mt-3 max-w-3xl font-display text-4xl uppercase leading-[1.05] sm:text-5xl">Custom Football Uniforms Across Texas</h1>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-white/80">

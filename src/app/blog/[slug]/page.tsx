@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Fragment } from "react";
 
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { blogPosts, getBlogPost } from "@/data/blogPosts";
 import { createMetadata } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
@@ -82,11 +83,13 @@ export default async function BlogPostPage({
 
       <article className="section-space">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-          <nav className="text-xs font-semibold uppercase tracking-[0.2em] text-red-700">
-            <Link href="/blog/" className="hover:text-red-800">Blog</Link>
-            <span className="mx-2 text-neutral-400">/</span>
-            <span className="text-neutral-500">{post.badge}</span>
-          </nav>
+          <Breadcrumbs
+            items={[
+              { name: "Home", path: "/" },
+              { name: "Blog", path: "/blog/" },
+              { name: post.title, path: `/blog/${post.slug}/` },
+            ]}
+          />
 
           <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl">{post.title}</h1>
           <p className="mt-3 text-sm text-neutral-500">

@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ProductLeadForm } from "@/components/product-lead-form";
-import { buildBreadcrumbSchema, getPriceFacts, getProductBySlug } from "@/lib/catalog";
+import { getPriceFacts, getProductBySlug } from "@/lib/catalog";
 import { SITE_URL } from "@/lib/site";
 import {
   getNearbyCities,
@@ -70,12 +71,13 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
     { question: `How do we get a quote for our ${loc.name} team?`, answer: `Send your team name, colors, roster count, and any design ideas through our quote form. We'll come back with pricing, fabric options, and a timeline for your ${loc.name} program.` },
   ];
 
+  const crumbs = [
+    { name: "Home", path: "/" },
+    { name: "Locations", path: "/locations/" },
+    { name: loc.name, path: basePath },
+  ];
+
   const schema = [
-    buildBreadcrumbSchema([
-      { name: "Home", path: "/" },
-      { name: "Locations", path: "/locations/" },
-      { name: loc.name, path: basePath },
-    ]),
     {
       "@context": "https://schema.org",
       "@type": "Service",
@@ -103,6 +105,7 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
       <section className="bg-[var(--color-navy)] py-16 text-white">
         <div className="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 lg:grid-cols-[1.4fr_1fr]">
           <div>
+            <Breadcrumbs items={crumbs} tone="dark" />
             <span className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-gold)]">{loc.region} · Texas</span>
             <h1 className="mt-3 font-display text-4xl uppercase leading-[1.05] sm:text-5xl">{loc.h1}</h1>
             <p className="mt-4 max-w-xl text-lg leading-relaxed text-white/80">{loc.intro}</p>

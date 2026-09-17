@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { blogPosts } from "@/data/blogPosts";
 import { createMetadata } from "@/lib/seo";
 
@@ -19,6 +20,7 @@ export default function BlogIndexPage() {
   return (
     <section className="section-space">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Blog", path: "/blog/" }]} />
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-red-700">Team Uniform Guides</p>
         <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl">
           Texas Football Uniforms Blog
