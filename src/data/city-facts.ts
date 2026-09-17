@@ -385,6 +385,252 @@ export const cityFacts: Record<string, CityFacts> = {
     ],
   },
 
+  // ────────────────────────────────────────────── Greater Houston ──
+  houston: {
+    districts: ["Houston ISD", "Cypress-Fairbanks ISD", "Spring Branch ISD", "Alief ISD", "Aldine ISD", "Klein ISD"],
+    schools: [
+      { school: "Bellaire", district: "Houston ISD", level: "6A" },
+      { school: "Heights", district: "Houston ISD", level: "6A" },
+      { school: "Lamar", district: "Houston ISD", level: "6A" },
+      { school: "North Shore", district: "Galena Park ISD", level: "6A" },
+      { school: "Cy-Fair", district: "Cypress-Fairbanks ISD", level: "6A" },
+      { school: "Elsik, Hastings and Taylor", district: "Alief ISD", level: "6A" },
+      { school: "Milby", district: "Houston ISD", level: "5A Division I" },
+      { school: "Westbury", district: "Houston ISD", level: "5A Division I" },
+      { school: "Waltrip", district: "Houston ISD", level: "5A Division I" },
+      { school: "Wisdom", district: "Houston ISD", level: "5A Division I" },
+      { school: "Yates", district: "Houston ISD", level: "4A Division II" },
+      { school: "Strake Jesuit", district: "Private (UIL member)", level: "6A" },
+    ],
+    schoolsNote:
+      "A city this size does not have one football market; it has eight or nine. Houston ISD runs 6A programs at Bellaire, Heights and Lamar while most of the rest of the district plays 5A Division I and Yates plays 4A Division II. Around it, Galena Park's North Shore, Cypress-Fairbanks and Alief's three schools all field 6A programs, and Strake Jesuit plays 6A as a private UIL member. Six districts touch the city, which is why a Houston quote starts with which side of town you are on.",
+    youthLeagues: [
+      { name: "Houston Texans Youth Football (NFL FLAG Houston)", note: "the NFL's flag league in the city, running from age four to fifteen." },
+      { name: "YMCA of Greater Houston youth flag football", note: "runs flag in partnership with the Texans across the association's Houston branches." },
+      { name: "i9 Sports Houston", note: "runs flag football and multi-sport leagues at venues across the metro." },
+      { name: "Texas Youth Football & Cheer Association", note: "carries spring and fall flag and tackle teams in the Houston area through its team finder." },
+    ],
+    youthNote:
+      "The youth side of Houston is enormous and it is mostly flag — the Texans' own league takes players from four years old, and the YMCA runs alongside it. Tackle programs through TYFA run spring as well as fall, so Houston is one of the few places where uniform orders never really stop. Our",
+    levelMix: "youth",
+    stadiums: [
+      { name: "Delmar Stadium", note: "Houston ISD's 12,000-seat stadium, shared by district programs across the west side." },
+      { name: "Joe K. Butler Stadium", note: "an 8,000-seat Houston ISD venue in southwest Houston." },
+      { name: "Herman A. Barnett Stadium", note: "another shared Houston ISD football, soccer and track complex." },
+    ],
+    seasonNote:
+      "Houston's August is the hardest test a jersey gets anywhere in Texas. Conditioning opens on August 3 for schools without spring training and August 10 for the 5A and 6A programs that held it, which in this climate means a month of two-a-days in heat and humidity before week one on August 27–29.",
+    deliveryDays: "Houston is about 239 miles from our DFW production down I-45 — a one-day freight lane, not an overnight courier run.",
+    deliveryDetail:
+      "The I-45 run from the metroplex to Houston is a standard one-day freight lane, so the schedule here is production plus a day, not production plus a week. Where Houston costs you time is the roster: a 6A program on this side of the state can still be adding players in the second week of August.",
+    orderIntro:
+      "Houston orders are shaped by heat and by scale. Fabric weight matters more here than anywhere else on our list, and the orders themselves are big — 6A rosters, multi-school districts, and youth leagues that run four-year-olds through fifteen-year-olds.",
+    orderStory: [
+      "Tell us the district and the level. Houston ISD, Cy-Fair, Alief, Aldine, Klein and Spring Branch all quote the same way, but the size runs differ by program.",
+      "Say whether the set is for August or for a spring season. Houston's tackle and flag programs run both, and the fabric choice is different for a summer set.",
+      "We return per-piece pricing and a free mockup within 24 hours, proofed in your colors rather than a stock layout.",
+      "After approval the order prints in one run. For a Gulf-coast program we default to the lighter, faster-drying knit unless you tell us otherwise.",
+      "Freight runs down I-45 and lands the next day, so the delivery date is set by the proof date, not by the distance.",
+    ],
+    mostOrderedVarsity:
+      "The largest Houston orders are full 6A game sets, ordered in spring so they beat the August heat rather than arrive in the middle of it. Our",
+    mostOrderedPractice:
+      "In a Houston August a practice jersey is wet by the second period, and carrying two colors in one garment halves what a coach has to wash and haul. Our",
+    faqs: [
+      { q: "Which Houston-area districts do you supply?", a: "Houston ISD and the districts that serve the rest of the city — Cypress-Fairbanks, Spring Branch, Alief, Aldine and Klein — along with Galena Park's North Shore, private UIL members such as Strake Jesuit, and the club and youth programs across the metro." },
+      { q: "What fabric holds up best in Houston's humidity?", a: "A lighter, open-knit performance fabric with full sublimation. Because the color is dyed into the fiber rather than printed on top, a jersey that is soaked through by the second period of an August practice dries without the print stiffening or lifting." },
+      { q: "How long does shipping to Houston take?", a: "Houston is about 239 miles down I-45 from our DFW production, which is a standard one-day freight lane. The schedule is two to four weeks of production from proof approval plus that day in transit." },
+      { q: "Do you outfit Houston youth flag leagues?", a: "Yes. The Texans' NFL FLAG program starts at four years old, the YMCA runs flag alongside it and i9 Sports runs leagues across the metro — all of them order at ten pieces per design, in the small youth sizes those divisions need." },
+      { q: "Can you handle a 6A order for a Houston program?", a: "Yes. A 6A roster here plus JV and freshman blocks is a large order, and quoting the blocks together gets a better per-piece price than splitting them and keeps every jersey in one dye lot." },
+      { q: "Do you make spring as well as fall uniforms?", a: "Yes, and Houston is the city where that matters most — TYFA runs spring tackle and flag alongside the fall season, so we quote spring sets as their own order rather than treating them as leftovers from August." },
+      { q: "What is the minimum order for a Houston team?", a: "Ten pieces of a design. A single youth flag division clears that, and mixed sizes within a design count toward the same ten." },
+      { q: "Our school is 5A Division I — do you build for us as well as the 6A schools?", a: "Yes. Most of Houston ISD sits in 5A Division I, and those rosters are a normal order for us. Only the size run changes against a 6A order, not the garment or the process." },
+      { q: "Can you print a school mark we only have on an old jersey?", a: "Yes. Send a daylight photograph and we redraw the mark as vector art before proofing, which is common for Houston ISD programs carrying a crest older than any file the campus still holds." },
+      { q: "When should a Houston program order for the fall?", a: "By late spring. With conditioning opening August 3 or August 10 depending on spring training, a set that ships in mid-August arrives in the middle of the hardest two weeks of the year for a Houston coach." },
+    ],
+  },
+
+  katy: {
+    districts: ["Katy ISD"],
+    schools: [
+      { school: "Katy", district: "Katy ISD", level: "6A" },
+      { school: "Cinco Ranch", district: "Katy ISD", level: "6A" },
+      { school: "Seven Lakes", district: "Katy ISD", level: "6A" },
+      { school: "Tompkins", district: "Katy ISD", level: "6A" },
+      { school: "Taylor", district: "Katy ISD", level: "6A" },
+      { school: "Morton Ranch", district: "Katy ISD", level: "6A" },
+      { school: "Mayde Creek", district: "Katy ISD", level: "6A" },
+      { school: "Paetow", district: "Katy ISD", level: "6A" },
+      { school: "Jordan", district: "Katy ISD", level: "6A" },
+      { school: "Freeman", district: "Katy ISD", level: "5A Division I" },
+      { school: "Harmony School of Excellence", district: "Charter", level: "4A Division II" },
+    ],
+    schoolsNote:
+      "Nine 6A football programs in one school district, and everyone in town is zoned to that district. Nothing else in Texas looks quite like Katy ISD: the 2026-28 alignment leaves Freeman as the only district school outside 6A, at 5A Division I. For a uniform supplier that means nine large rosters ordering in the same weeks, all wanting the same delivery window before August.",
+    youthLeagues: [
+      { name: "Katy Youth Football", note: "runs the city's fall flag league, including a girls-only division." },
+      { name: "i9 Sports Greater Katy", note: "runs flag football at Creech Elementary, McMeans Junior High and the Memorial Hermann Sports Park." },
+      { name: "Fulshear Sports Association", note: "runs an NFL Flag league from 6U to 12U serving the Fulshear and west Katy side." },
+      { name: "N Zone Sports Katy", note: "runs flag leagues and camps for ages three to thirteen." },
+    ],
+    youthNote:
+      "Katy's youth football is almost entirely flag, spread over four organizations and several complexes, and one of them runs a girls-only division. Those rosters are small, the sizes are small, and the orders come in clusters right before the season. Our",
+    levelMix: "flag",
+    stadiums: [
+      { name: "Legacy Stadium", note: "a 12,000-seat Katy ISD stadium opened in 2017 at a cost of $70.3 million, with Mike Johnston Field inside it." },
+      { name: "Rhodes Stadium", note: "Katy ISD's original 9,840-seat stadium, opened in 1981 and still in weekly use." },
+    ],
+    seasonNote:
+      "Two district stadiums on one complex can hold something like 20,000 people on a Friday, and nine 6A programs have to share those two buildings across a season. That schedule, plus a first-scrimmage date of August 13 or August 20 depending on spring training, is what a Katy delivery date has to beat.",
+    deliveryDays: "Katy is about 30 miles west of Houston and 258 miles from our DFW production — a one-day freight run.",
+    deliveryDetail:
+      "Katy is a single-district city, which means nine programs with one athletics calendar and one set of purchasing rhythms. Freight from the metroplex is a day; the part worth planning is that all nine want their sets in the same two weeks.",
+    orderIntro:
+      "A Katy order is almost always a 6A order — long rosters, wide size runs, and a set that has to be ready for a stadium schedule shared with eight other schools.",
+    orderStory: [
+      "Send the school, the roster count and whether JV and freshman blocks are included in the same design.",
+      "Send colors. Katy ISD schools sit close together in palette terms, so we proof the exact shade rather than working from a color name.",
+      "You get pricing and a free mockup within a day, proofed at both ends of the size run because a 6A roster carries a genuinely wide spread.",
+      "One production run covers the whole order, so varsity and sub-varsity stand together at Legacy Stadium without a visible color difference.",
+      "Freight runs I-10 through Houston and lands the next day.",
+    ],
+    mostOrderedVarsity:
+      "With nine 6A programs inside one district, the standard Katy order is a large varsity-plus-sub-varsity game set placed in the spring. Our",
+    mostOrderedPractice:
+      "Nine schools in one district scrimmage each other more than they scrimmage anyone else, and two colors in one jersey is how a Katy coach runs both sides of that. Our",
+    faqs: [
+      { q: "Do you supply Katy ISD schools?", a: "Yes, all of them. Katy ISD fields nine 6A football programs — Katy, Cinco Ranch, Seven Lakes, Tompkins, Taylor, Morton Ranch, Mayde Creek, Paetow and Jordan — plus Freeman at 5A Division I. Everyone in the city is zoned to the district." },
+      { q: "How large is a typical Katy uniform order?", a: "Large. Nine of the district's ten programs carry 6A rosters, so a game set covering varsity, JV and freshman blocks runs into a wide size spread. We price per piece at the combined quantity rather than per block." },
+      { q: "How long does delivery to Katy take?", a: "Katy is roughly 30 miles west of Houston and 258 miles from our DFW production, so freight is a single day. Add that to two to four weeks of production from the day the proof is approved." },
+      { q: "Do you make flag football uniforms for Katy leagues?", a: "Yes. Katy Youth Football runs the fall flag league including a girls-only division, and i9 Sports, N Zone and the Fulshear Sports Association run flag across the west side. Those orders are mostly small sizes, and ten pieces of a design is enough to place one." },
+      { q: "Can you match a Katy ISD school's colors exactly?", a: "Yes, and here it is worth insisting on. Several Katy ISD schools sit close together in the same color families, so we proof the exact shade against your value or a daylight photo before anything is printed." },
+      { q: "What is the minimum order in Katy?", a: "Ten pieces per design, mixed sizes included. A youth flag roster clears it on its own." },
+      { q: "Can a Katy order cover home and away sets?", a: "Yes. Running both colorways in one production pass shares the setup and guarantees the numbers and names are identical between the two sets." },
+      { q: "Do you supply girls' flag football teams?", a: "Yes. Katy Youth Football's girls division orders the same way as any other — the cut differs, the minimum and the process do not." },
+      { q: "When should a Katy program place its order?", a: "In spring. First scrimmages fall on August 13 or August 20 depending on spring training, and nine 6A programs sharing two district stadiums all want their sets before that." },
+    ],
+  },
+
+  "sugar-land": {
+    districts: ["Fort Bend ISD", "Lamar Consolidated ISD"],
+    schools: [
+      { school: "Travis", district: "Fort Bend ISD", level: "6A" },
+      { school: "Clements", district: "Fort Bend ISD", level: "6A" },
+      { school: "Austin", district: "Fort Bend ISD", level: "6A" },
+      { school: "Elkins", district: "Fort Bend ISD", level: "6A" },
+      { school: "Bush", district: "Fort Bend ISD", level: "6A" },
+      { school: "Hightower", district: "Fort Bend ISD", level: "6A" },
+      { school: "Ridge Point", district: "Fort Bend ISD", level: "6A" },
+      { school: "Dulles", district: "Fort Bend ISD", level: "5A Division I" },
+      { school: "Kempner", district: "Fort Bend ISD", level: "5A Division II" },
+      { school: "Marshall", district: "Fort Bend ISD", level: "5A Division II" },
+      { school: "Crawford", district: "Fort Bend ISD", level: "5A Division II" },
+      { school: "Fort Bend Christian Academy", district: "Private (TAPPS)", level: "TAPPS 5A" },
+    ],
+    schoolsNote:
+      "Fort Bend ISD is one district carrying seven 6A programs, one 5A Division I and three 5A Division II — a wider classification spread inside a single district than almost anywhere in Texas, with the campuses spread across Sugar Land, Missouri City and Richmond. Fort Bend Christian Academy plays TAPPS 5A in Sugar Land itself and won the TAPPS Division II state title in 2022. A quote here starts with the campus, because two schools ten minutes apart can be two conferences apart.",
+    youthLeagues: [
+      { name: "i9 Sports Sugar Land, Missouri City and Richmond", note: "runs flag football at venues including Sugar Land Middle School." },
+      { name: "N Zone Sports Missouri City", note: "runs youth flag leagues covering Sugar Land." },
+    ],
+    youthNote:
+      "The youth game here is flag first, run by franchises rather than by one city-wide association, so a Sugar Land league order is usually one division at a time rather than a whole program in one purchase. Our",
+    levelMix: "flag",
+    stadiums: [
+      { name: "Edward Mercer Stadium", note: "Fort Bend ISD's main Sugar Land venue, seating 9,768 and built in 1975." },
+      { name: "Hall Stadium", note: "the district's Missouri City stadium, which recent reporting has had closed for renovation." },
+    ],
+    seasonNote:
+      "Fort Bend's 6A programs that held spring training open conditioning on August 10, go to full contact on August 15 and scrimmage from August 20, which in Gulf-coast humidity is the stretch that shows up any fabric that holds water.",
+    deliveryDays: "Sugar Land is about 24 miles southwest of Houston and 259 miles from our DFW production — next-day freight.",
+    deliveryDetail:
+      "Freight to Sugar Land runs with the Houston lane and arrives the next day. What takes the planning is the district itself: eleven programs across three cities, several of them ordering in the same spring window, so a campus that books early gets the early delivery date.",
+    orderIntro:
+      "A Sugar Land order is defined by which campus it is for. Seven 6A rosters, one 5A Division I and three 5A Division II programs all order out of the same district office calendar but at very different sizes.",
+    orderStory: [
+      "Name the campus and the conference. That pair tells us the likely size run before you have counted a single jersey.",
+      "Send colors and any existing artwork; if the school has none on file, a photo of the current set is enough to redraw from.",
+      "Pricing and a free mockup come back within a day, sized for the block you are ordering rather than a generic template.",
+      "On approval we print the order in a single run, so a 6A varsity set and its sub-varsity blocks match through the season.",
+      "Delivery lands with the Houston freight the next day after dispatch.",
+    ],
+    mostOrderedVarsity:
+      "Seven 6A campuses in one district make full game sets the standard Sugar Land order, placed in spring for August delivery. Our",
+    mostOrderedPractice:
+      "Gulf-coast practices are wet by the second period, and a two-color jersey is one garment to wash instead of two. Our",
+    faqs: [
+      { q: "Which Sugar Land schools do you build uniforms for?", a: "Fort Bend ISD's campuses across Sugar Land, Missouri City and Richmond — Travis, Clements, Austin, Elkins, Bush, Hightower and Ridge Point at 6A, Dulles at 5A Division I, and Kempner, Marshall and Crawford at 5A Division II — plus Fort Bend Christian Academy in TAPPS 5A." },
+      { q: "Two Sugar Land schools are in different conferences — does that change the uniform?", a: "Not the garment, only the order shape. A 6A roster carries more players and a wider size run than a 5A Division II roster, so the extras and the block sizes differ even when the design is identical." },
+      { q: "How fast is delivery to Sugar Land?", a: "Sugar Land is about 24 miles from Houston and 259 miles from our DFW production, so freight arrives the next day after dispatch. Production itself is two to four weeks from proof approval." },
+      { q: "Do you make flag football uniforms for Sugar Land leagues?", a: "Yes. The i9 Sports and N Zone flag leagues covering Sugar Land and Missouri City order division by division, and ten pieces of a design is enough to place an order." },
+      { q: "Can you work with a school that has no digital logo file?", a: "Yes. Send a clear daylight photo of a helmet or an existing jersey and we redraw the mark as vector art, then proof it before printing." },
+      { q: "What is the minimum order for a Sugar Land team?", a: "Ten pieces per design, with mixed sizes counting together — a single division or a JV block clears it." },
+      { q: "Does the Gulf humidity affect which fabric we should choose?", a: "It should. For Fort Bend programs we default to the lighter, faster-drying knit, because August here means full-contact practices from the 15th in heat that keeps a heavier jersey wet all afternoon." },
+      { q: "Can you outfit a private school as well as a Fort Bend ISD campus?", a: "Yes. Fort Bend Christian Academy plays TAPPS 5A in Sugar Land, and a TAPPS roster orders exactly the same way a UIL roster does." },
+      { q: "When should a Sugar Land program order for the fall?", a: "In spring. Conditioning for the district's 6A programs that held spring training opens on August 10 with contact from the 15th, and eleven programs from one district are all trying to land deliveries in the same window." },
+    ],
+  },
+
+  "corpus-christi": {
+    districts: ["Corpus Christi ISD", "Flour Bluff ISD", "Calallen ISD", "Tuloso-Midway ISD", "West Oso ISD", "London ISD"],
+    schools: [
+      { school: "Veterans Memorial", district: "Corpus Christi ISD", level: "5A Division I" },
+      { school: "Carroll", district: "Corpus Christi ISD", level: "5A Division I" },
+      { school: "Flour Bluff", district: "Flour Bluff ISD", level: "5A Division I" },
+      { school: "Ray", district: "Corpus Christi ISD", level: "5A Division II" },
+      { school: "King", district: "Corpus Christi ISD", level: "4A Division I" },
+      { school: "Miller", district: "Corpus Christi ISD", level: "4A Division I" },
+      { school: "Moody", district: "Corpus Christi ISD", level: "4A Division I" },
+      { school: "Calallen", district: "Calallen ISD", level: "4A Division I" },
+      { school: "Tuloso-Midway", district: "Tuloso-Midway ISD", level: "4A Division I" },
+      { school: "London", district: "London ISD", level: "4A Division II" },
+      { school: "West Oso", district: "West Oso ISD", level: "3A Division I" },
+    ],
+    schoolsNote:
+      "There is no 6A football in Corpus Christi. The city's biggest programs — Veterans Memorial, Carroll and Flour Bluff — play 5A Division I, and three Corpus Christi ISD schools dropped to 4A Division I in the 2026-28 realignment, which puts King, Miller and Moody in the same conference as Calallen and Tuloso-Midway. Six separate districts serve one coastal city, and West Oso plays all the way down at 3A Division I.",
+    youthLeagues: [
+      { name: "Corpus Christi Youth Football League", note: "in its 65th season, running flag, pee-wee, JV and varsity tackle divisions for ages four to twelve at the Kasper and Lamont fields." },
+      { name: "i9 Sports Corpus Christi", note: "runs flag football at Bill Witt Park and other venues, also covering Calallen, Gregory-Portland and Kingsville." },
+      { name: "N Zone Sports Corpus Christi", note: "runs youth flag football leagues in the city." },
+    ],
+    youthNote:
+      "Sixty-five seasons of one youth league is rare anywhere. The Corpus Christi Youth Football League still runs the full ladder from flag to varsity tackle for four- to twelve-year-olds on the same two fields, which means one organization ordering every size we make. Our",
+    levelMix: "youth",
+    stadiums: [
+      { name: "Buccaneer Stadium", note: "Corpus Christi ISD's main venue and the largest football stadium in the area." },
+      { name: "Cabaniss Multipurpose Field", note: "part of the Cabaniss Athletic Complex, seating 8,000 on the football field itself." },
+    ],
+    seasonNote:
+      "Most Corpus Christi programs are 4A or 5A, and the 4A schools open conditioning on August 3 with full contact from August 8 — a week ahead of the 5A and 6A schools that held spring training. In a coastal city that means the earliest practices of the year happen in the stickiest fortnight of it.",
+    deliveryDays: "Corpus Christi is about 211 miles from Houston and 390 miles from our DFW production — a one- to two-day freight run.",
+    deliveryDetail:
+      "Corpus Christi is far enough south that freight is a one- to two-day run rather than an overnight, so a coastal order needs its proof signed a little earlier than a metroplex one. Salt air is the other local factor: sublimated color is dyed into the fiber, so there is no printed layer for coastal humidity to lift.",
+    orderIntro:
+      "Corpus Christi orders are mid-sized and spread across six districts, and they skew toward 4A and 5A rosters rather than the 6A blocks the big metros order.",
+    orderStory: [
+      "Tell us the school or league and the count. With six districts in one city, the district name is what tells us who we are quoting.",
+      "Send the colors. If you are matching a set bought two or three seasons ago, a daylight photo is more reliable than the original color name.",
+      "Pricing and a free mockup come back inside 24 hours, at 4A and 5A block sizes if that is what you are ordering.",
+      "On approval the run is printed in one pass, which for a youth league covering flag through varsity tackle is the only way every division matches.",
+      "Freight south takes a day or two, so we work back from your first scrimmage rather than from week one.",
+    ],
+    mostOrderedVarsity:
+      "The city's 5A Division I and 4A Division I programs order full game sets in the spring, sized smaller than a big-metro 6A order. Our",
+    mostOrderedPractice:
+      "A coastal August makes two-a-days a laundry problem as much as a football one, and one jersey covering both practice colors halves it. Our",
+    faqs: [
+      { q: "Do you build uniforms for Corpus Christi schools?", a: "Yes, across all six districts in the city — Corpus Christi ISD, Flour Bluff, Calallen, Tuloso-Midway, West Oso and London — from 5A Division I down to 3A Division I, plus the youth leagues and club teams." },
+      { q: "Is there 6A football in Corpus Christi?", a: "No. The 2026-28 alignment leaves the city's largest programs at 5A Division I — Veterans Memorial, Carroll and Flour Bluff — with King, Miller and Moody now in 4A Division I. Orders here are sized accordingly rather than to a 6A roster." },
+      { q: "How long does shipping to Corpus Christi take?", a: "About 211 miles from Houston and 390 from our DFW production, which is a one- to two-day freight run. Allow two to four weeks of production from proof approval on top of that." },
+      { q: "Does coastal air damage printed jerseys?", a: "Not a sublimated one. The color is dyed into the fiber rather than layered on top, so there is no print film for salt air and humidity to lift the way they can with a heat-pressed number." },
+      { q: "Can one order cover a youth league's flag and tackle divisions?", a: "Yes. The Corpus Christi Youth Football League runs flag, pee-wee, JV and varsity tackle for ages four to twelve, and printing every division in one run keeps the colors identical from the smallest flag jersey to the twelve-year-olds' set." },
+      { q: "What is the minimum order for a Corpus Christi team?", a: "Ten pieces per design, mixed sizes included — a single youth division clears it comfortably." },
+      { q: "Our program is 4A — is the order handled differently?", a: "Same garment, smaller run. A 4A roster is a narrower size spread than a 5A or 6A one, so we hold fewer extras and concentrate them in the middle sizes." },
+      { q: "Can you match colors on a reorder two seasons later?", a: "Yes. We keep the color values on file with the order, so a partial reorder for new players comes off the same spec as the original set rather than being matched by eye." },
+      { q: "When should a Corpus Christi program order for the fall?", a: "Earlier than a metroplex program. The 4A schools here open conditioning on August 3 with contact from August 8, and freight south adds a day or two to the schedule." },
+    ],
+  },
+
   arlington: {
     districts: ["Arlington ISD", "Mansfield ISD"],
     schools: [
