@@ -78,12 +78,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </h1>
               <p className="mt-6 text-lg">{product.shortDescription}</p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <Link
-                  href="/contact-us/#quote-form"
+                <a
+                  href="#quote-form"
                   className="inline-flex items-center justify-center rounded-full bg-[var(--color-red)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-[var(--color-navy)]"
                 >
                   Get a Quote
-                </Link>
+                </a>
                 <Link
                   href="/all-categories/"
                   className="inline-flex items-center justify-center rounded-full border border-[var(--color-border)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-red)]"
@@ -108,6 +108,34 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
           <ImageCarousel images={product.images} altBase={product.name} priority />
         </div>
+
+        {/* The quote form sits directly under the hero, before the long copy.
+            It used to live halfway down the page behind roughly a thousand
+            words, which is the wrong order on a phone. */}
+        <section className="mt-10 grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <ProductLeadForm
+            productName={product.name}
+            heading={`Get a Quote for ${product.name}`}
+            blurb={`Send your roster count, colors, and dates. Minimum 10 per design, ${product.turnaround}, and a free mockup within 24 hours.`}
+          />
+          <div className="surface-card p-8">
+            <h2 className="text-4xl text-[var(--color-navy)]">Why Teams Request Quotes</h2>
+            <div className="mt-5 space-y-4">
+              {[
+                `Minimum 10 per design, so a single squad can order`,
+                `Free digital mockup within 24 hours of your request`,
+                `${product.turnaround.charAt(0).toUpperCase()}${product.turnaround.slice(1)}`,
+                "Roster personalization built into production, not added after",
+                "Texas-focused delivery planned around your season",
+              ].map((item) => (
+                <div key={item} className="flex gap-3">
+                  <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[var(--color-red)]" />
+                  <p className="text-base">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         <section className="mt-12 grid gap-10 lg:grid-cols-[1.08fr_0.92fr]">
           <article className="surface-card order-2 p-8 sm:p-10 lg:order-none">
@@ -138,14 +166,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </article>
 
           <div className="order-1 space-y-8 lg:order-none">
-            <ProductLeadForm productName={product.name} />
-
             <div className="surface-card overflow-hidden">
               <Image
                 src={product.images[1] ?? product.heroImage}
                 alt={`${product.name} available sizes and materials`}
                 width={1200}
                 height={900}
+                sizes="(min-width: 1024px) 44vw, 100vw"
                 className="aspect-[4/3] w-full object-cover"
               />
               <div className="p-8">
@@ -182,22 +209,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </div>
             </div>
 
-            <div className="surface-card p-8">
-              <h2 className="text-4xl text-[var(--color-navy)]">Why Teams Request Quotes</h2>
-              <div className="mt-5 space-y-4">
-                {[
-                  "Premium custom design support",
-                  "Roster personalization built into production",
-                  "Texas-focused turnaround planning",
-                  "No retail pricing clutter or generic stock checkout",
-                ].map((item) => (
-                  <div key={item} className="flex gap-3">
-                    <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-[var(--color-red)]" />
-                    <p className="text-base">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 
@@ -243,6 +254,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   alt={`${item.name} custom football product gallery`}
                   width={700}
                   height={520}
+                  sizes="(min-width: 1280px) 22vw, (min-width: 768px) 45vw, 100vw"
                   className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-[1.04]"
                 />
                 <div className="p-5">

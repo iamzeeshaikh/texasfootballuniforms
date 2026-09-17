@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { ProductLeadForm } from "@/components/product-lead-form";
 import { buildBreadcrumbSchema, getProductBySlug } from "@/lib/catalog";
 import { SITE_URL } from "@/lib/site";
 import {
@@ -54,7 +55,7 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
 
   const faqs: Array<{ question: string; answer: string }> = [
     { question: `Do you make custom football uniforms for ${loc.name} teams?`, answer: loc.faqCityAnswer },
-    { question: `What is the minimum order for a ${loc.name} team?`, answer: `We build full-team orders and keep minimums practical for ${loc.name} programs, from a varsity squad to a youth league. Send your roster count and we'll confirm pricing and per-uniform cost.` },
+    { question: `What is the minimum order for a ${loc.name} team?`, answer: `The minimum is 10 pieces per design, which a single ${loc.name} squad clears on its own — youth or varsity. Mixed sizes count toward the same 10. Send your roster count and we will confirm pricing and per-uniform cost.` },
     { question: `Can you match our exact ${loc.name} school or club colors?`, answer: `Yes. Every uniform is printed to your exact colors, logo, and design with full sublimation, so your ${loc.name} team's identity is reproduced precisely on every jersey, every reorder.` },
     { question: `Are your football uniforms sublimated or screen printed?`, answer: `We specialize in full-sublimation football uniforms, where the design is dyed into the fabric so names, numbers, and logos never crack or peel — ideal for the wear a Texas season puts on a jersey.` },
     { question: `Can you print custom names and numbers?`, answer: `Absolutely. We handle custom names, numbers, patches, and captain designations as part of your team order, so every ${loc.name} player's jersey is game-ready out of the box.` },
@@ -102,7 +103,7 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
             <h1 className="mt-3 font-display text-4xl uppercase leading-[1.05] sm:text-5xl">{loc.h1}</h1>
             <p className="mt-4 max-w-xl text-lg leading-relaxed text-white/80">{loc.intro}</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/contact-us/#quote-form" className="rounded-full bg-[var(--color-red)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)]">Get a Team Quote</Link>
+              <a href="#quote-form" className="rounded-full bg-[var(--color-red)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)]">Get a Team Quote</a>
               <Link href="/locations/" className="rounded-full border border-white/25 px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:border-[var(--color-gold)]">All Texas Cities</Link>
             </div>
           </div>
@@ -145,10 +146,18 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
               ))}
             </div>
           </div>
-          <div className="self-start rounded-3xl border border-[var(--color-border)] bg-white p-6 shadow-sm">
-            <h3 className="font-display text-xl uppercase text-[var(--color-navy)]">Get a {loc.name} Team Quote</h3>
-            <p className="mt-2 text-sm text-[var(--color-navy-soft)]">Send your team name, colors, and roster count for a fast, free quote.</p>
-            <Link href="/contact-us/#quote-form" className="mt-4 block rounded-full bg-[var(--color-red)] px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)]">Request a Quote</Link>
+          {/* The quote form lives on the page with the city already attached.
+              Sending coaches to /contact-us/ lost them a click and the lead
+              arrived without saying which city it came from. */}
+          <div className="self-start">
+            <ProductLeadForm
+              productName="Custom Football Uniforms"
+              cityName={loc.name}
+              eyebrow={`${loc.name}, Texas`}
+              heading={`Get a ${loc.name} Team Quote`}
+              blurb={`Send your team name, colors, and roster count. Minimum 10 per design, free mockup within 24 hours, and we plan delivery around your ${loc.name} season.`}
+              gaEvent="quote_form_submit"
+            />
           </div>
         </div>
       </section>
@@ -218,7 +227,7 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
           <h2 className="mt-2 font-display text-3xl uppercase text-[var(--color-navy)]">Why {loc.name} Coaches Order From Us</h2>
           <p className="mt-4 leading-relaxed text-[var(--color-navy-soft)]">{loc.deliveryNote}</p>
           <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
-            {["Full-sublimation, printed in your exact colors", "Performance fabric built for Texas heat", "Complete head-to-toe team kits", "Free design proof on every order", "Team pricing with practical minimums", "Turnaround planned around your season"].map((t) => (
+            {["Full-sublimation, printed in your exact colors", "Performance fabric built for Texas heat", "Complete head-to-toe team kits", "Free design proof on every order", "Team pricing, minimum 10 per design", "Turnaround planned around your season"].map((t) => (
               <li key={t} className="flex items-start gap-2 text-[var(--color-navy)]"><span className="text-[var(--color-red)]">✓</span>{t}</li>
             ))}
           </ul>
@@ -272,7 +281,7 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
           <h2 className="font-display text-4xl uppercase">Kit Out Your {loc.name} Team</h2>
           <p className="mt-3 leading-relaxed text-white/85">Send your team name, colors, and roster for a free quote. We&rsquo;ll proof your design and deliver in time for the season.</p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Link href="/contact-us/#quote-form" className="rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-navy)] transition hover:bg-[var(--color-gold)]">Get a Team Quote</Link>
+            <a href="#quote-form" className="rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-navy)] transition hover:bg-[var(--color-gold)]">Get a Team Quote</a>
             <Link href="/contact-us/" className="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:border-white">Contact Us</Link>
           </div>
         </div>
