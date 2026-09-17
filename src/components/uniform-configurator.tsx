@@ -202,7 +202,7 @@ export function UniformConfigurator({ productName }: { productName: string }) {
         }),
       });
       if (res.ok) {
-        router.push("/thank-you");
+        router.push("/thank-you/");
         return;
       }
       setError("That did not send. Please try again or call us directly.");

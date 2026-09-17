@@ -6,9 +6,9 @@ import { company } from "@/lib/site";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
-  title: "About Texas Football Uniforms | Premium Custom Teamwear",
+  title: "About Texas Football Uniforms | Dallas Custom Teamwear",
   description:
-    "Learn how Texas Football Uniforms supports schools, clubs, and leagues with premium custom football apparel and quote-first service.",
+    "Who makes your uniforms: a Dallas-based custom football teamwear studio serving Texas schools, clubs and leagues. Minimum 10 per design, free mockup in 24 hours.",
   path: "/about-us/",
 });
 

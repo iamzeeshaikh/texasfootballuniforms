@@ -5,9 +5,9 @@ import { company } from "@/lib/site";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
-  title: "Contact Texas Football Uniforms | Request a Team Quote",
+  title: "Contact Texas Football Uniforms | Free Team Quote",
   description:
-    "Contact Texas Football Uniforms for custom football jerseys, uniforms, sideline apparel, and quote-based teamwear support.",
+    "Request a free custom football uniform quote: call (213) 449-3746, email info@texasfootballuniforms.com or send your roster count. Free mockup in 24 hours.",
   path: "/contact-us/",
 });
 

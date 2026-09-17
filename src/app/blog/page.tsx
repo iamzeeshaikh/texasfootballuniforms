@@ -5,9 +5,9 @@ import { blogPosts } from "@/data/blogPosts";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
-  title: "Football Uniform Blog: Design, Fabric & Team Kit Guides | Texas Football Uniforms",
+  title: "Football Uniform Guides & Blog | Texas Football Uniforms",
   description:
-    "Guides for coaches and teams on custom football uniforms — designing uniforms, choosing jersey fabric, personalization, buying by level, and building a team kit.",
+    "Coach-written guides on custom football uniforms: design, jersey fabric, names and numbers, buying by level, and building a full team kit for Texas programs.",
   path: "/blog/",
 });
 

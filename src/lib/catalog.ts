@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 
 import { company, SITE_URL } from "@/lib/site";
+import { productMeta } from "@/lib/product-meta";
 
 type ProductBlueprint = {
   slug: string;
@@ -175,7 +176,7 @@ const blueprints: ProductBlueprint[] = [
     material: "Premium 220gsm performance polyester with stretch paneling",
     printing: "Sublimation, tackle twill, and applique options",
     sizes: "Adult S to 5XL",
-    moq: "15 sets",
+    moq: "10 sets",
     turnaround: "4 weeks",
   },
   {
@@ -279,7 +280,7 @@ const blueprints: ProductBlueprint[] = [
     material: "Synthetic grip palm with stretch backhand",
     printing: "Heat transfer logos and color-matched accents",
     sizes: "Youth S to Adult XL",
-    moq: "20 pairs",
+    moq: "10 pairs",
     turnaround: "2 to 3 weeks",
   },
   {
@@ -344,7 +345,7 @@ const blueprints: ProductBlueprint[] = [
     material: "220gsm polyester with ventilated mesh zones",
     printing: "Sublimation with optional tackle twill",
     sizes: "Youth XS to Adult 5XL",
-    moq: "15 sets",
+    moq: "10 sets",
     turnaround: "3 to 4 weeks",
   },
   {
@@ -357,7 +358,7 @@ const blueprints: ProductBlueprint[] = [
     material: "Performance knit blend with compression zones",
     printing: "Knit-in color pattern and logo options",
     sizes: "Youth to Adult XL",
-    moq: "20 pairs",
+    moq: "10 pairs",
     turnaround: "2 to 3 weeks",
   },
   {
@@ -2737,7 +2738,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
   "football-team-kits": [
     { question: "What is included in a football team kit?", answer: "A football team kit typically covers jerseys, pants, and any supporting pieces agreed upon during the quote. We build the kit scope around your specific program needs rather than a fixed bundle." },
     { question: "Can different positions receive different jersey styles within the same kit?", answer: "Yes. Position-specific variations in color, number format, or fit can be built into the kit as long as the overall visual system remains cohesive across the full order." },
-    { question: "What is the minimum order size for a team kit?", answer: "The standard minimum is 10 sets. Programs with smaller rosters or unusual structures should discuss their situation during the quote process." },
+    { question: "What is the minimum order size for a team kit?", answer: "The minimum is 10 sets per design. Programs with smaller rosters or unusual structures should discuss their situation during the quote process." },
     { question: "How do kits handle late-joining athletes who miss the original order?", answer: "We maintain production records from the original kit so add-on orders for late-joining athletes can be completed with matching materials, colors, and decoration methods." },
     { question: "Can team kits include both game and practice jersey versions?", answer: "Yes. Kits can be structured to include both game-day and practice-day jersey options so the program is covered for all types of use within the same coordinated ordering process." },
     { question: "What sizes does a team kit cover?", answer: "Team kits are available in Youth XS through Adult 5XL so rosters with significant size diversity across age groups and positions can be accommodated in a single order." },
@@ -2798,7 +2799,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "What decoration methods work on blank football jerseys?", answer: "Our blanks accept screen print, heat transfer, and custom numbering cleanly. The consistent polyester construction provides reliable ink adhesion and color accuracy across all three methods." },
     { question: "What size range is available for blank jerseys?", answer: "Blanks are available in Youth XS through Adult 5XL so a single order can cover a full mixed-age roster without managing multiple separate product lines." },
     { question: "Can blank jerseys be ordered in specific colors?", answer: "Yes. We produce blanks in a range of team colors so your base jersey matches your program's primary colors before any decoration is applied." },
-    { question: "What is the minimum order quantity for blank jerseys?", answer: "The standard minimum is 10 jerseys. Programs needing smaller quantities should discuss their situation during the quote process." },
+    { question: "What is the minimum order quantity for blank jerseys?", answer: "The minimum is 10 jerseys per design. Programs needing smaller quantities should discuss their situation during the quote process." },
     { question: "How quickly can blank jerseys be delivered?", answer: "Blank jersey production is typically faster than full sublimation orders, with most orders completing in two to three weeks. Exact timing depends on color availability and quantity." },
     { question: "Are blanks suitable for camp or event use?", answer: "Yes. Blank jerseys are one of the most practical solutions for camp organizers who need large quantities of matching tops on short notice without a full custom production timeline." },
     { question: "Will the color be consistent across multiple blank orders placed at different times?", answer: "We maintain color lot records to minimize drift between separate orders, though some variation is possible between production runs that are spaced significantly apart. Programs needing exact color consistency should order their full anticipated quantity in a single run." },
@@ -2837,7 +2838,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "Do names need to fit exactly within a defined nameplate area?", answer: "Yes. We establish nameplate size guidelines based on the jersey size and number placement, then use those guidelines to scale font size and spacing so every name fits cleanly regardless of length." },
     { question: "What sizes are available for named jerseys?", answer: "Custom name jerseys are available in Youth XS through Adult 5XL. Name placement and scale adjustments are made proportionally for each size so smaller jerseys look as intentional as larger ones." },
     { question: "Can the jersey include both name and number?", answer: "Yes. Name and number are standard elements in the same production run. We confirm their placement relationship to each other during the artwork review so both elements are balanced correctly on the jersey." },
-    { question: "What is the minimum order quantity for named jerseys?", answer: "The standard minimum is 10 jerseys. Programs with smaller roster sizes should discuss their situation during the quote process." },
+    { question: "What is the minimum order quantity for named jerseys?", answer: "The minimum is 10 jerseys per design. Programs with smaller roster sizes should discuss their situation during the quote process." },
     { question: "How long does a named jersey order take to produce?", answer: "Named jersey orders typically require three weeks after final artwork approval. The data review stage before artwork confirmation should be factored into the planning timeline." },
     { question: "Can late-joining roster members be added after the main order?", answer: "Yes. Add-on jerseys for late additions can be produced from the original order's artwork and production records. Per-unit cost for small add-on runs is higher than in the original order." },
     { question: "How do I submit roster data for a named jersey order?", answer: `After your quote is confirmed, we provide a roster template for name, number, and size data. Contact us through any Get a Quote link, call ${company.phoneDisplay}, or email ${company.email} to begin.` },
@@ -2919,7 +2920,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "How is glove sizing determined?", answer: "Glove sizing is based on hand length and width measurements rather than jersey size or shoe size. We provide sizing guidance during the order process to help programs collect accurate hand measurements for their roster." },
     { question: "Are the gloves suitable for both practice and game use?", answer: "Yes. The synthetic grip palm construction and stretch backhand are designed for the full range of football activities including practice, training drills, and game play." },
     { question: "Can gloves be color-matched to our team uniform?", answer: "Yes. Color-matched accent panels and heat-transfer team logos are produced to align with your program's established color palette so gloves integrate visually with the rest of the uniform system." },
-    { question: "What is the minimum order quantity?", answer: "The minimum is 20 pairs, which typically covers a full position group or a partial team order for the positions that use gloves most frequently." },
+    { question: "What is the minimum order quantity?", answer: "The minimum is 10 pairs per design, which typically covers a full position group or a partial team order for the positions that use gloves most frequently." },
     { question: "How long does glove production take?", answer: "Most glove orders complete in two to three weeks after size and color confirmation." },
     { question: "Do the gloves hold their grip quality through a full season?", answer: "Yes. The synthetic grip palm maintains its tackiness through normal use and washing cycles. Gloves should be hand-washed and air-dried rather than machine-washed to extend grip performance." },
     { question: "Can gloves be ordered for only specific positions without ordering for the full team?", answer: "Yes. Position-specific glove orders are common and can be structured to cover the exact athletes who will use them rather than requiring a full roster quantity." },
@@ -2991,7 +2992,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "Can sock colors be matched to our uniform?", answer: "Yes. Knit-in color patterns can be produced in your primary and accent colors so the socks integrate with the complete uniform system rather than creating a visible color break at the ankle." },
     { question: "What size range is available?", answer: "Football socks are available from Youth through Adult XL in the standard size groupings that cover the full range of football program participant sizes." },
     { question: "Can socks include a team logo?", answer: "Yes. Logo details can be incorporated into the sock design through knit-in patterns positioned at the upper calf or heel area." },
-    { question: "What is the minimum order quantity?", answer: "The minimum is 20 pairs. Most full-roster sock programs exceed that minimum comfortably." },
+    { question: "What is the minimum order quantity?", answer: "The minimum is 10 pairs per design. Most full-roster sock programs exceed that minimum comfortably." },
     { question: "How long does sock production take?", answer: "Standard production runs two to three weeks after artwork and color confirmation." },
     { question: "Are these socks durable enough for regular game and practice use?", answer: "Yes. Performance knit construction with reinforced heel and toe zones is designed for the friction and wear conditions created by football cleats and leg pad edges throughout a full season of use." },
     { question: "Can socks be ordered alongside the full uniform?", answer: "Yes, and that approach is recommended for the most accurate color matching. Including socks in the initial uniform order ensures color values are confirmed across all pieces simultaneously." },
@@ -3076,7 +3077,7 @@ function buildFaqs(product: ProductBlueprint): { question: string; answer: strin
   return (
     productFaqs[product.slug] ?? [
       { question: `Can I fully customize ${product.name.toLowerCase()} with our team colors and logo?`, answer: `Yes. Every quote is built around your color palette, logo placement, numbers, and player details so the final ${product.name.toLowerCase()} match your program identity.` },
-      { question: `What is the minimum order?`, answer: `The standard minimum is ${product.moq}. Discuss unusual structures during the quote process.` },
+      { question: `What is the minimum order?`, answer: `The minimum is ${product.moq} per design. Discuss unusual structures during the quote process.` },
       { question: `What sizes are available?`, answer: `Available in ${product.sizes}. We help teams align roster measurements before production begins.` },
       { question: `How long does production take?`, answer: `Typical turnaround is ${product.turnaround} after artwork approval.` },
       { question: `Can you match existing team branding?`, answer: `Yes. We build new orders around your established colors and artwork to maintain brand consistency.` },
@@ -3207,11 +3208,11 @@ export function getCategoryPages(): CategoryPage[] {
 
 export function getCategoryMetaTitle(category: CategoryPage) {
   const titles: Record<CategoryGroup, string> = {
-    Jerseys: "Custom Football Jerseys Texas | Premium Team Quote Support",
-    Uniforms: "Custom Football Uniforms Texas | Premium Team Quote Help",
-    "Practice Gear": "Football Practice Gear Texas | Premium Team Quote Help",
-    "Team Packages": "Football Team Packages Texas | Premium Quote Support",
-    "Team Apparel": "Football Team Apparel Texas | Premium Quote Support",
+    Jerseys: "Custom Football Jerseys in Texas | Youth, Adult & Sublimated",
+    Uniforms: "Custom Football Uniforms in Texas | Youth, High School, 7v7",
+    "Practice Gear": "Football Practice Gear in Texas | Jerseys, Padded Shirts",
+    "Team Packages": "Football Team Packages in Texas | Complete Roster Kits",
+    "Team Apparel": "Football Team Apparel in Texas | Hoodies, Jackets, Coaches",
   };
 
   return titles[category.group];
@@ -3220,15 +3221,15 @@ export function getCategoryMetaTitle(category: CategoryPage) {
 export function getCategoryMetaDescription(category: CategoryPage) {
   const descriptions: Record<CategoryGroup, string> = {
     Jerseys:
-      "Shop custom football jerseys in Texas with premium fabrics, roster personalization, and quote-based support for schools, clubs, and teams.",
+      "Custom football jerseys for Texas teams: youth, adult, reversible, sublimated, practice and fan styles. Minimum 10 per design, 2–4 weeks, free mockup in 24 hours.",
     Uniforms:
-      "Explore custom football uniforms in Texas with premium builds, full team personalization, and quote-based ordering for schools and clubs.",
+      "Custom football uniforms for Texas youth leagues, high schools, 7v7 and flag teams. Minimum 10 per design, 2–4 weeks after approval, free mockup in 24 hours.",
     "Practice Gear":
-      "Browse football practice gear in Texas with premium training apparel, team branding options, and quote-based support for organized programs.",
+      "Football practice jerseys, padded shirts, shorts, gloves and socks in Texas team colors. Minimum 10 per design, 2–3 weeks, free mockup in 24 hours.",
     "Team Packages":
-      "Discover football team packages in Texas with coordinated uniforms, roster-ready planning, and premium quote support for competitive programs.",
+      "Football team packages for Texas programs: jerseys, pants, practice and sideline gear in one quote. Minimum 10 per design, 3–4 weeks, free mockup in 24 hours.",
     "Team Apparel":
-      "Shop football team apparel in Texas with premium sideline layers, travel gear, and quote-based customization for schools and clubs.",
+      "Football team apparel for Texas programs: hoodies, warm-up suits, sideline jackets and coaches uniforms. Minimum 10 per design, 2–3 weeks, free 24-hour mockup.",
   };
 
   return descriptions[category.group];
@@ -3979,7 +3980,7 @@ export function getCategoryFaqs(category: CategoryPage): CategoryFaq[] {
       { question: "What types of custom football jerseys are available in this category?", answer: "The jersey category includes adult, youth, reversible, sublimated, fan, flag, lightweight, and personalized jersey options so teams can choose based on game use, training needs, and branding goals." },
       { question: "Can names and numbers be customized on football jerseys?", answer: "Yes. Names and numbers can be personalized across the roster, with layout support to keep spacing, readability, and team branding consistent." },
       { question: "Are these jerseys suitable for Texas heat?", answer: "Many jersey styles in this category are designed with breathable performance fabrics that help teams handle warmer Texas conditions more comfortably." },
-      { question: "What is the usual minimum order for jersey projects?", answer: "Most jersey products begin at team-friendly minimums, with final order structure depending on the exact style and personalization needs." },
+      { question: "What is the usual minimum order for jersey projects?", answer: "The minimum is 10 jerseys per design. Mixed rosters can combine youth and adult sizes in one design, and personalization does not change the minimum." },
       { question: "Can I choose lightweight or game-weight jersey options?", answer: "Yes. This category includes lighter practice-oriented builds as well as more structured game-ready jersey options." },
       { question: "Do these jerseys work for youth and adult teams?", answer: "Yes. Size ranges vary by product, but the category includes both youth-focused and adult-focused jersey options." },
       { question: "How long does custom jersey production usually take?", answer: "Turnaround typically falls between 2 and 4 weeks after final artwork approval, depending on the product and roster complexity." },
@@ -3992,7 +3993,7 @@ export function getCategoryFaqs(category: CategoryPage): CategoryFaq[] {
       { question: "How do I choose between different uniform styles?", answer: "The best option depends on your level of play, athlete age, climate priorities, and whether you want a lighter event build or a fuller game-day system." },
       { question: "Can youth and varsity teams use the same design direction?", answer: "Yes. Many programs use one visual framework across multiple age groups while adjusting sizes and product structure as needed." },
       { question: "What customization methods are common for football uniforms?", answer: "Common methods include sublimation, roster personalization, and optional upgrades like tackle twill depending on the final build." },
-      { question: "What is the standard turnaround for custom uniforms?", answer: "Most uniform programs run about 3 to 4 weeks after artwork approval, depending on order complexity." },
+      { question: "What is the standard turnaround for custom uniforms?", answer: "Most uniform programs run about 3 to 4 weeks after artwork approval, with a minimum of 10 sets per design." },
       { question: "Can uniforms be reordered later for roster additions?", answer: "Yes. A well-organized initial order makes replacement and add-on uniform requests much easier later in the season." },
     ],
     "Practice Gear": [
@@ -4002,7 +4003,7 @@ export function getCategoryFaqs(category: CategoryPage): CategoryFaq[] {
       { question: "Do padded shirts and practice tops come in youth sizes?", answer: "Sizing depends on the product, but youth and adult options are available across much of the category." },
       { question: "Are football gloves and socks included in quote-based orders?", answer: "Yes. Accessories can be included alongside training apparel to create a more complete practice setup." },
       { question: "How is practice gear different from game uniforms?", answer: "Practice gear is usually chosen for repetition, comfort, mobility, and athlete organization rather than formal game presentation." },
-      { question: "How fast can practice gear usually be produced?", answer: "Most practice-focused items are produced in roughly 2 to 3 weeks after approval." },
+      { question: "How fast can practice gear usually be produced?", answer: "Most practice-focused items are produced in roughly 2 to 3 weeks after approval, with a minimum of 10 pieces per design." },
       { question: "Can coaches reorder practice items mid-season?", answer: "Yes. Practice gear is often reordered as programs add players, replace worn pieces, or expand camp inventory." },
     ],
     "Team Packages": [
@@ -4012,7 +4013,7 @@ export function getCategoryFaqs(category: CategoryPage): CategoryFaq[] {
       { question: "Who benefits most from team packages?", answer: "Schools, clubs, and organizations managing full rosters or multiple teams usually gain the most from package-based ordering." },
       { question: "Can packages help with repeat orders later in the season?", answer: "Yes. Package planning keeps artwork and coordination cleaner, which makes add-on orders easier later." },
       { question: "Are team packages customized for each program?", answer: "Yes. Package direction depends on your roster size, goals, product mix, and branding priorities." },
-      { question: "How long do package orders usually take?", answer: "Most coordinated package orders take around 3 to 4 weeks after final approvals are complete." },
+      { question: "How long do package orders usually take?", answer: "Most coordinated package orders take around 3 to 4 weeks after final approvals are complete. The minimum is 10 sets per design." },
       { question: "Can team packages support Texas school and club programs?", answer: "Yes. The category is especially useful for Texas programs that need full-team coordination and stronger operational structure." },
     ],
     "Team Apparel": [
@@ -4021,7 +4022,7 @@ export function getCategoryFaqs(category: CategoryPage): CategoryFaq[] {
       { question: "Is this category only for players?", answer: "No. Team apparel can be used by athletes, coaches, support staff, and even related supporter programs depending on the product." },
       { question: "What is the difference between team apparel and game uniforms?", answer: "Team apparel focuses on travel, layering, sideline visibility, and off-field presentation rather than direct game-play use." },
       { question: "Can coaches apparel be included in the same order?", answer: "Yes. Coaching apparel is part of this category and can be planned alongside other team layers." },
-      { question: "How long does custom team apparel usually take?", answer: "Most team apparel orders are completed in about 2 to 3 weeks after artwork and product details are approved." },
+      { question: "How long does custom team apparel usually take?", answer: "Most team apparel orders are completed in about 2 to 3 weeks after artwork and product details are approved, with a minimum of 10 pieces per design." },
       { question: "Are these apparel products useful for booster and travel programs too?", answer: "Yes. Team apparel is often used to strengthen overall program image beyond the roster alone." },
       { question: "Can jackets and warm-up suits be ordered for full rosters?", answer: "Yes. Team apparel can be structured for full player groups, coaching staffs, and multi-piece program orders." },
     ],
@@ -4081,14 +4082,17 @@ export function getRelatedProductsBySlug(slug: string) {
 }
 
 export function buildMetaTitle(product: Product) {
-  const raw = `${product.name} in Texas | Custom Football Uniform Quotes`;
-  const short = `${product.name} Texas | Custom Football Quote`;
-  return truncateAtWord(raw.length <= 65 ? raw : short, 65, 58);
+  const meta = productMeta[product.slug];
+  if (meta) return meta.title;
+  const raw = `Custom ${product.name} in Texas | Team Quotes`;
+  return truncateAtWord(raw, 60, 52);
 }
 
 export function buildMetaDescription(product: Product) {
-  const raw = `Shop premium custom ${product.name.toLowerCase()} for Texas teams with fast turnarounds, player personalization, and quote-first ordering support.`;
-  return truncateAtWord(raw, 150, 140);
+  const meta = productMeta[product.slug];
+  if (meta) return meta.description;
+  const raw = `Custom ${product.name.toLowerCase()} for Texas teams. Minimum 10 per design, ${product.turnaround}, free mockup in 24 hours, quote-first ordering.`;
+  return truncateAtWord(raw, 155, 140);
 }
 
 /**

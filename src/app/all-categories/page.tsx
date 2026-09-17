@@ -7,9 +7,9 @@ import { getCategorySlug, getProductsByCategoryGroup } from "@/lib/catalog";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
-  title: "All Football Uniform Categories | Texas Teamwear Collection",
+  title: "All Custom Football Uniform Categories | Texas Teams",
   description:
-    "Browse custom football uniforms, jerseys, sideline layers, and team apparel categories built for Texas programs and quote-based ordering.",
+    "Every custom football uniform, jersey, practice gear and team apparel category we make for Texas programs. Minimum 10 per design, free mockup in 24 hours.",
   path: "/all-categories/",
 });
 

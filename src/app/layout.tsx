@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     shortcut: "/icon.svg",
   },
   ...createMetadata({
-    title: "Custom Texas Football Uniforms | Premium Teamwear Quotes",
+    title: "Custom Football Uniforms in Texas | Jerseys & Team Kits",
     description:
-      "Premium custom football uniforms in Texas with quote-first ordering, full roster personalization, and fast teamwear production support.",
+      "Custom football uniforms, jerseys and team kits for Texas schools, youth leagues and clubs. Minimum 10 per design, free mockup in 24 hours, quote-first ordering.",
     path: "/",
   }),
 };

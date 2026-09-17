@@ -34,7 +34,7 @@ export function ProductLeadForm({ productName }: ProductLeadFormProps) {
     });
 
     if (res.ok) {
-      router.push("/thank-you");
+      router.push("/thank-you/");
       return;
     }
     setStatus("error");

@@ -8,9 +8,9 @@ import { locationCities, cityUrl } from "@/data/locations";
 
 export function generateMetadata(): Metadata {
   return createMetadata({
-    title: "Custom Football Uniforms Across Texas | City Locations | Texas Football Uniforms",
+    title: "Custom Football Uniforms Across Texas | 22 Cities Served",
     description:
-      "Custom football uniforms and team kits for programs across Texas — Houston, Dallas, San Antonio, Austin and every city in between.",
+      "Custom football uniforms delivered to 22 Texas cities: Houston, Dallas, San Antonio, Austin, Fort Worth and more. Minimum 10 per design, free mockup in 24 hours.",
     path: "/locations/",
   });
 }

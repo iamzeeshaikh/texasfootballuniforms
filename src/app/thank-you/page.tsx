@@ -4,14 +4,14 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Thank you — your request is with us",
   description:
-    "Your custom football uniform request has been received. Our team replies with pricing, fabric options and a design mock-up.",
+    "Your custom football uniform request has been received. Our team replies with pricing, fabric options and a free design mockup within one business day.",
   robots: { index: false, follow: true },
 };
 
 const steps = [
-  "We review your roster size, colours and design direction.",
+  "We review your roster size, colors and design direction.",
   "You get a written price with fabric and decoration options.",
-  "We send a free digital mock-up before anything is cut or printed.",
+  "We send a free digital mockup before anything is cut or printed.",
 ];
 
 export default function ThankYouPage() {
@@ -61,7 +61,7 @@ export default function ThankYouPage() {
           <Link href="/" className="inline-flex justify-center rounded-full bg-[var(--color-red)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-[var(--color-navy)] disabled:opacity-60">
             Back to home
           </Link>
-          <Link href="/all-categories" className="inline-flex justify-center rounded-full border border-[var(--color-border)] bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-navy)] transition hover:border-[var(--color-red)]">
+          <Link href="/all-categories/" className="inline-flex justify-center rounded-full border border-[var(--color-border)] bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-navy)] transition hover:border-[var(--color-red)]">
             Browse uniforms
           </Link>
         </div>

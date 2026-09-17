@@ -28,7 +28,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "how-to-design-custom-football-uniforms",
     title: "How to Design Custom Football Uniforms for Your Team",
-    metaTitle: "How to Design Custom Football Uniforms for Your Team | Texas Football Uniforms",
+    metaTitle: "How to Design Custom Football Uniforms for Your Team",
     metaDescription:
       "A step-by-step guide to designing custom football uniforms — colors, logos, names and numbers, fabric, and fit — so your team looks unified and professional.",
     excerpt:
