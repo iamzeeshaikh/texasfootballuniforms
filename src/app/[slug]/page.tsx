@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { CheckCircle2, Layers3, Shirt, Timer, Trophy, Users2 } from "lucide-react";
 
 import { ImageCarousel } from "@/components/image-carousel";
+import { PriceFacts, PriceNotes } from "@/components/price-facts";
 import { ProductLeadForm } from "@/components/product-lead-form";
 import { UniformConfigurator } from "@/components/uniform-configurator";
 import {
@@ -14,6 +15,8 @@ import {
   buildMetaTitle,
   buildProductSchema,
   getAllProducts,
+  getPriceFacts,
+  moqCount,
   getLongSections,
   getProductBySlug,
   getRelatedProductsBySlug,
@@ -76,6 +79,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <h1 className="mt-5 text-5xl text-[var(--color-navy)] sm:text-6xl">
                 {product.name}
               </h1>
+              <PriceFacts facts={getPriceFacts(product)} />
               <p className="mt-6 text-lg">{product.shortDescription}</p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <a
@@ -211,6 +215,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
           </div>
         </section>
+
+        <PriceNotes unit={product.priceUnit} minimum={moqCount(product)} />
 
         <UniformConfigurator productName={product.name} />
 

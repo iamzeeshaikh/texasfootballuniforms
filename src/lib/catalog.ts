@@ -8,6 +8,16 @@ type ProductBlueprint = {
   slug: string;
   folder: string;
   name: string;
+  /**
+   * Published starting price in USD at the 10-piece minimum, and the unit it
+   * is quoted in. Authoritative source: queensportswear.com (the same factory
+   * pricing), with five items queensportswear does not carry taken from
+   * wooter.com's smallest-quantity tier so the number is honest at MOQ 10.
+   * This number is what renders on the page AND what goes into Product schema
+   * — never let the two drift.
+   */
+  fromPrice: number;
+  priceUnit: string;
   shortNiche: string;
   productFamily: "uniform" | "jersey" | "outerwear" | "accessory";
   featureFocus: [string, string, string, string];
@@ -79,6 +89,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "football-team-kits",
     folder: "football team kits",
     name: "Football Team Kits",
+    fromPrice: 55.99,
+    priceUnit: "set",
     shortNiche: "full roster packages",
     productFamily: "uniform",
     featureFocus: ["Full roster coordination", "Game-day durability", "Texas-ready color depth", "Coach-approved fit blocks"],
@@ -92,6 +104,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "7-on-7-football-uniforms",
     folder: "7 on 7 football uniforms",
     name: "7 on 7 Football Uniforms",
+    fromPrice: 50.99,
+    priceUnit: "set",
     shortNiche: "speed-focused tournament uniforms",
     productFamily: "uniform",
     featureFocus: ["Lightweight airflow", "Fast-cut mobility", "Elite event branding", "Quick-turn production"],
@@ -105,6 +119,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "adult-football-jerseys",
     folder: "adult football jerseys",
     name: "Adult Football Jerseys",
+    fromPrice: 32.99,
+    priceUnit: "jersey",
     shortNiche: "adult program uniforms",
     productFamily: "jersey",
     featureFocus: ["Structured adult fit", "Bold number readability", "Practice-to-game versatility", "Premium stitch quality"],
@@ -118,6 +134,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "american-football-jerseys",
     folder: "american football jerseys",
     name: "American Football Jerseys",
+    fromPrice: 32.99,
+    priceUnit: "jersey",
     shortNiche: "program-ready football tops",
     productFamily: "jersey",
     featureFocus: ["Broadcast-clean graphics", "Flexible shoulder movement", "Multi-level team branding", "High wash resistance"],
@@ -131,6 +149,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "american-football-uniforms",
     folder: "american football uniforms",
     name: "American Football Uniforms",
+    fromPrice: 55.99,
+    priceUnit: "set",
     shortNiche: "complete football uniform systems",
     productFamily: "uniform",
     featureFocus: ["End-to-end kit consistency", "High-contact durability", "Premium sideline presence", "Custom artwork support"],
@@ -144,6 +164,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "blank-football-jerseys",
     folder: "blank football jerseys",
     name: "Blank Football Jerseys",
+    fromPrice: 32.99,
+    priceUnit: "jersey",
     shortNiche: "stock-ready team bases",
     productFamily: "jersey",
     featureFocus: ["Clean blanks for custom branding", "Consistent color matching", "Bulk team readiness", "Comfortable game fit"],
@@ -157,6 +179,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "coaches-apparel",
     folder: "coaches apparel",
     name: "Coaches Apparel",
+    fromPrice: 34.99,
+    priceUnit: "shirt",
     shortNiche: "sideline staff gear",
     productFamily: "outerwear",
     featureFocus: ["Polished sideline identity", "Layer-friendly cuts", "Embroidery-ready placements", "Travel-day comfort"],
@@ -170,6 +194,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "college-football-uniforms",
     folder: "college football uniforms",
     name: "College Football Uniforms",
+    fromPrice: 55.99,
+    priceUnit: "set",
     shortNiche: "higher-level team sets",
     productFamily: "uniform",
     featureFocus: ["Recruiting-grade presentation", "Sharp typography", "Pro-style cut options", "Deep program customization"],
@@ -183,6 +209,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "custom-name-football-jerseys",
     folder: "custom name football jerseys",
     name: "Custom Name Football Jerseys",
+    fromPrice: 32.99,
+    priceUnit: "jersey",
     shortNiche: "name-personalized team jerseys",
     productFamily: "jersey",
     featureFocus: ["Personalized roster names", "Balanced nameplate spacing", "Consistent numbering", "Tournament-ready finish"],
@@ -196,6 +224,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "custom-number-football-jerseys",
     folder: "custom number football jerseys",
     name: "Custom Number Football Jerseys",
+    fromPrice: 32.99,
+    priceUnit: "jersey",
     shortNiche: "number-specific team jerseys",
     productFamily: "jersey",
     featureFocus: ["Large readable numbers", "Consistent front-back placement", "Durable print hold", "Fast re-order support"],
@@ -209,6 +239,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "football-warm-up-suits",
     folder: "football warm up suits",
     name: "Football Warm Up Suits",
+    fromPrice: 59.99,
+    priceUnit: "suit",
     shortNiche: "travel and pregame sets",
     productFamily: "outerwear",
     featureFocus: ["Travel-day polish", "Sideline warmth", "Stretch comfort", "Cohesive team presentation"],
@@ -222,6 +254,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "custom-team-jerseys",
     folder: "custom team jerseys",
     name: "Custom Team Jerseys",
+    fromPrice: 32.99,
+    priceUnit: "jersey",
     shortNiche: "fully branded team jerseys",
     productFamily: "jersey",
     featureFocus: ["Unlimited color builds", "Team identity detail", "Player-specific customization", "Competition-ready fit"],
@@ -235,6 +269,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "fan-football-jerseys",
     folder: "fan football jerseys",
     name: "Fan Football Jerseys",
+    fromPrice: 31.99,
+    priceUnit: "jersey",
     shortNiche: "supporter and booster apparel",
     productFamily: "jersey",
     featureFocus: ["Retail-style finish", "Booster club personalization", "Comfort-first fit", "Event-ready graphics"],
@@ -248,6 +284,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "flag-football-jerseys",
     folder: "flag football jerseys",
     name: "Flag Football Jerseys",
+    fromPrice: 32.99,
+    priceUnit: "jersey",
     shortNiche: "non-contact performance jerseys",
     productFamily: "jersey",
     featureFocus: ["Freedom of movement", "Light game weight", "Tournament personalization", "Breathable construction"],
@@ -261,6 +299,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "flag-football-uniforms",
     folder: "flag football uniforms",
     name: "Flag Football Uniforms",
+    fromPrice: 49.99,
+    priceUnit: "set",
     shortNiche: "complete non-contact team kits",
     productFamily: "uniform",
     featureFocus: ["Speed-built silhouettes", "League-compliant styling", "Consistent team branding", "Comfort under heat"],
@@ -274,6 +314,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "football-gloves",
     folder: "football gloves",
     name: "Football Gloves",
+    fromPrice: 32.99,
+    priceUnit: "pair",
     shortNiche: "team-branded grip accessories",
     productFamily: "accessory",
     featureFocus: ["Grip-focused performance", "Team color matching", "Flexible hand feel", "Practice and game use"],
@@ -287,6 +329,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "football-hoodies",
     folder: "football hoodies",
     name: "Football Hoodies",
+    fromPrice: 39.99,
+    priceUnit: "hoodie",
     shortNiche: "team hoodie layering",
     productFamily: "outerwear",
     featureFocus: ["Off-field comfort", "Travel-day branding", "Layered warmth", "Premium retail finish"],
@@ -300,6 +344,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "football-practice-jerseys",
     folder: "football practice jerseys",
     name: "Football Practice Jerseys",
+    fromPrice: 32.99,
+    priceUnit: "jersey",
     shortNiche: "training and camp jerseys",
     productFamily: "jersey",
     featureFocus: ["Scrimmage-ready toughness", "Simple unit differentiation", "Comfort for repeated reps", "Easy roster management"],
@@ -313,6 +359,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "football-shorts",
     folder: "football shorts",
     name: "Football Shorts",
+    fromPrice: 29.99,
+    priceUnit: "pair",
     shortNiche: "training and travel bottoms",
     productFamily: "accessory",
     featureFocus: ["Lightweight mobility", "Coordinated team branding", "Elastic comfort", "Training-day durability"],
@@ -326,6 +374,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "football-sideline-jackets",
     folder: "football sideline jackets",
     name: "Football Sideline Jackets",
+    fromPrice: 39.99,
+    priceUnit: "jacket",
     shortNiche: "weather-ready sideline layers",
     productFamily: "outerwear",
     featureFocus: ["Weather protection", "Commanding sideline look", "Travel-ready polish", "Program branding"],
@@ -339,6 +389,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "high-school-football-uniforms",
     folder: "high school football uniforms",
     name: "High School Football Uniforms",
+    fromPrice: 55.99,
+    priceUnit: "set",
     shortNiche: "varsity and JV uniform programs",
     productFamily: "uniform",
     featureFocus: ["Friday-night presentation", "Roster-wide consistency", "District-ready durability", "Custom trim options"],
@@ -352,6 +404,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "football-socks",
     folder: "football socks",
     name: "Football Socks",
+    fromPrice: 13.99,
+    priceUnit: "pair",
     shortNiche: "uniform-matching legwear",
     productFamily: "accessory",
     featureFocus: ["Color-coordinated finish", "Compression support", "Comfort under pads", "Uniform-ready detail"],
@@ -365,6 +419,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "lightweight-football-jerseys",
     folder: "lightweight football jerseys",
     name: "Lightweight Football Jerseys",
+    fromPrice: 32.99,
+    priceUnit: "jersey",
     shortNiche: "heat-conscious football jerseys",
     productFamily: "jersey",
     featureFocus: ["Breathability in heat", "Reduced bulk", "Fast-dry performance", "Tournament-ready style"],
@@ -378,6 +434,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "padded-football-shirts",
     folder: "padded football shirts",
     name: "Padded Football Shirts",
+    fromPrice: 32.99,
+    priceUnit: "shirt",
     shortNiche: "integrated protection tops",
     productFamily: "accessory",
     featureFocus: ["Integrated padding support", "Compression fit", "Under-uniform comfort", "Practice and camp utility"],
@@ -391,6 +449,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "reversible-football-jerseys",
     folder: "reversible football jerseys",
     name: "Reversible Football Jerseys",
+    fromPrice: 66.99,
+    priceUnit: "jersey",
     shortNiche: "dual-color training jerseys",
     productFamily: "jersey",
     featureFocus: ["Two looks in one", "Scrimmage flexibility", "Distinct side colors", "Reliable print clarity"],
@@ -404,6 +464,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "sublimated-football-jerseys",
     folder: "sublimated football jerseys",
     name: "Sublimated Football Jerseys",
+    fromPrice: 32.99,
+    priceUnit: "jersey",
     shortNiche: "full-color custom jerseys",
     productFamily: "jersey",
     featureFocus: ["Unlimited artwork detail", "Fade-resistant color", "No cracking graphics", "Premium finish quality"],
@@ -417,6 +479,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "youth-football-jerseys",
     folder: "youth football jerseys",
     name: "Youth Football Jerseys",
+    fromPrice: 32.99,
+    priceUnit: "jersey",
     shortNiche: "youth league jerseys",
     productFamily: "jersey",
     featureFocus: ["Age-appropriate fit", "Easy sizing guidance", "Bright readable graphics", "Parent-friendly durability"],
@@ -430,6 +494,8 @@ const blueprints: ProductBlueprint[] = [
     slug: "youth-football-uniforms",
     folder: "youth football uniforms",
     name: "Youth Football Uniforms",
+    fromPrice: 55.99,
+    priceUnit: "set",
     shortNiche: "full youth team packages",
     productFamily: "uniform",
     featureFocus: ["League-ready construction", "Comfort for young athletes", "Coach-friendly ordering", "Bright team identity"],
@@ -4095,17 +4161,69 @@ export function buildMetaDescription(product: Product) {
   return truncateAtWord(raw, 155, 140);
 }
 
+/** `32.99` -> `"$32.99"`. One formatter so page copy and schema cannot drift. */
+export function formatPrice(value: number) {
+  return `$${value.toFixed(2)}`;
+}
+
+/** "From $32.99 per jersey" — the phrase that has to match Offer.price. */
+export function fromPriceLabel(product: Pick<Product, "fromPrice" | "priceUnit">) {
+  return `From ${formatPrice(product.fromPrice)} per ${product.priceUnit}`;
+}
+
 /**
- * Indicative per-player starting prices in USD, taken from the on-site
- * uniform configurator base prices (game jersey 38, jersey + pants 74,
- * warm-up/shell 46, player bags 24).
+ * The minimum as a bare count. Every blueprint writes it as "10 jerseys" /
+ * "10 sets" / "10 pieces"; the fact strip says "Minimum 10 per design" so the
+ * sentence reads the same on every page.
  */
-const familyStartingPrice: Record<Product["productFamily"], number> = {
-  jersey: 38,
-  uniform: 74,
-  outerwear: 46,
-  accessory: 24,
-};
+export function moqCount(product: Pick<Product, "moq">) {
+  return Number(product.moq.match(/\d+/)?.[0] ?? 10);
+}
+
+/**
+ * Turnaround as a fact-strip phrase: "3 to 4 weeks" -> "3–4 weeks after
+ * artwork approval". Strings that already name their trigger ("after final
+ * design sign-off") keep it.
+ */
+export function turnaroundLabel(product: Pick<Product, "turnaround">) {
+  const dashed = product.turnaround.replace(/(\d+)\s+to\s+(\d+)/, "$1–$2");
+  return /\bafter\b/i.test(dashed) ? dashed : `${dashed} after artwork approval`;
+}
+
+/**
+ * The four facts that sit directly under every product and category H1.
+ * Competitors all publish a unit price; until now this site published none,
+ * while its Product schema quietly carried numbers that appeared nowhere on
+ * the page.
+ */
+export function getPriceFacts(product: Pick<Product, "fromPrice" | "priceUnit" | "moq" | "turnaround">) {
+  return [
+    fromPriceLabel(product),
+    `Minimum ${moqCount(product)} per design`,
+    turnaroundLabel(product),
+    "Free mockup in 24 hours",
+  ];
+}
+
+/**
+ * Lowest published price in a category, with the unit that price is quoted
+ * in, for the category-page fact strip.
+ */
+export function getCategoryPriceLeader(products: Product[]) {
+  return products.reduce((lowest, item) => (item.fromPrice < lowest.fromPrice ? item : lowest), products[0]);
+}
+
+/**
+ * Offer.priceValidUntil — Google warns once it is in the past, and the old
+ * hard-coded 2027-08-04 would have gone stale silently. Evaluated at build
+ * time (these pages are all statically prerendered), so every deploy renews
+ * the window to a year out.
+ */
+function priceValidUntil() {
+  const date = new Date();
+  date.setFullYear(date.getFullYear() + 1);
+  return date.toISOString().slice(0, 10);
+}
 
 /**
  * Parses a published turnaround string like "2 to 3 weeks" or
@@ -4159,8 +4277,15 @@ export function buildProductSchema(product: Product) {
       "@type": "Offer",
       url,
       priceCurrency: "USD",
-      price: familyStartingPrice[product.productFamily].toFixed(2),
-      priceValidUntil: "2027-08-04",
+      // Must equal the number printed in the on-page fact strip. Both come
+      // from product.fromPrice for exactly that reason.
+      price: product.fromPrice.toFixed(2),
+      priceValidUntil: priceValidUntil(),
+      eligibleQuantity: {
+        "@type": "QuantitativeValue",
+        minValue: moqCount(product),
+        unitText: product.priceUnit,
+      },
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
       shippingDetails: {

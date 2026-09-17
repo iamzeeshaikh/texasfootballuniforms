@@ -384,8 +384,11 @@ export default function HomePage() {
                 Programs Choose a Premium Quote-First Partner
               </h2>
             </div>
+            {/* Was "No Pricing Tables. Just Better Teamwear." — the site now
+                publishes a starting price on every product page, so that line
+                argued with the page above it. */}
             <div className="hidden rounded-full bg-[var(--color-navy)] px-5 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-gold)] md:inline-flex">
-              No Pricing Tables. Just Better Teamwear.
+              Published Prices. Quoted to Your Roster.
             </div>
           </div>
           <div className="mt-10 grid gap-6 lg:grid-cols-3">

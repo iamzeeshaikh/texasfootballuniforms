@@ -13,6 +13,7 @@ import {
   Truck,
 } from "lucide-react";
 
+import { PriceFacts, PriceNotes } from "@/components/price-facts";
 import { ProductLeadForm } from "@/components/product-lead-form";
 import {
   buildBreadcrumbSchema,
@@ -28,9 +29,12 @@ import {
   getCategoryMetaTitle,
   getCategoryOrderSteps,
   getCategoryPages,
+  getCategoryPriceLeader,
   getCategorySlug,
   getCategorySpecs,
+  getPriceFacts,
   getProductsByCategoryGroup,
+  moqCount,
 } from "@/lib/catalog";
 import { createMetadata } from "@/lib/seo";
 
@@ -85,6 +89,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const specs = getCategorySpecs(categoryPage);
   const orderSteps = getCategoryOrderSteps(categoryPage);
   const faqs = getCategoryFaqs(categoryPage);
+  // Lowest published price in the category, so "from" is literally true.
+  const priceLeader = getCategoryPriceLeader(grouped.products);
 
   const breadcrumbSchema = buildBreadcrumbSchema([
     { name: "Home", path: "/" },
@@ -105,6 +111,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             <h1 className="mt-5 text-5xl text-[var(--color-navy)] sm:text-6xl">
               {categoryPage.title}
             </h1>
+            <PriceFacts facts={getPriceFacts(priceLeader)} />
             <p className="mt-6 text-lg">{categoryPage.intro}</p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {[
@@ -350,6 +357,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </div>
           </div>
         </section>
+
+        <PriceNotes unit={priceLeader.priceUnit} minimum={moqCount(priceLeader)} />
 
         <section className="mt-12 surface-card p-8 sm:p-10">
           <div className="flex items-center gap-3">

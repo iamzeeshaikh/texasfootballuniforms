@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ProductLeadForm } from "@/components/product-lead-form";
-import { buildBreadcrumbSchema, getProductBySlug } from "@/lib/catalog";
+import { buildBreadcrumbSchema, getPriceFacts, getProductBySlug } from "@/lib/catalog";
 import { SITE_URL } from "@/lib/site";
 import {
   getNearbyCities,
@@ -15,6 +15,10 @@ import {
 
 export function CityLocation({ loc }: { loc: LocationCity }) {
   const basePath = cityUrl(loc);
+  // A city page sells the full uniform set, so it quotes the uniform-set
+  // starting price — the same number the American football uniforms page and
+  // its Product schema publish.
+  const priceAnchor = getProductBySlug("american-football-uniforms");
   const nearby = getNearbyCities(loc.nearbyCities);
 
   // Varied internal links — unique target, anchor, and sentence per page.
@@ -102,6 +106,16 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
             <span className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-gold)]">{loc.region} · Texas</span>
             <h1 className="mt-3 font-display text-4xl uppercase leading-[1.05] sm:text-5xl">{loc.h1}</h1>
             <p className="mt-4 max-w-xl text-lg leading-relaxed text-white/80">{loc.intro}</p>
+            {priceAnchor ? (
+              <div className="mt-5 flex flex-wrap gap-x-3 gap-y-2 text-sm font-semibold text-white/85">
+                {getPriceFacts(priceAnchor).map((fact, i) => (
+                  <span key={fact} className="flex items-center gap-3">
+                    {i > 0 ? <span aria-hidden="true" className="text-white/30">·</span> : null}
+                    <span className={i === 0 ? "text-[var(--color-gold)]" : undefined}>{fact}</span>
+                  </span>
+                ))}
+              </div>
+            ) : null}
             <div className="mt-6 flex flex-wrap gap-3">
               <a href="#quote-form" className="rounded-full bg-[var(--color-red)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)]">Get a Team Quote</a>
               <Link href="/locations/" className="rounded-full border border-white/25 px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:border-[var(--color-gold)]">All Texas Cities</Link>

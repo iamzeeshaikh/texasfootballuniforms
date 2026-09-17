@@ -14,13 +14,18 @@ type Option = {
   price?: number;
 };
 
+// Base prices are the same published starting prices the product pages and
+// the Product schema carry (src/lib/catalog.ts `fromPrice`). The tool used to
+// invent its own numbers (38 / 74 / 92), so a coach could read "$32.99 per
+// jersey" at the top of the page and "$38 per player" halfway down it.
 const GARMENTS: Option[] = [
-  { id: "jersey", label: "Game jersey", hint: "Sublimated or cut & sew", price: 38 },
-  { id: "jersey-pants", label: "Jersey + pants", hint: "Full game set", price: 74 },
-  { id: "practice", label: "Practice jersey", hint: "Lightweight training top", price: 26 },
-  { id: "full-kit", label: "Full uniform kit", hint: "Jersey, pants, socks", price: 92 },
-  { id: "warmup", label: "Warm-up / shell", hint: "Sideline layer", price: 46 },
-  { id: "7v7", label: "7v7 / flag set", hint: "Reversible or single", price: 32 },
+  { id: "jersey", label: "Game jersey", hint: "Sublimated or cut & sew", price: 32.99 },
+  { id: "jersey-pants", label: "Jersey + pants", hint: "Full game set", price: 55.99 },
+  { id: "practice", label: "Practice jersey", hint: "Lightweight training top", price: 32.99 },
+  { id: "full-kit", label: "Full uniform kit", hint: "Jersey, pants, socks", price: 55.99 },
+  { id: "warmup", label: "Warm-up / shell", hint: "Sideline layer", price: 59.99 },
+  { id: "7v7", label: "7v7 / flag set", hint: "Reversible or single", price: 49.99 },
+  { id: "reversible", label: "Reversible jersey", hint: "Two colors, one jersey", price: 66.99 },
 ];
 
 const FABRICS: Option[] = [
@@ -56,8 +61,10 @@ const MARKINGS: Option[] = [
 ];
 
 const ADD_ONS: Option[] = [
-  { id: "pants", label: "Matching pants", hint: "Integrated or slotted", price: 34 },
-  { id: "socks", label: "Team socks", hint: "Custom stripe or color", price: 9 },
+  { id: "pants", label: "Matching pants", hint: "Integrated or slotted", price: 29.99 },
+  { id: "socks", label: "Team socks", hint: "Custom stripe or color", price: 13.99 },
+  { id: "gloves", label: "Team gloves", hint: "Printed palm and back", price: 32.99 },
+  { id: "jacket", label: "Sideline jacket", hint: "Travel and warm-up layer", price: 39.99 },
   { id: "bag", label: "Player bags", hint: "Named kit bags", price: 24 },
   { id: "sample", label: "Pre-production sample", hint: "One stitched sample", price: 12 },
   { id: "sizing-kit", label: "Sizing kit loan", hint: "Try-on set before order", price: 6 },
