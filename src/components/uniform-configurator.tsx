@@ -3,7 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { ARTWORK_ACCEPT, readArtwork } from "@/lib/artwork";
+import { ARTWORK_ACCEPT, MAX_ARTWORK_BYTES, artworkTooLargeMessage, readArtwork } from "@/lib/artwork";
+import { company } from "@/lib/site";
 
 type Option = {
   id: string;
@@ -56,7 +57,7 @@ const MARKINGS: Option[] = [
 
 const ADD_ONS: Option[] = [
   { id: "pants", label: "Matching pants", hint: "Integrated or slotted", price: 34 },
-  { id: "socks", label: "Team socks", hint: "Custom stripe or colour", price: 9 },
+  { id: "socks", label: "Team socks", hint: "Custom stripe or color", price: 9 },
   { id: "bag", label: "Player bags", hint: "Named kit bags", price: 24 },
   { id: "sample", label: "Pre-production sample", hint: "One stitched sample", price: 12 },
   { id: "sizing-kit", label: "Sizing kit loan", hint: "Try-on set before order", price: 6 },
@@ -67,7 +68,7 @@ const ROSTERS = [10, 15, 20, 25, 35, 50, 75];
 
 const ASSURANCES = [
   "Free design mock-up before production",
-  "Team colours matched to your school",
+  "Team colors matched to your school",
   "Roster names and numbers included in setup",
   "Made-to-order, shipped across Texas",
 ];
@@ -101,7 +102,7 @@ function priceOf(options: Option[], ids: string[]) {
 }
 
 /**
- * Team uniform configurator: roster-based pricing rather than per-box, with
+ * "Design Your Uniform" tool: roster-based pricing rather than per-box, with
  * the decoration and marking choices a coach actually specifies.
  */
 export function UniformConfigurator({ productName }: { productName: string }) {
@@ -116,7 +117,7 @@ export function UniformConfigurator({ productName }: { productName: string }) {
   const [roster, setRoster] = useState(0);
   const [customRoster, setCustomRoster] = useState("");
   const [addOns, setAddOns] = useState<string[]>([]);
-  const [colours, setColours] = useState("");
+  const [colors, setColors] = useState("");
   const [contact, setContact] = useState({ name: "", email: "", phone: "", school: "", notes: "" });
   const [artwork, setArtwork] = useState<File | null>(null);
   const [summaryOpen, setSummaryOpen] = useState(false);
@@ -171,13 +172,21 @@ export function UniformConfigurator({ productName }: { productName: string }) {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    // Honeypot: hidden from people, so anything in it came from a bot.
+    const website = new FormData(event.currentTarget).get("website");
+    if (typeof website === "string" && website.trim() !== "") {
+      router.push("/thank-you/");
+      return;
+    }
+
     setError("");
     setSending(true);
 
     const spec = Object.keys(LABELS)
       .map((key) => `${LABELS[key]}: ${values[key] || "Not selected"}`)
       .concat(
-        colours ? `Team colours: ${colours}` : "",
+        colors ? `Team colors: ${colors}` : "",
         estimate
           ? `Indicative budget: $${estimate.low.toLocaleString()} – $${estimate.high.toLocaleString()} (about $${estimate.perPlayer} per player)`
           : "Indicative budget: pending review",
@@ -187,16 +196,16 @@ export function UniformConfigurator({ productName }: { productName: string }) {
       .join("\n");
 
     try {
-      const res = await fetch("/api/lead", {
+      const res = await fetch("/api/lead/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          subject: `Configurator Specification: ${productName}`,
+          subject: `Design Your Uniform Spec: ${productName}`,
           name: contact.name,
           email: contact.email,
           phone: contact.phone,
           school: contact.school,
-          product: `${productName} (configurator)`,
+          product: `${productName} (design tool)`,
           message: spec,
           artwork: await readArtwork(artwork),
         }),
@@ -205,7 +214,11 @@ export function UniformConfigurator({ productName }: { productName: string }) {
         router.push("/thank-you/");
         return;
       }
-      setError("That did not send. Please try again or call us directly.");
+      const body = await res.json().catch(() => null);
+      setError(
+        (body && typeof body.error === "string" && body.error) ||
+          "That did not send. Please try again or call us directly.",
+      );
     } catch {
       setError("Could not send. Please check your connection and try again.");
     } finally {
@@ -237,14 +250,14 @@ export function UniformConfigurator({ productName }: { productName: string }) {
   );
 
   return (
-    <section id="configurator" ref={sectionRef} className="scroll-mt-24 py-12">
+    <section id="design-your-uniform" ref={sectionRef} className="scroll-mt-24 py-12">
       <div className="mx-auto max-w-6xl px-4">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">
-            Interactive configurator
+            Design Your Uniform
           </p>
           <h2 className="mt-3 text-4xl text-[var(--color-navy)] sm:text-5xl">
-            Build your {productName.toLowerCase()}
+            Design your {productName.toLowerCase()}
           </h2>
           <p className="mt-3 text-[var(--color-navy-soft)]">
             Pick the garment, fabric, decoration and roster size to see an indicative price per
@@ -252,7 +265,14 @@ export function UniformConfigurator({ productName }: { productName: string }) {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="mt-8 grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,21rem)] lg:items-start">
+        <form
+          id="design-your-uniform-form"
+          onSubmit={handleSubmit}
+          data-ga-event="design_tool_submit"
+          className="mt-8 grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,21rem)] lg:items-start"
+        >
+          {/* Honeypot — hidden from people, irresistible to bots. */}
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
           <div className="grid min-w-0 gap-4">
             <fieldset className="surface-card p-5">
               <legend className="flex items-center gap-3 text-lg font-semibold text-[var(--color-navy)]">
@@ -405,9 +425,9 @@ export function UniformConfigurator({ productName }: { productName: string }) {
 
               <input
                 className="input-shell mt-3"
-                placeholder="Team colours (e.g. navy, white, gold)"
-                value={colours}
-                onChange={(event) => setColours(event.target.value)}
+                placeholder="Team colors (e.g. navy, white, gold)"
+                value={colors}
+                onChange={(event) => setColors(event.target.value)}
               />
 
               <textarea
@@ -420,13 +440,24 @@ export function UniformConfigurator({ productName }: { productName: string }) {
               <label className="mt-3 grid gap-2 text-sm">
                 <span className="font-semibold text-[var(--color-navy)]">
                   Upload artwork or logo{" "}
-                  <span className="font-normal text-[var(--color-navy-soft)]">(optional)</span>
+                  <span className="font-normal text-[var(--color-navy-soft)]">(optional, max 3 MB)</span>
                 </span>
                 <input
                   type="file"
+                  name="artwork"
                   accept={ARTWORK_ACCEPT}
                   className="input-shell py-2.5"
-                  onChange={(event) => setArtwork(event.target.files?.[0] ?? null)}
+                  onChange={(event) => {
+                    const file = event.target.files?.[0] ?? null;
+                    if (file && file.size > MAX_ARTWORK_BYTES) {
+                      setArtwork(null);
+                      setError(artworkTooLargeMessage(company.email));
+                      event.target.value = "";
+                      return;
+                    }
+                    setError("");
+                    setArtwork(file);
+                  }}
                 />
               </label>
             </fieldset>

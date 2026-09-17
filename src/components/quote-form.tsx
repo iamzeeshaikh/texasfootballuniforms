@@ -15,29 +15,59 @@ export function QuoteForm() {
     details: "",
   });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus("sending");
 
-    const res = await fetch("/api/lead", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        subject: `Quote Request: ${form.product || "Custom Football Uniforms"}`,
-        ...form,
-      }),
-    });
+    // Honeypot: hidden from people, so anything in it came from a bot.
+    const website = new FormData(event.currentTarget).get("website");
+    if (typeof website === "string" && website.trim() !== "") {
+      router.push("/thank-you/");
+      return;
+    }
+
+    setStatus("sending");
+    setErrorMessage("");
+
+    let res: Response;
+    try {
+      res = await fetch("/api/lead/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          subject: `Quote Request: ${form.product || "Custom Football Uniforms"}`,
+          name: form.name,
+          organization: form.organization,
+          email: form.email,
+          phone: form.phone,
+          product: form.product,
+          timeline: form.timeline,
+          // Named "message" so /api/lead's required-field check sees the body
+          // text under the same key every form on the site uses.
+          message: form.details,
+        }),
+      });
+    } catch {
+      setStatus("error");
+      setErrorMessage("Could not send. Check your connection and try again.");
+      return;
+    }
 
     if (res.ok) {
       router.push("/thank-you/");
       return;
     }
+    const body = await res.json().catch(() => null);
     setStatus("error");
+    setErrorMessage(
+      (body && typeof body.error === "string" && body.error) ||
+        "Something went wrong. Please try again.",
+    );
   }
 
   return (
-    <form id="quote-form" onSubmit={handleSubmit} className="surface-card p-6 sm:p-8">
+    <form id="quote-form" onSubmit={handleSubmit} data-ga-event="quote_form_submit" className="surface-card scroll-mt-24 p-6 sm:p-8">
       <div className="grid gap-4 md:grid-cols-2">
         <input
           required
@@ -78,6 +108,8 @@ export function QuoteForm() {
           value={form.timeline}
           onChange={(e) => setForm((c) => ({ ...c, timeline: e.target.value }))}
         />
+        {/* Honeypot — hidden from people, irresistible to bots. */}
+        <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
         <textarea
           required
           rows={6}
@@ -91,7 +123,7 @@ export function QuoteForm() {
         {status === "sent" ? (
           <p className="font-semibold text-green-600">Message sent! We&rsquo;ll be in touch shortly.</p>
         ) : status === "error" ? (
-          <p className="font-semibold text-red-600">Something went wrong. Please try again.</p>
+          <p className="font-semibold text-red-600">{errorMessage}</p>
         ) : (
           <>
             <p className="text-sm leading-6 text-[var(--color-navy-soft)]">

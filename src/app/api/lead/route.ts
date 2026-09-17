@@ -11,17 +11,69 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+/**
+ * Vercel rejects a request body over about 4.5 MB before our code runs, and
+ * base64 inflates an attachment by a third. We refuse at 4 MB so the visitor
+ * gets a sentence they can act on instead of a platform error page.
+ */
+const MAX_BODY_BYTES = 4 * 1024 * 1024;
+const TOO_LARGE =
+  "That attachment is too large to send through the form. Please email it to info@texasfootballuniforms.com and submit the form without it.";
+
+/** Fields that must arrive, because a lead without them cannot be answered. */
+function validate(fields: Record<string, unknown>) {
+  const text = (key: string) => (typeof fields[key] === "string" ? (fields[key] as string).trim() : "");
+
+  if (!text("name")) return "Please tell us your name.";
+  const email = text("email");
+  if (!email) return "Please add an email address so we can send your quote.";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return "That email address does not look right.";
+  // Every form on the site sends its body text as "message"; the design tool
+  // sends a built specification under the same key.
+  if (!text("message") && !text("spec") && !text("product")) {
+    return "Please tell us what you need — quantity, design, and timeline.";
+  }
+  return null;
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const data = await req.json();
+    const declared = Number(req.headers.get("content-length") || 0);
+    if (declared > MAX_BODY_BYTES) {
+      return NextResponse.json({ ok: false, error: TOO_LARGE }, { status: 413 });
+    }
+
+    const raw = await req.text();
+    if (raw.length > MAX_BODY_BYTES) {
+      return NextResponse.json({ ok: false, error: TOO_LARGE }, { status: 413 });
+    }
+
+    let data: Record<string, unknown>;
+    try {
+      data = JSON.parse(raw) as Record<string, unknown>;
+    } catch {
+      return NextResponse.json({ ok: false, error: "We could not read that request." }, { status: 400 });
+    }
 
     // Artwork arrives as base64 so the whole request stays JSON.
-    const { artwork, ...fields } = data as Record<string, unknown> & {
+    const { artwork, website, ...fields } = data as Record<string, unknown> & {
       artwork?: { name: string; type: string; data: string };
+      website?: string;
     };
 
+    // Honeypot: the field is hidden from people, so a filled one is a bot.
+    // Answer 200 so the bot has nothing to learn from the response.
+    if (typeof website === "string" && website.trim() !== "") {
+      return NextResponse.json({ ok: true });
+    }
+
+    const invalid = validate(fields);
+    if (invalid) {
+      return NextResponse.json({ ok: false, error: invalid }, { status: 400 });
+    }
+
     const lines = Object.entries(fields)
-      .filter(([, v]) => v !== "" && v !== undefined)
+      .filter(([, v]) => v !== "" && v !== undefined && v !== null)
       .map(([k, v]) => `${k.charAt(0).toUpperCase() + k.slice(1)}: ${v}`)
       .join("\n");
 

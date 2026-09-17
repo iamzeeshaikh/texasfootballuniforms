@@ -62,7 +62,7 @@ export function ProductLeadForm({
 
     let res: Response;
     try {
-      res = await fetch("/api/lead", {
+      res = await fetch("/api/lead/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
