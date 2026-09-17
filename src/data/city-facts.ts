@@ -114,6 +114,221 @@ export const cityFacts: Record<string, CityFacts> = {
     ],
   },
 
+  // ──────────────────────────────────────────────── Collin County ──
+  plano: {
+    districts: ["Plano ISD", "Frisco ISD", "Lewisville ISD", "Allen ISD"],
+    schools: [
+      { school: "Plano Senior High", district: "Plano ISD", level: "6A" },
+      { school: "Plano East Senior High", district: "Plano ISD", level: "6A" },
+      { school: "Plano West Senior High", district: "Plano ISD", level: "6A" },
+      { school: "Prestonwood Christian Academy", district: "Private (TAPPS)", level: "TAPPS 6A, 11-man Division I" },
+      { school: "Shepton, Jasper, Clark, Williams, Vines, McMillen", district: "Plano ISD", level: "9th/10th-grade campuses feeding the three senior highs" },
+    ],
+    schoolsNote:
+      "Plano runs football on a structure almost no other Texas city uses. The three senior highs take students in 11th and 12th grade only, and six 9th/10th-grade campuses — Shepton, Jasper, Clark, Williams, Vines and McMillen — carry the sub-varsity teams that feed them. One program can therefore need a varsity block, a JV block and two junior-high-sized blocks that never share a building. For 2026-28 the three senior highs left the Allen and Prosper grouping for District 7-6A with Coppell and the Richardson ISD schools.",
+    youthLeagues: [
+      { name: "Plano Sports Authority", note: "the nonprofit that runs the city's youth flag and tackle football from age five through twelfth grade, across several Plano facilities." },
+      { name: "Neighborhood Sports NFL Flag", note: "runs an NFL Flag league in Plano from pre-K to twelfth grade." },
+      { name: "City of Plano Parks and Recreation", note: "allocates and maintains the fields the youth football organizations play on." },
+    ],
+    youthNote:
+      "Plano Sports Authority alone spans age five to twelfth grade, which is the widest single-organization size range on this list — one league order can run from a 5-year-old's flag jersey to a high-school-sized shirt. Our",
+    levelMix: "youth",
+    stadiums: [
+      { name: "John Clark Stadium", note: "Plano ISD's 14,224-seat stadium, home to Plano Senior High and Plano West." },
+      { name: "Tom Kimbrough Stadium", note: "Plano ISD's second stadium at 9,603 seats — 5,833 on the home side and 3,770 for visitors — home to Plano East." },
+    ],
+    seasonNote:
+      "The split-campus structure changes the ordering calendar as much as the UIL one does. Conditioning opens August 3 or August 10 depending on spring training and week one falls on August 27–29, but a Plano program has to have the 9th/10th-grade sets on the right campuses by then, not just at the senior high.",
+    deliveryDays: "Plano is about 27 miles from DFW Airport — inside our home metro, so no freight leg.",
+    deliveryDetail:
+      "Plano deliveries can be split across campuses without a second shipping charge, which matters when a single program's jerseys have to reach a senior high and two 9th/10th-grade schools. Tell us the split when you order and we box it that way rather than leaving a coach to sort it out.",
+    orderIntro:
+      "Because the senior highs only hold two grades, a Plano order is usually four blocks at once: varsity, JV and the two feeder campuses. Ordering them together is what keeps the color identical between a sophomore's jersey and a senior's.",
+    orderStory: [
+      "Give us the count per campus, not one total. That is the only way the boxes can be labeled for the right building.",
+      "Send colors and the school mark. We return per-piece pricing at the combined quantity, which is lower than quoting each campus separately.",
+      "Free mockup inside 24 hours, proofed in the sizes at both ends — a 9th-grade small and a senior 3XL — because the same mark sits differently on each.",
+      "On approval the whole order prints in one run and one dye lot, so a player moving up a campus in August is not visibly in a different shade.",
+      "We deliver locally and split the boxes by campus at no extra cost.",
+    ],
+    mostOrderedVarsity:
+      "A Plano order usually covers the varsity block at one of the three senior highs plus the sub-varsity blocks sitting on the feeder campuses. Our",
+    mostOrderedPractice:
+      "With sub-varsity football on separate campuses, Plano coaches run split-squad work constantly and need one jersey that covers both sides of it. Our",
+    faqs: [
+      { q: "Do you supply Plano ISD schools?", a: "Yes — Plano Senior High, Plano East and Plano West at 6A, plus the 9th/10th-grade campuses at Shepton, Jasper, Clark, Williams, Vines and McMillen that carry their sub-varsity teams. A Plano order is usually several blocks quoted together." },
+      { q: "Can one order cover the senior high and the feeder campuses?", a: "Yes, and it should. Sending one combined quantity lowers the per-piece price and, more importantly, puts every block in one dye lot so a player who moves up a campus is not wearing a different white. Give us the count per campus and we box the order that way." },
+      { q: "How fast is delivery to Plano?", a: "Plano is about 27 miles from DFW Airport and inside our home metro, so there is no freight leg — two to four weeks of production from proof approval, then a local delivery that we can split across campuses at no extra charge." },
+      { q: "Do you make uniforms for Plano Sports Authority teams?", a: "Yes. PSA runs flag and tackle football from age five through twelfth grade, so a league order can span a tiny youth jersey and a high-school-sized one. We print the whole range in one run at the 10-piece minimum per design." },
+      { q: "What is the minimum order for a Plano team?", a: "Ten pieces per design, mixed sizes counted together. A single 9th/10th-grade block clears it, and a PSA division clears it comfortably." },
+      { q: "Can you match Plano ISD school colors and marks?", a: "Yes. Send the color values or a daylight photo of the current jersey, and any artwork the school has. We proof the color before production and store it against your order so a reorder for the next class matches the current set." },
+      { q: "Our school is 6A — how big is a typical jersey order?", a: "Plano's three senior highs carry 6A rosters, so a varsity and JV order together is usually a large run, and the feeder campuses add more. We price from the actual counts you send rather than a conference average." },
+      { q: "Do you print names on sub-varsity jerseys as well as varsity?", a: "Yes. Names, numbers and patches are sublimated in the same pass, so a 9th-grade set can carry names without the peeling a heat-pressed name gets after one season of washing." },
+      { q: "When should a Plano program place its fall order?", a: "In spring. Conditioning opens August 3 or August 10 under UIL's 2026 calendar depending on spring training, and a Plano program has to have sets on three or four campuses by then rather than in one field house." },
+    ],
+  },
+
+  frisco: {
+    districts: ["Frisco ISD", "Prosper ISD", "Little Elm ISD", "Lewisville ISD", "Plano ISD"],
+    schools: [
+      { school: "Wakeland", district: "Frisco ISD", level: "6A" },
+      { school: "Lone Star", district: "Frisco ISD", level: "5A Division I" },
+      { school: "Centennial", district: "Frisco ISD", level: "5A Division I" },
+      { school: "Heritage", district: "Frisco ISD", level: "5A Division I" },
+      { school: "Liberty", district: "Frisco ISD", level: "5A Division I" },
+      { school: "Reedy", district: "Frisco ISD", level: "5A Division I" },
+      { school: "Lebanon Trail", district: "Frisco ISD", level: "5A Division I" },
+      { school: "Frisco High, Emerson, Independence, Memorial, Panther Creek", district: "Frisco ISD", level: "5A Division II" },
+      { school: "Rock Hill", district: "Prosper ISD", level: "6A" },
+      { school: "Legacy Christian Academy", district: "Private (TAPPS)", level: "TAPPS 5A" },
+    ],
+    schoolsNote:
+      "Twelve high schools in one district, and the UIL split them down the middle for 2026-28: six Frisco ISD schools in District 5-5A Division I, five in 4-5A Division II, and Wakeland up in 6A on its own. Rock Hill sits inside Frisco's city limits but belongs to Prosper ISD. Lone Star reached the 5A Division I state final in 2025 after starting the season 15-0. A city with that many programs orders uniforms in a way nowhere else does — several schools, same colors family, same delivery week.",
+    youthLeagues: [
+      { name: "i9 Sports South Frisco", note: "runs flag football leagues at the Shawnee Trail Sports Complex." },
+      { name: "Neighborhood Sports Frisco North", note: "an NFL Flag league playing its games on the fields at Legacy Christian Academy." },
+      { name: "Frisco Football League", note: "a local youth football organization running its own seasons in the city." },
+    ],
+    youthNote:
+      "Frisco's youth flag leagues run on complexes rather than school fields — Shawnee Trail for the south side, Legacy Christian's fields for the north — and both run multiple divisions at once. That means a league order arrives as several small sets with one deadline. Our",
+    levelMix: "flag",
+    stadiums: [
+      { name: "Toyota Stadium", note: "the MLS ground Frisco ISD has used as a tenant since 2005, seating roughly 11,000 during the current redevelopment." },
+      { name: "Ford Center at The Star", note: "a 12,000-seat indoor stadium built as a partnership between the Dallas Cowboys, the City of Frisco and Frisco ISD — the rare Texas high school venue with a roof." },
+      { name: "David Kuykendall Stadium", note: "one of Frisco ISD's own football stadiums." },
+    ],
+    seasonNote:
+      "An indoor venue does not change the UIL calendar — conditioning on August 3 or August 10 depending on spring training, week one on August 27–29 — but it does change what a Frisco uniform has to photograph well under, because a set that looks right under stadium lights can read differently under the Ford Center's roof.",
+    deliveryDays: "Frisco is about 25 miles from DFW Airport, the shortest delivery run of any city on our list outside Dallas itself.",
+    deliveryDetail:
+      "Twelve high schools in one district means twelve programs wanting delivery in the same two weeks of August, so a Frisco order is really competing for production time rather than transit time. The delivery leg is short; the press time in early August is what runs out.",
+    orderIntro:
+      "Frisco orders are rarely for one team. A district this dense often orders across programs, and a youth league here is several divisions on one purchase order.",
+    orderStory: [
+      "Tell us whether it is one program or several, and give a count per team. Combined counts across programs still get one combined price.",
+      "Send each team's colors. Where a family of schools shares a palette, we proof them side by side so two Frisco schools do not end up a shade apart.",
+      "Free mockup in 24 hours per design. A league ordering four divisions gets four mockups, not one with a note.",
+      "On approval everything prints in one run. That is the only reliable way to keep several teams' sets matching if they will share a field.",
+      "Delivery is short — around 25 miles — but the early-August production slot is the constraint, so book it rather than assume it.",
+    ],
+    mostOrderedVarsity:
+      "With six schools in 5A Division I and five in 5A Division II, the common Frisco order is a full game set for a 5A roster placed in spring. Our",
+    mostOrderedPractice:
+      "Twelve schools in one district scrimmage each other constantly, and a two-color jersey means a team can host or travel without packing a second set. Our",
+    faqs: [
+      { q: "Which Frisco schools do you build for?", a: "All of them — Wakeland at 6A, the six Frisco ISD schools in 5A Division I including Lone Star, the five in 5A Division II, Prosper ISD's Rock Hill inside the city limits, and Legacy Christian Academy in TAPPS 5A." },
+      { q: "Can you quote several Frisco programs on one order?", a: "Yes, and it is worth doing. A combined quantity across programs gets one price break, and printing them in one run is the only way to guarantee that two schools sharing a color come out identical." },
+      { q: "How quickly can you deliver to Frisco?", a: "Frisco is about 25 miles from DFW Airport, so transit is negligible. The real constraint is production time in early August, when a district with twelve high schools all wants delivery in the same fortnight — book the slot in spring." },
+      { q: "Do you make flag football uniforms for Frisco leagues?", a: "Yes. The i9 Sports league at Shawnee Trail, the Neighborhood Sports NFL Flag divisions playing at Legacy Christian and the Frisco Football League all order at the 10-piece minimum per design, and we mock up each division separately." },
+      { q: "What is the minimum order in Frisco?", a: "Ten pieces per design. A single flag division clears it; a 5A varsity roster clears it several times over. Mixed sizes count toward the same 10." },
+      { q: "Will our uniforms look right under the Ford Center's roof?", a: "We proof for it. Indoor lighting reads color differently from stadium floodlights, so if your program plays at the Ford Center or Toyota Stadium, tell us and we proof the shade with that in mind rather than only for daylight." },
+      { q: "Our school is 5A Division II — is the order different from a 5A Division I school?", a: "Only in size. The garment and the process are identical; the Division II rosters in Frisco ISD are generally smaller, so the size run is narrower and we hold fewer extras at the extremes." },
+      { q: "Can you print home and away sets for a Frisco program together?", a: "Yes. Two colorways of one design in a single production run share the setup cost and keep names and numbers identical across both sets." },
+      { q: "When should a Frisco team order for the fall?", a: "As early in spring as the roster allows. UIL's 2026 calendar opens conditioning on August 3 or August 10 depending on spring training, and Frisco's twelve programs all want their sets before that." },
+    ],
+  },
+
+  mckinney: {
+    districts: ["McKinney ISD", "Prosper ISD", "Frisco ISD", "Melissa ISD", "Celina ISD", "Lovejoy ISD"],
+    schools: [
+      { school: "McKinney", district: "McKinney ISD", level: "6A" },
+      { school: "McKinney Boyd", district: "McKinney ISD", level: "6A" },
+      { school: "McKinney North", district: "McKinney ISD", level: "5A Division I" },
+    ],
+    schoolsNote:
+      "Three high schools, one stadium, and a classification line that just moved. McKinney and McKinney Boyd went up to 6A for 2026-28 into District 6-6A with Allen, Prosper's three schools, Princeton and Dallas Jesuit, while McKinney North stayed in 5A Division I — a rezoning finalized after the UIL submission deadline is why. The city's edges are zoned to six other districts, so a club team pulling from north McKinney can carry players from three of them.",
+    youthLeagues: [
+      { name: "Plano Sports Authority McKinney", note: "runs flag and tackle football at Gabe Nesbitt Community Park in McKinney." },
+      { name: "Texas Youth Football & Cheer Association", note: "runs flag and tackle from 5U to 13U plus 7-on-7 teams across the McKinney and North Texas area." },
+      { name: "City of McKinney Athletics", note: "handles the city's youth sports registration and the fields those leagues play on." },
+    ],
+    youthNote:
+      "McKinney is a 7-on-7 town as much as a tackle one — TYFA runs 7-on-7 alongside its 5U-to-13U flag and tackle divisions, and those summer rosters order separately from the fall ones. Our",
+    levelMix: "7-on-7",
+    stadiums: [
+      { name: "McKinney ISD Stadium & Community Events Center", note: "a roughly 12,000-seat purpose-built stadium on South Hardin Boulevard shared by all three McKinney ISD high schools." },
+    ],
+    seasonNote:
+      "One stadium for three programs compresses everything: photo days, jamborees and the first home games all queue through the same building in the last week of August, with week one on August 27–29.",
+    deliveryDays: "McKinney is about 36 miles from DFW Airport — a local delivery on our normal metro schedule.",
+    deliveryDetail:
+      "The drive north is short enough that McKinney orders never see a freight carrier. What is worth planning around is the shared stadium: three programs with one venue means the set has to be in hand before the building's August schedule starts, not during it.",
+    orderIntro:
+      "A McKinney order now spans two conferences inside one district, and often a summer 7-on-7 roster as well. Those are different garments on different calendars.",
+    orderStory: [
+      "Say which season the order is for. A 7-on-7 set is ordered in spring for summer play; a fall game set is ordered in spring for August.",
+      "Send the roster count and the colors. For a club team drawing from several districts, send the club's own colors rather than a school's.",
+      "We quote and mock up within 24 hours, at the right block — the 7-on-7 cut is lighter than the game jersey it sits next to in the same bag.",
+      "Approve the proof and the whole order prints together, which keeps a summer set and a fall set in the same color family rather than two versions of the same navy.",
+      "Delivery runs 36 miles down the tollway on the standard metro schedule.",
+    ],
+    mostOrderedVarsity:
+      "With two schools newly at 6A, McKinney's varsity orders got bigger this cycle, and they are still placed in the spring window. Our",
+    mostOrderedPractice:
+      "Three programs sharing one stadium do most of their live work on their own practice fields, split into two colors every afternoon. Our",
+    faqs: [
+      { q: "Do you make uniforms for McKinney ISD teams?", a: "Yes — McKinney and McKinney Boyd at 6A and McKinney North at 5A Division I, plus the club, youth and 7-on-7 teams in the city and the districts around its edges." },
+      { q: "Do you build 7-on-7 uniforms for McKinney summer teams?", a: "Yes. TYFA runs 7-on-7 alongside its tackle and flag divisions here, and those rosters order in spring for summer play. The 7-on-7 cut is lighter than a fall game jersey, so we quote it as its own garment rather than reusing the game set." },
+      { q: "How long does delivery to McKinney take?", a: "McKinney is about 36 miles from DFW Airport, so it is a local delivery — two to four weeks of production from proof approval and then the drive up, with no freight carrier involved." },
+      { q: "Our club draws players from several districts — can the uniform be club-branded?", a: "Yes, and for a McKinney club it usually should be. The city's edges are zoned to six districts, so a club identity travels better than a school mark on a roster pulled from three of them." },
+      { q: "What is the minimum order for a McKinney team?", a: "Ten pieces per design. A 7-on-7 roster clears it, a youth division clears it, and a high school block clears it several times over." },
+      { q: "Can you print the same design on a summer and a fall set?", a: "Yes, and printing them together is what keeps them matching. Ordered months apart, two sets of the same navy can drift; ordered in one run they come out of the same dye lot." },
+      { q: "How big is a 6A order for a McKinney school?", a: "Larger than it used to be — both McKinney and McKinney Boyd moved up to 6A for 2026-28, which means longer rosters and wider size runs. We price from your actual counts." },
+      { q: "Can you match McKinney ISD school colors?", a: "Yes. Send the color values or a daylight photo of the existing jersey. We proof the match before production and keep the values on file so a partial reorder lines up with the sets already in the locker room." },
+      { q: "When should a McKinney program order?", a: "Spring, for both seasons. Three programs share one stadium here, so the last week of August is already full of photo days and jamborees before anyone plays week one on August 27–29." },
+    ],
+  },
+
+  allen: {
+    districts: ["Allen ISD", "Plano ISD", "Lovejoy ISD"],
+    schools: [
+      { school: "Allen", district: "Allen ISD", level: "6A" },
+      { school: "Lovejoy", district: "Lovejoy ISD", level: "5A Division II" },
+    ],
+    schoolsNote:
+      "Allen is a one-high-school city, and that one school is among the most decorated programs in Texas — state champions in 2008, 2012, 2013, 2014 and 2017, with 16-0 seasons in 2013 and 2014 and an 84-game regular-season winning streak between 2012 and 2021. Everything in the city's football pipeline points at a single varsity roster, which makes the uniform order here unusually large and unusually consistent year to year.",
+    youthLeagues: [
+      { name: "Allen Sports Association", note: "has run youth football in the city since 1976 — spring flag for kindergarten and first grade, spring 7-on-7 from second grade through high school, and tackle football in the fall." },
+      { name: "N Zone Sports Lonestar", note: "runs youth flag football leagues serving Allen." },
+    ],
+    youthNote:
+      "The Allen Sports Association runs 7-on-7 from second grade all the way to high school in the spring, which is unusual — most cities start 7-on-7 in middle school. It means a spring uniform season here that is almost as large as the fall one. Our",
+    levelMix: "7-on-7",
+    stadiums: [
+      { name: "Eagle Stadium", note: "an 18,000-seat, $60 million Allen ISD stadium opened in 2012 and used by one high school — the largest single-tenant high school stadium in the country." },
+    ],
+    seasonNote:
+      "Allen's calendar runs twice: spring 7-on-7 from second grade up through the ASA, then the UIL fall season with conditioning from August 3 or August 10 depending on spring training and week one on August 27–29. A supplier that only plans for August misses half the city's orders.",
+    deliveryDays: "Allen is roughly 31 miles from DFW Airport, a local delivery with no freight leg.",
+    deliveryDetail:
+      "Because everything here funnels through one school and one association, Allen orders tend to be large and predictable, and we keep the color values on file between seasons so a spring 7-on-7 set and a fall tackle set come out of the same spec rather than two separate guesses at the same red.",
+    orderIntro:
+      "An Allen order is either a very large single-program order or an association order covering several spring divisions. Both are planned around a single set of school colors that the whole city already knows.",
+    orderStory: [
+      "Tell us the level and the count — a 7-on-7 roster, a youth tackle division, or a school block.",
+      "Send the colors once. We store the values against your account so the spring and fall orders match without re-proofing the shade each time.",
+      "Free mockup inside 24 hours. Spring 7-on-7 sets are mocked on the lighter block, because they are worn without pads.",
+      "On approval we print. Association orders covering several divisions print together so the second-graders and the middle-schoolers are visibly the same team.",
+      "Delivery is local, 31 miles, on the normal metro schedule.",
+    ],
+    mostOrderedVarsity:
+      "A single 6A program that carries the whole city's attention orders a large varsity and sub-varsity set in one spring pass. Our",
+    mostOrderedPractice:
+      "One school, several practice squads, and a scout team that changes color every period — a two-sided jersey does the work of two sets here. Our",
+    faqs: [
+      { q: "Do you make uniforms for Allen teams?", a: "Yes — Allen High School's 6A program, the Allen Sports Association's flag, 7-on-7 and tackle divisions, and the club teams in the city, plus Lovejoy at 5A Division II just outside it." },
+      { q: "Do you build spring 7-on-7 uniforms?", a: "Yes, and in Allen that is a real season. The ASA runs 7-on-7 from second grade through high school in the spring, so those sets are ordered months before the fall tackle order and are cut lighter, because they are worn without pads." },
+      { q: "How fast can you deliver to Allen?", a: "Allen is about 31 miles from DFW Airport, so it is a local delivery — two to four weeks of production from proof approval and no freight carrier in between." },
+      { q: "Can a spring set and a fall set match exactly?", a: "Yes. We keep the color values on file against your order, so a 7-on-7 set printed in March and a tackle set printed in June come off the same spec rather than two separate attempts at the same red." },
+      { q: "What is the minimum order for an Allen team?", a: "Ten pieces per design, with mixed sizes counted together. A single 7-on-7 roster or one youth division clears it." },
+      { q: "How large is a typical order for a 6A program like Allen's?", a: "Large. A single 6A roster plus sub-varsity blocks can run into the hundreds of pieces across a season, which is why we quote per-piece at your combined quantity rather than per block." },
+      { q: "Do you supply youth tackle uniforms as well as flag?", a: "Yes. The ASA has run youth tackle here since 1976, and a tackle set has to sit over shoulder pads — a different cut from the flag jersey the same child wore in the spring." },
+      { q: "Can you print names and numbers on youth sets?", a: "Yes. Names, numbers and patches are sublimated into the fabric in the same run, which is what keeps a youth jersey legible after a season of weekly washing." },
+      { q: "When should an Allen team order?", a: "Twice a year, and both times early: spring sets need ordering in late winter, and fall sets in spring, ahead of an August 3 or August 10 conditioning start and week-one games on August 27–29." },
+    ],
+  },
+
   "fort-worth": {
     districts: ["Fort Worth ISD", "Crowley ISD", "Keller ISD", "Eagle Mountain-Saginaw ISD"],
     schools: [
