@@ -3,6 +3,7 @@ import {
   ChevronDown,
   MapPin,
   Package,
+  PencilRuler,
   Shield,
   Shirt,
   ShoppingBag,
@@ -14,8 +15,11 @@ import { company } from "@/lib/site";
 import { locationCities, cityUrl } from "@/data/locations";
 import { MobileMenu } from "./mobile-menu";
 
-const navItems = [
-  { href: "/", label: "Home" },
+const navItems: { href: string; label: string; accent?: boolean }[] = [
+  // "Home" is not here on purpose: the logo already goes home, and the row has
+  // to leave space for the designer link, which is the page that turns a
+  // browsing coach into a specification we can quote.
+  { href: "/design-your-uniform/", label: "Design Uniform", accent: true },
   { href: "/size-chart/", label: "Size Chart" },
   { href: "/blog/", label: "Blog" },
 ];
@@ -67,12 +71,14 @@ export function Header() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-5 lg:flex xl:gap-7">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-semibold uppercase tracking-[0.14em] text-white/80 transition hover:text-[var(--color-gold)]"
+              className={`whitespace-nowrap text-sm font-semibold uppercase tracking-[0.14em] transition hover:text-[var(--color-gold)] ${
+                item.accent ? "text-[var(--color-gold)]" : "text-white/80"
+              }`}
             >
               {item.label}
             </Link>
@@ -87,6 +93,13 @@ export function Header() {
             </button>
             <div className="pointer-events-none absolute left-0 top-full pt-4 opacity-0 transition group-hover:pointer-events-auto group-hover:opacity-100">
               <div className="grid max-h-[420px] w-[380px] gap-2 overflow-y-auto rounded-[24px] border border-white/10 bg-[var(--color-navy)]/98 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.28)]">
+                <Link
+                  href="/design-your-uniform/"
+                  className="flex items-center gap-3 rounded-2xl bg-white/8 px-4 py-3 text-sm font-semibold text-[var(--color-gold)] transition hover:bg-white/14"
+                >
+                  <PencilRuler className="h-4 w-4 shrink-0" />
+                  <span>Design Your Uniform</span>
+                </Link>
                 {products.map((product) => {
                   const Icon = getProductIcon(product.slug);
 
@@ -172,8 +185,14 @@ export function Header() {
             {company.phoneDisplay}
           </a>
           <Link
+            href="/design-your-uniform/"
+            className="hidden whitespace-nowrap rounded-full border border-[var(--color-gold)] px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-gold)] transition hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)] sm:inline-flex lg:hidden xl:inline-flex"
+          >
+            Design Your Uniform
+          </Link>
+          <Link
             href="/contact-us/#quote-form"
-            className="hidden rounded-full bg-[var(--color-red)] px-5 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white shadow-[0_18px_40px_rgba(200,16,46,0.35)] transition hover:-translate-y-0.5 hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)] sm:inline-flex"
+            className="hidden whitespace-nowrap rounded-full bg-[var(--color-red)] px-5 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white shadow-[0_18px_40px_rgba(200,16,46,0.35)] transition hover:-translate-y-0.5 hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)] sm:inline-flex"
           >
             Get a Quote
           </Link>

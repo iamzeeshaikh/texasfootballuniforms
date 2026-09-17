@@ -201,6 +201,13 @@ export default function HomePage() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
+                href="/design-your-uniform/"
+                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[var(--color-gold)] px-7 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-gold)] transition hover:-translate-y-0.5 hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)]"
+              >
+                <Palette className="h-4 w-4" />
+                Design Your Uniform
+              </Link>
+              <Link
                 href="/all-categories/"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/14 bg-white/6 px-7 py-4 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:border-[var(--color-gold)] hover:bg-white/10 hover:text-[var(--color-gold)]"
               >

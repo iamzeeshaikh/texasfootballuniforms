@@ -29,6 +29,8 @@ export function MobileMenu({ cities }: { cities: City[] }) {
         <div className="absolute left-0 right-0 top-full max-h-[80vh] overflow-y-auto border-t border-white/10 bg-[var(--color-navy)] lg:hidden">
           <nav className="mx-auto max-w-7xl px-4 py-4 sm:px-6" aria-label="Mobile navigation">
             <Link href="/" onClick={close} className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-white/85 hover:bg-white/10 hover:text-[var(--color-gold)]">Home</Link>
+            <Link href="/design-your-uniform/" onClick={close} className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-[var(--color-gold)] hover:bg-white/10">Design Your Uniform</Link>
+            <Link href="/size-chart/" onClick={close} className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-white/85 hover:bg-white/10 hover:text-[var(--color-gold)]">Size Chart</Link>
             <Link href="/all-categories/" onClick={close} className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-white/85 hover:bg-white/10 hover:text-[var(--color-gold)]">Products</Link>
             <Link href="/blog/" onClick={close} className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-white/85 hover:bg-white/10 hover:text-[var(--color-gold)]">Blog</Link>
             <Link href="/contact-us/" onClick={close} className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-white/85 hover:bg-white/10 hover:text-[var(--color-gold)]">Contact</Link>
@@ -51,7 +53,8 @@ export function MobileMenu({ cities }: { cities: City[] }) {
                 WhatsApp
               </a>
             </div>
-            <Link href="/contact-us/#quote-form" onClick={close} className="mt-3 block rounded-full bg-[var(--color-red)] px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.12em] text-white">Get a Quote</Link>
+            <Link href="/design-your-uniform/" onClick={close} className="mt-3 block rounded-full border-2 border-[var(--color-gold)] px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-gold)]">Design Your Uniform</Link>
+            <Link href="/contact-us/#quote-form" onClick={close} className="mt-2 block rounded-full bg-[var(--color-red)] px-5 py-3 text-center text-sm font-semibold uppercase tracking-[0.12em] text-white">Get a Quote</Link>
           </nav>
         </div>
       )}

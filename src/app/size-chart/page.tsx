@@ -301,7 +301,14 @@ export default function SizeChartPage() {
               >
                 youth football uniforms
               </Link>
-              .
+              , or{" "}
+              <Link
+                href="/design-your-uniform/"
+                className="font-semibold text-[var(--color-red)] underline decoration-[var(--color-gold)] underline-offset-4"
+              >
+                design your uniform online
+              </Link>{" "}
+              and send us the roster with the spec.
             </p>
           </div>
           <div>

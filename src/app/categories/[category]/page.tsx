@@ -388,12 +388,19 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             help create a quote-based solution for your Texas program using the right products
             from this category.
           </p>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/contact-us/#quote-form"
               className="inline-flex items-center justify-center rounded-full bg-[var(--color-red)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-white hover:text-[var(--color-navy)]"
             >
               Request a Free Quote
+            </Link>
+            <Link
+              href="/design-your-uniform/"
+              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[var(--color-gold)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-gold)] transition hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)]"
+            >
+              <Palette className="h-4 w-4" aria-hidden />
+              Design Your Uniform
             </Link>
           </div>
         </section>

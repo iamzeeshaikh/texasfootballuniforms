@@ -60,6 +60,12 @@ export function Footer() {
             <Link href="/all-categories/" className="transition hover:text-[var(--color-gold)]">
               All Categories
             </Link>
+            <Link href="/design-your-uniform/" className="transition hover:text-[var(--color-gold)]">
+              Design Your Uniform
+            </Link>
+            <Link href="/size-chart/" className="transition hover:text-[var(--color-gold)]">
+              Size Chart
+            </Link>
             <Link href="/about-us/" className="transition hover:text-[var(--color-gold)]">
               About Us
             </Link>
