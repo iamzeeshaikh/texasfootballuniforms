@@ -11,9 +11,24 @@ import {
   fbLinkTargets,
   fbAnchor,
   fbPick,
+  levelMixPage,
   type LocationCity,
 } from "@/data/locations";
 
+/**
+ * City page.
+ *
+ * Phase 3 (2026-09-18) rebuilt this around the per-city facts in
+ * `src/data/locations.ts` — districts, real UIL classifications, named youth
+ * and flag leagues, stadiums, transit days and per-city FAQs. Before that the
+ * 23 pages shared 55–64% of their 5-gram shingles and 13 of them were sitting
+ * in Search Console as "Discovered — currently not indexed".
+ *
+ * The rule for anything added here: shared copy is chrome only (form, price
+ * strip, spec chips, CTA). Every block that carries an argument for buying is
+ * built from city data, so the page cannot go back to being a template with
+ * the city name swapped in.
+ */
 export function CityLocation({ loc }: { loc: LocationCity }) {
   const basePath = cityUrl(loc);
   // A city page sells the full uniform set, so it quotes the uniform-set
@@ -21,9 +36,15 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
   // its Product schema publish.
   const priceAnchor = getProductBySlug("american-football-uniforms");
   const nearby = getNearbyCities(loc.nearbyCities);
+  const mix = levelMixPage(loc.levelMix, loc.slug);
+  const districts = loc.districts ?? [];
+  const schools = loc.schools ?? [];
+  const youthLeagues = loc.youthLeagues ?? [];
+  const stadiums = loc.stadiums ?? [];
+  const orderStory = loc.orderStory ?? [];
 
   // Varied internal links — unique target, anchor, and sentence per page.
-  const lt = fbLinkTargets(loc.slug, 4);
+  const lt = fbLinkTargets(loc.slug, 3);
   const L = lt.map((s, i) => ({ href: `/${s}/`, text: fbAnchor(s, loc.slug, i) }));
   const styleGrid = fbLinkTargets("style-" + loc.slug, 4)
     .map((s) => getProductBySlug(s))
@@ -38,37 +59,10 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
     { pre: `To match the intensity of ${loc.name} football, coaches turn to our `, post: `.` },
     { pre: `Our `, post: ` fit the way ${loc.name} teams compete and win.` },
   ], loc.slug, 1);
-  const whoLine = fbPick([
-    { pre: `From varsity down to the youngest feeder squads, ${loc.name} programs order it all — including our `, post: `.` },
-    { pre: `Whatever the roster, our `, post: ` outfit ${loc.name} teams at every level.` },
-    { pre: `Popular across ${loc.name} programs are our `, post: `.` },
-  ], loc.slug, 2);
-  const whyLine = fbPick([
-    { pre: `Ready to build your team's look? Explore our `, post: ` or start a ${loc.name} team quote today.` },
-    { pre: `Weighing fabrics and cuts? Our `, post: ` are a great place to begin.` },
-    { pre: `Not sure where to start? Our `, post: ` are a solid first stop for ${loc.name} coaches.` },
-  ], loc.slug, 3);
 
-  const levels = [
-    "Varsity and JV high school teams",
-    "Youth and middle school programs",
-    "Select and club football teams",
-    "7-on-7 tournament squads",
-    "Flag football leagues",
-    "Coaches, sideline, and booster gear",
-  ];
-
-  const faqs: Array<{ question: string; answer: string }> = [
+  const faqs = [
     { question: `Do you make custom football uniforms for ${loc.name} teams?`, answer: loc.faqCityAnswer },
-    { question: `What is the minimum order for a ${loc.name} team?`, answer: `The minimum is 10 pieces per design, which a single ${loc.name} squad clears on its own — youth or varsity. Mixed sizes count toward the same 10. Send your roster count and we will confirm pricing and per-uniform cost.` },
-    { question: `Can you match our exact ${loc.name} school or club colors?`, answer: `Yes. Every uniform is printed to your exact colors, logo, and design with full sublimation, so your ${loc.name} team's identity is reproduced precisely on every jersey, every reorder.` },
-    { question: `Are your football uniforms sublimated or screen printed?`, answer: `We specialize in full-sublimation football uniforms, where the design is dyed into the fabric so names, numbers, and logos never crack or peel — ideal for the wear a Texas season puts on a jersey.` },
-    { question: `Can you print custom names and numbers?`, answer: `Absolutely. We handle custom names, numbers, patches, and captain designations as part of your team order, so every ${loc.name} player's jersey is game-ready out of the box.` },
-    { question: `Do you offer full team kits, not just jerseys?`, answer: `Yes. We outfit ${loc.name} teams head to toe — jerseys, pants, practice gear, warm-ups, sideline layers, and coaches uniforms — so your whole program looks unified.` },
-    { question: `How fast can you deliver before our season?`, answer: `We plan production around your season and event dates. Order early for the best turnaround, and if you have a jamboree or opening-week deadline in ${loc.name}, tell us and we'll confirm timing up front.` },
-    { question: `Do you send a design proof before production?`, answer: `Always. You'll approve a design proof showing your colors, logo, and layout before anything is produced, so your ${loc.name} uniforms come out exactly as intended.` },
-    { question: `Can you handle both youth leagues and high school programs?`, answer: `Yes. We outfit every level in ${loc.name}, from youth and select teams to varsity high school and college club programs, with sizing and pricing built for each.` },
-    { question: `How do we get a quote for our ${loc.name} team?`, answer: `Send your team name, colors, roster count, and any design ideas through our quote form. We'll come back with pricing, fabric options, and a timeline for your ${loc.name} program.` },
+    ...(loc.faqs ?? []).map((f) => ({ question: f.q, answer: f.a })),
   ];
 
   const crumbs = [
@@ -84,7 +78,13 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
       name: `Custom Football Uniforms — ${loc.name}, TX`,
       serviceType: "Custom football uniform and team kit manufacturing",
       description: loc.metaDescription,
-      areaServed: { "@type": "City", name: loc.name, containedInPlace: { "@type": "State", name: "Texas, USA" } },
+      // The real districts and towns this page is written for, not just the
+      // city polygon, so the served area matches the copy underneath it.
+      areaServed: [
+        { "@type": "City", name: loc.name, containedInPlace: { "@type": "State", name: "Texas, USA" } },
+        ...districts.map((d) => ({ "@type": "AdministrativeArea", name: d })),
+        ...loc.areas.map((a) => ({ "@type": "Place", name: `${a}, Texas` })),
+      ],
       provider: { "@type": "Organization", name: "Texas Football Uniforms", url: SITE_URL },
       url: `${SITE_URL}${basePath}`,
     },
@@ -124,13 +124,23 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
               <Link href="/locations/" className="rounded-full border border-white/25 px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:border-[var(--color-gold)]">All Texas Cities</Link>
             </div>
           </div>
+          {/* The side card carries city facts, not slogans: the districts this
+              page is written for and the honest transit time to them. */}
           <div className="rounded-3xl border border-white/12 bg-white/5 p-6">
             <p className="border-b border-white/12 pb-3 font-display text-lg uppercase tracking-wide text-[var(--color-gold)]">🏈 {loc.stat}</p>
-            <ul className="mt-3 space-y-2.5 text-sm text-white/85">
-              {["Full-sublimation, printed in your colors", "Built for Texas heat & a long season", "Complete team kits, head to toe", "Free design proof · team pricing"].map((t) => (
-                <li key={t} className="flex items-start gap-2"><span className="text-[var(--color-gold)]">✓</span>{t}</li>
-              ))}
-            </ul>
+            {districts.length > 0 ? (
+              <>
+                <p className="mt-3 text-xs font-semibold uppercase tracking-[0.18em] text-white/50">Districts we ship to</p>
+                <ul className="mt-2 space-y-2 text-sm text-white/85">
+                  {districts.map((d) => (
+                    <li key={d} className="flex items-start gap-2"><span className="text-[var(--color-gold)]">✓</span>{d}</li>
+                  ))}
+                </ul>
+              </>
+            ) : null}
+            {loc.deliveryDays ? (
+              <p className="mt-4 border-t border-white/12 pt-3 text-sm text-white/75">{loc.deliveryDays}</p>
+            ) : null}
           </div>
         </div>
       </section>
@@ -140,13 +150,21 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
         <div className="mx-auto w-full max-w-4xl px-5">
           <h2 className="font-display text-3xl uppercase text-[var(--color-navy)]">Custom Football Uniforms in {loc.name}</h2>
           <p className="mt-4 leading-relaxed text-[var(--color-navy-soft)]">
-            Texas Football Uniforms designs and builds custom, fully sublimated football uniforms and team kits for programs across {loc.name} and {loc.region}. Every uniform is printed to your exact colors, logo, and roster — the fastest way to get {loc.signatureSector} looking varsity-sharp. {answerLine.pre}
+            Texas Football Uniforms builds fully sublimated football uniforms and team kits for {loc.signatureSector} in {loc.name} and the rest of {loc.region}. {answerLine.pre}
             <Link href={L[0].href} className="font-semibold text-[var(--color-red)] underline">{L[0].text}</Link>{answerLine.post}
           </p>
+          {/* The spec claims that used to be spread over three shared sections,
+              kept in one compact row so the page keeps them without paying for
+              them in duplicate prose. */}
+          <ul className="mt-5 flex flex-wrap gap-2 text-sm">
+            {["Full sublimation, your exact colors", "Minimum 10 per design", "Free design proof in 24 hours", "Performance fabric for Texas heat", "Head-to-toe team kits", "Names, numbers and patches included"].map((t) => (
+              <li key={t} className="rounded-full border border-[var(--color-border)] bg-white px-3.5 py-1.5 text-[var(--color-navy)]">{t}</li>
+            ))}
+          </ul>
         </div>
       </section>
 
-      {/* Local scene */}
+      {/* Local scene + form */}
       <section className="bg-[var(--color-shell)] py-14">
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 lg:grid-cols-[1.6fr_1fr]">
           <div>
@@ -179,21 +197,101 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
         </div>
       </section>
 
-      {/* Style grid */}
+      {/* Schools table — the page's city-specific spine */}
+      {schools.length > 0 && (
       <section className="py-14">
+        <div className="mx-auto w-full max-w-4xl px-5">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">Who Plays Here</span>
+          <h2 className="mt-2 font-display text-3xl uppercase text-[var(--color-navy)]">{loc.name} High School Programs and Their UIL Conference</h2>
+          <p className="mt-4 leading-relaxed text-[var(--color-navy-soft)]">{loc.schoolsNote}</p>
+          <div className="mt-5 overflow-x-auto">
+            <table className="w-full min-w-[34rem] border-collapse text-left text-sm">
+              <thead>
+                <tr className="border-b-2 border-[var(--color-navy)] text-[var(--color-navy)]">
+                  <th className="py-2 pr-4 font-display text-base uppercase">School</th>
+                  <th className="py-2 pr-4 font-display text-base uppercase">District</th>
+                  <th className="py-2 font-display text-base uppercase">UIL Conference</th>
+                </tr>
+              </thead>
+              <tbody>
+                {schools.map((s) => (
+                  <tr key={s.school} className="border-b border-[var(--color-border)] text-[var(--color-navy-soft)]">
+                    <td className="py-2.5 pr-4 font-semibold text-[var(--color-navy)]">{s.school}</td>
+                    <td className="py-2.5 pr-4">{s.district}</td>
+                    <td className="py-2.5">{s.level}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-sm leading-relaxed text-[var(--color-navy-soft)]">
+            Conferences follow the UIL 2026–2028 realignment. Roster sizes move with the conference, and so does the
+            order — our{" "}
+            <Link href="/size-chart/" className="font-semibold text-[var(--color-red)] underline">football uniform size chart</Link>{" "}
+            shows what a varsity block and a youth block actually measure before you count the roster.
+          </p>
+        </div>
+      </section>
+      )}
+
+      {/* Youth, flag and select */}
+      {youthLeagues.length > 0 && (
+      <section className="bg-[var(--color-shell)] py-14">
+        <div className="mx-auto w-full max-w-4xl px-5">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">Below Varsity</span>
+          <h2 className="mt-2 font-display text-3xl uppercase text-[var(--color-navy)]">Youth, Flag and Select Football in {loc.name}</h2>
+          <p className="mt-4 leading-relaxed text-[var(--color-navy-soft)]">
+            {loc.youthNote}{" "}
+            <Link href={mix.href} className="font-semibold text-[var(--color-red)] underline">{mix.anchor}</Link>{" "}
+            {mix.tail}
+          </p>
+          <ul className="mt-4 space-y-2.5">
+            {youthLeagues.map((l) => (
+              <li key={l.name} className="flex items-start gap-2 text-[var(--color-navy-soft)]">
+                <span className="text-[var(--color-red)]">🏈</span>
+                <span><strong className="text-[var(--color-navy)]">{l.name}</strong> — {l.note}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+      )}
+
+      {/* How an order runs here */}
+      {orderStory.length > 0 && (
+      <section className="py-14">
+        <div className="mx-auto w-full max-w-4xl px-5">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">Order Timeline</span>
+          <h2 className="mt-2 font-display text-3xl uppercase text-[var(--color-navy)]">How a {loc.name} Uniform Order Runs</h2>
+          <p className="mt-4 leading-relaxed text-[var(--color-navy-soft)]">{loc.orderIntro}</p>
+          <ol className="mt-5 space-y-3">
+            {orderStory.map((step, i) => (
+              <li key={step} className="flex gap-3 leading-relaxed text-[var(--color-navy-soft)]">
+                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--color-navy)] text-sm font-semibold text-white">{i + 1}</span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-5 leading-relaxed text-[var(--color-navy-soft)]">{loc.seasonNote}</p>
+        </div>
+      </section>
+      )}
+
+      {/* Style grid */}
+      <section className="bg-[var(--color-navy)] py-14 text-white">
         <div className="mx-auto w-full max-w-6xl px-5">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">Uniform Styles</span>
-          <h2 className="mt-2 font-display text-3xl uppercase text-[var(--color-navy)]">Styles {loc.name} Teams Order</h2>
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-gold)]">Uniform Styles</span>
+          <h2 className="mt-2 font-display text-3xl uppercase">Styles {loc.name} Teams Order</h2>
           <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {styleGrid.map((p) => (
-              <Link key={p.slug} href={`/${p.slug}/`} className="group overflow-hidden rounded-3xl border border-[var(--color-border)] bg-white transition-shadow hover:shadow-lg">
-                <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-shell)]">
+              <Link key={p.slug} href={`/${p.slug}/`} className="group overflow-hidden rounded-3xl border border-white/12 bg-white/5 transition hover:border-[var(--color-gold)]">
+                <div className="relative aspect-[4/3] overflow-hidden bg-white/10">
                   <Image src={p.heroImage} alt={`${p.name} for ${loc.name} teams`} fill className="object-cover" sizes="(max-width:768px) 100vw, 25vw" />
                 </div>
                 <div className="p-4">
-                  <h3 className="font-display text-lg uppercase text-[var(--color-navy)]">{p.name}</h3>
-                  <p className="mt-1 text-sm text-[var(--color-navy-soft)]">{p.shortDescription.slice(0, 80)}…</p>
-                  <span className="mt-2 inline-block text-sm font-semibold text-[var(--color-red)]">View {p.name} →</span>
+                  <h3 className="font-display text-lg uppercase text-[var(--color-gold)]">{p.name}</h3>
+                  <p className="mt-1 text-sm text-white/75">From ${p.fromPrice.toFixed(2)} {p.priceUnit}</p>
+                  <span className="mt-2 inline-block text-sm font-semibold text-white">View {p.name} →</span>
                 </div>
               </Link>
             ))}
@@ -201,48 +299,7 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
         </div>
       </section>
 
-      {/* Built for Texas football (football-specific) */}
-      <section className="bg-[var(--color-navy)] py-14 text-white">
-        <div className="mx-auto w-full max-w-6xl px-5">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-gold)]">Built for Texas</span>
-          <h2 className="mt-2 font-display text-3xl uppercase">Made for {loc.name} Friday Nights</h2>
-          <div className="mt-6 grid gap-5 md:grid-cols-3">
-            {[
-              { t: "Sublimated to last", d: `Names, numbers, and logos are dyed into the fabric, so they never crack or peel through a full ${loc.name} season and playoff run.` },
-              { t: "Beats the Texas heat", d: "Lightweight, moisture-wicking performance fabric keeps players cool and dry from August two-a-days through November." },
-              { t: "Complete team kits", d: "Jerseys, pants, practice gear, warm-ups, and sideline layers — outfit your whole program in one unified, coordinated look." },
-            ].map((x) => (
-              <div key={x.t} className="rounded-3xl border border-white/12 bg-white/5 p-6">
-                <h3 className="font-display text-xl uppercase text-[var(--color-gold)]">{x.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/80">{x.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Who we outfit */}
-      <section className="py-14">
-        <div className="mx-auto w-full max-w-4xl px-5">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">Every Level</span>
-          <h2 className="mt-2 font-display text-3xl uppercase text-[var(--color-navy)]">Who We Outfit in {loc.name}</h2>
-          <p className="mt-4 leading-relaxed text-[var(--color-navy-soft)]">
-            {whoLine.pre}<Link href={L[2].href} className="font-semibold text-[var(--color-red)] underline">{L[2].text}</Link>{whoLine.post}
-          </p>
-          <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
-            {levels.map((x) => (
-              <li key={x} className="flex items-start gap-2 text-[var(--color-navy)]"><span className="text-[var(--color-red)]">🏈</span>{x}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* Two fixed cluster links every city page carries. The randomized pool
-          above varies by city, which is right for variety but means the two
-          pages that most need city-page authority — high school uniforms
-          (ranks 36 while city pages rank 1.5) and reversible jerseys (162
-          impressions at position 58) — were linked from only some of them.
-          One link per heading section, per the internal-linking rule. */}
+      {/* Stadiums + what the city orders most (keeps the two Phase 2 money links) */}
       <section className="py-14">
         <div className="mx-auto w-full max-w-4xl px-5">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">Most Ordered</span>
@@ -251,8 +308,7 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
             <div>
               <h3 className="font-display text-xl uppercase text-[var(--color-navy)]">Varsity and JV Game Kits</h3>
               <p className="mt-2 leading-relaxed text-[var(--color-navy-soft)]">
-                The biggest orders out of {loc.name} are full game sets for {loc.signatureSector}, placed in
-                the spring so they land before August reporting. Our{" "}
+                {loc.mostOrderedVarsity ?? `The biggest orders out of ${loc.name} are full game sets for ${loc.signatureSector}, placed in the spring so they land before August reporting. Our`}{" "}
                 <Link href="/high-school-football-uniforms/" className="font-semibold text-[var(--color-red)] underline">high school football uniforms</Link>{" "}
                 page covers what a varsity order contains and when a UIL program needs to place it.
               </p>
@@ -260,29 +316,38 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
             <div>
               <h3 className="font-display text-xl uppercase text-[var(--color-navy)]">Two-Color Practice Jerseys</h3>
               <p className="mt-2 leading-relaxed text-[var(--color-navy-soft)]">
-                Coaches in {loc.name} split a scrimmage every day of two-a-days, and one garment covers both
-                sides of it. Our{" "}
+                {loc.mostOrderedPractice ?? `Coaches in ${loc.name} split a scrimmage every day of two-a-days, and one garment covers both sides of it. Our`}{" "}
                 <Link href="/reversible-football-jerseys/" className="font-semibold text-[var(--color-red)] underline">reversible football jerseys</Link>{" "}
-                are built for that, on the youth block as well as the adult one.
+                cover both, on the youth block as well as the adult one.
               </p>
             </div>
           </div>
+          {stadiums.length > 0 && (
+            <>
+              <h3 className="mt-8 font-display text-xl uppercase text-[var(--color-navy)]">Where {loc.name} Plays</h3>
+              <ul className="mt-3 grid gap-2.5 sm:grid-cols-2">
+                {stadiums.map((s) => (
+                  <li key={s.name} className="rounded-2xl border border-[var(--color-border)] bg-white p-4 text-sm text-[var(--color-navy-soft)]">
+                    <strong className="block font-display text-base uppercase text-[var(--color-navy)]">{s.name}</strong>
+                    {s.note}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
       </section>
 
-      {/* Why us */}
+      {/* Why us — city-written */}
       <section className="bg-[var(--color-shell)] py-14">
         <div className="mx-auto w-full max-w-4xl px-5">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">Why Us</span>
-          <h2 className="mt-2 font-display text-3xl uppercase text-[var(--color-navy)]">Why {loc.name} Coaches Order From Us</h2>
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">Delivery</span>
+          <h2 className="mt-2 font-display text-3xl uppercase text-[var(--color-navy)]">Getting Uniforms to {loc.name} on Time</h2>
           <p className="mt-4 leading-relaxed text-[var(--color-navy-soft)]">{loc.deliveryNote}</p>
-          <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
-            {["Full-sublimation, printed in your exact colors", "Performance fabric built for Texas heat", "Complete head-to-toe team kits", "Free design proof on every order", "Team pricing, minimum 10 per design", "Turnaround planned around your season"].map((t) => (
-              <li key={t} className="flex items-start gap-2 text-[var(--color-navy)]"><span className="text-[var(--color-red)]">✓</span>{t}</li>
-            ))}
-          </ul>
           <p className="mt-4 leading-relaxed text-[var(--color-navy-soft)]">
-            {whyLine.pre}<Link href={L[3].href} className="font-semibold text-[var(--color-red)] underline">{L[3].text}</Link>{whyLine.post}
+            {loc.deliveryDetail ?? `We plan every ${loc.name} delivery around the date your season actually starts.`} You can also start from the{" "}
+            <Link href={L[2].href} className="font-semibold text-[var(--color-red)] underline">{L[2].text}</Link>{" "}
+            if you already know the garment you need.
           </p>
         </div>
       </section>
@@ -292,12 +357,12 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
         <section className="py-14">
           <div className="mx-auto w-full max-w-6xl px-5">
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">Also Serving</span>
-            <h2 className="mt-2 font-display text-3xl uppercase text-[var(--color-navy)]">Other Texas Cities We Outfit</h2>
+            <h2 className="mt-2 font-display text-3xl uppercase text-[var(--color-navy)]">Cities Near {loc.name} We Also Outfit</h2>
             <div className="mt-6 grid gap-5 sm:grid-cols-3">
               {nearby.map((c) => (
                 <Link key={c.slug} href={cityUrl(c)} className="rounded-3xl border border-[var(--color-border)] bg-white p-5 transition-shadow hover:shadow-lg">
                   <h3 className="font-display text-xl uppercase text-[var(--color-navy)]">{c.name}, TX</h3>
-                  <p className="mt-1 text-sm text-[var(--color-navy-soft)]">{c.intro.slice(0, 95)}…</p>
+                  <p className="mt-1 text-sm text-[var(--color-navy-soft)]">{c.stat}.</p>
                   <span className="mt-2 inline-block text-sm font-semibold text-[var(--color-red)]">Football uniforms in {c.name} →</span>
                 </Link>
               ))}
