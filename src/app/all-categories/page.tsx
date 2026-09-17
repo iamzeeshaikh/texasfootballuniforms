@@ -65,6 +65,7 @@ export default function AllCategoriesPage() {
                       alt={`${product.name} collection for custom football uniforms`}
                       width={900}
                       height={720}
+                      sizes="(min-width: 1280px) 22vw, (min-width: 768px) 45vw, 100vw"
                       className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-[1.04]"
                     />
                     <div className="p-6">

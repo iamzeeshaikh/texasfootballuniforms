@@ -25,6 +25,7 @@ export default function AboutUsPage() {
               alt="High school football uniforms for Texas programs"
               width={1200}
               height={1400}
+              sizes="(min-width: 1024px) 40vw, 100vw"
               className="aspect-[4/5] w-full object-cover"
             />
           </div>

@@ -144,6 +144,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
               alt={`${categoryPage.title} for Texas football teams`}
               width={1400}
               height={1050}
+              sizes="(min-width: 1024px) 50vw, 100vw"
               className="aspect-[4/3] w-full object-contain bg-[linear-gradient(180deg,#f8fafc_0%,#eef3f8_100%)] p-8"
             />
           </div>
@@ -178,6 +179,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                       alt={`${product.name} custom football collection`}
                       width={900}
                       height={720}
+                      sizes="(min-width: 1280px) 22vw, (min-width: 768px) 45vw, 100vw"
                       className="aspect-[5/4] w-full object-contain bg-[linear-gradient(180deg,#f8fafc_0%,#eef3f8_100%)] p-4 transition duration-500 group-hover:scale-[1.04] sm:p-5"
                     />
                     <div className="flex flex-1 flex-col p-6">

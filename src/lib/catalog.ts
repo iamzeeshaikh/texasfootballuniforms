@@ -1095,7 +1095,7 @@ const productLongSections: Record<string, (l: ContentLinks) => LongSection[]> = 
           tail: `alongside coaches apparel to create a complete visual system for everyone on the sideline regardless of their role.`,
         },
         {
-          lead: `Staff size varies significantly between programs. A small youth league head coach may need only two or three pieces, while a high school program with a full staff of fifteen or more requires a much larger order with multiple role types and size breakdowns. We structure the quote to fit the actual staff size rather than requiring programs to meet minimums that exceed their real needs.`,
+          lead: `Staff size varies significantly between programs. A small youth league head coach may need only two or three pieces, while a high school program with a full staff of fifteen or more requires a much larger order with multiple role types and size breakdowns. The minimum is 10 pieces per design, and a small staff usually reaches it by combining coaching pieces with sideline or booster items in the same order rather than ordering coaching apparel alone.`,
         },
       ],
     },
@@ -3178,7 +3178,7 @@ export function getCategoryPages(): CategoryPage[] {
       "Practice Gear": {
         title: "Football Practice Gear",
         description:
-          "Shop football practice gear in Texas, including practice jerseys, padded shirts, gloves, socks, and shorts for training-day performance.",
+          "Football practice gear in Texas: practice jerseys, padded shirts, gloves, socks, and shorts built for training-day performance and a full Texas summer.",
         intro:
           "Football practice gear in Texas needs to support long sessions, hot weather, and repeated use without losing comfort or team identity. This category is designed for Texas football teams that need training-day apparel and accessories to match the same standards as their game gear.",
       },
