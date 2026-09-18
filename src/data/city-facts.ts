@@ -571,6 +571,233 @@ export const cityFacts: Record<string, CityFacts> = {
     ],
   },
 
+  // ──────────────────────────────────────────────── Central Texas ──
+  austin: {
+    districts: ["Austin ISD", "Del Valle ISD", "Manor ISD", "Pflugerville ISD", "Eanes ISD"],
+    schools: [
+      { school: "Austin High", district: "Austin ISD", level: "6A" },
+      { school: "Akins", district: "Austin ISD", level: "6A" },
+      { school: "Bowie", district: "Austin ISD", level: "6A" },
+      { school: "Westlake", district: "Eanes ISD", level: "6A" },
+      { school: "Del Valle", district: "Del Valle ISD", level: "6A" },
+      { school: "Anderson", district: "Austin ISD", level: "5A Division I" },
+      { school: "McCallum", district: "Austin ISD", level: "5A Division I" },
+      { school: "Crockett", district: "Austin ISD", level: "5A Division II" },
+      { school: "LASA", district: "Austin ISD", level: "5A Division II" },
+      { school: "Navarro", district: "Austin ISD", level: "5A Division II" },
+      { school: "LBJ (Johnson)", district: "Austin ISD", level: "4A Division I" },
+      { school: "Travis", district: "Austin ISD", level: "4A Division I" },
+      { school: "Eastside", district: "Austin ISD", level: "4A Division II" },
+    ],
+    schoolsNote:
+      "Austin ISD is the widest single district on this list, running from 6A at Austin High, Akins and Bowie down to 4A Division II at Eastside, and five separate districts serve the city around it. The program everyone measures against is Westlake in Eanes ISD, which won its first state title in 1996 with Drew Brees at quarterback and took three in a row from 2019 through 2021. A uniform order in Austin can therefore be a 6A powerhouse set or a 4A Division II set placed the same week.",
+    youthLeagues: [
+      { name: "Trojans Pop Warner", note: "youth tackle football in northwest Austin, practicing at Murchison Middle School." },
+      { name: "Neighborhood Sports NFL Flag", note: "runs flag football for ages five to seventeen in north and south Austin." },
+      { name: "T&C Sports Austin", note: "runs coed NFL Flag for grades one through six." },
+      { name: "Austin Parks and Recreation", note: "runs youth sports including football through the city's community recreation centers." },
+    ],
+    youthNote:
+      "Austin still has a genuine Pop Warner tackle program alongside its flag leagues, which is less common than it used to be, and the flag side runs up to seventeen years old. Those two order very differently: tackle sets have to fit over pads, flag sets do not. Our",
+    levelMix: "youth",
+    stadiums: [
+      { name: "House Park", note: "Austin ISD's downtown stadium, seating around 6,000 and shared by Austin High, Anderson, LASA, McCallum and Navarro." },
+    ],
+    seasonNote:
+      "The 4A programs in Austin ISD can start conditioning on August 3 and hit full contact on August 8, a week before the 6A schools that held spring training, so two Austin teams in the same city can need their uniforms seven days apart.",
+    deliveryDays: "Austin is about 195 miles down I-35 from our DFW production — a same-day-to-next-day freight lane.",
+    deliveryDetail:
+      "I-35 between the metroplex and Austin is the busiest freight corridor we ship on, and it is short enough that delivery is measured in a day. The scheduling problem in Austin is not the drive; it is that five districts with different conference start dates all want sets in the same fortnight.",
+    orderIntro:
+      "An Austin order can be anything from a 6A game set to a 4A Division II one, and the city's youth scene adds Pop Warner tackle blocks and flag sets that run all the way to seventeen-year-olds.",
+    orderStory: [
+      "Tell us the school or the league and the conference. In Austin the conference is the single most useful thing you can put in the first message.",
+      "Send colors and any mark. House Park is a shared stadium, so the schools that play there care more than most about looking distinct from each other.",
+      "Pricing and a free mockup come back inside a day, cut for the block you need — pads or no pads changes the pattern, not just the size.",
+      "One production run covers every block in the order so the varsity and the feeder teams stay the same shade all season.",
+      "Freight runs straight down I-35 and lands inside a day of dispatch.",
+    ],
+    mostOrderedVarsity:
+      "Austin's 6A programs order full game sets in the spring, and the 5A and 4A schools in the same district follow a week or two behind. Our",
+    mostOrderedPractice:
+      "Five Austin ISD schools share House Park and most of the city's programs share practice fields, so two-color jerseys do a lot of work here. Our",
+    faqs: [
+      { q: "Which Austin schools and districts do you supply?", a: "Austin ISD from 6A down to 4A Division II, plus Eanes, Del Valle, Manor and Pflugerville ISDs around it, and the club, Pop Warner and flag programs across the city." },
+      { q: "Do the different conferences in Austin ISD change how an order is quoted?", a: "Yes, because the rosters differ. A 6A block at Austin High or Bowie is far larger than a 4A Division II block at Eastside, so the size spread, the extras and the per-piece price all move with the conference." },
+      { q: "How quickly can uniforms reach Austin?", a: "Austin is about 195 miles down I-35 from our DFW production, so freight is a day. The production itself is two to four weeks from the day you approve the proof." },
+      { q: "Do you make uniforms for Austin youth tackle programs?", a: "Yes. Trojans Pop Warner in northwest Austin is a tackle program, and a tackle jersey has to sit over shoulder pads — a different cut from the flag jersey the same player wears in the spring." },
+      { q: "Do you build flag uniforms for older age groups?", a: "Yes. The Neighborhood Sports NFL Flag divisions in Austin run to seventeen, so those orders use adult blocks rather than youth ones even though the garment is a flag jersey." },
+      { q: "What is the minimum order for an Austin team?", a: "Ten pieces of a design, sizes mixed. One flag division or one JV block is enough on its own." },
+      { q: "Can several Austin schools that share a stadium order at once?", a: "They can, and printing them together is the safest way to keep them looking distinct — we proof the sets side by side so two schools sharing House Park do not end up in near-identical shades." },
+      { q: "Can you print a mark we only have on an old letter jacket?", a: "Yes. Send a daylight photo and we rebuild it as vector art, then proof it before printing so the reproduction is the mark the school actually uses." },
+      { q: "When should an Austin program order for the fall?", a: "By late spring. Austin ISD's 4A programs can be in full contact by August 8 and the 6A schools a week later, so a July order is already fighting the calendar." },
+    ],
+  },
+
+  "round-rock": {
+    districts: ["Round Rock ISD"],
+    schools: [
+      { school: "Round Rock", district: "Round Rock ISD", level: "6A" },
+      { school: "McNeil", district: "Round Rock ISD", level: "6A" },
+      { school: "Stony Point", district: "Round Rock ISD", level: "6A" },
+      { school: "Westwood", district: "Round Rock ISD", level: "6A" },
+      { school: "Cedar Ridge", district: "Round Rock ISD", level: "6A" },
+    ],
+    schoolsNote:
+      "Five high schools, one district, and every one of them at 6A. UIL's 2026-28 alignment put all five Round Rock ISD schools into District 25-6A with Austin's Lake Travis and Westlake — which means a Round Rock program's district schedule includes two of the most successful 6A programs in the state, every year, without a soft week.",
+    youthLeagues: [
+      { name: "i9 Sports Round Rock and Pflugerville", note: "runs flag football for ages three and up, with a venue at Cedar Ridge High School on Gattis School Road." },
+      { name: "Neighborhood Sports NFL Flag", note: "runs pre-K to ninth grade flag football serving Round Rock, with games at local sports park facilities." },
+    ],
+    youthNote:
+      "Round Rock's flag leagues play partly on the high school campuses themselves, so the youth sets are seen next to the varsity ones. Sizes start at three years old here, which is the smallest block we cut. Our",
+    levelMix: "flag",
+    stadiums: [
+      { name: "Kelly Reeves Athletic Complex", note: "Round Rock ISD's 11,000-seat stadium, opened in 2003 and shared by all five district high schools." },
+    ],
+    seasonNote:
+      "One stadium for five 6A programs makes the August calendar tight before a single game is played, and week one falls on August 27–29. Uniform delivery has to beat the photo-day queue, not just the first kickoff.",
+    deliveryDays: "Round Rock sits about 15 miles north of Austin on I-35, so it rides the same one-day freight lane from DFW.",
+    deliveryDetail:
+      "Round Rock is a single-district city with five 6A programs, so everything queues: one stadium, one athletics office, one purchasing calendar. Freight is quick — it is the internal calendar that rewards ordering early.",
+    orderIntro:
+      "A Round Rock order is a 6A order, every time. The rosters are long, the size runs are wide, and the district schedule offers no week where a shabby set goes unnoticed.",
+    orderStory: [
+      "Send the school and the total count including sub-varsity, since all five programs here carry full blocks below varsity.",
+      "Send the colors. Five schools in one district means five palettes that have to stay clearly apart on a shared field.",
+      "Pricing and a free 24-hour mockup come back proofed at the widest and narrowest sizes in your run.",
+      "The whole order prints in one pass so varsity and sub-varsity match under the lights at Kelly Reeves.",
+      "Freight is a day down I-35, and we work the schedule back from your first scrimmage rather than week one.",
+    ],
+    mostOrderedVarsity:
+      "Five 6A programs in one district make full varsity and sub-varsity game sets the normal Round Rock order, placed in spring. Our",
+    mostOrderedPractice:
+      "A district schedule with Lake Travis and Westlake in it means a lot of scout-team work, and a scout team needs to be visibly the other color. Our",
+    faqs: [
+      { q: "Do you supply Round Rock ISD schools?", a: "Yes — Round Rock, McNeil, Stony Point, Westwood and Cedar Ridge, all five of them at 6A for 2026-28, plus the youth and flag programs in the city." },
+      { q: "How big is a 6A order in Round Rock?", a: "Larger than most. All five district programs carry full sub-varsity blocks, so a single school's order can cover varsity, JV and freshman sets in one design and one production run." },
+      { q: "How long does delivery to Round Rock take?", a: "Round Rock is about 15 miles north of Austin on I-35, so it rides the same one-day freight lane from our DFW production, on top of two to four weeks of production from proof approval." },
+      { q: "Do you make flag football uniforms for Round Rock leagues?", a: "Yes. The i9 Sports league plays at Cedar Ridge High School and the Neighborhood Sports NFL Flag divisions run from pre-K up, with sizes starting at three years old — the smallest block we cut." },
+      { q: "What is the minimum order for a Round Rock team?", a: "Ten pieces per design, with mixed sizes counted together. One flag division clears it." },
+      { q: "Our district includes Westlake and Lake Travis — does that affect anything?", a: "It affects the calendar rather than the garment. A district with no easy week means more film, more scout-team work and more demand for reversible practice jerseys alongside the game set." },
+      { q: "Can five schools in one district order together?", a: "Yes, and a combined quantity earns a better per-piece price. We proof the five palettes side by side so nobody ends up in a shade too close to a district rival." },
+      { q: "Do you print names and numbers for a whole 6A roster?", a: "Yes. Names, numbers, patches and captain marks are sublimated in the same pass as the design, so nothing is heat-pressed on afterwards and nothing peels." },
+      { q: "When should a Round Rock program order?", a: "In spring. Five 6A programs share Kelly Reeves Athletic Complex, so photo days and jamborees queue through one building before week one on August 27–29." },
+    ],
+  },
+
+  "san-antonio": {
+    districts: ["Northside ISD", "North East ISD", "San Antonio ISD", "Judson ISD", "East Central ISD", "Harlandale ISD", "South San Antonio ISD", "Southside ISD", "Edgewood ISD"],
+    schools: [
+      { school: "Brandeis, Brennan, Clark, Harlan, Holmes, Marshall, O'Connor, Sotomayor, Stevens, Taft, Warren", district: "Northside ISD", level: "6A" },
+      { school: "Churchill, Johnson, LEE, Madison, Reagan, Roosevelt", district: "North East ISD", level: "6A" },
+      { school: "Judson and Wagner", district: "Judson ISD", level: "6A" },
+      { school: "East Central", district: "East Central ISD", level: "6A" },
+      { school: "Jay", district: "Northside ISD", level: "5A Division I" },
+      { school: "Southside", district: "Southside ISD", level: "5A Division I" },
+      { school: "Brackenridge, Burbank, Edison, Houston, Jefferson, Lanier", district: "San Antonio ISD", level: "5A Division II" },
+      { school: "Harlandale", district: "Harlandale ISD", level: "5A Division II" },
+      { school: "Kennedy", district: "San Antonio ISD", level: "4A Division I" },
+      { school: "Antonian College Prep and Central Catholic", district: "Private (TAPPS)", level: "TAPPS Division I" },
+    ],
+    schoolsNote:
+      "Northside ISD alone fields eleven 6A football programs — more 6A football than most entire Texas cities — and North East ISD adds six more. San Antonio ISD, by contrast, sits almost entirely in 5A Division II. Nine districts serve the city, and the TAPPS rivalry between Antonian and Central Catholic runs alongside all of it. Brackenridge holds a piece of history no other school can claim: the 1947 state championship, the last one awarded before UIL split football by enrollment.",
+    youthLeagues: [
+      { name: "Alamo City Youth Flag Football", note: "a winter flag league for ages five to fourteen, played at two northwest San Antonio locations in January and February." },
+      { name: "Neighborhood Sports NFL Flag", note: "the official NFL FLAG program in San Antonio for ages five to seventeen." },
+      { name: "i9 Sports San Antonio", note: "runs flag football leagues for ages three and up across the metro." },
+    ],
+    youthNote:
+      "San Antonio is the one city on this list with a serious winter flag season — Alamo City's league plays in January and February, months after everyone else has packed away. That is a completely separate production window from the fall order. Our",
+    levelMix: "flag",
+    stadiums: [
+      { name: "Alamo Stadium", note: "San Antonio ISD's 18,500-seat stadium, opened in 1940, renovated in 2011 and known locally as the Rock Pile." },
+      { name: "Dub Farris Athletic Complex", note: "Northside ISD's 10,568-seat stadium, one of the venues carrying the district's eleven 6A programs." },
+    ],
+    seasonNote:
+      "With eleven 6A programs in one district and six in another, San Antonio's August is a logistics exercise: the 6A schools that held spring training start conditioning on August 10 and scrimmage from August 20, and every one of them wants a stadium slot in the same fortnight.",
+    deliveryDays: "San Antonio is about 275 miles from our DFW production and 197 from Houston — a one-day freight lane.",
+    deliveryDetail:
+      "Freight to San Antonio is a single day from the metroplex. The scale is what needs planning: Northside ISD by itself can put more 6A jersey orders into one spring than some entire metros, so a program that waits until July is queueing behind its own district.",
+    orderIntro:
+      "San Antonio orders divide by district more sharply than anywhere else. A Northside or North East 6A order is a long roster; a San Antonio ISD order is a 5A Division II roster; and the winter flag leagues order in a different season entirely.",
+    orderStory: [
+      "Name the district and the campus. With nine districts in the city that is the fastest way to a correct quote.",
+      "Send colors and marks. Many San Antonio schools carry long-standing identities — Brackenridge's goes back to the 1940s — so we reproduce rather than reinterpret them.",
+      "Pricing and a free mockup land within a day, at the block size the conference actually implies.",
+      "The order prints in one pass, which matters most for a district ordering several schools into the same August.",
+      "Freight is a day from the metroplex, so the proof date is the date that really sets delivery.",
+    ],
+    mostOrderedVarsity:
+      "With seventeen 6A programs between two districts, full varsity game sets dominate the San Antonio order book every spring. Our",
+    mostOrderedPractice:
+      "Eleven 6A programs in one district means constant inter-squad and inter-school scrimmage work, and a jersey that flips color saves carrying two sets. Our",
+    faqs: [
+      { q: "Which San Antonio districts do you build for?", a: "All of the city's main districts — Northside, North East, San Antonio ISD, Judson, East Central, Harlandale, South San Antonio, Southside and Edgewood — plus TAPPS schools such as Antonian and Central Catholic." },
+      { q: "How much 6A football is there in San Antonio?", a: "A great deal. Northside ISD fields eleven 6A programs and North East ISD six, along with Judson ISD's two and East Central — which is why San Antonio orders cluster into one spring window and production slots go early." },
+      { q: "How long does shipping to San Antonio take?", a: "About 275 miles from our DFW production or 197 from Houston, so freight is a day. Production runs two to four weeks from proof approval." },
+      { q: "Do you supply winter flag leagues?", a: "Yes, and San Antonio is where that matters — Alamo City Youth Flag Football plays in January and February for ages five to fourteen, which is a separate ordering season from the fall one and easier to book because production is quieter then." },
+      { q: "Our school is 5A Division II — how does that change the order?", a: "It changes the count, not the build. Most San Antonio ISD programs sit in 5A Division II, and those rosters are smaller than a Northside 6A roster, so the size run is tighter and we hold fewer extreme sizes." },
+      { q: "What is the minimum order for a San Antonio team?", a: "Ten pieces per design, mixed sizes together. A youth flag roster or a JV block clears it." },
+      { q: "Can you reproduce a school identity that goes back decades?", a: "Yes. Send whatever you have — a photo of an old jersey, a helmet, a program cover — and we redraw the mark as vector art and proof it against the original before printing." },
+      { q: "Do you outfit TAPPS schools in San Antonio?", a: "Yes. Antonian College Preparatory and Central Catholic both play TAPPS Division I football, and a TAPPS order runs exactly as a UIL one does." },
+      { q: "When should a San Antonio program place its order?", a: "Spring, and early in it. The 6A schools that held spring training start conditioning on August 10 and scrimmage from August 20, and seventeen 6A programs across two districts are all aiming at the same delivery fortnight." },
+    ],
+  },
+
+  waco: {
+    districts: ["Waco ISD", "Midway ISD", "La Vega ISD", "Connally ISD"],
+    schools: [
+      { school: "Midway", district: "Midway ISD", level: "6A" },
+      { school: "Waco High", district: "Waco ISD", level: "5A Division II" },
+      { school: "University", district: "Waco ISD", level: "5A Division II" },
+      { school: "La Vega", district: "La Vega ISD", level: "4A Division II" },
+      { school: "Connally", district: "Connally ISD", level: "4A Division II" },
+    ],
+    schoolsNote:
+      "One 6A program, two 5A Division II programs and two 4A Division II programs inside a single small city. The one everyone knows is La Vega, on Waco's east side, which won state championships in 2015 and 2018 and went back to the final in 2024 — a 4A program with a trophy case that bigger schools in this state do not have.",
+    youthLeagues: [
+      { name: "Waco Parks and Recreation youth flag football", note: "the city-run flag league, registered through the parks department's league system." },
+      { name: "YMCA of Central Texas", note: "runs a spring youth flag football season covering the Waco area." },
+      { name: "CenTex Sports", note: "runs youth tackle and flag football from its Waco location." },
+    ],
+    youthNote:
+      "Waco is small enough that the city parks department, the YMCA and a private club all run football without stepping on each other, and between them they cover spring flag and fall tackle. Those are two orders a year from what looks like one town. Our",
+    levelMix: "youth",
+    stadiums: [
+      { name: "Waco ISD Stadium", note: "a 10,520-seat stadium on South New Road, opened in 2000 and shared by Waco High and University." },
+    ],
+    seasonNote:
+      "La Vega and Connally at 4A can be in full contact by August 8, while Midway's 6A program may not start conditioning until August 10 if it held spring training — a two-week spread across a city you can drive across in fifteen minutes.",
+    deliveryDays: "Waco is 97 miles from Dallas and 185 from Houston — comfortably inside a one-day freight run from our DFW production.",
+    deliveryDetail:
+      "Waco is the closest city on our list outside the metroplex itself, which makes it the easiest late order we take: a set approved with a fortnight to spare still lands on time. That does not make August ordering a good idea, but it does mean a genuine emergency here is recoverable.",
+    orderIntro:
+      "A Waco order is usually a mid-sized one — a 5A Division II or 4A Division II roster rather than a sprawling 6A block — and the difference between conferences in this city is a difference of about twenty jerseys.",
+    orderStory: [
+      "Tell us the school and the conference; in a city with five programs across three conferences, that pair defines the whole order.",
+      "Send colors and any mark. For a program with a title history like La Vega's, we reproduce the identity exactly rather than modernizing it.",
+      "Free mockup and per-piece pricing within a day, sized for the block you actually field.",
+      "One production run covers the order, which is how a varsity set and a JV set stay matched through a playoff run.",
+      "Delivery is a short freight leg — 97 miles from Dallas — so Waco has the shortest gap between dispatch and the field of anywhere outside DFW.",
+    ],
+    mostOrderedVarsity:
+      "Waco's 5A and 4A programs order full game sets in the spring, in blocks noticeably smaller than a big-metro 6A order. Our",
+    mostOrderedPractice:
+      "Two Waco ISD programs share a stadium and most of a practice calendar, so two-color jerseys carry a lot of the week's work. Our",
+    faqs: [
+      { q: "Which Waco schools do you build uniforms for?", a: "Midway at 6A, Waco High and University at 5A Division II, and La Vega and Connally at 4A Division II — plus the city's youth flag and tackle programs." },
+      { q: "How quickly can you get uniforms to Waco?", a: "Waco is 97 miles from Dallas, the shortest freight leg on our list outside the metroplex, so dispatch to delivery is quick. Production is still two to four weeks from proof approval." },
+      { q: "Can you take a late order in Waco?", a: "More easily than most places, because the transit leg is so short. A set approved with a fortnight in hand can still make a first game — though the 4A programs here can be in full contact by August 8, so late is still risky." },
+      { q: "Do you make youth football uniforms in Waco?", a: "Yes. The city parks department runs flag, the YMCA runs a spring season and CenTex Sports runs tackle and flag, which between them means two ordering seasons a year in one town." },
+      { q: "What is the minimum order for a Waco team?", a: "Ten pieces per design. A 4A JV block or a single youth division clears it, with mixed sizes counting together." },
+      { q: "Our program is 4A — is a 4A order treated differently?", a: "Only in scale. La Vega and Connally field 4A Division II rosters, so the run is roughly twenty jerseys shorter than a 5A one; the fabric, the printing and the proofing are identical." },
+      { q: "Can you reproduce a program's existing look exactly?", a: "Yes, and for a program with a title history we do exactly that — send a current jersey photo and the color values and we match rather than redesign." },
+      { q: "Do you supply both game and practice sets?", a: "Yes, and ordering them together keeps the colors aligned; printed months apart, two batches of the same color can drift a shade." },
+      { q: "When should a Waco program order for the fall?", a: "In spring. The 4A schools here start full contact on August 8 and the 6A program a week later, so a spring order covers both ends of a two-week spread in one delivery." },
+    ],
+  },
+
   "corpus-christi": {
     districts: ["Corpus Christi ISD", "Flour Bluff ISD", "Calallen ISD", "Tuloso-Midway ISD", "West Oso ISD", "London ISD"],
     schools: [
