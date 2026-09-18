@@ -47,7 +47,7 @@ const orderSteps = [
   },
   {
     title: "Production runs and the order ships",
-    text: "Most jerseys are 2 to 3 weeks after approval. Full uniform programs, warm-up suits and college builds run 3 to 4 weeks. The quote states which window applies to your order.",
+    text: "Practice, youth, flag, 7-on-7 and accessory orders run 2 to 3 weeks after artwork approval. Sublimated game jerseys, named and numbered jerseys, full uniform programs, warm-up suits, sideline jackets and college builds run 3 to 4 weeks. The quote states which window applies to your order.",
   },
 ];
 

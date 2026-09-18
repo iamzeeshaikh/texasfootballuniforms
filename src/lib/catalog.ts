@@ -123,7 +123,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "High-definition sublimation",
     sizes: "Youth XS to Adult 4XL",
     moq: "10 sets",
-    turnaround: "2 to 3 weeks after final design sign-off",
+    turnaround: "2 to 3 weeks after artwork approval",
   },
   {
     slug: "adult-football-jerseys",
@@ -139,7 +139,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation, screen print, or heat transfer",
     sizes: "Adult S to 5XL",
     moq: "10 jerseys",
-    turnaround: "3 weeks after design approval",
+    turnaround: "3 to 4 weeks after artwork approval",
   },
   {
     slug: "american-football-jerseys",
@@ -155,7 +155,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation with optional twill numbering",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 jerseys",
-    turnaround: "3 to 4 weeks",
+    turnaround: "3 to 4 weeks after artwork approval",
   },
   {
     slug: "american-football-uniforms",
@@ -171,7 +171,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Full sublimation and embellishment-ready panels",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 sets",
-    turnaround: "3 to 4 weeks",
+    turnaround: "3 to 4 weeks after artwork approval",
   },
   {
     slug: "blank-football-jerseys",
@@ -187,7 +187,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Left blank or prepared for add-on decoration",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 jerseys",
-    turnaround: "2 to 3 weeks",
+    turnaround: "2 to 3 weeks after artwork approval",
   },
   {
     slug: "coaches-apparel",
@@ -203,7 +203,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Embroidery, heat transfer, or sublimation",
     sizes: "Adult S to 4XL",
     moq: "10 pieces",
-    turnaround: "2 to 3 weeks",
+    turnaround: "2 to 3 weeks after artwork approval",
   },
   {
     slug: "college-football-uniforms",
@@ -219,7 +219,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation, tackle twill, and applique options",
     sizes: "Adult S to 5XL",
     moq: "10 sets",
-    turnaround: "4 weeks",
+    turnaround: "3 to 4 weeks after artwork approval",
   },
   {
     slug: "custom-name-football-jerseys",
@@ -235,7 +235,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Full sublimation with variable data names and numbers",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 jerseys",
-    turnaround: "3 weeks",
+    turnaround: "3 to 4 weeks after artwork approval",
   },
   {
     slug: "custom-number-football-jerseys",
@@ -251,7 +251,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation and twill number options",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 jerseys",
-    turnaround: "3 weeks",
+    turnaround: "3 to 4 weeks after artwork approval",
   },
   {
     slug: "football-warm-up-suits",
@@ -267,7 +267,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation, embroidery, and heat transfer",
     sizes: "Youth XS to Adult 4XL",
     moq: "10 sets",
-    turnaround: "3 weeks",
+    turnaround: "3 to 4 weeks after artwork approval",
   },
   {
     slug: "custom-team-jerseys",
@@ -283,7 +283,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "High-resolution sublimation",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 jerseys",
-    turnaround: "3 weeks",
+    turnaround: "3 to 4 weeks after artwork approval",
   },
   {
     slug: "fan-football-jerseys",
@@ -299,7 +299,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation and heat transfer",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 jerseys",
-    turnaround: "2 to 3 weeks",
+    turnaround: "2 to 3 weeks after artwork approval",
   },
   {
     slug: "flag-football-jerseys",
@@ -315,7 +315,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation",
     sizes: "Youth XS to Adult 4XL",
     moq: "10 jerseys",
-    turnaround: "2 to 3 weeks",
+    turnaround: "2 to 3 weeks after artwork approval",
   },
   {
     slug: "flag-football-uniforms",
@@ -331,7 +331,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation",
     sizes: "Youth XS to Adult 4XL",
     moq: "10 sets",
-    turnaround: "2 to 3 weeks",
+    turnaround: "2 to 3 weeks after artwork approval",
   },
   {
     slug: "football-gloves",
@@ -347,7 +347,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Heat transfer logos and color-matched accents",
     sizes: "Youth S to Adult XL",
     moq: "10 pairs",
-    turnaround: "2 to 3 weeks",
+    turnaround: "2 to 3 weeks after artwork approval",
   },
   {
     slug: "football-hoodies",
@@ -363,7 +363,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Screen print, embroidery, or sublimation panels",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 hoodies",
-    turnaround: "2 to 3 weeks",
+    turnaround: "2 to 3 weeks after artwork approval",
   },
   {
     slug: "football-practice-jerseys",
@@ -379,7 +379,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation or heat transfer numbering",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 jerseys",
-    turnaround: "2 to 3 weeks",
+    turnaround: "2 to 3 weeks after artwork approval",
   },
   {
     slug: "football-shorts",
@@ -395,7 +395,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation or heat transfer",
     sizes: "Youth XS to Adult 4XL",
     moq: "10 shorts",
-    turnaround: "2 to 3 weeks",
+    turnaround: "2 to 3 weeks after artwork approval",
   },
   {
     slug: "football-sideline-jackets",
@@ -411,7 +411,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Embroidery and heat transfer",
     sizes: "Adult S to 5XL",
     moq: "10 jackets",
-    turnaround: "3 weeks",
+    turnaround: "3 to 4 weeks after artwork approval",
   },
   {
     slug: "high-school-football-uniforms",
@@ -427,7 +427,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation with optional tackle twill",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 sets",
-    turnaround: "3 to 4 weeks",
+    turnaround: "3 to 4 weeks after artwork approval",
   },
   {
     slug: "football-socks",
@@ -443,7 +443,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Knit-in color pattern and logo options",
     sizes: "Youth to Adult XL",
     moq: "10 pairs",
-    turnaround: "2 to 3 weeks",
+    turnaround: "2 to 3 weeks after artwork approval",
   },
   {
     slug: "lightweight-football-jerseys",
@@ -459,7 +459,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation",
     sizes: "Youth XS to Adult 4XL",
     moq: "10 jerseys",
-    turnaround: "2 to 3 weeks",
+    turnaround: "2 to 3 weeks after artwork approval",
   },
   {
     slug: "padded-football-shirts",
@@ -475,7 +475,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Heat transfer branding",
     sizes: "Youth XS to Adult 3XL",
     moq: "10 shirts",
-    turnaround: "2 to 3 weeks",
+    turnaround: "2 to 3 weeks after artwork approval",
   },
   {
     slug: "reversible-football-jerseys",
@@ -491,7 +491,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation on both sides",
     sizes: "Youth XS to Adult 4XL",
     moq: "10 jerseys",
-    turnaround: "3 weeks",
+    turnaround: "3 to 4 weeks after artwork approval",
   },
   {
     slug: "sublimated-football-jerseys",
@@ -507,7 +507,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "All-over dye sublimation",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 jerseys",
-    turnaround: "3 weeks",
+    turnaround: "3 to 4 weeks after artwork approval",
   },
   {
     slug: "youth-football-jerseys",
@@ -523,7 +523,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation and heat transfer",
     sizes: "Youth XS to Youth XL",
     moq: "10 jerseys",
-    turnaround: "2 to 3 weeks",
+    turnaround: "2 to 3 weeks after artwork approval",
   },
   {
     slug: "youth-football-uniforms",
@@ -539,7 +539,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation with roster personalization",
     sizes: "Youth XS to Youth XL",
     moq: "10 sets",
-    turnaround: "2 to 3 weeks",
+    turnaround: "2 to 3 weeks after artwork approval",
   },
 ];
 
