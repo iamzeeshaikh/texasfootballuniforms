@@ -144,11 +144,20 @@ export function DesignYourUniform({
     const panel = section?.querySelector<HTMLElement>("[data-summary-panel]");
     if (!section || !panel || !window.matchMedia("(max-width: 1023px)").matches) return;
     const observer = new IntersectionObserver(
-      ([entry]) => panel.setAttribute("data-visible", String(entry.isIntersecting)),
+      ([entry]) => {
+        panel.setAttribute("data-visible", String(entry.isIntersecting));
+        // The floating WhatsApp bubble sits bottom-left; globals.css hides it
+        // while this bar is up so the two do not overlap. WhatsApp is still one
+        // tap away in the sticky Call / WhatsApp / Quote bar underneath.
+        document.documentElement.dataset.designBar = String(entry.isIntersecting);
+      },
       { rootMargin: "-5% 0px -10% 0px" },
     );
     observer.observe(section);
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      delete document.documentElement.dataset.designBar;
+    };
   }, []);
 
   function toggle(list: string[], setList: (next: string[]) => void, value: string) {
@@ -756,14 +765,21 @@ export function DesignYourUniform({
                   aria-live="polite"
                   className="design-summary-price m-4 rounded-xl bg-[var(--color-navy)] px-4 py-4 text-center text-white"
                 >
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60">
-                    Estimate at the {options.minimumPieces}-piece minimum
+                  <p className="design-summary-label text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60">
+                    {/* The collapsed bar has room for one line, and dropping the
+                        qualifier altogether would leave a bare price on screen. */}
+                    <span className="design-summary-label-short">
+                      Est. at {options.minimumPieces}-piece min.
+                    </span>
+                    <span className="design-summary-label-full">
+                      Estimate at the {options.minimumPieces}-piece minimum
+                    </span>
                   </p>
-                  <p className="mt-2 text-2xl font-bold">
+                  <p className="design-summary-amount mt-2 text-2xl font-bold">
                     {estimate ? `${money(estimate.perPlayer)} per player` : "Choose a garment"}
                   </p>
                   {estimate?.total ? (
-                    <p className="mt-1 text-sm text-white/80">
+                    <p className="design-summary-sub mt-1 text-sm text-white/80">
                       about {roundedMoney(estimate.total)} for {estimate.roster} players
                     </p>
                   ) : null}

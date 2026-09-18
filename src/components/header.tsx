@@ -4,6 +4,7 @@ import {
   MapPin,
   Package,
   PencilRuler,
+  Phone,
   Shield,
   Shirt,
   ShoppingBag,
@@ -15,13 +16,16 @@ import { company } from "@/lib/site";
 import { locationCities, cityUrl } from "@/data/locations";
 import { MobileMenu } from "./mobile-menu";
 
-const navItems: { href: string; label: string; accent?: boolean }[] = [
+const navItems: { href: string; label: string; accent?: boolean; wide?: boolean }[] = [
   // "Home" is not here on purpose: the logo already goes home, and the row has
   // to leave space for the designer link, which is the page that turns a
   // browsing coach into a specification we can quote.
   { href: "/design-your-uniform/", label: "Design Uniform", accent: true },
-  { href: "/size-chart/", label: "Size Chart" },
-  { href: "/blog/", label: "Blog" },
+  { href: "/size-chart/", label: "Size Chart", wide: true },
+  // Size Chart and Blog only from xl: the row already ran past the viewport
+  // edge at 1024px before the designer link was added to it, and both pages
+  // are in the drawer, the footer and the body copy.
+  { href: "/blog/", label: "Blog", wide: true },
 ];
 
 export function Header() {
@@ -56,29 +60,29 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[rgba(11,31,58,0.9)] backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8 2xl:gap-5">
         <Link href="/" className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--color-gold)] font-display text-xl font-semibold text-[var(--color-navy)]">
             TF
           </div>
           <div>
-            <p className="font-display text-xl uppercase tracking-[0.12em] text-white">
+            <p className="font-display text-xl uppercase tracking-[0.12em] text-white sm:whitespace-nowrap lg:text-base lg:tracking-[0.06em] 2xl:text-xl 2xl:tracking-[0.12em]">
               Texas Football Uniforms
             </p>
-            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-ice)]">
+            <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-ice)] sm:whitespace-nowrap lg:tracking-[0.16em] 2xl:tracking-[0.24em]">
               Premium Custom Teamwear
             </p>
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-5 lg:flex xl:gap-7">
+        <nav className="hidden items-center gap-4 lg:flex 2xl:gap-6">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`whitespace-nowrap text-sm font-semibold uppercase tracking-[0.14em] transition hover:text-[var(--color-gold)] ${
+              className={`whitespace-nowrap text-sm font-semibold uppercase tracking-[0.06em] transition hover:text-[var(--color-gold)] 2xl:tracking-[0.14em] ${
                 item.accent ? "text-[var(--color-gold)]" : "text-white/80"
-              }`}
+              } ${item.wide ? "hidden xl:inline" : ""}`}
             >
               {item.label}
             </Link>
@@ -86,12 +90,12 @@ export function Header() {
           <div className="group relative">
             <button
               type="button"
-              className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-white/80 transition group-hover:text-[var(--color-gold)]"
+              className="inline-flex items-center gap-2 whitespace-nowrap text-sm font-semibold uppercase tracking-[0.06em] text-white/80 transition group-hover:text-[var(--color-gold)] 2xl:tracking-[0.14em]"
             >
               Products
               <ChevronDown className="h-4 w-4" />
             </button>
-            <div className="pointer-events-none absolute left-0 top-full pt-4 opacity-0 transition group-hover:pointer-events-auto group-hover:opacity-100">
+            <div className="absolute left-0 top-full hidden pt-4 group-hover:block group-focus-within:block">
               <div className="grid max-h-[420px] w-[380px] gap-2 overflow-y-auto rounded-[24px] border border-white/10 bg-[var(--color-navy)]/98 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.28)]">
                 <Link
                   href="/design-your-uniform/"
@@ -120,12 +124,12 @@ export function Header() {
           <div className="group relative">
             <button
               type="button"
-              className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-white/80 transition group-hover:text-[var(--color-gold)]"
+              className="inline-flex items-center gap-2 whitespace-nowrap text-sm font-semibold uppercase tracking-[0.06em] text-white/80 transition group-hover:text-[var(--color-gold)] 2xl:tracking-[0.14em]"
             >
               Categories
               <ChevronDown className="h-4 w-4" />
             </button>
-            <div className="pointer-events-none absolute left-0 top-full pt-4 opacity-0 transition group-hover:pointer-events-auto group-hover:opacity-100">
+            <div className="absolute left-0 top-full hidden pt-4 group-hover:block group-focus-within:block">
               <div className="grid w-[260px] gap-2 rounded-[24px] border border-white/10 bg-[var(--color-navy)]/98 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.28)]">
                 {categoryGroups.map((group) => {
                   const Icon = categoryIcons[group];
@@ -147,12 +151,12 @@ export function Header() {
           <div className="group relative">
             <button
               type="button"
-              className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-white/80 transition group-hover:text-[var(--color-gold)]"
+              className="inline-flex items-center gap-2 whitespace-nowrap text-sm font-semibold uppercase tracking-[0.06em] text-white/80 transition group-hover:text-[var(--color-gold)] 2xl:tracking-[0.14em]"
             >
               Locations
               <ChevronDown className="h-4 w-4" />
             </button>
-            <div className="pointer-events-none absolute right-0 top-full pt-4 opacity-0 transition group-hover:pointer-events-auto group-hover:opacity-100">
+            <div className="absolute right-0 top-full hidden pt-4 group-hover:block group-focus-within:block">
               <div className="w-[360px] rounded-[24px] border border-white/10 bg-[var(--color-navy)]/98 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.28)]">
                 <Link
                   href="/locations/"
@@ -178,18 +182,17 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+          {/* The number itself only fits again at 2xl; between sm and there the
+              same link is the phone glyph, which keeps the tap target and the
+              tel: href without pushing the row past the viewport edge. */}
           <a
             href={company.phoneHref}
-            className="hidden rounded-full border border-white/15 px-4 py-2 text-sm font-semibold text-white transition hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] sm:inline-flex"
+            aria-label={`Call ${company.phoneDisplay}`}
+            className="hidden items-center gap-2 whitespace-nowrap rounded-full border border-white/15 px-3 py-2 text-sm font-semibold text-white transition hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] sm:inline-flex 2xl:px-4"
           >
-            {company.phoneDisplay}
+            <Phone className="h-4 w-4 2xl:hidden" aria-hidden />
+            <span className="hidden 2xl:inline">{company.phoneDisplay}</span>
           </a>
-          <Link
-            href="/design-your-uniform/"
-            className="hidden whitespace-nowrap rounded-full border border-[var(--color-gold)] px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-[var(--color-gold)] transition hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)] sm:inline-flex lg:hidden xl:inline-flex"
-          >
-            Design Your Uniform
-          </Link>
           <Link
             href="/contact-us/#quote-form"
             className="hidden whitespace-nowrap rounded-full bg-[var(--color-red)] px-5 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white shadow-[0_18px_40px_rgba(200,16,46,0.35)] transition hover:-translate-y-0.5 hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)] sm:inline-flex"

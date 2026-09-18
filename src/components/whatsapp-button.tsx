@@ -24,6 +24,9 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener"
       aria-label="Chat with us on WhatsApp"
+      // Hook for globals.css: the uniform designer's sticky summary bar hides
+      // this bubble while it is on screen, rather than stacking on top of it.
+      data-whatsapp-float=""
       // Sits above the sticky Call/WhatsApp/Quote bar on phones (bottom-20 = 80px),
       // back to the corner from the sm breakpoint where the bar is hidden.
       className="bottom-20 sm:bottom-5"
