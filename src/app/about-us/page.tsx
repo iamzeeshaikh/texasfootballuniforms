@@ -123,7 +123,7 @@ export default function AboutUsPage() {
           <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "About Us", path: "/about-us/" }]} />
 
           <div className="mt-6 grid gap-10 lg:grid-cols-[0.92fr_1.08fr]">
-            <div className="surface-card overflow-hidden">
+            <div className="surface-card min-w-0 overflow-hidden">
               <Image
                 src={heroProduct.heroImage}
                 alt="Custom high school football uniforms made for a Texas program"
@@ -135,7 +135,7 @@ export default function AboutUsPage() {
               />
             </div>
 
-            <div className="surface-card p-8 sm:p-10">
+            <div className="surface-card min-w-0 p-8 sm:p-10">
               <span className="rounded-full bg-[var(--color-red)]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">
                 About Us
               </span>
@@ -166,7 +166,7 @@ export default function AboutUsPage() {
                   </a>
                 </p>
                 <p className="mt-1">
-                  <a href={`mailto:${company.email}`} className="font-semibold text-[var(--color-red)]">
+                  <a href={`mailto:${company.email}`} className="font-semibold break-words text-[var(--color-red)]">
                     {company.email}
                   </a>
                 </p>

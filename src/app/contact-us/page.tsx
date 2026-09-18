@@ -125,7 +125,7 @@ export default function ContactUsPage() {
           <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "Contact Us", path: "/contact-us/" }]} />
 
           <div className="mt-6 grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
-            <div className="space-y-6">
+            <div className="min-w-0 space-y-6">
               <div className="surface-card p-8 sm:p-10">
                 <span className="rounded-full bg-[var(--color-red)]/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">
                   Contact Us
@@ -151,11 +151,11 @@ export default function ContactUsPage() {
                       <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[var(--color-navy)] text-[var(--color-gold)]">
                         <channel.icon className="h-5 w-5" />
                       </span>
-                      <span>
+                      <span className="min-w-0">
                         <span className="block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-red)]">
                           {channel.label}
                         </span>
-                        <span className="mt-1 block text-lg font-semibold text-[var(--color-navy)]">
+                        <span className="mt-1 block break-words text-lg font-semibold text-[var(--color-navy)]">
                           {channel.value}
                         </span>
                         <span className="mt-2 block text-sm text-[var(--color-navy-soft)]">
@@ -216,7 +216,7 @@ export default function ContactUsPage() {
               </article>
             </div>
 
-            <div className="lg:sticky lg:top-24 lg:self-start">
+            <div className="min-w-0 lg:sticky lg:top-24 lg:self-start">
               <div className="rounded-[36px] bg-[linear-gradient(135deg,#08172c_0%,#0b1f3a_42%,#12305e_100%)] p-6 shadow-[0_28px_70px_rgba(11,31,58,0.26)] sm:p-8">
                 <span className="eyebrow">Free Quote</span>
                 <h2 className="mt-5 text-4xl text-white">Request a Quote and a Free Mockup</h2>
