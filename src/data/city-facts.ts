@@ -169,6 +169,230 @@ export const cityFacts: Record<string, CityFacts> = {
     ],
   },
 
+  // ────────────────────────────────────────────────── West Texas ──
+  "el-paso": {
+    districts: ["El Paso ISD", "Ysleta ISD", "Socorro ISD", "Canutillo ISD"],
+    schools: [
+      { school: "Coronado, Franklin", district: "El Paso ISD", level: "6A" },
+      { school: "Eastwood", district: "Ysleta ISD", level: "6A" },
+      { school: "Eastlake, Montwood, Pebble Hills, Socorro", district: "Socorro ISD", level: "6A" },
+      { school: "Americas, El Dorado", district: "Socorro ISD", level: "5A Division I" },
+      { school: "Bel Air, Hanks, Parkland", district: "Ysleta ISD", level: "5A Division I" },
+      { school: "El Paso High, Burges, Chapin, Jefferson", district: "El Paso ISD", level: "5A Division II" },
+      { school: "Del Valle", district: "Ysleta ISD", level: "5A Division II" },
+      { school: "Canutillo", district: "Canutillo ISD", level: "5A Division II" },
+      { school: "Andress, Austin", district: "El Paso ISD", level: "4A Division I" },
+      { school: "Ysleta, Riverside", district: "Ysleta ISD", level: "4A Division I" },
+      { school: "Bowie, Irvin", district: "El Paso ISD", level: "4A Division II" },
+    ],
+    schoolsNote:
+      "District 1-6A is seven El Paso schools drawn from three different ISDs — Coronado and Franklin from El Paso ISD, Eastwood from Ysleta, and Eastlake, Montwood, Pebble Hills and Socorro from Socorro ISD. They play each other because there is nobody else within six hundred miles. That isolation is the single most important fact about buying anything for an El Paso program: everything comes a long way, so it has to arrive right the first time.",
+    youthLeagues: [
+      { name: "El Paso Flag Football League", note: "founded in 1999 as the Sun City Flag Football League and still running as an NFL Flag affiliate." },
+      { name: "El Paso NFL Flag Football", note: "run through Neighborhood Sports for boys and girls aged five to fourteen, with a separate all-girls league." },
+      { name: "N Zone Sports El Paso", note: "runs flag leagues and camps for ages three to fourteen." },
+    ],
+    youthNote:
+      "El Paso's youth game is flag from top to bottom, including a dedicated all-girls league, and the oldest of the leagues has been running since 1999. Those orders are small and size-dense, and they suffer most from a supplier who treats the city as an afterthought. Our",
+    levelMix: "flag",
+    stadiums: [
+      { name: "SISD Student Activities Complex", note: "Socorro ISD's 11,000-seat stadium, built in 1992." },
+      { name: "Student Activities Complex II", note: "Socorro ISD's second stadium, a $58.9 million, 6,500-seat venue opened for the 2024 season." },
+    ],
+    seasonNote:
+      "El Paso is on Mountain Time and six hundred miles from the rest of its own state, so a set that has to be reordered is effectively a fortnight lost. UIL's calendar is the same here as everywhere — conditioning from August 3 or August 10, week one on August 27–29 — but the margin for a mistake is not.",
+    deliveryDays: "El Paso is about 635 miles from our DFW production, roughly nine hours by road — plan on a two- to three-day freight leg.",
+    deliveryDetail:
+      "Nine hours of highway is why we push El Paso programs to approve proofs earlier than anyone else and why we check the size breakdown twice before printing. A missing size in Amarillo is a phone call; in El Paso it is another two to three days on a truck, which is the whole point of getting the roster right before production rather than after.",
+    orderIntro:
+      "Distance shapes every El Paso order. We over-communicate on sizing, hold more extras than we would for a metroplex order, and build the schedule backwards from the freight leg rather than from the print date.",
+    orderStory: [
+      "Send the roster with the size breakdown, not just the count. On a 600-mile delivery the breakdown is the part that saves you a reorder.",
+      "Send colors and the school mark. Seven El Paso schools play in one 6A district, so we proof the shade carefully — these teams are on each other's field every year.",
+      "We return pricing and a free mockup within 24 hours, and we ask about extras explicitly rather than waiting for you to raise it.",
+      "After approval we print the whole order at once and check the size count against your breakdown before it is boxed.",
+      "Freight runs two to three days west. We confirm dispatch so you know the date rather than the window.",
+    ],
+    mostOrderedVarsity:
+      "El Paso's 6A district is seven schools deep and orders full varsity and sub-varsity sets in spring, with extras built in because a reorder is a long way away. Our",
+    mostOrderedPractice:
+      "Seven schools in one district scrimmage each other constantly, and a two-color jersey means one garment travels instead of two. Our",
+    faqs: [
+      { q: "Do you deliver to El Paso?", a: "Yes. El Paso is about 635 miles from our DFW production, so freight is a two- to three-day leg rather than an overnight. We plan the schedule backwards from that and confirm the dispatch date so you are not guessing." },
+      { q: "What happens if a size is wrong on an El Paso order?", a: "That is exactly why we push harder on the size breakdown here than anywhere else. We ask for the breakdown rather than a count, recommend extras in the sizes most likely to move, and check the boxed order against your list before it ships." },
+      { q: "Which El Paso schools do you build for?", a: "All four districts — El Paso ISD, Ysleta ISD, Socorro ISD and Canutillo ISD — from the seven-school 6A district down to the 4A programs, plus the city's flag leagues and club teams." },
+      { q: "Do you make uniforms for El Paso flag leagues?", a: "Yes, including girls' leagues. The El Paso Flag Football League has been running since 1999, and the NFL Flag programs here cover ages five to fourteen with a separate all-girls division." },
+      { q: "What is the minimum order for an El Paso team?", a: "Ten pieces of a design, sizes mixed. A single flag roster clears it, and for a city this far out we usually suggest adding a few extras to the same run rather than reordering later." },
+      { q: "Can you match the colors of a set bought years ago?", a: "Yes. Send a daylight photo and any color values you have; we proof the match before printing and keep the value on file so the next order does not have to be matched again by eye." },
+      { q: "Is the fabric different for El Paso's dry heat?", a: "The build is the same performance knit, but the dry heat here is actually kinder to a jersey than Gulf humidity. What matters more is the sun — sublimated color is dyed into the fiber, so it does not lift or crack the way a pressed print can after a season of high-altitude sun." },
+      { q: "Can you ship a partial order ahead of the rest?", a: "Yes, though on a two- to three-day lane it is usually better to ship once. If a jamboree date forces it, we can send the varsity block first and the sub-varsity blocks behind it." },
+      { q: "How early should an El Paso program order?", a: "Earlier than the rest of the state. Add the freight leg to a two-to-four-week production window and work back from your first scrimmage — August 13 or August 20 depending on spring training — and a spring order is the only comfortable one." },
+    ],
+  },
+
+  midland: {
+    districts: ["Midland ISD", "Greenwood ISD"],
+    schools: [
+      { school: "Midland High", district: "Midland ISD", level: "6A" },
+      { school: "Lee", district: "Midland ISD", level: "6A" },
+      { school: "Greenwood", district: "Greenwood ISD", level: "4A Division I" },
+      { school: "Midland Christian", district: "Private (TAPPS)", level: "TAPPS 5A" },
+    ],
+    schoolsNote:
+      "District 2-6A is five schools across three cities: Midland High and Lee, Odessa and Odessa Permian, and San Angelo Central. That is the whole district — Permian Basin football in its purest form, where the shortest district road trip is a city away and the rivalry between the two Midland ISD schools carries the rest of the calendar. Greenwood, just outside town, plays 4A Division I.",
+    youthLeagues: [
+      { name: "Midland Rec Division", note: "a school-based youth flag football and cheer program running in Midland elementary schools for grades one through six." },
+      { name: "i9 Sports Odessa and Midland", note: "runs flag football leagues for ages three and up across the two cities." },
+    ],
+    youthNote:
+      "Midland's youth football runs inside the elementary schools themselves — the Rec Division is organized by campus rather than by club, grades one through six — so an order here is a set of small, campus-sized teams rather than one big league purchase. Our",
+    levelMix: "youth",
+    stadiums: [
+      { name: "Astound Broadband Stadium", note: "the 18,000-capacity stadium at the Scharbauer Sports Complex, renamed in 2022 and used by Midland ISD football." },
+    ],
+    seasonNote:
+      "A five-school district spread across Midland, Odessa and San Angelo means the longest regular district travel in Class 6A outside El Paso, and it starts the week of August 27–29. Uniforms that arrive during that first travel week arrive too late to be photographed in.",
+    deliveryDays: "Midland is roughly 300 to 320 miles from our DFW production — a one- to two-day freight leg west.",
+    deliveryDetail:
+      "The run out I-20 to the Permian Basin is a day or two depending on the carrier's schedule, which is short enough for a normal spring order and long enough that an August rush is a real risk. We recommend building a week of slack into a Midland delivery rather than the two days the map suggests.",
+    orderIntro:
+      "A Midland order is a two-school town's order: two 6A rosters that play each other, a 4A program on the edge of it, and a campus-based youth program underneath.",
+    orderStory: [
+      "Tell us the school and whether the order covers sub-varsity. The two Midland ISD programs carry full blocks below varsity.",
+      "Send the colors. In a city where the rivalry is between two schools in the same district, getting the shade exactly right matters more than usual.",
+      "Pricing and a free mockup come back within 24 hours, proofed in your colors rather than a generic template.",
+      "On approval the order prints in one pass, so a varsity set and a freshman set do not photograph as two different colors at Astound Broadband Stadium.",
+      "Freight runs west on I-20 in a day or two; we confirm the dispatch date rather than leaving it open.",
+    ],
+    mostOrderedVarsity:
+      "Two 6A programs in one district make full varsity and sub-varsity sets the standard Midland order each spring. Our",
+    mostOrderedPractice:
+      "With only five schools in the district, most of the work is internal — ones against twos, every afternoon, in two colors. Our",
+    faqs: [
+      { q: "Do you supply Midland ISD schools?", a: "Yes — Midland High and Lee at 6A, Greenwood at 4A Division I just outside the city, Midland Christian in TAPPS 5A, and the youth programs running in the elementary schools." },
+      { q: "How long does delivery to Midland take?", a: "Midland is roughly 300 to 320 miles from our DFW production, a one- to two-day freight leg out I-20, on top of two to four weeks of production from proof approval." },
+      { q: "Our district travel is huge — does that change the order?", a: "It changes what you should carry. District 2-6A spans Midland, Odessa and San Angelo, so teams here travel more than most and benefit from an extra set of practice tops and a properly counted run of extras rather than a tight order." },
+      { q: "Do you make uniforms for Midland youth flag teams?", a: "Yes. The Midland Rec Division runs flag football by elementary campus for grades one through six, which means several small teams rather than one large league order — and ten pieces per design covers a campus team." },
+      { q: "What is the minimum order in Midland?", a: "Ten pieces per design, sizes mixed. One campus flag team or one JV block clears it." },
+      { q: "Can you match our school's exact colors?", a: "Yes. Send the values or a daylight photo of the current set and we proof the shade before printing, then keep the value on file so reorders line up with the original." },
+      { q: "Do you outfit TAPPS schools in Midland?", a: "Yes. Midland Christian plays TAPPS 5A football and orders exactly as a UIL program does — same minimum, same process, same turnaround." },
+      { q: "Can one order cover varsity, JV and freshman teams?", a: "Yes, and it is the better way to buy. One production run keeps all three blocks in the same dye lot and the combined quantity lowers the per-piece price." },
+      { q: "When should a Midland program order?", a: "In spring. Week one falls on August 27–29 and this district's travel starts immediately, so a set arriving in late August misses the first road trip and the photos that go with it." },
+    ],
+  },
+
+  lubbock: {
+    districts: ["Lubbock ISD", "Lubbock-Cooper ISD", "Frenship ISD"],
+    schools: [
+      { school: "Lubbock High", district: "Lubbock ISD", level: "5A Division I" },
+      { school: "Monterey", district: "Lubbock ISD", level: "5A Division I" },
+      { school: "Frenship", district: "Frenship ISD", level: "5A Division I" },
+      { school: "Frenship Memorial", district: "Frenship ISD", level: "5A Division I" },
+      { school: "Coronado", district: "Lubbock ISD", level: "5A Division II" },
+      { school: "Lubbock-Cooper", district: "Lubbock-Cooper ISD", level: "5A Division II" },
+      { school: "Estacado", district: "Lubbock ISD", level: "4A Division II" },
+      { school: "Lubbock-Cooper Liberty", district: "Lubbock-Cooper ISD", level: "4A Division II" },
+    ],
+    schoolsNote:
+      "For 2026-28 there is no 6A football anywhere on the South Plains. Frenship dropped out of Class 6A for the first time since the conference was created in 2014, which leaves every program in and around Lubbock at 5A or below: four schools in 5A Division I, two in 5A Division II and two in 4A Division II. It is one of the cleanest single-conference markets in Texas, and it makes a Lubbock order easy to size.",
+    youthLeagues: [
+      { name: "City of Lubbock Parks and Recreation", note: "runs youth flag football as part of its youth recreation leagues." },
+      { name: "Lubbock NFL Flag Football League", note: "the city's NFL Flag affiliate, running its own season for local youth teams." },
+    ],
+    youthNote:
+      "Lubbock's youth football is run by the city and by one flag league rather than by a scatter of franchises, so the orders are fewer and larger and they arrive on a predictable schedule. Our",
+    levelMix: "high-school",
+    stadiums: [
+      { name: "Lowrey Field at PlainsCapital Park", note: "Lubbock ISD's 8,500-seat stadium, reopened after renovation in August 2012 and home to all the district's high school football." },
+    ],
+    seasonNote:
+      "Every Lubbock-area program is 5A or 4A now, so the city's schools mostly follow the earlier end of UIL's 2026 calendar — conditioning from August 3 and full contact from August 8 for anyone who did not hold spring training. That is a week earlier than the big-metro 6A schools, and the delivery date has to match it.",
+    deliveryDays: "Lubbock is about 340 miles from our DFW production, roughly five hours — a one- to two-day freight leg.",
+    deliveryDetail:
+      "Five hours up US-84 puts Lubbock inside a comfortable freight window, but the early conference start dates here mean the deadline is a week sooner than a metroplex coach would assume. We work Lubbock schedules from an August 8 full-contact date rather than from week one.",
+    orderIntro:
+      "Lubbock is a 5A city with two 4A programs, which makes orders here unusually consistent in size — a predictable roster, a predictable size run, and one flag league underneath.",
+    orderStory: [
+      "Give us the school and the roster count; in a market with no 6A, we can size an order accurately from very little information.",
+      "Send colors and any mark. The schools here share one stadium, so we proof for how a shade reads under Lowrey Field's lights.",
+      "Pricing and a free mockup return inside a day at the 5A or 4A block you actually field.",
+      "One production run covers the whole order, keeping the varsity set and the sub-varsity blocks matched.",
+      "Freight runs a day or two up US-84, and we build the schedule from the August 8 contact date rather than from week one.",
+    ],
+    mostOrderedVarsity:
+      "With every local program at 5A or 4A, Lubbock orders full game sets sized to a mid-size roster rather than a sprawling 6A one. Our",
+    mostOrderedPractice:
+      "One stadium and a small number of programs means a lot of intra-squad work, and two colors in one jersey is the cheapest way to run it. Our",
+    faqs: [
+      { q: "Which Lubbock schools do you build uniforms for?", a: "All of them — Lubbock High, Monterey, Coronado and Estacado in Lubbock ISD, Frenship and Frenship Memorial in Frenship ISD, and Lubbock-Cooper and Cooper Liberty in Lubbock-Cooper ISD." },
+      { q: "Is there 6A football in Lubbock?", a: "Not for 2026-28. Frenship's move down leaves the South Plains without a 6A program for the first time since the conference was created in 2014, so every order here is sized to a 5A or 4A roster." },
+      { q: "How long does shipping to Lubbock take?", a: "About 340 miles and five hours from our DFW production, so a one- to two-day freight leg after two to four weeks of production from proof approval." },
+      { q: "When do Lubbock programs need their uniforms?", a: "Earlier than the big-metro schools. Most local programs can start conditioning on August 3 and full contact on August 8, so we work Lubbock delivery dates from that rather than from the first game." },
+      { q: "Do you make uniforms for Lubbock youth leagues?", a: "Yes. The city parks department runs youth flag through its recreation leagues and the Lubbock NFL Flag league runs its own season, and both order at ten pieces per design." },
+      { q: "What is the minimum order for a Lubbock team?", a: "Ten pieces per design with mixed sizes counted together — a single youth division or one sub-varsity block clears it." },
+      { q: "Our program is 4A Division II — do you still build for us?", a: "Yes. Estacado and Cooper Liberty are exactly the size of order we handle every week; a 4A roster is a shorter run, not a harder one." },
+      { q: "Can you match a set bought a few seasons ago?", a: "Yes. Send a daylight photo and any color value on file, and we proof the match before production so a partial reorder blends with the jerseys already in the locker room." },
+      { q: "Do you supply coaches and sideline gear?", a: "Yes. Staff polos, quarter-zips and sideline jackets print in the same colors as the team kit, which reads clearly on a shared stadium sideline like Lowrey Field's." },
+    ],
+  },
+
+  amarillo: {
+    districts: ["Amarillo ISD", "Canyon ISD"],
+    schools: [
+      { school: "Amarillo High", district: "Amarillo ISD", level: "5A Division I" },
+      { school: "Tascosa", district: "Amarillo ISD", level: "5A Division I" },
+      { school: "Caprock", district: "Amarillo ISD", level: "5A Division I" },
+      { school: "Palo Duro", district: "Amarillo ISD", level: "5A Division II" },
+      { school: "Randall", district: "Canyon ISD", level: "4A Division I" },
+      { school: "Canyon", district: "Canyon ISD", level: "4A Division I" },
+      { school: "West Plains", district: "Canyon ISD", level: "4A Division I" },
+      { school: "River Road", district: "River Road ISD", level: "3A Division II" },
+      { school: "Highland Park", district: "Highland Park ISD", level: "2A Division I" },
+    ],
+    schoolsNote:
+      "All four Amarillo ISD high schools — Amarillo, Tascosa, Caprock and Palo Duro — play their home games in the same building, Dick Bivins Stadium. Almost no other Texas city of this size runs football that way. Canyon ISD's three schools sit at 4A Division I just south of town, and the Panhandle drops away quickly from there: River Road at 3A Division II and Highland Park at 2A Division I are both inside the same metro.",
+    youthLeagues: [
+      { name: "Kids Inc.", note: "the long-running Amarillo youth sports organization, with NFL Flag Football Rec for kindergarten through sixth grade and a separate Flag Football Select program." },
+      { name: "West Texas Flag Football", note: "an NFL Flag affiliate covering the Panhandle for ages four to twelve." },
+      { name: "Amarillo Flag Football League", note: "a local flag league running its own seasons in the city." },
+    ],
+    youthNote:
+      "Amarillo's youth scene splits neatly into rec and select — Kids Inc. runs both, and the select side orders like a club team while the rec side orders like a school. The two need different sets, and buying them together is how a program keeps one identity. Our",
+    levelMix: "flag",
+    stadiums: [
+      { name: "Dick Bivins Stadium", note: "a 15,000-seat Amarillo ISD stadium opened in 1950 and shared by all four district high schools — the first stadium in the world to install FieldTurf, in 1998." },
+    ],
+    seasonNote:
+      "Four programs in one stadium means the district's August is scheduled to the hour, and with most Amarillo schools at 5A the first scrimmage can fall on August 13. A set that lands the week before that is comfortable; one that lands during it is not.",
+    deliveryDays: "Amarillo is roughly 345 to 365 miles north-west of our DFW production — a one- to two-day freight leg.",
+    deliveryDetail:
+      "The run up US-287 to the Panhandle is a day or two. What is worth knowing is that everything in Amarillo funnels through one stadium and one district office, so deliveries and fittings queue behind each other in a way they do not in a multi-venue city.",
+    orderIntro:
+      "An Amarillo order is a 5A or 4A order with a shared-stadium calendar around it, plus a youth scene that runs rec and select programs side by side.",
+    orderStory: [
+      "Tell us the school or the program and whether it is rec or select; the two order different quantities on different dates.",
+      "Send colors and the mark. Four schools share Dick Bivins, so we proof the palettes to stay clearly separate under the same lights.",
+      "Pricing and a free mockup come back within a day, cut for the block you field.",
+      "The order prints in one run, which keeps a rec set and a select set in one color family rather than two.",
+      "Freight runs a day or two up US-287; we confirm dispatch so the fitting date can be set.",
+    ],
+    mostOrderedVarsity:
+      "Amarillo ISD's three 5A Division I programs and Palo Duro at 5A Division II order full game sets in spring, ahead of a shared-stadium August. Our",
+    mostOrderedPractice:
+      "Four schools sharing one stadium do their live work on their own practice fields, split two ways every afternoon. Our",
+    faqs: [
+      { q: "Which Amarillo schools do you supply?", a: "All four Amarillo ISD high schools — Amarillo, Tascosa, Caprock and Palo Duro — plus Canyon ISD's Randall, Canyon and West Plains at 4A Division I, and smaller Panhandle programs such as River Road and Highland Park." },
+      { q: "How long does delivery to Amarillo take?", a: "Roughly 345 to 365 miles from our DFW production, a one- to two-day freight leg up US-287, added to two to four weeks of production from proof approval." },
+      { q: "Four schools share one stadium — does that affect the uniforms?", a: "It affects the color proofing. Dick Bivins Stadium hosts all four Amarillo ISD programs under the same lights, so we check that a new shade reads clearly against the other three rather than only against a swatch." },
+      { q: "Do you make uniforms for Kids Inc. teams?", a: "Yes. Kids Inc. runs both NFL Flag rec for kindergarten to sixth grade and a select flag program, and the two order differently — the select teams behave like club teams, the rec teams like school squads." },
+      { q: "What is the minimum order in Amarillo?", a: "Ten pieces per design, mixed sizes counted together. One rec division or one select roster clears it." },
+      { q: "Our school is 4A — can you still price it well?", a: "Yes. Canyon ISD's 4A Division I programs are a normal order for us; a shorter roster changes the run length, not the per-piece build or the process." },
+      { q: "Can you match colors on a reorder?", a: "Yes. The color values are stored with your order, so a mid-season reorder for new players comes off the same spec rather than being eyeballed against an old jersey." },
+      { q: "Do you supply six-man and small-school programs in the Panhandle?", a: "Yes. A 2A or 3A roster is well inside our ten-piece minimum, and small-school orders get the same free mockup and proofing as a 5A one." },
+      { q: "When should an Amarillo program order for the fall?", a: "In spring. With most local schools at 5A, first scrimmages can fall on August 13, and four programs fitting out through one stadium calendar makes late deliveries hard to absorb." },
+    ],
+  },
+
   frisco: {
     districts: ["Frisco ISD", "Prosper ISD", "Little Elm ISD", "Lewisville ISD", "Plano ISD"],
     schools: [
