@@ -125,7 +125,7 @@ export default function DesignYourUniformPage() {
           <p className="mt-5 max-w-3xl text-lg">
             Build your team&rsquo;s uniform on screen from our own product photography — garment,
             team colors, decoration, fabric, fit and roster — and watch the price update as you go.
-            Minimum 10 per design, free mockup within 24 hours, production in 2 to 4 weeks after
+            Minimum 10 per design, free mockup within 24 hours, production in 2 to 3 weeks after
             artwork approval across Texas.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">

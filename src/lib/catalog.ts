@@ -107,7 +107,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Full sublimation with tackle twill and heat-pressed options",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 sets",
-    turnaround: "3 to 4 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "7-on-7-football-uniforms",
@@ -123,7 +123,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "High-definition sublimation",
     sizes: "Youth XS to Adult 4XL",
     moq: "10 sets",
-    turnaround: "2 to 3 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "adult-football-jerseys",
@@ -139,7 +139,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation, screen print, or heat transfer",
     sizes: "Adult S to 5XL",
     moq: "10 jerseys",
-    turnaround: "3 to 4 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "american-football-jerseys",
@@ -155,7 +155,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation with optional twill numbering",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 jerseys",
-    turnaround: "3 to 4 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "american-football-uniforms",
@@ -171,7 +171,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Full sublimation and embellishment-ready panels",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 sets",
-    turnaround: "3 to 4 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "blank-football-jerseys",
@@ -187,7 +187,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Left blank or prepared for add-on decoration",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 jerseys",
-    turnaround: "2 to 3 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "coaches-apparel",
@@ -203,7 +203,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Embroidery, heat transfer, or sublimation",
     sizes: "Adult S to 4XL",
     moq: "10 pieces",
-    turnaround: "2 to 3 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "college-football-uniforms",
@@ -219,7 +219,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation, tackle twill, and applique options",
     sizes: "Adult S to 5XL",
     moq: "10 sets",
-    turnaround: "3 to 4 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "custom-name-football-jerseys",
@@ -235,7 +235,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Full sublimation with variable data names and numbers",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 jerseys",
-    turnaround: "3 to 4 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "custom-number-football-jerseys",
@@ -251,7 +251,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation and twill number options",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 jerseys",
-    turnaround: "3 to 4 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "football-warm-up-suits",
@@ -267,7 +267,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation, embroidery, and heat transfer",
     sizes: "Youth XS to Adult 4XL",
     moq: "10 sets",
-    turnaround: "3 to 4 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "custom-team-jerseys",
@@ -283,7 +283,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "High-resolution sublimation",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 jerseys",
-    turnaround: "3 to 4 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "fan-football-jerseys",
@@ -299,7 +299,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation and heat transfer",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 jerseys",
-    turnaround: "2 to 3 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "flag-football-jerseys",
@@ -315,7 +315,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation",
     sizes: "Youth XS to Adult 4XL",
     moq: "10 jerseys",
-    turnaround: "2 to 3 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "flag-football-uniforms",
@@ -331,7 +331,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation",
     sizes: "Youth XS to Adult 4XL",
     moq: "10 sets",
-    turnaround: "2 to 3 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "football-gloves",
@@ -347,7 +347,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Heat transfer logos and color-matched accents",
     sizes: "Youth S to Adult XL",
     moq: "10 pairs",
-    turnaround: "2 to 3 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "football-hoodies",
@@ -363,7 +363,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Screen print, embroidery, or sublimation panels",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 hoodies",
-    turnaround: "2 to 3 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "football-practice-jerseys",
@@ -379,7 +379,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation or heat transfer numbering",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 jerseys",
-    turnaround: "2 to 3 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "football-shorts",
@@ -395,7 +395,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation or heat transfer",
     sizes: "Youth XS to Adult 4XL",
     moq: "10 shorts",
-    turnaround: "2 to 3 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "football-sideline-jackets",
@@ -411,7 +411,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Embroidery and heat transfer",
     sizes: "Adult S to 5XL",
     moq: "10 jackets",
-    turnaround: "3 to 4 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "high-school-football-uniforms",
@@ -427,7 +427,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation with optional tackle twill",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 sets",
-    turnaround: "3 to 4 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "football-socks",
@@ -443,7 +443,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Knit-in color pattern and logo options",
     sizes: "Youth to Adult XL",
     moq: "10 pairs",
-    turnaround: "2 to 3 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "lightweight-football-jerseys",
@@ -459,7 +459,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation",
     sizes: "Youth XS to Adult 4XL",
     moq: "10 jerseys",
-    turnaround: "2 to 3 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "padded-football-shirts",
@@ -475,7 +475,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Heat transfer branding",
     sizes: "Youth XS to Adult 3XL",
     moq: "10 shirts",
-    turnaround: "2 to 3 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "reversible-football-jerseys",
@@ -491,7 +491,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation on both sides",
     sizes: "Youth XS to Adult 4XL",
     moq: "10 jerseys",
-    turnaround: "3 to 4 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "sublimated-football-jerseys",
@@ -507,7 +507,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "All-over dye sublimation",
     sizes: "Youth XS to Adult 5XL",
     moq: "10 jerseys",
-    turnaround: "3 to 4 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "youth-football-jerseys",
@@ -523,7 +523,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation and heat transfer",
     sizes: "Youth XS to Youth XL",
     moq: "10 jerseys",
-    turnaround: "2 to 3 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
   {
     slug: "youth-football-uniforms",
@@ -539,7 +539,7 @@ const blueprints: ProductBlueprint[] = [
     printing: "Sublimation with roster personalization",
     sizes: "Youth XS to Youth XL",
     moq: "10 sets",
-    turnaround: "2 to 3 weeks after artwork approval",
+    turnaround: "2 to 3 weeks after you approve the design",
   },
 ];
 
@@ -2618,7 +2618,7 @@ const productLongSections: Record<string, (l: ContentLinks) => LongSection[]> = 
       heading: "Ordering Sublimated Jerseys With Adequate Lead Time",
       subheading: "Sublimation production cannot be rushed without quality consequences.",
       paragraphs: [
-        { lead: `Sublimated jersey production involves artwork preparation, color proofing, fabric cutting, printing, and garment assembly in a sequence that requires adequate time at each stage to produce results that match the approved design accurately. Compressing that timeline by reducing proofing iterations or rushing production stages consistently results in quality compromises that show up in the delivered jersey. Programs should plan sublimated jersey orders with at least three to four weeks of production time after artwork approval.` },
+        { lead: `Sublimated jersey production involves artwork preparation, color proofing, fabric cutting, printing, and garment assembly in a sequence that requires adequate time at each stage to produce results that match the approved design accurately. Compressing that timeline by reducing proofing iterations or rushing production stages consistently results in quality compromises that show up in the delivered jersey. Programs should plan sublimated jersey orders with at least three to four weeks of production time after you approve the design.` },
         { lead: `Programs with complex design directions — gradients, detailed mascots, pattern work, or multiple color zones — benefit from additional proofing time at the artwork stage. The investment in thorough proofing prevents the production of jerseys that need to be corrected, which is far more expensive than the time spent on proper proofing.` },
       ],
     },
@@ -2996,7 +2996,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "Can booster club branding be incorporated into fan jerseys?", answer: "Yes. Booster club names, sponsor marks, fundraising identifiers, and supporter-specific branding can all be incorporated into the fan jersey design without competing with the primary team identity." },
     { question: "What size range is available for fan jerseys?", answer: "Fan jerseys are available in Youth XS through Adult 5XL so programs can serve supporters across the full age and size range of their community without creating availability gaps." },
     { question: "Can fan jerseys be ordered through a pre-sale model?", answer: "Yes. Pre-sale models with defined order windows are one of the most effective approaches for booster fan jersey programs because they aggregate enough orders to support a single efficient production run." },
-    { question: "How long does fan jersey production take?", answer: "Standard fan jersey production completes in two to three weeks after artwork approval and order confirmation." },
+    { question: "How long does fan jersey production take?", answer: "Standard fan jersey production completes in two to three weeks after you approve the design and order confirmation." },
     { question: "Can fan jerseys match our game uniform colors exactly?", answer: "We match fan jersey colors to the established program palette. When ordered in the same production conversation as game jerseys, color accuracy is highest. Separately ordered fan jerseys use confirmed program color values to get as close as the production process allows." },
     { question: "Are fan jerseys suitable for community events beyond game days?", answer: "Yes. Fan jerseys are often worn at school events, community activities, and any occasion where supporters want to represent the program, which makes them effective year-round branding tools beyond the game day context." },
     { question: "What is the minimum order quantity for fan jerseys?", answer: "The minimum is 10 jerseys. Booster programs that want to sell fan jerseys throughout the season may benefit from ordering larger initial quantities to avoid per-unit cost increases on small follow-up runs." },
@@ -3008,7 +3008,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "Can flag jerseys be fully sublimated with team colors and logos?", answer: "Yes. Every flag jersey is produced with full sublimation customization covering team colors, logos, player names, and numbers." },
     { question: "What size range is available?", answer: "Flag football jerseys are available in Youth XS through Adult 4XL to cover the full participant range across youth, adult, and mixed-age flag football leagues." },
     { question: "What is the minimum order quantity?", answer: "The minimum is 10 jerseys, which accommodates the typical roster size for most flag football team configurations." },
-    { question: "How quickly can flag football jerseys be produced?", answer: "Standard production runs two to three weeks after artwork approval, which fits most league calendar planning windows with adequate advance notice." },
+    { question: "How quickly can flag football jerseys be produced?", answer: "Standard production runs two to three weeks after you approve the design, which fits most league calendar planning windows with adequate advance notice." },
     { question: "Can multiple teams within the same league order with a shared design template?", answer: "Yes. League-wide template programs with team-specific color variations allow individual teams to feel distinct while the league maintains a consistent organizational visual standard." },
     { question: "Are these jerseys suitable for all-day outdoor tournaments?", answer: "Yes. The lightweight construction and moisture management properties are specifically selected for extended outdoor wear in Texas heat conditions that tournament formats create." },
     { question: "Can we use existing team colors and logos from our contact football program?", answer: "Yes. Programs that operate both flag and contact formats can maintain visual consistency between formats by applying the same color values and logo standards to both jersey types." },
@@ -3020,7 +3020,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "Can the full uniform be customized with team colors and logos?", answer: "Yes. Both jersey and pants are produced with full sublimation customization so team identity, player numbers, and any roster names are consistent across the complete uniform system." },
     { question: "What size range is available?", answer: "Flag football uniforms are available in Youth XS through Adult 4XL for both jersey and pants components." },
     { question: "What is the minimum order for a complete uniform program?", answer: "The minimum is 10 sets. Leagues managing multiple teams should discuss their full program structure to identify the most efficient ordering approach." },
-    { question: "How long does flag uniform production take?", answer: "Standard production completes in two to three weeks after artwork approval and roster data confirmation." },
+    { question: "How long does flag uniform production take?", answer: "Standard production completes in two to three weeks after you approve the design and roster data confirmation." },
     { question: "Can a league order uniforms for multiple teams in a single project?", answer: "Yes. Multi-team league orders are one of our most common flag uniform project types. We structure the design and production to accommodate team-specific variations within the same overall ordering timeline." },
     { question: "How does flag uniform design accommodate the absence of shoulder pads?", answer: "Without shoulder pads creating visual bulk, jersey silhouette and proportion decisions work differently than in contact formats. We adjust design elements to create an athletic visual impression on the actual body rather than relying on pad systems to create athletic structure." },
     { question: "Are flag uniforms appropriate for both youth and adult flag programs?", answer: "Yes. The same uniform program can serve youth and adult participants with appropriate size adjustments, and the construction handles the physical demands of both age-group formats comfortably." },
@@ -3117,7 +3117,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "What size range is available?", answer: "Lightweight jerseys are available in Youth XS through Adult 4XL to accommodate the full range of program participants who benefit from lightweight construction." },
     { question: "How quickly do lightweight jerseys dry after sweat saturation?", answer: "The fast-dry properties of ultralight polyester mesh evacuate moisture significantly faster than standard game-weight fabrics. Athletes can expect noticeably quicker drying between practice periods compared with heavier jerseys." },
     { question: "What is the minimum order quantity?", answer: "The minimum is 10 jerseys. Programs ordering for specific use cases like 7-on-7 or camp may want to confirm their actual participation numbers before finalizing quantity." },
-    { question: "How long does production take?", answer: "Standard production runs two to three weeks after artwork approval." },
+    { question: "How long does production take?", answer: "Standard production runs two to three weeks after you approve the design." },
     { question: "Can lightweight jerseys be color-matched to our game jerseys?", answer: "Yes. Color values from the game jersey order can be applied to lightweight jerseys so both versions maintain visual consistency across the different use contexts." },
     { question: "Are these jerseys appropriate for all-day tournament play?", answer: "Yes. They are specifically designed for the extended outdoor wear conditions that characterize Texas 7-on-7 and flag football tournament formats." },
     { question: "How do I order lightweight football jerseys?", answer: `Contact us through any Get a Quote link on the site, call ${company.phoneDisplay}, or email ${company.email} with your planned use case and timeline.` },
@@ -3141,7 +3141,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "Is the fabric breathable on both sides?", answer: "Yes. The double-layer breathable polyester maintains airflow properties on both sides so the jersey performs consistently regardless of which side is facing out." },
     { question: "What size range is available?", answer: "Reversible jerseys are available in Youth XS through Adult 4XL to accommodate the full range of practice roster sizes." },
     { question: "What is the minimum order quantity?", answer: "The minimum is 10 jerseys. Most practice programs order quantities that cover their full active roster." },
-    { question: "How long does reversible jersey production take?", answer: "Standard production runs three weeks after artwork approval. The double-sided artwork process requires an additional review step so both sides are confirmed before production begins." },
+    { question: "How long does reversible jersey production take?", answer: "Standard production runs three weeks after you approve the design. The double-sided artwork process requires an additional review step so both sides are confirmed before production begins." },
     { question: "How durable are reversible jerseys through a full practice season?", answer: "The double-layer construction gives reversible jerseys greater durability than single-layer practice jerseys. Sublimation on both sides maintains color and number legibility through the full season of daily washing and use." },
     { question: "Can the same reversible jersey be used for both offense and defense?", answer: "Yes. The jersey is flipped to indicate unit assignment, so one jersey serves as an offensive jersey in one color and a defensive jersey in the other. The coaching staff determines the assignment convention that works best for their practice structure." },
     { question: "How do I order reversible football jerseys?", answer: `Contact us through any Get a Quote link on the site, call ${company.phoneDisplay}, or email ${company.email} with your roster size and preferred color combination.` },
@@ -3177,7 +3177,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "What size range is available?", answer: "Youth football uniforms are available in Youth XS through Youth XL. Programs with older youth participants approaching adult sizes should discuss the size boundary during the quote process." },
     { question: "How are youth uniform orders handled when roster sizes are uncertain?", answer: "We recommend establishing a registration cutoff point that allows a minimum order to be confirmed before production begins. A structured approach for accommodating late additions after the initial run is planned during the ordering conversation." },
     { question: "What is the minimum order quantity for youth uniforms?", answer: "The minimum is 10 sets. Most youth football team rosters meet or exceed this minimum comfortably." },
-    { question: "How long does youth uniform production take?", answer: "Standard production runs two to three weeks after artwork approval and roster data confirmation." },
+    { question: "How long does youth uniform production take?", answer: "Standard production runs two to three weeks after you approve the design and roster data confirmation." },
     { question: "Can leagues managing multiple age divisions order in one project?", answer: "Yes. Multi-division orders with shared visual frameworks and division-specific color variations or team identifiers are one of the most common youth uniform project structures we support." },
     { question: "Are youth uniforms durable enough to handle a full contact football season?", answer: "Yes. The construction is designed for the physical demands of youth contact football, including the repeated washing that comes with weekly game and practice use throughout a multi-month season." },
     { question: "How do I start a youth football uniform program?", answer: `Contact us through any Get a Quote link on the site, call ${company.phoneDisplay}, or email ${company.email} with your league structure, age divisions, and season start date.` },
@@ -3196,7 +3196,7 @@ function buildFaqs(product: ProductBlueprint): { question: string; answer: strin
       { question: `Can I fully customize ${product.name.toLowerCase()} with our team colors and logo?`, answer: `Yes. Every quote is built around your color palette, logo placement, numbers, and player details so the final ${product.name.toLowerCase()} match your program identity.` },
       { question: `What is the minimum order?`, answer: `The minimum is ${product.moq} per design. Discuss unusual structures during the quote process.` },
       { question: `What sizes are available?`, answer: `Available in ${product.sizes}. We help teams align roster measurements before production begins.` },
-      { question: `How long does production take?`, answer: `Typical turnaround is ${product.turnaround} after artwork approval.` },
+      { question: `How long does production take?`, answer: `Typical turnaround is ${product.turnaround} after you approve the design.` },
       { question: `Can you match existing team branding?`, answer: `Yes. We build new orders around your established colors and artwork to maintain brand consistency.` },
       { question: `Are player names and numbers included?`, answer: `Yes. Personalization is part of the artwork and approval workflow.` },
       { question: `What decoration method is used?`, answer: `The recommended method is ${product.printing}. We confirm the best option based on your design needs.` },
@@ -3338,15 +3338,15 @@ export function getCategoryMetaTitle(category: CategoryPage) {
 export function getCategoryMetaDescription(category: CategoryPage) {
   const descriptions: Record<CategoryGroup, string> = {
     Jerseys:
-      "Custom football jerseys for Texas teams: youth, adult, reversible, sublimated, practice and fan styles. Minimum 10 per design, 2–4 weeks, free mockup in 24 hours.",
+      "Custom football jerseys for Texas teams: youth, adult, reversible, sublimated, practice and fan styles. Minimum 10 per design, 2 to 3 weeks, free mockup in 24 hours.",
     Uniforms:
-      "Custom football uniforms for Texas youth leagues, high schools, 7v7 and flag teams. Minimum 10 per design, 2–4 weeks after approval, free mockup in 24 hours.",
+      "Custom football uniforms for Texas youth leagues, high schools, 7v7 and flag teams. Minimum 10 per design, 2 to 3 weeks after approval, free mockup in 24 hours.",
     "Practice Gear":
-      "Football practice jerseys, padded shirts, shorts, gloves and socks in Texas team colors. Minimum 10 per design, 2–3 weeks, free mockup in 24 hours.",
+      "Football practice jerseys, padded shirts, shorts, gloves and socks in Texas team colors. Minimum 10 per design, 2 to 3 weeks, free mockup in 24 hours.",
     "Team Packages":
-      "Football team packages for Texas programs: jerseys, pants, practice and sideline gear in one quote. Minimum 10 per design, 3–4 weeks, free mockup in 24 hours.",
+      "Football team packages for Texas programs: jerseys, pants, practice and sideline gear in one quote. Minimum 10 per design, 2 to 3 weeks, free mockup in 24 hours.",
     "Team Apparel":
-      "Football team apparel for Texas programs: hoodies, warm-up suits, sideline jackets and coaches uniforms. Minimum 10 per design, 2–3 weeks, free 24-hour mockup.",
+      "Football team apparel for Texas programs: hoodies, warm-up suits, sideline jackets and coaches uniforms. Minimum 10 per design, 2 to 3 weeks, free 24-hour mockup.",
   };
 
   return descriptions[category.group];
@@ -3360,7 +3360,7 @@ export function getCategorySpecs(category: CategoryPage) {
       ["Customization method", "Sublimation, variable names and numbers, and optional twill details"],
       ["Design support", "Free layout guidance for colors, names, number hierarchy, and logo placement"],
       ["Order type", "Single-style team runs, player-specific roster orders, and repeat add-on orders"],
-      ["Turnaround", "Usually 2 to 4 weeks after final artwork approval"],
+      ["Turnaround", "Usually 2 to 3 weeks after final artwork approval"],
       ["Shipping coverage", "Delivered across Texas for school, club, and event programs"],
     ],
     Uniforms: [
@@ -3369,7 +3369,7 @@ export function getCategorySpecs(category: CategoryPage) {
       ["Customization method", "Full sublimation, player personalization, and optional tackle twill upgrades"],
       ["Design support", "Uniform layout help for numbers, trim, shoulder details, and team identity systems"],
       ["Order type", "Full roster sets, school-issued team programs, and seasonal replacement runs"],
-      ["Turnaround", "Usually 3 to 4 weeks after final design sign-off"],
+      ["Turnaround", "Usually 2 to 3 weeks after final design sign-off"],
       ["Shipping coverage", "Texas-wide delivery coordination for schools, clubs, and camps"],
     ],
     "Practice Gear": [
@@ -3387,7 +3387,7 @@ export function getCategorySpecs(category: CategoryPage) {
       ["Customization method", "Full package design alignment with names, numbers, and coordinated graphics"],
       ["Design support", "Program-level planning for uniforms, supporting pieces, and roster consistency"],
       ["Order type", "Complete roster packages and multi-item team ordering"],
-      ["Turnaround", "Usually 3 to 4 weeks after final package approval"],
+      ["Turnaround", "Usually 2 to 3 weeks after final package approval"],
       ["Shipping coverage", "Texas delivery scheduling for team, school, and club orders"],
     ],
     "Team Apparel": [
@@ -4100,7 +4100,7 @@ export function getCategoryFaqs(category: CategoryPage): CategoryFaq[] {
       { question: "What is the usual minimum order for jersey projects?", answer: "The minimum is 10 jerseys per design. Mixed rosters can combine youth and adult sizes in one design, and personalization does not change the minimum." },
       { question: "Can I choose lightweight or game-weight jersey options?", answer: "Yes. This category includes lighter practice-oriented builds as well as more structured game-ready jersey options." },
       { question: "Do these jerseys work for youth and adult teams?", answer: "Yes. Size ranges vary by product, but the category includes both youth-focused and adult-focused jersey options." },
-      { question: "How long does custom jersey production usually take?", answer: "Turnaround typically falls between 2 and 4 weeks after final artwork approval, depending on the product and roster complexity." },
+      { question: "How long does custom jersey production usually take?", answer: "Production is 2 to 3 weeks after you approve the design. Rush production is 10 business days for 15% of the invoice, minimum $20. Shipping is free on every order." },
       { question: "Can booster groups order fan-focused football jerseys too?", answer: "Yes. Fan-oriented jersey styles can help booster clubs and supporters stay connected to the same team identity." },
     ],
     Uniforms: [
@@ -4110,7 +4110,7 @@ export function getCategoryFaqs(category: CategoryPage): CategoryFaq[] {
       { question: "How do I choose between different uniform styles?", answer: "The best option depends on your level of play, athlete age, climate priorities, and whether you want a lighter event build or a fuller game-day system." },
       { question: "Can youth and varsity teams use the same design direction?", answer: "Yes. Many programs use one visual framework across multiple age groups while adjusting sizes and product structure as needed." },
       { question: "What customization methods are common for football uniforms?", answer: "Common methods include sublimation, roster personalization, and optional upgrades like tackle twill depending on the final build." },
-      { question: "What is the standard turnaround for custom uniforms?", answer: "Most uniform programs run about 3 to 4 weeks after artwork approval, with a minimum of 10 sets per design." },
+      { question: "What is the standard turnaround for custom uniforms?", answer: "Most uniform programs run about 2 to 3 weeks after you approve the design, with a minimum of 10 sets per design." },
       { question: "Can uniforms be reordered later for roster additions?", answer: "Yes. A well-organized initial order makes replacement and add-on uniform requests much easier later in the season." },
     ],
     "Practice Gear": [
@@ -4130,7 +4130,7 @@ export function getCategoryFaqs(category: CategoryPage): CategoryFaq[] {
       { question: "Who benefits most from team packages?", answer: "Schools, clubs, and organizations managing full rosters or multiple teams usually gain the most from package-based ordering." },
       { question: "Can packages help with repeat orders later in the season?", answer: "Yes. Package planning keeps artwork and coordination cleaner, which makes add-on orders easier later." },
       { question: "Are team packages customized for each program?", answer: "Yes. Package direction depends on your roster size, goals, product mix, and branding priorities." },
-      { question: "How long do package orders usually take?", answer: "Most coordinated package orders take around 3 to 4 weeks after final approvals are complete. The minimum is 10 sets per design." },
+      { question: "How long do package orders usually take?", answer: "Most coordinated package orders take around 2 to 3 weeks after final approvals are complete. The minimum is 10 sets per design." },
       { question: "Can team packages support Texas school and club programs?", answer: "Yes. The category is especially useful for Texas programs that need full-team coordination and stronger operational structure." },
     ],
     "Team Apparel": [
@@ -4251,13 +4251,13 @@ export function moqCount(product: Pick<Product, "moq">) {
 }
 
 /**
- * Turnaround as a fact-strip phrase: "3 to 4 weeks" -> "3–4 weeks after
+ * Turnaround as a fact-strip phrase: "2 to 3 weeks" -> "2 to 3 weeks after
  * artwork approval". Strings that already name their trigger ("after final
  * design sign-off") keep it.
  */
 export function turnaroundLabel(product: Pick<Product, "turnaround">) {
   const dashed = product.turnaround.replace(/(\d+)\s+to\s+(\d+)/, "$1–$2");
-  return /\bafter\b/i.test(dashed) ? dashed : `${dashed} after artwork approval`;
+  return /\bafter\b/i.test(dashed) ? dashed : `${dashed} after you approve the design`;
 }
 
 /**
@@ -4297,8 +4297,8 @@ function priceValidUntil() {
 
 /**
  * Parses a published turnaround string like "2 to 3 weeks" or
- * "3 to 4 weeks after artwork approval" into a min/max day range.
- * Falls back to 2-4 weeks if a string ever fails to match.
+ * "2 to 3 weeks after you approve the design" into a min/max day range.
+ * Falls back to 2 to 3 weeks if a string ever fails to match.
  */
 function parseTurnaroundDays(turnaround: string) {
   const match = turnaround.match(/(\d+)(?:\s+to\s+(\d+))?\s+weeks?/i);

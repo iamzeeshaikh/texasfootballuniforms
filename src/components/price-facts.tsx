@@ -86,9 +86,10 @@ export function PriceNotes({ unit, minimum }: PriceNotesProps) {
         ))}
       </ul>
       <p className="mt-6 text-sm text-[var(--color-navy-soft)]">
-        Prices are in USD and quoted per piece before shipping and tax. We take no payment on this
-        site: you get a written quote and a free mockup first, and nothing is produced until you
-        approve the design.
+        Prices are in USD and quoted per piece before tax, and shipping is free on every order.
+        Production is 2 to 3 weeks after you approve the design; rush production is 10 business days
+        for 15% of the invoice, minimum $20. We take no payment on this site: you get a written
+        quote and a free mockup first, and nothing is produced until you approve the design.
       </p>
     </section>
   );

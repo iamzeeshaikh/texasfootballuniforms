@@ -47,7 +47,7 @@ const orderSteps = [
   },
   {
     title: "Production runs and the order ships",
-    text: "Practice, youth, flag, 7-on-7 and accessory orders run 2 to 3 weeks after artwork approval. Sublimated game jerseys, named and numbered jerseys, full uniform programs, warm-up suits, sideline jackets and college builds run 3 to 4 weeks. The quote states which window applies to your order.",
+    text: "Production runs 2 to 3 weeks after you approve the design, whatever the garment. Rush production is 10 business days for 15% of the invoice, minimum $20. Shipping is free on every order.",
   },
 ];
 

@@ -158,7 +158,7 @@ const uniformCluster = [
  *
  * Every number here is the number the rest of the site publishes: the prices
  * are product.fromPrice, the minimum is the catalog MOQ, and the turnaround
- * range is the real spread across the 28 blueprints (2-3 weeks on most
+ * range is the real spread across the 28 blueprints (2 to 3 weeks on most
  * jerseys, 3-4 on full uniform programs and college builds). Change a price in
  * catalog.ts and this block has to move with it.
  *
