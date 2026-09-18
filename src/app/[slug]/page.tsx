@@ -9,6 +9,7 @@ import { ImageCarousel } from "@/components/image-carousel";
 import { MoneySections } from "@/components/money-sections";
 import { PriceFacts, PriceNotes } from "@/components/price-facts";
 import { ProductLeadForm } from "@/components/product-lead-form";
+import { RelatedGuides } from "@/components/related-guides";
 import { DesignYourUniform } from "@/components/design-your-uniform";
 import {
   buildFaqSchema,
@@ -24,6 +25,7 @@ import {
   getProductBySlug,
   getRelatedProductsBySlug,
 } from "@/lib/catalog";
+import { getGuidesForProduct } from "@/data/blogPosts";
 import { designAddOnForProduct, designGarmentForProduct, getDesignOptions } from "@/lib/design-tool";
 import { getMoneyPage } from "@/lib/money-pages";
 import { createMetadata } from "@/lib/seo";
@@ -66,6 +68,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const designOptions = getDesignOptions();
   const moneyPage = getMoneyPage(product.slug);
   const relatedProducts = getRelatedProductsBySlug(product.slug);
+  const guides = getGuidesForProduct(product.slug);
   const faqSchema = buildFaqSchema(product);
   const productSchema = buildProductSchema(product);
   // The trail names the product's real category. It used to say
@@ -271,6 +274,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
             ))}
           </div>
         </section>
+
+        <RelatedGuides guides={guides} productName={product.name} />
 
         <section className="mt-12">
           <div className="flex items-end justify-between gap-6">

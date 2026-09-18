@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { getBlogPostsNewestFirst } from "@/data/blogPosts";
 import { categoryGroups, getCategorySlug, getProductBySlug } from "@/lib/catalog";
 import { company } from "@/lib/site";
 
@@ -23,6 +24,10 @@ export function Footer() {
   const topProducts = FOOTER_PRODUCTS.map((slug) => getProductBySlug(slug)).filter(
     (product): product is NonNullable<typeof product> => Boolean(product),
   );
+  // Sitewide links to the five guides. They were reachable only from /blog/,
+  // which is why none of them are indexed; a wrapping row costs one line of
+  // footer and gives every post a link from all 75 URLs.
+  const guides = getBlogPostsNewestFirst();
 
   return (
     <footer className="border-t border-white/10 bg-[var(--color-navy)]">
@@ -70,7 +75,7 @@ export function Footer() {
               About Us
             </Link>
             <Link href="/blog/" className="transition hover:text-[var(--color-gold)]">
-              Blog
+              Guides
             </Link>
             <Link href="/contact-us/" className="transition hover:text-[var(--color-gold)]">
               Contact Us
@@ -113,6 +118,25 @@ export function Footer() {
                 className="transition hover:text-[var(--color-gold)]"
               >
                 {product.name}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/60">
+            Football Uniform Guides
+          </p>
+          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-3 text-sm text-white/75">
+            {guides.map((guide) => (
+              <Link
+                key={guide.slug}
+                href={`/blog/${guide.slug}/`}
+                className="transition hover:text-[var(--color-gold)]"
+              >
+                {guide.title}
               </Link>
             ))}
           </div>

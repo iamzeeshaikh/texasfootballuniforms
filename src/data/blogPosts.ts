@@ -17,7 +17,20 @@ export type BlogPost = {
   excerpt: string;
   badge: string;
   date: string;
+  /**
+   * Real last-edit date, for BlogPosting.dateModified and the sitemap. Only
+   * moves when the post's text or its product mapping actually changes.
+   */
+  dateModified: string;
   readTime: string;
+  /**
+   * The product page this guide is about, and the other pages it genuinely
+   * discusses. Drives the "Related guides" block on the product pages and the
+   * "What this guide is about" card on the post itself, so a post is never
+   * more than one click from the thing it is selling.
+   */
+  primaryProduct: string;
+  alsoCovers: string[];
   intro: string;
   sections: BlogSection[];
   faq: { q: string; a: string }[];
@@ -35,7 +48,10 @@ export const blogPosts: BlogPost[] = [
       "Great team uniforms start with a clear design plan. Here is how to design custom football uniforms that look unified, professional, and unmistakably yours.",
     badge: "Design Guide",
     date: "2026-05-12",
+    dateModified: "2026-09-18",
     readTime: "7 min read",
+    primaryProduct: "custom-team-jerseys",
+    alsoCovers: ["sublimated-football-jerseys", "custom-name-football-jerseys", "football-team-kits", "high-school-football-uniforms", "youth-football-uniforms"],
     intro:
       "A custom football uniform does more than identify a team — it builds pride, unity, and a look that intimidates on game day. But a great uniform does not happen by accident. It comes from deliberate choices about color, identity, fabric, and fit. This guide walks through how to design custom football uniforms your whole roster will be proud to wear.",
     sections: [
@@ -94,7 +110,10 @@ export const blogPosts: BlogPost[] = [
       "The fabric decides whether jerseys stay cool, survive contact, and keep their color. Here is how to choose the right football jersey material.",
     badge: "Materials Guide",
     date: "2026-05-26",
+    dateModified: "2026-09-18",
     readTime: "7 min read",
+    primaryProduct: "sublimated-football-jerseys",
+    alsoCovers: ["lightweight-football-jerseys", "padded-football-shirts", "football-practice-jerseys", "reversible-football-jerseys"],
     intro:
       "A football jersey lives a hard life — sweat, sun, grass, and contact, week after week. The fabric is what determines whether it keeps players cool, holds up to the game, and still looks sharp at the end of a season. This guide breaks down the main jersey fabric choices so you can spec the right material for your team.",
     sections: [
@@ -153,7 +172,10 @@ export const blogPosts: BlogPost[] = [
       "Uniform needs change with the level of play. Here is how to buy football uniforms for youth, high school, and college programs.",
     badge: "Buyer's Guide",
     date: "2026-06-09",
+    dateModified: "2026-09-18",
     readTime: "6 min read",
+    primaryProduct: "high-school-football-uniforms",
+    alsoCovers: ["youth-football-uniforms", "youth-football-jerseys", "college-football-uniforms", "7-on-7-football-uniforms"],
     intro:
       "A youth league, a high school program, and a college team have very different uniform needs — in sizing, durability, budget, and design. Buying the right kit means understanding what matters most at each level. This guide breaks down how to order football uniforms across youth, high school, and college play.",
     sections: [
@@ -212,7 +234,10 @@ export const blogPosts: BlogPost[] = [
       "Names and numbers are where a jersey becomes a player's own. Here is how to personalize football jerseys the right way.",
     badge: "Personalization",
     date: "2026-06-23",
+    dateModified: "2026-09-18",
     readTime: "6 min read",
+    primaryProduct: "custom-name-football-jerseys",
+    alsoCovers: ["custom-number-football-jerseys", "reversible-football-jerseys", "sublimated-football-jerseys"],
     intro:
       "Nothing builds pride like seeing your own name and number on a jersey. But personalization is also functional — numbers identify players for officials and fans, and a consistent style keeps the whole team looking unified. Here is how to get custom names and numbers on football jerseys right.",
     sections: [
@@ -271,7 +296,10 @@ export const blogPosts: BlogPost[] = [
       "A team kit is more than jerseys. Here is everything a complete football program should order to look unified from head to toe.",
     badge: "Team Kits",
     date: "2026-07-07",
+    dateModified: "2026-09-18",
     readTime: "6 min read",
+    primaryProduct: "football-team-kits",
+    alsoCovers: ["football-hoodies", "football-socks", "football-warm-up-suits", "coaches-apparel", "american-football-uniforms"],
     intro:
       "A great football program looks unified from head to toe — not just in the jersey, but in every piece a player wears on game day and the sideline. Building a complete team kit means thinking beyond the uniform to the full system. Here is what a complete football team kit includes and how to order it.",
     sections: [
@@ -328,4 +356,30 @@ export const blogPosts: BlogPost[] = [
 
 export function getBlogPost(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug);
+}
+
+/**
+ * The guides that genuinely discuss a given product page, most specific first.
+ *
+ * The five posts have sat unindexed with almost nothing linking to them. This
+ * is the reverse of `primaryProduct` / `alsoCovers`, so every money page can
+ * carry a "Related guides" block and no post is an orphan.
+ *
+ * The fallback is the design guide: it is written about the whole process
+ * rather than one garment, so it is honestly relevant to any product page that
+ * no other post names.
+ */
+export function getGuidesForProduct(productSlug: string): BlogPost[] {
+  const primary = blogPosts.filter((post) => post.primaryProduct === productSlug);
+  const secondary = blogPosts.filter((post) => post.alsoCovers.includes(productSlug));
+  const matched = [...primary, ...secondary];
+  if (matched.length > 0) return matched.slice(0, 3);
+
+  const fallback = getBlogPost("how-to-design-custom-football-uniforms");
+  return fallback ? [fallback] : [];
+}
+
+/** Newest first — the order the blog index and the footer guide row use. */
+export function getBlogPostsNewestFirst(): BlogPost[] {
+  return [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }

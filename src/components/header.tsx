@@ -22,9 +22,14 @@ const navItems: { href: string; label: string; accent?: boolean; wide?: boolean 
   // browsing coach into a specification we can quote.
   { href: "/design-your-uniform/", label: "Design Uniform", accent: true },
   { href: "/size-chart/", label: "Size Chart", wide: true },
-  // Size Chart and Blog only from xl: the row already ran past the viewport
-  // edge at 1024px before the designer link was added to it, and both pages
-  // are in the drawer, the footer and the body copy.
+  // Size Chart and the guides link only from xl: the row already ran past the
+  // viewport edge at 1024px before the designer link was added to it, and both
+  // pages are in the drawer, the footer and the body copy.
+  //
+  // Label kept at "Blog" rather than "Guides" — the row has ~21px of slack at
+  // 1280 and two more characters is not worth spending it on. The footer and
+  // the drawer say "Guides", and /blog/ itself is titled "Football Uniform
+  // Guides".
   { href: "/blog/", label: "Blog", wide: true },
 ];
 

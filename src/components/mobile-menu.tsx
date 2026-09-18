@@ -32,7 +32,7 @@ export function MobileMenu({ cities }: { cities: City[] }) {
             <Link href="/design-your-uniform/" onClick={close} className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-[var(--color-gold)] hover:bg-white/10">Design Your Uniform</Link>
             <Link href="/size-chart/" onClick={close} className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-white/85 hover:bg-white/10 hover:text-[var(--color-gold)]">Size Chart</Link>
             <Link href="/all-categories/" onClick={close} className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-white/85 hover:bg-white/10 hover:text-[var(--color-gold)]">Products</Link>
-            <Link href="/blog/" onClick={close} className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-white/85 hover:bg-white/10 hover:text-[var(--color-gold)]">Blog</Link>
+            <Link href="/blog/" onClick={close} className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-white/85 hover:bg-white/10 hover:text-[var(--color-gold)]">Guides</Link>
             <Link href="/contact-us/" onClick={close} className="block rounded-lg px-3 py-2.5 text-sm font-semibold text-white/85 hover:bg-white/10 hover:text-[var(--color-gold)]">Contact</Link>
 
             <p className="px-3 pb-1 pt-3 text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-gold)]">Locations</p>

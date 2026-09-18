@@ -5,6 +5,7 @@ import { Fragment } from "react";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { blogPosts, getBlogPost } from "@/data/blogPosts";
+import { getProductBySlug, fromPriceLabel, moqCount } from "@/lib/catalog";
 import { createMetadata } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 
@@ -55,16 +56,37 @@ export default async function BlogPostPage({
 
   const related = post.related.map((s) => getBlogPost(s)).filter((p): p is NonNullable<typeof p> => Boolean(p));
 
+  // The pages this guide is actually about. A post that never links out to the
+  // thing it is describing sends the reader back to search for it.
+  const primaryProduct = getProductBySlug(post.primaryProduct);
+  const coveredProducts = [post.primaryProduct, ...post.alsoCovers]
+    .map((slug) => getProductBySlug(slug))
+    .filter((item): item is NonNullable<typeof item> => Boolean(item));
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
     description: post.metaDescription,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.dateModified,
     mainEntityOfPage: `${SITE_URL}/blog/${post.slug}/`,
     author: { "@type": "Organization", name: "Texas Football Uniforms" },
-    publisher: { "@type": "Organization", name: "Texas Football Uniforms", url: SITE_URL },
+    publisher: {
+      "@id": `${SITE_URL}/#organization`,
+      "@type": "Organization",
+      name: "Texas Football Uniforms",
+      url: SITE_URL,
+    },
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: primaryProduct
+      ? { "@type": "Product", name: primaryProduct.name, url: `${SITE_URL}/${primaryProduct.slug}/` }
+      : undefined,
+    mentions: coveredProducts.map((item) => ({
+      "@type": "Product",
+      name: item.name,
+      url: `${SITE_URL}/${item.slug}/`,
+    })),
   };
   const faqSchema = {
     "@context": "https://schema.org",
@@ -94,8 +116,30 @@ export default async function BlogPostPage({
           <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-neutral-900 sm:text-4xl">{post.title}</h1>
           <p className="mt-3 text-sm text-neutral-500">
             {dateFmt.format(new Date(post.date))} · {post.readTime}
+            {post.dateModified !== post.date ? (
+              <> · Updated {dateFmt.format(new Date(post.dateModified))}</>
+            ) : null}
           </p>
           <p className="mt-6 text-lg leading-8 text-neutral-700">{post.intro}</p>
+
+          {primaryProduct && (
+            <Link
+              href={`/${primaryProduct.slug}/`}
+              className="mt-8 flex flex-col gap-1 rounded-2xl border border-neutral-200 bg-neutral-50 p-5 transition hover:border-red-600 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <span>
+                <span className="block text-[11px] font-semibold uppercase tracking-[0.2em] text-red-700">
+                  The product this guide covers
+                </span>
+                <span className="mt-1 block text-lg font-bold text-neutral-900">
+                  {primaryProduct.name}
+                </span>
+              </span>
+              <span className="text-sm font-semibold text-neutral-600">
+                {fromPriceLabel(primaryProduct)} · minimum {moqCount(primaryProduct)}
+              </span>
+            </Link>
+          )}
 
           <div className="mt-10 space-y-10">
             {post.sections.map((section) => (
@@ -138,6 +182,24 @@ export default async function BlogPostPage({
               Get a Free Quote
             </Link>
           </div>
+
+          {coveredProducts.length > 0 && (
+            <section className="mt-14">
+              <h2 className="text-xl font-bold text-neutral-900">Pages this guide refers to</h2>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                {coveredProducts.map((item) => (
+                  <Link
+                    key={item.slug}
+                    href={`/${item.slug}/`}
+                    className="flex items-baseline justify-between gap-4 rounded-2xl border border-neutral-200 p-4 transition hover:border-red-600"
+                  >
+                    <span className="font-semibold text-neutral-900">{item.name}</span>
+                    <span className="shrink-0 text-sm text-neutral-500">{fromPriceLabel(item)}</span>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
 
           {related.length > 0 && (
             <section className="mt-14">
