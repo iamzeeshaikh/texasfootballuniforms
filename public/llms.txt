@@ -1,8 +1,10 @@
 # Texas Football Uniforms
 
 > Custom football uniforms, jerseys, practice gear and sideline apparel made to
-> order for football programs across Texas. Quote-first: there is no online
-> checkout, every order starts with a free quote and a free design mockup.
+> order for football programs across Texas. Order online or ask for a quote
+> first; either way there is no online payment — an order is settled in cash on
+> delivery or by bank transfer against an invoice we email, and every order gets
+> a free design mockup before anything is printed.
 
 Site: https://texasfootballuniforms.com/
 Contact: info@texasfootballuniforms.com · (213) 449-3746 · WhatsApp +1 213-449-3746
@@ -22,6 +24,15 @@ https://texasfootballuniforms.com/sitemap.xml
 
 ## How ordering works
 
+Two routes, and both end at the same mockup.
+
+Order on the site:
+1. Pick the design, set the roster count (minimum 10 per design) and enter a size breakdown that adds up to it.
+2. Check out with a shipping address and a payment method: cash on delivery, or bank transfer against an invoice we email. No card is asked for and no payment is taken on the site.
+3. We email a free digital mockup, normally within 24 hours. Nothing is printed before you approve it.
+4. Production runs and ships free.
+
+Or ask for a quote first:
 1. Send a quote request with your roster count, team colors and the date you need the kit.
 2. We reply with pricing, fabric options and a free digital mockup, normally within 24 hours.
 3. You approve the design proof. Nothing is printed before you sign off.
@@ -49,25 +60,28 @@ builds. The clock starts at approval, not at the quote.
 
 **Can we see a mockup before ordering?** Yes, and it is free. Send your colors, logo
 and roster count and we return a digital mockup on the garment you picked, normally
-within 24 hours. Nothing is printed until you approve that proof, and no payment is
-taken to get one.
+within 24 hours. Nothing is printed until you approve that proof, and nothing is
+charged to get one.
 
 **What sizes?** Youth XS through adult 5XL, with the ceiling depending on the garment:
 jerseys and team kits run the full range, 7-on-7 and flag builds stop at adult 4XL, and
 youth-block products stop at youth XL. Measurements are at /size-chart/.
 
-**How do we order?** Four steps. Send your roster count, colors and date. We reply with
-a written quote and a free mockup, normally within 24 hours. You approve the proof.
-Production runs and the order ships. There is no checkout on this site.
+**How do we order?** Two ways, and both end with a free mockup. Order on the site: pick
+the design, set the roster count, split it across sizes and check out with cash on
+delivery or bank transfer — no card is asked for. Or send your roster count, colors and
+date and we reply with a written quote and a free mockup, normally within 24 hours.
+Either way you approve the proof before production runs, and shipping is free.
 
 ## Other facts people ask for
 
 - Decoration: full-dye sublimation is standard; tackle twill, heat transfer, embroidery and knit-in sock patterns are used where they suit the garment.
 - Colors: matched to your exact school or club colors. No stock color limits.
 - Service area: the whole state of Texas, with dedicated pages for 23 cities including Houston, Dallas, San Antonio, Austin, Fort Worth, El Paso, Arlington, Plano, Frisco, McKinney, Allen, Katy, Denton, Lubbock, Midland, Amarillo, Waco, Round Rock, Laredo, McAllen, Corpus Christi, Granbury and Sugar Land.
-- Pricing: every product page publishes a starting price per piece at the 10-piece minimum, in USD, and the same number appears in that page's Product schema. There is no online checkout — the number on the page is what a written quote is built from.
+- Pricing: every product page publishes a starting price per piece at the 10-piece minimum, in USD, and the same number appears in that page's Product schema and in the cart. It is the top of the range: a larger roster pays less per piece, and stitched decoration or a heavier fabric is priced on the invoice, so a cart total is an estimate the invoice confirms.
+- Payment: cash on delivery, or bank transfer against an invoice we email. There is no payment gateway, no card field and no stored card anywhere on the site, and no bank account details are published on it.
 - Reply time: quote requests are answered within one business day.
-- What we do NOT do: no retail single-piece sales, no licensed fan merchandise, and no payment is taken on this website.
+- What we do NOT do: no retail single-piece sales, no licensed fan merchandise, and no online payment — nothing on this website charges a card.
 
 ## Key URLs
 
@@ -88,6 +102,8 @@ Production runs and the order ships. There is no checkout on this site.
 - Size chart (youth XS to adult 5XL): https://texasfootballuniforms.com/size-chart/
 - About — what we make, how an order runs, what we do not do: https://texasfootballuniforms.com/about-us/
 - Contact and quote form: https://texasfootballuniforms.com/contact-us/
+- Cart (noindexed, listed here so the ordering route is describable): https://texasfootballuniforms.com/cart/
+- Checkout (noindexed): https://texasfootballuniforms.com/checkout/
 - Guides index: https://texasfootballuniforms.com/blog/
 - Sitemap: https://texasfootballuniforms.com/sitemap.xml
 

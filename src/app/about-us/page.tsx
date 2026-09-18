@@ -72,7 +72,7 @@ const fabrics = [
 const notDone = [
   "We do not sell single pieces at retail. Everything is made to order against a roster, and the smallest order is 10 of one design.",
   "We do not sell licensed fan merchandise. There is no NFL, no college licensing and no reselling of another brand's gear — every garment carries your program's own identity.",
-  "We do not take payment on this website. There is no cart and no checkout. Quotes are issued in writing and settled with you directly, which is also why no card details are ever collected here.",
+  "We do not take payment online. You can place an order on the site, but there is no gateway and no card field anywhere on it: an order is settled in cash when it is delivered, or by bank transfer against an invoice we email. That is also why no card details are ever collected here.",
   "We do not print artwork we have no right to print. If a logo belongs to a school district, a league or a third party, we need the program's confirmation that it may be reproduced.",
 ];
 
@@ -149,11 +149,13 @@ export default function AboutUsPage() {
                 colors, with that program&rsquo;s names and numbers on it.
               </p>
               <p className="mt-5">
-                The way we work is quote-first. You tell us what the team needs, we price it
-                and draw it, you approve it, and then it is made. There is no cart on this
-                site and no checkout, which is a deliberate choice rather than a missing
-                feature: a 34-player varsity order with a mixed size run and a district logo
-                is not a thing anybody should be buying through a shopping basket.
+                You tell us what the team needs, we price it and draw it, you approve it, and
+                then it is made. You can order that directly here — the cart is built for a
+                34-player varsity order with a mixed size run, not for a single shirt, so it
+                asks for a size breakdown rather than a size. Payment happens off the site:
+                cash on delivery, or a bank transfer against an invoice we email. If you would
+                rather have a written quote in front of you first, that path has not gone
+                anywhere.
               </p>
               <div className="mt-8 rounded-[24px] border border-[var(--color-border)] bg-white p-6">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--color-red)]">

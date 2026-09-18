@@ -26,7 +26,7 @@ const steps = [
   {
     icon: ClipboardCheck,
     title: "See the price as you go",
-    text: "The running estimate is our published starting price at the 10-piece minimum, the same number the product page shows. Nothing is hidden until checkout, because there is no checkout.",
+    text: "The running estimate is our published starting price at the 10-piece minimum, the same number the product page shows and the same number you see at checkout. Nothing is held back for later.",
   },
   {
     icon: Send,
@@ -44,7 +44,7 @@ const faqs = [
   {
     question: "Is the price in the uniform designer the real price?",
     answer:
-      "Yes. Each garment card carries the same published starting price as its product page, quoted per piece at our 10-piece minimum — the smallest order we produce and therefore the highest per-piece tier. A larger roster pays less per piece, and stitched decoration or a heavier fabric is priced in your written quote. We take no payment on this site.",
+      "Yes. Each garment card carries the same published starting price as its product page, quoted per piece at our 10-piece minimum — the smallest order we produce and therefore the highest per-piece tier. A larger roster pays less per piece, and stitched decoration or a heavier fabric is priced in your written quote. No payment is taken on this site: orders are settled in cash on delivery or by bank transfer after we invoice you.",
   },
   {
     question: "What is the minimum order?",
