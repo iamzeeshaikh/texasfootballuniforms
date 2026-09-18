@@ -20,11 +20,33 @@ import { gaEvent } from "@/lib/ga";
 export function CartDrawer() {
   const { lines, catalog, total, count, isOpen, closeCart, setLineQuantity, removeLine } = useCart();
   const closeRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!isOpen) return;
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") closeCart();
+      if (event.key === "Escape") {
+        closeCart();
+        return;
+      }
+      // aria-modal hides the rest of the page from a screen reader, but Tab
+      // still walks into it, which leaves a keyboard user typing into a page
+      // they cannot see. Keep the cycle inside the panel.
+      if (event.key !== "Tab" || !panelRef.current) return;
+      const focusable = panelRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])',
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+      if (event.shiftKey && (active === first || !panelRef.current.contains(active))) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
     document.addEventListener("keydown", onKey);
     const previousOverflow = document.body.style.overflow;
@@ -47,6 +69,7 @@ export function CartDrawer() {
         className="absolute inset-0 h-full w-full cursor-default bg-[rgba(11,31,58,0.55)] backdrop-blur-[2px]"
       />
       <aside
+        ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-label="Your cart"
