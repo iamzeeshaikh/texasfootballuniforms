@@ -59,7 +59,7 @@ const faqs = [
   {
     question: "How long does production take?",
     answer:
-      "Two to three weeks after you approve the artwork, with delivery across Texas. Tell us your first game or media day date in the form and we plan the run backwards from it.",
+      "one to two weeks after you approve the artwork, with delivery across Texas. Tell us your first game or media day date in the form and we plan the run backwards from it.",
   },
   {
     question: "Can you match our school colors exactly?",

@@ -183,7 +183,7 @@ const homeFaqs: {
   {
     question: "How long do custom football uniforms take to make?",
     answer:
-      "Two to three weeks after you approve the artwork for most jerseys, and three to four weeks for full uniform programs, warm-up suits and college builds. The clock starts at approval, not at the quote, so sending your colors and roster early is what protects a game date.",
+      "One to two weeks after you approve the design, whatever the garment. The clock starts at approval, not at the quote, so sending your colors and roster early is what protects a game date.",
   },
   {
     question: "Can we see a mockup before we order?",

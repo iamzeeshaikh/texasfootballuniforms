@@ -233,7 +233,7 @@ export const moneyPages: Record<string, MoneyPage> = {
       {
         question: "How long does a sublimated football order take?",
         answer:
-          "Three weeks after you approve the design for jerseys, three to four weeks for a full uniform. You get a free mockup within 24 hours of sending your colors and logo, and the production clock starts when you approve it.",
+          "Three weeks after you approve the design for jerseys, one to two weeks for a full uniform. You get a free mockup within 24 hours of sending your colors and logo, and the production clock starts when you approve it.",
       },
       {
         question: "Will sublimated names and numbers peel off?",
@@ -320,7 +320,7 @@ export const moneyPages: Record<string, MoneyPage> = {
       {
         question: "How long do coaches uniforms take?",
         answer:
-          "Two to three weeks after you approve the design. Embroidered orders sit at the longer end of that range because the stitch file has to be digitized and test-stitched before the run.",
+          "one to two weeks after you approve the design. Embroidered orders sit at the longer end of that range because the stitch file has to be digitized and test-stitched before the run.",
       },
       {
         question: "Can each coach have their title on the garment?",
@@ -378,7 +378,7 @@ export const moneyPages: Record<string, MoneyPage> = {
           "Jersey only starts at $32.99 per jersey. Most youth leagues that supply their own pants order at this tier.",
           "Reversible practice jerseys start at $66.99 and replace two single-color tops, which is usually the cheaper route once you price both.",
           "A league ordering multiple teams off one template pays the design setup once, which is the largest single saving available in this category.",
-          "Turnaround is two to three weeks after you approve the design, and sign-up-to-first-game windows in Texas youth leagues are usually tight — start the mockup before your roster closes.",
+          "Turnaround is one to two weeks after you approve the design, and sign-up-to-first-game windows in Texas youth leagues are usually tight — start the mockup before your roster closes.",
         ],
       },
     ],
@@ -428,7 +428,7 @@ export const moneyPages: Record<string, MoneyPage> = {
       {
         question: "How long does a youth football uniform order take?",
         answer:
-          "Two to three weeks after you approve the design, plus the time it takes you to approve the free mockup you get within 24 hours. Texas youth sign-up-to-first-game windows are tight, so start the mockup before your roster closes rather than after.",
+          "one to two weeks after you approve the design, plus the time it takes you to approve the free mockup you get within 24 hours. Texas youth sign-up-to-first-game windows are tight, so start the mockup before your roster closes rather than after.",
       },
     ],
   },
@@ -464,7 +464,7 @@ export const moneyPages: Record<string, MoneyPage> = {
         paragraphs: [
           "Youth football jerseys start at $32.99 per jersey at our 10-piece minimum, sublimated with numbers front and back, sleeve numbers and your logo. Player names are included rather than charged as an extra.",
           "Ten jerseys per design, mixed sizes counted together. A youth roster of 18 clears it easily and the per-jersey price falls from the published starting number; send the real count and we quote that tier.",
-          "Two to three weeks after you approve the design, with a free mockup inside 24 hours of your request. Reorders of a previous design go faster because the file is already built and color-matched.",
+          "one to two weeks after you approve the design, with a free mockup inside 24 hours of your request. Reorders of a previous design go faster because the file is already built and color-matched.",
         ],
       },
     ],
@@ -563,7 +563,7 @@ export const moneyPages: Record<string, MoneyPage> = {
         bullets: [
           "A high school uniform set — jersey and pants — starts at $55.99 per player at our 10-piece minimum, sublimated in your school colors with numbers, names and logo.",
           "Varsity-sized orders are well past the minimum, so the per-player number is lower than the published starting price. Send your real roster count and we quote that tier rather than the minimum.",
-          "Three to four weeks production after you approve the design. Add a week for the design and proof stage, which is free and does not start the production clock.",
+          "one to two weeks production after you approve the design. Add a week for the design and proof stage, which is free and does not start the production clock.",
           "Order by May or June for a late-August Week 1. Programs that order in July are betting on nothing going wrong.",
           "JV and freshman squads on the same design cost less per player than a separate order and keep the whole program in one look.",
         ],
@@ -600,7 +600,7 @@ export const moneyPages: Record<string, MoneyPage> = {
       {
         question: "When should a UIL program order uniforms for the coming season?",
         answer:
-          "May or June for a late-August Week 1. Production is three to four weeks after you approve the design, the free design and proof stage sits in front of that, and uniforms need to be on campus before players report for the August two-a-day window. District realignment years are the natural moment to redesign.",
+          "May or June for a late-August Week 1. Production is one to two weeks after you approve the design, the free design and proof stage sits in front of that, and uniforms need to be on campus before players report for the August two-a-day window. District realignment years are the natural moment to redesign.",
       },
       {
         question: "Can JV and freshman squads have the same design as varsity?",
@@ -661,7 +661,7 @@ export const moneyPages: Record<string, MoneyPage> = {
         paragraphs: [
           "A 7-on-7 uniform set starts at $50.99 per player at our 10-piece minimum — jersey and shorts, fully sublimated in your colors with numbers front and back. A reversible jersey covering both tournament colors starts at $66.99 on its own.",
           "A 16-player 7v7 roster is comfortably over the minimum, so the per-player number lands below the published starting price. Send the real squad count and we quote that tier.",
-          "Two to three weeks after you approve the design, with a free mockup within 24 hours of your request. Working back from a May qualifier, that puts the decision in March or April.",
+          "one to two weeks after you approve the design, with a free mockup within 24 hours of your request. Working back from a May qualifier, that puts the decision in March or April.",
         ],
       },
     ],
@@ -701,7 +701,7 @@ export const moneyPages: Record<string, MoneyPage> = {
       {
         question: "When should a Texas 7on7 team order its uniforms?",
         answer:
-          "March or April. Qualifying tournaments run through May and June with the state tournament at the end of June, and production is two to three weeks after design sign-off with the free proof stage in front of it. Teams that plan the 7v7 kit alongside the fall order in spring pay one design setup for both.",
+          "March or April. Qualifying tournaments run through May and June with the state tournament at the end of June, and production is one to two weeks after design sign-off with the free proof stage in front of it. Teams that plan the 7v7 kit alongside the fall order in spring pay one design setup for both.",
       },
       {
         question: "Do we need two jersey colors for tournament play?",
@@ -754,7 +754,7 @@ export const moneyPages: Record<string, MoneyPage> = {
         paragraphs: [
           "A flag football uniform set — jersey and shorts, fully sublimated — starts at $49.99 per player at our 10-piece minimum. Jersey-only orders start at $32.99 per jersey for leagues that issue their own shorts.",
           "Flag rosters are small, often ten to fourteen players, which is exactly where our minimum sits. That is deliberate: a single flag team can order its own kit without needing the whole league to go in together.",
-          "Two to three weeks after you approve the design, free mockup within 24 hours. Spring flag seasons in Texas start early, so a February decision covers a March kickoff comfortably.",
+          "one to two weeks after you approve the design, free mockup within 24 hours. Spring flag seasons in Texas start early, so a February decision covers a March kickoff comfortably.",
         ],
       },
     ],
