@@ -163,7 +163,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </section>
 
         <section className="mt-12 grid gap-10 lg:grid-cols-[1.08fr_0.92fr]">
-          <article className="surface-card order-2 p-8 sm:p-10 lg:order-none">
+          <article className="surface-card order-2 min-w-0 p-8 sm:p-10 lg:order-none">
             {longSections.map((section) => (
               <div key={section.heading} className="mb-10 last:mb-0">
                 <h2 className="text-4xl text-[var(--color-navy)]">{section.heading}</h2>
@@ -190,7 +190,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             ))}
           </article>
 
-          <div className="order-1 space-y-8 lg:order-none">
+          <div className="order-1 min-w-0 space-y-8 lg:order-none">
             <div className="surface-card overflow-hidden">
               <Image
                 src={product.images[1] ?? product.heroImage}
@@ -212,7 +212,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
             <div className="surface-card p-8">
               <h2 className="text-4xl text-[var(--color-navy)]">Specifications</h2>
-              <div className="mt-6 overflow-hidden rounded-[24px] border border-[var(--color-border)]">
+              <div className="mt-6 overflow-x-auto rounded-[24px] border border-[var(--color-border)]">
                 <table className="w-full border-collapse text-left">
                   <tbody>
                     {[

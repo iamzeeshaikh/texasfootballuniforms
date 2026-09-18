@@ -67,7 +67,7 @@ export function QuoteForm() {
   }
 
   return (
-    <form id="quote-form" onSubmit={handleSubmit} data-ga-event="quote_form_submit" className="surface-card scroll-mt-24 p-6 sm:p-8">
+    <form id="quote-form" onSubmit={handleSubmit} data-ga-event="quote_form_submit" className="surface-card min-w-0 scroll-mt-24 p-6 sm:p-8">
       <div className="grid gap-4 md:grid-cols-2">
         <input
           required

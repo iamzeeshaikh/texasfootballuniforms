@@ -213,7 +213,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </div>
 
         <section className="mt-12 grid gap-10 lg:grid-cols-[1.08fr_0.92fr]">
-          <article className="surface-card p-8 sm:p-10">
+          <article className="surface-card min-w-0 p-8 sm:p-10">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">
               Category Buying Guide
             </p>
@@ -246,7 +246,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             ))}
             <div className="mt-10 rounded-[26px] border border-[var(--color-border)] bg-white p-6 shadow-[0_10px_24px_rgba(11,31,58,0.04)]">
               <h2 className="text-4xl text-[var(--color-navy)]">{comparison.heading}</h2>
-              <div className="mt-6 overflow-hidden rounded-[22px] border border-[var(--color-border)]">
+              <div className="mt-6 overflow-x-auto rounded-[22px] border border-[var(--color-border)]">
                 <table className="w-full border-collapse text-left">
                   <thead>
                     <tr className="border-b border-[var(--color-border)] bg-[rgba(11,31,58,0.03)]">
@@ -302,13 +302,13 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </div>
           </article>
 
-          <div className="space-y-8">
+          <div className="min-w-0 space-y-8">
             <div className="surface-card p-8">
               <div className="flex items-center gap-3">
                 <FileBadge2 className="h-7 w-7 text-[var(--color-red)]" />
                 <h2 className="text-4xl text-[var(--color-navy)]">Specifications</h2>
               </div>
-              <div className="mt-6 overflow-hidden rounded-[24px] border border-[var(--color-border)]">
+              <div className="mt-6 overflow-x-auto rounded-[24px] border border-[var(--color-border)]">
                 <table className="w-full border-collapse text-left">
                   <tbody>
                     {specs.map(([label, value]) => (
