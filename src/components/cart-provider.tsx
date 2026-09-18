@@ -69,9 +69,16 @@ export function CartProvider({
   const [ready, setReady] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  // Deferred a tick, like <SubmittedSpec>: the server-rendered HTML has no cart
+  // in it, so reading storage is a follow-up update rather than a first render,
+  // and the lint rule against synchronous setState in an effect is the same one
+  // that is telling the truth about hydration here.
   useEffect(() => {
-    setLines(readStoredCart(catalog));
-    setReady(true);
+    const timer = window.setTimeout(() => {
+      setLines(readStoredCart(catalog));
+      setReady(true);
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [catalog]);
 
   // Another tab of the same site edited the cart.

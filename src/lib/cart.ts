@@ -148,7 +148,7 @@ export function balanceSizes(sizes: SizeBreakdown, target: number, sizeRun: stri
     if (count > 0) next[size] = count;
   });
 
-  let total = sizeTotal(next);
+  const total = sizeTotal(next);
   if (total === target) return next;
 
   if (total < target) {
