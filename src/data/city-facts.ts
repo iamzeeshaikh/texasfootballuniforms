@@ -687,7 +687,7 @@ export const cityFacts: Record<string, CityFacts> = {
       { school: "Paetow", district: "Katy ISD", level: "6A" },
       { school: "Jordan", district: "Katy ISD", level: "6A" },
       { school: "Freeman", district: "Katy ISD", level: "5A Division I" },
-      { school: "Harmony School of Excellence", district: "Charter", level: "4A Division II" },
+      { school: "Harmony (Katy campus)", district: "Harmony Public Schools, charter", level: "4A Division II" },
     ],
     schoolsNote:
       "Nine 6A football programs in one school district, and everyone in town is zoned to that district. Nothing else in Texas looks quite like Katy ISD: the 2026-28 alignment leaves Freeman as the only district school outside 6A, at 5A Division I. For a uniform supplier that means nine large rosters ordering in the same weeks, all wanting the same delivery window before August.",
