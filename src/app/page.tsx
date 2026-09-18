@@ -152,6 +152,89 @@ const uniformCluster = [
   },
 ];
 
+/**
+ * The six questions every quote email opens with, answered in under 60 words
+ * each so an answer engine can lift one whole and still be correct.
+ *
+ * Every number here is the number the rest of the site publishes: the prices
+ * are product.fromPrice, the minimum is the catalog MOQ, and the turnaround
+ * range is the real spread across the 28 blueprints (2-3 weeks on most
+ * jerseys, 3-4 on full uniform programs and college builds). Change a price in
+ * catalog.ts and this block has to move with it.
+ *
+ * `answer` is plain text on purpose — it is what goes into FAQPage schema —
+ * and `body` is the rendered version, which may carry one link.
+ */
+const homeFaqs: {
+  question: string;
+  answer: string;
+  body?: React.ReactNode;
+}[] = [
+  {
+    question: "How much does a custom football uniform cost?",
+    answer:
+      "Custom football jerseys start at $32.99 each and full uniform sets at $55.99 per player. Reversible jerseys start at $66.99, 7-on-7 sets at $50.99, flag sets at $49.99 and coaches polos at $34.99. Those are prices at the 10-piece minimum, which is the highest tier; bigger rosters pay less per piece.",
+  },
+  {
+    question: "What is the minimum order for custom football uniforms?",
+    answer:
+      "Ten pieces per design, on every product on the site. Mixed sizes count toward the same ten, so one squad ordering youth M through adult 3XL in a single design clears the minimum. Two designs — a home and an away jersey, for example — need ten each.",
+  },
+  {
+    question: "How long do custom football uniforms take to make?",
+    answer:
+      "Two to three weeks after you approve the artwork for most jerseys, and three to four weeks for full uniform programs, warm-up suits and college builds. The clock starts at approval, not at the quote, so sending your colors and roster early is what protects a game date.",
+  },
+  {
+    question: "Can we see a mockup before we order?",
+    answer:
+      "Yes, and it is free. Send your colors, logo and roster count and we return a digital mockup on the garment you picked, normally within 24 hours. Nothing is printed until you approve that proof, and no payment is taken to get one.",
+  },
+  {
+    question: "What sizes do you make football uniforms in?",
+    answer:
+      "Youth XS through adult 5XL, with the ceiling depending on the garment: jerseys and team kits run the full range, 7-on-7 and flag builds stop at adult 4XL, and youth-block products stop at youth XL. Full body measurements for every size are on the size chart.",
+    body: (
+      <>
+        Youth XS through adult 5XL, with the ceiling depending on the garment: jerseys and
+        team kits run the full range, 7-on-7 and flag builds stop at adult 4XL, and
+        youth-block products stop at youth XL. Full body measurements for every size are on{" "}
+        <Link href="/size-chart/" className="font-semibold text-[var(--color-red)]">
+          the football uniform size chart
+        </Link>
+        .
+      </>
+    ),
+  },
+  {
+    question: "How do we order custom football uniforms?",
+    answer:
+      "Four steps. Send your roster count, colors and date. We reply with a written quote and a free mockup, normally within 24 hours. You approve the proof. Production runs and the order ships. There is no checkout on this site — every order is quoted in writing first.",
+    body: (
+      <>
+        Four steps. Send your roster count, colors and date. We reply with a written quote
+        and a free mockup, normally within 24 hours. You approve the proof. Production runs
+        and the order ships. There is no checkout on this site — every order is quoted in
+        writing first, and you can build the spec yourself in{" "}
+        <Link href="/design-your-uniform/" className="font-semibold text-[var(--color-red)]">
+          the online uniform designer
+        </Link>
+        .
+      </>
+    ),
+  },
+];
+
+const homeFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: homeFaqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+
 export default function HomePage() {
   const products = getAllProducts();
   const featured = products.slice(0, 6);
@@ -462,6 +545,30 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="section-space pt-0">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <span className="rounded-full bg-[var(--color-gold)]/18 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">
+            Straight Answers
+          </span>
+          <h2 className="mt-5 max-w-3xl text-4xl text-[var(--color-navy)] sm:text-5xl">
+            Custom Football Uniforms: Price, Minimum, Turnaround
+          </h2>
+          <p className="mt-5 max-w-3xl text-lg">
+            The six questions that open almost every quote email, answered with the same
+            numbers the product pages publish.
+          </p>
+
+          <div className="mt-10 grid gap-5 lg:grid-cols-2">
+            {homeFaqs.map((faq) => (
+              <div key={faq.question} className="surface-card p-7 sm:p-8">
+                <h3 className="text-2xl text-[var(--color-navy)]">{faq.question}</h3>
+                <p className="mt-3">{faq.body ?? faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="section-space bg-[linear-gradient(180deg,rgba(11,31,58,0.02),rgba(11,31,58,0.08))]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between gap-6">
@@ -542,6 +649,11 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeFaqSchema) }}
+      />
     </div>
   );
 }
