@@ -1022,6 +1022,119 @@ export const cityFacts: Record<string, CityFacts> = {
     ],
   },
 
+  // ──────────────────────────────────────────────── South Texas ──
+  laredo: {
+    districts: ["United ISD", "Laredo ISD"],
+    schools: [
+      { school: "United", district: "United ISD", level: "6A" },
+      { school: "United South", district: "United ISD", level: "6A" },
+      { school: "Alexander", district: "United ISD", level: "6A" },
+      { school: "LBJ (Johnson)", district: "United ISD", level: "6A" },
+      { school: "Martin", district: "Laredo ISD", level: "5A Division I" },
+      { school: "Nixon", district: "Laredo ISD", level: "5A Division I" },
+      { school: "Cigarroa", district: "Laredo ISD", level: "5A Division II" },
+      { school: "St. Augustine", district: "Private (TAPPS)", level: "TAPPS six-man" },
+    ],
+    schoolsNote:
+      "Two districts, seven public high school programs, and a split that runs cleanly between them: all four United ISD schools play 6A, while Laredo ISD's three sit at 5A Division I and 5A Division II. St. Augustine plays TAPPS six-man, which is a different sport in uniform terms — fewer players, faster substitution, lighter kit. The city is far enough from everywhere else that district road trips can run past 150 miles one way.",
+    youthLeagues: [
+      { name: "Laredo Prodigy Sports", note: "an NFL FLAG youth league for boys and girls aged four to fourteen." },
+      { name: "Football 'N' America Laredo", note: "the local chapter of the non-contact coed flag league, running from first through twelfth grade." },
+    ],
+    youthNote:
+      "Laredo's youth football is flag and coed, and one of the two leagues runs all the way to twelfth grade, which is unusual — most flag programs stop at middle school. It means an order can span a four-year-old's jersey and a high-school senior's in the same league. Our",
+    levelMix: "flag",
+    stadiums: [
+      { name: "Shirley Field", note: "Laredo ISD's home ground, rebuilt in 2011 with artificial turf and used by Martin, Nixon and Cigarroa." },
+      { name: "United ISD Student Activity Complex", note: "an 8,500-seat stadium on St. Claudia Lane, opened in 2004 and shared by United ISD's four high schools." },
+    ],
+    seasonNote:
+      "Laredo's 6A schools that held spring training open conditioning on August 10 and scrimmage from August 20, and with district travel measured in hours rather than minutes, a set that arrives mid-August is already behind the team's first bus ride.",
+    deliveryDays: "Laredo is roughly 430 to 450 miles from our DFW production and around 320 to 350 from Houston — a two-day freight leg.",
+    deliveryDetail:
+      "Laredo is a long haul from either production corridor, so we treat it the way we treat El Paso: size breakdown confirmed in writing, extras built into the run, and dispatch confirmed rather than estimated. Nothing about the garment changes for the border; the planning around it does.",
+    orderIntro:
+      "A Laredo order is shaped by two facts — four 6A rosters in one district, and a two-day freight leg that makes a reorder expensive in time rather than money.",
+    orderStory: [
+      "Send the school and a full size breakdown. On a two-day lane the breakdown matters more than the headline count.",
+      "Send the colors. Seven programs in one city play each other regularly, so we proof shades that sit close together with extra care.",
+      "Pricing and a free mockup come back within 24 hours, at the 6A or 5A block you actually field.",
+      "We print the whole order in one run and reconcile the boxed sizes against your breakdown before dispatch.",
+      "Freight takes about two days south; we confirm the dispatch date so the fitting can be scheduled around it.",
+    ],
+    mostOrderedVarsity:
+      "United ISD's four 6A programs order long varsity and sub-varsity sets in spring, with extras built in because the nearest reorder is two days away. Our",
+    mostOrderedPractice:
+      "Seven local programs and long road trips mean a lot of controlled scrimmage work at home, in two colors. Our",
+    faqs: [
+      { q: "Do you deliver uniforms to Laredo?", a: "Yes. Laredo is roughly 430 to 450 miles from our DFW production and around 320 to 350 from Houston, so freight is about a two-day leg. We confirm the dispatch date rather than leaving it as a window." },
+      { q: "Which Laredo schools do you build for?", a: "United ISD's four 6A programs — United, United South, Alexander and LBJ — and Laredo ISD's Martin, Nixon and Cigarroa, plus the city's youth flag leagues and club teams." },
+      { q: "Do you make six-man uniforms?", a: "Yes. St. Augustine plays TAPPS six-man in Laredo, and a six-man roster is a smaller order with faster substitution patterns — the ten-piece minimum still covers it comfortably." },
+      { q: "Do you supply coed flag leagues?", a: "Yes. Laredo Prodigy Sports runs NFL FLAG from four to fourteen and Football 'N' America runs coed flag from first through twelfth grade, so an order here can genuinely span a child's jersey and an adult-sized one." },
+      { q: "What is the minimum order for a Laredo team?", a: "Ten pieces of a design with sizes mixed. A flag division or a six-man roster clears it." },
+      { q: "How do we avoid a reorder on a long shipping lane?", a: "Send the size breakdown rather than a count and add extras to the original run. On a two-day lane, two or three spare jerseys in the sizes most likely to move cost far less than the time a second shipment takes." },
+      { q: "Can you match the colors our school has used for years?", a: "Yes. Send a daylight photo and any values on file; we proof the shade before printing and store it so subsequent orders come off the same spec." },
+      { q: "Is the fabric suitable for Laredo's heat?", a: "The same lightweight performance knit we use on the Gulf coast works here, and full sublimation means there is no printed layer to lift when a jersey is soaked through in August." },
+      { q: "When should a Laredo program order?", a: "In spring. The 6A schools here can be scrimmaging by August 20, and with a two-day freight leg and long district travel, a mid-August delivery is already late." },
+    ],
+  },
+
+  mcallen: {
+    districts: ["McAllen ISD", "Mission CISD", "Sharyland ISD", "Edinburg CISD", "Pharr-San Juan-Alamo ISD", "Hidalgo ISD", "Valley View ISD"],
+    schools: [
+      { school: "McAllen High", district: "McAllen ISD", level: "5A Division I" },
+      { school: "McAllen Memorial", district: "McAllen ISD", level: "5A Division I" },
+      { school: "McAllen Rowe", district: "McAllen ISD", level: "5A Division I" },
+      { school: "Mission", district: "Mission CISD", level: "5A Division I" },
+      { school: "Mission Veterans", district: "Mission CISD", level: "5A Division II" },
+      { school: "Sharyland", district: "Sharyland ISD", level: "5A Division II" },
+      { school: "Sharyland Pioneer", district: "Sharyland ISD", level: "5A Division II" },
+      { school: "Edinburg, Edinburg North, Edinburg Vela, Economedes", district: "Edinburg CISD", level: "6A" },
+    ],
+    schoolsNote:
+      "All three McAllen ISD high schools play 5A Division I and all three play their home games in the same stadium. The 6A football in this part of the Valley belongs to Edinburg CISD's four programs a few miles north, while Sharyland and Mission Veterans sit at 5A Division II. Seven districts serve the McAllen area, which for a supplier means seven purchasing calendars inside one metro.",
+    youthLeagues: [
+      { name: "Gridiron Football McAllen", note: "runs flag football and 7-on-7 for ages four to seventeen, with coed and girls divisions." },
+      { name: "RGV Seahawks", note: "a McAllen-based youth flag club fielding coed and all-girls teams across the youth age groups." },
+      { name: "Youth Sports Nation RGV", note: "runs flag football alongside other sports across McAllen, Mission and the mid-Valley." },
+    ],
+    youthNote:
+      "The Valley runs a real 7-on-7 scene as well as flag — Gridiron's McAllen league covers both, for ages four to seventeen, with girls divisions alongside the coed ones. Those summer rosters buy separately from the fall ones and want a lighter garment. Our",
+    levelMix: "7-on-7",
+    stadiums: [
+      { name: "McAllen Veterans Memorial Stadium", note: "McAllen ISD's 13,500-seat stadium, opened in 1976 and the largest football venue in the Rio Grande Valley, shared by McAllen High, Memorial and Rowe." },
+    ],
+    seasonNote:
+      "McAllen's schools sit at 5A, so most can open conditioning on August 3 and go to full contact on August 8 if they held no spring training — the early end of UIL's 2026 calendar, and a week before a big-metro 6A program starts.",
+    deliveryDays: "McAllen is around 500 miles from our DFW production and roughly 300 to 360 from Houston — a two-day freight leg.",
+    deliveryDetail:
+      "The Valley is the furthest south we ship, and the freight leg is about two days from either production corridor. We plan McAllen deliveries against the August 8 contact date rather than week one, because the local schools start at the early end of the calendar and the shipping leg is long.",
+    orderIntro:
+      "A McAllen order is a 5A order with a summer 7-on-7 order attached. The two seasons are months apart, and the garments are not the same.",
+    orderStory: [
+      "Tell us which season the set is for — summer 7-on-7 or the fall game set — and give the roster with sizes.",
+      "Send colors. With three McAllen ISD schools sharing one stadium, we proof the shades so the three sets stay clearly distinct under the same lights.",
+      "Pricing and a free 24-hour mockup come back on the right block: the 7-on-7 cut is lighter than the fall jersey it sits beside.",
+      "On approval the whole order prints together, so a summer set and a fall set stay in one color family instead of drifting apart.",
+      "Freight runs about two days south, and we build the schedule from the August 8 contact date rather than from week one.",
+    ],
+    mostOrderedVarsity:
+      "The standard McAllen order is a 5A Division I game set for one of the three district schools, placed in spring. Our",
+    mostOrderedPractice:
+      "Three schools sharing one stadium do their competitive work at practice, split two ways, which is what a reversible is for. Our",
+    faqs: [
+      { q: "Which McAllen-area schools do you supply?", a: "McAllen ISD's McAllen High, Memorial and Rowe at 5A Division I, Mission CISD, Sharyland ISD and the Edinburg CISD 6A programs north of the city, along with the flag and 7-on-7 clubs across the Valley." },
+      { q: "Do you make 7-on-7 uniforms for Valley teams?", a: "Yes. Gridiron's McAllen league runs 7-on-7 and flag for ages four to seventeen, and a 7-on-7 set is cut lighter than a fall game jersey because it is worn without pads through a summer tournament day." },
+      { q: "How long does shipping to McAllen take?", a: "Around 500 miles from our DFW production and roughly 300 to 360 from Houston, so freight is about two days, added to two to four weeks of production from proof approval." },
+      { q: "When do McAllen schools need their uniforms?", a: "Earlier than you would think. Most local programs sit at 5A and can be in full contact by August 8, so we work McAllen delivery dates from that rather than from the first game." },
+      { q: "Do you supply girls' flag teams in the Valley?", a: "Yes. Both Gridiron's McAllen league and the RGV Seahawks field girls divisions, and those sets order at the same ten-piece minimum as any other." },
+      { q: "Is there 6A football in McAllen?", a: "Not inside McAllen ISD. The three McAllen high schools all play 5A Division I; the nearest 6A programs are Edinburg CISD's four schools just north of the city, and we build for those too." },
+      { q: "What is the minimum order for a McAllen team?", a: "Ten pieces per design, mixed sizes counted together — a flag roster or a 7-on-7 squad clears it." },
+      { q: "Can a summer set and a fall set match?", a: "Yes, if they are ordered together. Printed in one run they share a dye lot; ordered months apart, two batches of the same color can end up a shade different." },
+      { q: "How should we handle sizing on a two-day shipping lane?", a: "Send a full size breakdown rather than a count and add a few extras to the run. It costs less than a second shipment and saves a fortnight if a player arrives late." },
+    ],
+  },
+
   "corpus-christi": {
     districts: ["Corpus Christi ISD", "Flour Bluff ISD", "Calallen ISD", "Tuloso-Midway ISD", "West Oso ISD", "London ISD"],
     schools: [
