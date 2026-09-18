@@ -4533,8 +4533,11 @@ export function buildWebsiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
     name: company.name,
     url: SITE_URL,
+    inLanguage: "en-US",
+    publisher: { "@id": `${SITE_URL}/#organization` },
     potentialAction: {
       "@type": "SearchAction",
       target: `${SITE_URL}/all-categories/?q={search_term_string}`,
