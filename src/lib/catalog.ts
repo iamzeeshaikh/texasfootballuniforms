@@ -4261,6 +4261,16 @@ export function turnaroundLabel(product: Pick<Product, "turnaround">) {
 }
 
 /**
+ * Lead the fact strip with the fastest true number, not the slowest. Rush
+ * production really is 10 business days; standard really is 2–3 weeks. Showing
+ * only the standard window read as "too slow to order" to the owner, and
+ * showing only the rush window would be a promise the standard price can't keep.
+ */
+export function speedLabel(product: Pick<Product, "turnaround">) {
+  return `Rush 10 business days · ${turnaroundLabel(product).replace(" after you approve the design", " standard")}`;
+}
+
+/**
  * The four facts that sit directly under every product and category H1.
  * Competitors all publish a unit price; until now this site published none,
  * while its Product schema quietly carried numbers that appeared nowhere on
@@ -4270,7 +4280,7 @@ export function getPriceFacts(product: Pick<Product, "fromPrice" | "priceUnit" |
   return [
     fromPriceLabel(product),
     `Minimum ${moqCount(product)} per design`,
-    turnaroundLabel(product),
+    speedLabel(product),
     "Free mockup in 24 hours",
   ];
 }
