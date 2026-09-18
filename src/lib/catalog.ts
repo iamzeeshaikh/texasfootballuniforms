@@ -4413,16 +4413,93 @@ export function buildBreadcrumbSchema(items: { name: string; path: string }[]) {
   };
 }
 
+/**
+ * Profiles the business actually controls, for Organization.sameAs.
+ *
+ * EMPTY ON PURPOSE. A search of the whole repo, the rendered footer/header and
+ * the site config on 2026-09-18 turned up no Facebook, Instagram, X, LinkedIn,
+ * YouTube, TikTok or Pinterest URL for this brand, and git history has never
+ * held one. sameAs is an identity claim: a guessed handle either 404s or, worse,
+ * points Google at somebody else's account. The array stays empty until the
+ * owner supplies the real profile URLs — add them here and every page picks
+ * them up, because this is the only place they are written.
+ */
+export const socialProfiles: string[] = [];
+
+/**
+ * What this business is demonstrably an authority on, taken from what the
+ * catalog itself publishes — every term below is a product family, fabric,
+ * decoration method or buyer segment that has its own page or spec on this
+ * site. Nothing aspirational.
+ */
+const knowsAbout = [
+  "Custom football uniform manufacturing",
+  "Dye sublimation printing on polyester jerseys",
+  "Tackle twill lettering and numbering",
+  "Heat transfer and embroidery decoration",
+  "Reversible football jerseys",
+  "Football team kit packages",
+  "Youth football uniforms",
+  "High school football uniforms",
+  "College football uniforms",
+  "7-on-7 football uniforms",
+  "Flag football uniforms",
+  "Football practice jerseys",
+  "Coaches sideline apparel",
+  "Roster personalization with player names and numbers",
+  "Team uniform sizing from youth XS to adult 5XL",
+];
+
+/**
+ * One state, not 23 cities. The site ships a page per city and those pages
+ * carry their own local markup; repeating the whole list in the sitewide
+ * Organization node on all 75 URLs adds bytes without adding meaning.
+ */
+const areaServed = {
+  "@type": "State",
+  name: "Texas",
+  alternateName: "TX",
+  containedInPlace: { "@type": "Country", name: "United States" },
+};
+
 export function buildOrganizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
     name: company.name,
     url: SITE_URL,
     email: company.email,
     telephone: company.phoneDisplay,
-    logo: `${SITE_URL}/icon.svg`,
-    sameAs: [],
+    logo: {
+      "@type": "ImageObject",
+      url: `${SITE_URL}/icon.svg`,
+      contentUrl: `${SITE_URL}/icon.svg`,
+      caption: company.name,
+    },
+    image: encodeURI(`${SITE_URL}/assets/football team kits/1.jpg`),
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: company.addressLines[0],
+      addressLocality: company.city,
+      addressRegion: company.state,
+      postalCode: company.postalCode,
+      addressCountry: "US",
+    },
+    areaServed,
+    knowsAbout,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      telephone: company.phoneDisplay,
+      email: company.email,
+      areaServed: "US-TX",
+      availableLanguage: "English",
+    },
+    // No founder / foundingDate / numberOfEmployees: the site publishes none
+    // and inventing them is exactly the kind of claim that gets a brand's
+    // knowledge panel wrong. See the "needs the owner" list.
+    sameAs: socialProfiles,
   };
 }
 
@@ -4430,10 +4507,12 @@ export function buildLocalBusinessSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "SportingGoodsStore",
+    "@id": `${SITE_URL}/#localbusiness`,
     name: company.name,
     url: SITE_URL,
+    parentOrganization: { "@id": `${SITE_URL}/#organization` },
     logo: { "@type": "ImageObject", url: `${SITE_URL}/icon.svg` },
-    image: `${SITE_URL}/icon.svg`,
+    image: encodeURI(`${SITE_URL}/assets/football team kits/1.jpg`),
     telephone: company.phoneDisplay,
     email: company.email,
     address: {
@@ -4444,7 +4523,9 @@ export function buildLocalBusinessSchema() {
       postalCode: company.postalCode,
       addressCountry: "US",
     },
-    areaServed: "Texas",
+    areaServed,
+    knowsAbout,
+    sameAs: socialProfiles,
   };
 }
 
