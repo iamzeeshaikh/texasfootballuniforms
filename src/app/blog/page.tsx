@@ -10,7 +10,7 @@ import { SITE_URL } from "@/lib/site";
 export const metadata: Metadata = createMetadata({
   title: "Football Uniform Guides | Design, Fabric, Sizing & Kits",
   description:
-    "Guides for coaches ordering custom football uniforms in Texas: designing a kit, choosing jersey fabric, names and numbers, buying by level, and what a full team kit includes.",
+    "Guides for Texas coaches ordering custom football uniforms: design, fabric, names, numbers, sizing, team kits. Min 10 per design, free 24-hour mockup.",
   path: "/blog/",
 });
 

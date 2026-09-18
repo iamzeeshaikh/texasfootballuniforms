@@ -10,7 +10,7 @@ type MetadataInput = {
 };
 
 /** Google truncates around here; past it the brand costs us the tail of the title. */
-const TITLE_BUDGET = 65;
+const TITLE_BUDGET = 60;
 const BRAND_SUFFIX = " | Texas Football Uniforms";
 
 /**

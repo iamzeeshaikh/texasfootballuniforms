@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   ...createMetadata({
     title: "Custom Football Uniforms in Texas | Jerseys & Team Kits",
     description:
-      "Custom football uniforms, jerseys and team kits for Texas schools, youth leagues and clubs. Minimum 10 per design, free mockup in 24 hours, quote-first ordering.",
+      "Custom football uniforms, jerseys and team kits for Texas schools, youth leagues and clubs. Min 10 per design, 1 to 2 weeks, free mockup in 24 hours.",
     path: "/",
   }),
 };

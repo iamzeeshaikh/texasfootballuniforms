@@ -10,9 +10,9 @@ import { createMetadata } from "@/lib/seo";
 import { company, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = createMetadata({
-  title: "Design Your Football Uniform Online | Free Mockup in 24 Hours | Texas",
+  title: "Design Your Football Uniform Online | Free 24-Hour Mockup",
   description:
-    "Design custom football uniforms online: pick the garment, team colors, decoration and roster from our own uniform photos, see the price at our 10-piece minimum, and get a free mockup in 24 hours. Production 1 to 2 weeks across Texas.",
+    "Design custom football uniforms online: pick the garment, colors, decoration and roster, see the price at our 10-piece minimum, get a free 24-hour mockup.",
   path: "/design-your-uniform/",
   images: ["/assets/american football uniforms/1.jpg"],
 });

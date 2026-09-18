@@ -15,7 +15,7 @@ export const productMeta: Record<string, { title: string; description: string }>
   "football-team-kits": {
     title: "Custom Football Team Kits in Texas | Jerseys, Pants & More",
     description:
-      "Custom football team kits for Texas programs: jerseys, pants, practice and sideline gear in one order. Min 10 per design, 1 to 2 weeks, free 24-hour mockup.",
+      "Custom football team kits for Texas programs: jerseys, pants, practice and sideline gear. Min 10 per design, 1 to 2 weeks, free 24-hour mockup.",
   },
   "7-on-7-football-uniforms": {
     title: "Custom 7 on 7 Football Uniforms in Texas | Lightweight Kits",
@@ -35,7 +35,7 @@ export const productMeta: Record<string, { title: string; description: string }>
   "american-football-uniforms": {
     title: "Custom American Football Uniforms in Texas | Full Team Kits",
     description:
-      "Full custom American football uniforms, jersey and pants, built for Texas game days. Minimum 10 per design, 1 to 2 weeks after approval, free 24-hour mockup.",
+      "Full custom American football uniforms, jersey and pants, built for Texas game days. Min 10 per design, 1 to 2 weeks after approval, free 24-hour mockup.",
   },
   "blank-football-jerseys": {
     title: "Blank Football Jerseys in Texas | Team Colors, Min 10",
@@ -43,9 +43,9 @@ export const productMeta: Record<string, { title: string; description: string }>
       "Blank football jerseys in your team colors, ready for local decoration or plain practice use. Minimum 10 per design, 1 to 2 weeks, free mockup in 24 hours.",
   },
   "coaches-apparel": {
-    title: "Custom Coaches Uniforms & Sideline Apparel | Polos, Jackets, Hoodies | Texas",
+    title: "Custom Coaches Uniforms in Texas | Polos, Jackets, Hoodies",
     description:
-      "Custom coaches uniforms for Texas staffs: polos, quarter-zips, jackets and hoodies in team colors. Minimum 10 per design, 1 to 2 weeks, free 24-hour mockup.",
+      "Custom coaches uniforms for Texas staffs: polos, quarter-zips, jackets and hoodies in team colors. Min 10 per design, 1 to 2 weeks, free 24-hour mockup.",
   },
   "college-football-uniforms": {
     title: "Custom College Football Uniforms in Texas | Club & Camp Kits",
@@ -60,22 +60,22 @@ export const productMeta: Record<string, { title: string; description: string }>
   "custom-number-football-jerseys": {
     title: "Custom Number Football Jerseys in Texas | Numbered Sets",
     description:
-      "Numbered football jerseys with roster-matched sizing for Texas teams. Sublimated or twill numbers, minimum 10 per design, 1 to 2 weeks, free mockup in 24 hours.",
+      "Numbered football jerseys with roster-matched sizing for Texas teams. Sublimated or twill numbers, min 10 per design, 1 to 2 weeks, free 24-hour mockup.",
   },
   "football-warm-up-suits": {
     title: "Custom Football Warm Up Suits in Texas | Jackets & Pants",
     description:
-      "Custom football warm up suits, jacket and pant, in your Texas team colors. Minimum 10 per design, 1 to 2 weeks after you approve the design, free mockup in 24 hours.",
+      "Custom football warm up suits, jacket and pant, in your Texas team colors. Minimum 10 per design, 1 to 2 weeks after approval, free 24-hour mockup.",
   },
   "custom-team-jerseys": {
     title: "Custom Team Football Jerseys in Texas | Sublimated, Min 10",
     description:
-      "Custom team jerseys for Texas football programs, sublimated in your exact colors with names and numbers. Min 10 per design, 1 to 2 weeks, free 24-hour mockup.",
+      "Custom team jerseys for Texas football programs, sublimated in your colors with names and numbers. Min 10 per design, 1 to 2 weeks, free 24-hour mockup.",
   },
   "fan-football-jerseys": {
     title: "Custom Fan Football Jerseys in Texas | Booster & Supporter",
     description:
-      "Fan football jerseys for Texas booster clubs and supporters, matched to the team's game design. Minimum 10 per design, 1 to 2 weeks, free mockup in 24 hours.",
+      "Fan football jerseys for Texas booster clubs and supporters, matched to the team's game design. Min 10 per design, 1 to 2 weeks, free mockup in 24 hours.",
   },
   "flag-football-jerseys": {
     title: "Custom Flag Football Jerseys in Texas | League & Tournament",
@@ -100,12 +100,12 @@ export const productMeta: Record<string, { title: string; description: string }>
   "football-practice-jerseys": {
     title: "Custom Football Practice Jerseys in Texas | Mesh, Min 10",
     description:
-      "Durable mesh football practice jerseys for Texas two-a-days and camps. Minimum 10 per design, 1 to 2 weeks after you approve the design, free mockup in 24 hours.",
+      "Durable mesh football practice jerseys for Texas two-a-days and camps. Minimum 10 per design, 1 to 2 weeks after approval, free mockup in 24 hours.",
   },
   "football-shorts": {
-    title: "Custom Football Shorts in Texas | Practice & Training Shorts",
+    title: "Custom Football Shorts in Texas | Practice & Training",
     description:
-      "Custom football shorts for Texas practice and training, matched to your jerseys. Minimum 10 per design, 1 to 2 weeks after approval, free mockup in 24 hours.",
+      "Custom football shorts for Texas practice and training, matched to your jerseys. Min 10 per design, 1 to 2 weeks, free mockup in 24 hours.",
   },
   "football-sideline-jackets": {
     title: "Custom Football Sideline Jackets in Texas | Coaches & Team",
@@ -133,12 +133,12 @@ export const productMeta: Record<string, { title: string; description: string }>
       "Custom padded football shirts with integrated rib and shoulder pads for Texas programs. Minimum 10 per design, 1 to 2 weeks, free mockup in 24 hours.",
   },
   "reversible-football-jerseys": {
-    title: "Custom Reversible Football Jerseys & Uniforms | Youth, Practice & Game | Texas",
+    title: "Custom Reversible Football Jerseys in Texas | Youth & Game",
     description:
       "Reversible football jerseys in two team colors for Texas youth, practice and game use. Minimum 10 per design, 1 to 2 weeks, free mockup in 24 hours.",
   },
   "sublimated-football-jerseys": {
-    title: "Custom Sublimated Football Jerseys & Uniforms | Full-Dye Team Kits | Texas",
+    title: "Custom Sublimated Football Jerseys in Texas | Full-Dye Kits",
     description:
       "Full-dye sublimated football jerseys and uniforms for Texas teams: any color, no peeling. Minimum 10 per design, 1 to 2 weeks, free mockup in 24 hours.",
   },

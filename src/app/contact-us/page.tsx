@@ -11,7 +11,7 @@ import { createMetadata } from "@/lib/seo";
 export const metadata: Metadata = createMetadata({
   title: "Contact Texas Football Uniforms | Free Quote in 24 Hours",
   description:
-    "Call (213) 449-3746, WhatsApp, email or send the quote form. Tell us roster count, colors and your date — written quote and free mockup back within one business day.",
+    "Call (213) 449-3746, WhatsApp, email or send the quote form. Free mockup in 24 hours, minimum 10 per design, written reply within one business day.",
   path: "/contact-us/",
 });
 

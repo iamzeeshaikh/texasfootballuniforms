@@ -3325,7 +3325,7 @@ export function getCategoryPages(): CategoryPage[] {
 
 export function getCategoryMetaTitle(category: CategoryPage) {
   const titles: Record<CategoryGroup, string> = {
-    Jerseys: "Custom Football Jerseys in Texas | Youth, Adult & Sublimated",
+    Jerseys: "Custom Football Jerseys in Texas | Youth & Sublimated",
     Uniforms: "Custom Football Uniforms in Texas | Youth, High School, 7v7",
     "Practice Gear": "Football Practice Gear in Texas | Jerseys, Padded Shirts",
     "Team Packages": "Football Team Packages in Texas | Complete Roster Kits",
@@ -3338,15 +3338,15 @@ export function getCategoryMetaTitle(category: CategoryPage) {
 export function getCategoryMetaDescription(category: CategoryPage) {
   const descriptions: Record<CategoryGroup, string> = {
     Jerseys:
-      "Custom football jerseys for Texas teams: youth, adult, reversible, sublimated, practice and fan styles. Minimum 10 per design, 1 to 2 weeks, free mockup in 24 hours.",
+      "Custom football jerseys for Texas teams: youth, adult, reversible, sublimated, practice and fan. Min 10 per design, 1 to 2 weeks, free 24-hour mockup.",
     Uniforms:
-      "Custom football uniforms for Texas youth leagues, high schools, 7v7 and flag teams. Minimum 10 per design, 1 to 2 weeks after approval, free mockup in 24 hours.",
+      "Custom football uniforms for Texas youth leagues, high schools, 7v7 and flag teams. Min 10 per design, 1 to 2 weeks, free mockup in 24 hours.",
     "Practice Gear":
       "Football practice jerseys, padded shirts, shorts, gloves and socks in Texas team colors. Minimum 10 per design, 1 to 2 weeks, free mockup in 24 hours.",
     "Team Packages":
-      "Football team packages for Texas programs: jerseys, pants, practice and sideline gear in one quote. Minimum 10 per design, 1 to 2 weeks, free mockup in 24 hours.",
+      "Football team packages for Texas programs: jerseys, pants, practice and sideline gear in one quote. Min 10 per design, 1 to 2 weeks, free 24-hour mockup.",
     "Team Apparel":
-      "Football team apparel for Texas programs: hoodies, warm-up suits, sideline jackets and coaches uniforms. Minimum 10 per design, 1 to 2 weeks, free 24-hour mockup.",
+      "Football team apparel for Texas programs: hoodies, warm-up suits, sideline jackets and coaches uniforms. Min 10 per design, 1 to 2 weeks, free mockup.",
   };
 
   return descriptions[category.group];

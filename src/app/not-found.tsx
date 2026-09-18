@@ -7,7 +7,7 @@ import { company } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Page Not Found | Texas Football Uniforms",
   description:
-    "That page has moved or never existed. Browse custom football uniform categories, or call us for a team quote — minimum 10 per design, free mockup in 24 hours.",
+    "That page has moved or never existed. Browse our custom football uniform categories or call for a team quote. Min 10 per design, free 24-hour mockup.",
   robots: { index: false, follow: true },
 };
 

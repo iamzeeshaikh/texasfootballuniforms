@@ -43,7 +43,7 @@ export const blogPosts: BlogPost[] = [
     title: "How to Design Custom Football Uniforms for Your Team",
     metaTitle: "How to Design Custom Football Uniforms for Your Team",
     metaDescription:
-      "A step-by-step guide to designing custom football uniforms — colors, logos, names and numbers, fabric, and fit — so your team looks unified and professional.",
+      "A step-by-step guide to designing custom football uniforms: colors, logos, names and numbers, fabric and fit. Min 10 per design, free 24-hour mockup.",
     excerpt:
       "Great team uniforms start with a clear design plan. Here is how to design custom football uniforms that look unified, professional, and unmistakably yours.",
     badge: "Design Guide",
@@ -103,9 +103,9 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "football-jersey-fabric-guide",
     title: "Football Jersey Fabric Guide: Sublimation, Mesh & Durability",
-    metaTitle: "Football Jersey Fabric Guide | Sublimation, Mesh & Durability",
+    metaTitle: "Football Jersey Fabric Guide | Sublimation, Mesh & Knits",
     metaDescription:
-      "Which football jersey fabric is right for your team? Compare performance knits, mesh, sublimation, and weight so your jerseys stay cool, tough, and sharp.",
+      "Which football jersey fabric suits your team? Compare performance knits, mesh, sublimation and weight. Min 10 per design, free 24-hour mockup.",
     excerpt:
       "The fabric decides whether jerseys stay cool, survive contact, and keep their color. Here is how to choose the right football jersey material.",
     badge: "Materials Guide",
@@ -165,9 +165,9 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "youth-high-school-and-college-football-uniforms-guide",
     title: "Youth, High School & College Football Uniforms: A Buyer's Guide",
-    metaTitle: "Youth, High School & College Football Uniforms | Buyer's Guide",
+    metaTitle: "Youth, High School & College Football Uniforms | Guide",
     metaDescription:
-      "How uniform needs differ across youth, high school and college — sizing, durability, budget and design — so you order the right kit.",
+      "How uniform needs differ across youth, high school and college: sizing, durability, budget and design. Min 10 per design, free 24-hour mockup.",
     excerpt:
       "Uniform needs change with the level of play. Here is how to buy football uniforms for youth, high school, and college programs.",
     badge: "Buyer's Guide",

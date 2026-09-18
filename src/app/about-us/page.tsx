@@ -10,7 +10,7 @@ import { createMetadata } from "@/lib/seo";
 export const metadata: Metadata = createMetadata({
   title: "About Texas Football Uniforms | How We Build Team Kits",
   description:
-    "What we make, how an order runs, the 10-piece minimum, fabrics, decoration and sizing — a plain account of how Texas Football Uniforms outfits Texas programs.",
+    "What we make, how an order runs, the 10-piece minimum, fabrics, decoration, sizing and the free 24-hour mockup — how we outfit Texas football programs.",
   path: "/about-us/",
 });
 

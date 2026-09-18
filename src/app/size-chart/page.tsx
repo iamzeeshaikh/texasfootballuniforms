@@ -10,7 +10,7 @@ import { SITE_URL } from "@/lib/site";
 export const metadata: Metadata = createMetadata({
   title: "Football Uniform Size Chart | Youth XS to Adult 5XL | Texas",
   description:
-    "Jersey, pants and warm-up size charts for custom football uniforms, youth XS to adult 5XL. How to measure a roster, plus a free loaner sizing kit before you order.",
+    "Size charts for custom football jerseys, pants and warm-ups, youth XS to adult 5XL, plus a free loaner sizing kit. Min 10 per design, free 24-hour mockup.",
   path: "/size-chart/",
 });
 
