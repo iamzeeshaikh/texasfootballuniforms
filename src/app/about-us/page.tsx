@@ -47,7 +47,7 @@ const orderSteps = [
   },
   {
     title: "Production runs and the order ships",
-    text: "Production runs 2 to 3 weeks after you approve the design, whatever the garment. Rush production is 10 business days for 15% of the invoice, minimum $20. Shipping is free on every order.",
+    text: "Production runs 1 to 2 weeks after you approve the design, whatever the garment. Shipping is free on every order.",
   },
 ];
 

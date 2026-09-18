@@ -661,7 +661,7 @@ export const moneyPages: Record<string, MoneyPage> = {
         paragraphs: [
           "A 7-on-7 uniform set starts at $50.99 per player at our 10-piece minimum — jersey and shorts, fully sublimated in your colors with numbers front and back. A reversible jersey covering both tournament colors starts at $66.99 on its own.",
           "A 16-player 7v7 roster is comfortably over the minimum, so the per-player number lands below the published starting price. Send the real squad count and we quote that tier.",
-          "Two to three weeks after final design sign-off, with a free mockup within 24 hours of your request. Working back from a May qualifier, that puts the decision in March or April.",
+          "Two to three weeks after you approve the design, with a free mockup within 24 hours of your request. Working back from a May qualifier, that puts the decision in March or April.",
         ],
       },
     ],

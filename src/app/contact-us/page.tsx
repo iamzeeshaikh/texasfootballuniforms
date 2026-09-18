@@ -55,7 +55,7 @@ const include = [
   ["What you want made", "Game jerseys, a full uniform set, practice gear, warm-ups, coaches apparel — or the mix, if it is a whole program refresh."],
   ["Your colors", "School or club colors by name is fine to start with; exact color values get locked at the artwork stage."],
   ["Names and numbers", "Whether jerseys carry player names, numbers only, or nothing. It changes the quote."],
-  ["The date you need them", "Work back from the first game, not from today. Most jerseys run 2 to 3 weeks after you approve the design and full uniform programs run 3 to 4."],
+  ["The date you need them", "Work back from the first game, not from today. Most jerseys run 1 to 2 weeks after you approve the design and full uniform programs run 3 to 4."],
   ["Artwork, if you have it", "A logo file, last year's jersey photo or a rough sketch. None of it is required — we can draw from a description."],
 ];
 

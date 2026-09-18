@@ -11,7 +11,7 @@ import { company, SITE_URL } from "@/lib/site";
 export const metadata: Metadata = createMetadata({
   title: "Design Your Football Uniform Online | Free Mockup in 24 Hours | Texas",
   description:
-    "Design custom football uniforms online: pick the garment, team colors, decoration and roster from our own uniform photos, see the price at our 10-piece minimum, and get a free mockup in 24 hours. Production 2 to 3 weeks across Texas.",
+    "Design custom football uniforms online: pick the garment, team colors, decoration and roster from our own uniform photos, see the price at our 10-piece minimum, and get a free mockup in 24 hours. Production 1 to 1 to 2 weeks across Texas.",
   path: "/design-your-uniform/",
   images: ["/assets/american football uniforms/1.jpg"],
 });
@@ -35,7 +35,7 @@ const steps = [
   {
     icon: Rocket,
     title: "Free mockup, then production",
-    text: "A designer draws your uniform in your colors within 24 hours. Nothing is cut or printed until you approve it; production runs 2 to 3 weeks.",
+    text: "A designer draws your uniform in your colors within 24 hours. Nothing is cut or printed until you approve it; production runs 1 to 1 to 2 weeks.",
   },
 ];
 
@@ -125,7 +125,7 @@ export default function DesignYourUniformPage() {
           <p className="mt-5 max-w-3xl text-lg">
             Build your team&rsquo;s uniform on screen from our own product photography — garment,
             team colors, decoration, fabric, fit and roster — and watch the price update as you go.
-            Minimum 10 per design, free mockup within 24 hours, production in 2 to 3 weeks after
+            Minimum 10 per design, free mockup within 24 hours, production in 1 to 2 weeks after
             artwork approval across Texas.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
