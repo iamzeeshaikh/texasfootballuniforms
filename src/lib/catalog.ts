@@ -4,6 +4,7 @@ import path from "path";
 import { company, SITE_URL } from "@/lib/site";
 import { moneyPages } from "@/lib/money-pages";
 import { productMeta } from "@/lib/product-meta";
+import { sizeRunFor, type SizeLabel } from "@/lib/sizes";
 
 type ProductBlueprint = {
   slug: string;
@@ -4277,6 +4278,48 @@ export function getPriceFacts(product: Pick<Product, "fromPrice" | "priceUnit" |
 }
 
 /**
+ * Everything the cart, the checkout and /api/order need to know about a
+ * product, and nothing that touches the filesystem.
+ *
+ * `getAllProducts()` reads `public/assets` with `fs` to collect the gallery,
+ * which is fine inside a page that is prerendered at build time and wrong
+ * inside a request handler. The order API resolves prices, minimums and the
+ * size run through this instead, so a posted line can never carry its own
+ * price: the client sends a slug and a quantity, the server looks the money up.
+ */
+export type OrderableProduct = {
+  slug: string;
+  name: string;
+  /** Published starting price, the same number the page and the schema show. */
+  fromPrice: number;
+  priceUnit: string;
+  /** Bare minimum per design, 10 everywhere today. */
+  minimum: number;
+  /** The published size sentence, e.g. "Youth XS to Adult 5XL". */
+  sizesLabel: string;
+  /** Exactly the sizes from /size-chart/ that the sentence above names. */
+  sizeRun: SizeLabel[];
+  href: string;
+};
+
+export function getOrderableProducts(): OrderableProduct[] {
+  return blueprints.map((blueprint) => ({
+    slug: blueprint.slug,
+    name: blueprint.name,
+    fromPrice: blueprint.fromPrice,
+    priceUnit: blueprint.priceUnit,
+    minimum: moqCount(blueprint),
+    sizesLabel: blueprint.sizes,
+    sizeRun: sizeRunFor(blueprint.sizes),
+    href: `/${blueprint.slug}/`,
+  }));
+}
+
+export function getOrderableProduct(slug: string): OrderableProduct | undefined {
+  return getOrderableProducts().find((product) => product.slug === slug);
+}
+
+/**
  * Lowest published price in a category, with the unit that price is quoted
  * in, for the category-page fact strip.
  */
@@ -4359,6 +4402,14 @@ export function buildProductSchema(product: Product) {
       },
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
+      // The only two ways an order is settled: cash when the boxes arrive, or
+      // a bank transfer against the invoice we email. No card is taken and no
+      // payment happens on this site, so nothing here promises a gateway.
+      acceptedPaymentMethod: [
+        "http://purl.org/goodrelations/v1#COD",
+        "http://purl.org/goodrelations/v1#Cash",
+        "http://purl.org/goodrelations/v1#ByInvoice",
+      ],
       shippingDetails: {
         "@type": "OfferShippingDetails",
         shippingDestination: {
@@ -4526,6 +4577,9 @@ export function buildLocalBusinessSchema() {
     },
     areaServed,
     knowsAbout,
+    // Written the way the checkout offers it. There is no card processing here.
+    paymentAccepted: "Cash on delivery, bank transfer against an emailed invoice",
+    currenciesAccepted: "USD",
     sameAs: socialProfiles,
   };
 }

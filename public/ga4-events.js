@@ -23,6 +23,10 @@
   document.addEventListener("submit", function (e) {
     var f = e.target;
     if (!f || f.tagName !== "FORM") return;
+    // The cart and checkout forms send their own ecommerce events with a value
+    // and a currency once the request succeeds; a generic submit-time copy here
+    // would double-count them.
+    if (f.getAttribute("data-ga-managed") !== null) return;
     var meta = (f.id || "") + " " + (f.className || "") + " " + (f.getAttribute("action") || "") + " " + (f.getAttribute("role") || "");
     if (/search/i.test(meta)) return;
     send(f.dataset.gaEvent || "lead_form_submit", {

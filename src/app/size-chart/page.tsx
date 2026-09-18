@@ -5,6 +5,7 @@ import { Ruler } from "lucide-react";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ProductLeadForm } from "@/components/product-lead-form";
 import { createMetadata } from "@/lib/seo";
+import { assertSizeChartRows } from "@/lib/sizes";
 import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = createMetadata({
@@ -71,6 +72,17 @@ const warmUpSizes: [string, string, string, string][] = [
   ["Adult 4XL", "58–60", "34", "44"],
   ["Adult 5XL", "62–64", "35", "45"],
 ];
+
+/**
+ * The cart's size grid offers exactly the sizes in `SIZE_RUN`, and the only
+ * reason a buyer can trust that grid is that this page describes the same
+ * sizes. These three calls run at build time, so adding a row here without
+ * adding it to src/lib/sizes.ts fails the build rather than shipping a cart
+ * that offers a size the chart never measured.
+ */
+assertSizeChartRows("Jersey Size Chart", jerseySizes.map((row) => row[0]));
+assertSizeChartRows("Football Pants Size Chart", pantSizes.map((row) => row[0]));
+assertSizeChartRows("Warm-Up and Jacket Size Chart", warmUpSizes.map((row) => row[0]));
 
 const howToMeasure = [
   {

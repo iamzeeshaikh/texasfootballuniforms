@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CheckCircle2, Layers3, Shirt, Timer, Trophy, Users2 } from "lucide-react";
 
+import { AddToCart } from "@/components/add-to-cart";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ImageCarousel } from "@/components/image-carousel";
 import { MoneySections } from "@/components/money-sections";
@@ -29,6 +30,7 @@ import {
 import { getGuidesForProduct } from "@/data/blogPosts";
 import { designAddOnForProduct, designGarmentForProduct, getDesignOptions } from "@/lib/design-tool";
 import { getMoneyPage } from "@/lib/money-pages";
+import { buildCartCatalog } from "@/lib/cart-catalog";
 import { createMetadata } from "@/lib/seo";
 
 const featureIcons = [Shirt, Trophy, Users2, Layers3];
@@ -66,6 +68,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   const longSections = getLongSections(product);
+  const cartProduct = buildCartCatalog()[product.slug];
   const designOptions = getDesignOptions();
   const moneyPage = getMoneyPage(product.slug);
   const relatedProducts = getRelatedProductsBySlug(product.slug);
@@ -118,6 +121,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </Link>
               </div>
             </div>
+
+            {/* Ordering sits directly under the hero, ahead of the quote form
+                and the long copy. The quote form is still below it: a coach who
+                wants a written price first has lost nothing. */}
+            {cartProduct ? <AddToCart product={cartProduct} /> : null}
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
               {product.featureFocus.map((feature, index) => {

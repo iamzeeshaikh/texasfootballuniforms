@@ -3,6 +3,8 @@ import { Bebas_Neue, Manrope } from "next/font/google";
 import Script from "next/script";
 import WhatsAppButton from '@/components/whatsapp-button'
 
+import { CartDrawer } from "@/components/cart-drawer";
+import { CartProvider } from "@/components/cart-provider";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { MobileActionBar } from "@/components/mobile-action-bar";
@@ -11,6 +13,7 @@ import {
   buildOrganizationSchema,
   buildWebsiteSchema,
 } from "@/lib/catalog";
+import { buildCartCatalog } from "@/lib/cart-catalog";
 import { createMetadata } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 
@@ -57,6 +60,9 @@ export default function RootLayout({
   const organizationSchema = buildOrganizationSchema();
   const localBusinessSchema = buildLocalBusinessSchema();
   const websiteSchema = buildWebsiteSchema();
+  // Resolved once, on the server: the cart in the browser stores slugs and
+  // quantities only, and reads names, prices and size runs from this.
+  const cartCatalog = buildCartCatalog();
 
   return (
     <html lang="en" className={`${displayFont.variable} ${bodyFont.variable}`}>
@@ -72,9 +78,12 @@ export default function RootLayout({
         <Script id="clarity" strategy="afterInteractive">
           {`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yk7eoybep1");`}
         </Script>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <CartProvider catalog={cartCatalog}>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+          <CartDrawer />
+        </CartProvider>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

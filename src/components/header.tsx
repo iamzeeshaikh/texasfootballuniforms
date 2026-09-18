@@ -14,6 +14,7 @@ import {
 import { categoryGroups, getAllProducts, getCategoryGroup, getCategorySlug } from "@/lib/catalog";
 import { company } from "@/lib/site";
 import { locationCities, cityUrl } from "@/data/locations";
+import { CartButton } from "./cart-button";
 import { MobileMenu } from "./mobile-menu";
 
 const navItems: { href: string; label: string; accent?: boolean; wide?: boolean }[] = [
@@ -204,6 +205,9 @@ export function Header() {
           >
             Get a Quote
           </Link>
+          {/* Shown at every width: the cart is the only way to see what is
+              already in an order, and on a phone the drawer is the whole cart. */}
+          <CartButton />
           <MobileMenu cities={locationCities.map((c) => ({ name: c.name, href: cityUrl(c) }))} />
         </div>
       </div>
