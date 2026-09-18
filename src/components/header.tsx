@@ -27,10 +27,15 @@ const navItems: { href: string; label: string; accent?: boolean; wide?: boolean 
   // viewport edge at 1024px before the designer link was added to it, and both
   // pages are in the drawer, the footer and the body copy.
   //
-  // Label kept at "Blog" rather than "Guides" — the row has ~21px of slack at
-  // 1280 and two more characters is not worth spending it on. The footer and
-  // the drawer say "Guides", and /blog/ itself is titled "Football Uniform
-  // Guides".
+  // Label kept at "Blog" rather than "Guides" — the row has very little slack
+  // and two more characters is not worth spending it on. The footer and the
+  // drawer say "Guides", and /blog/ itself is titled "Football Uniform Guides".
+  //
+  // Measured after the cart button was added (document scrollWidth vs viewport,
+  // home page): 640, 768, 1024, 1100, 1280, 1440, 1536 and 1700 all fit exactly.
+  // 1024 and 1536 are the tight ones — 1024 is where the nav appears, 1536 is
+  // where the logo and the phone number both grow — and both overflowed by 21px
+  // BEFORE this change. Re-measure at those two widths after touching this row.
   { href: "/blog/", label: "Blog", wide: true },
 ];
 
@@ -66,7 +71,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[rgba(11,31,58,0.9)] backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8 2xl:gap-5">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-3">
           <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--color-gold)] font-display text-xl font-semibold text-[var(--color-navy)]">
             TF
@@ -81,7 +86,7 @@ export function Header() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-4 lg:flex 2xl:gap-6">
+        <nav className="hidden items-center gap-3 lg:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -187,21 +192,24 @@ export function Header() {
           </div>
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           {/* The number itself only fits again at 2xl; between sm and there the
               same link is the phone glyph, which keeps the tap target and the
-              tel: href without pushing the row past the viewport edge. */}
+              tel: href without pushing the row past the viewport edge.
+              Between lg and 2xl it steps aside for the cart button: that band
+              is where the nav row is at its widest, and on a desktop the number
+              is also in the footer, on /contact-us/ and in every product FAQ. */}
           <a
             href={company.phoneHref}
             aria-label={`Call ${company.phoneDisplay}`}
-            className="hidden items-center gap-2 whitespace-nowrap rounded-full border border-white/15 px-3 py-2 text-sm font-semibold text-white transition hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] sm:inline-flex 2xl:px-4"
+            className="hidden items-center gap-2 whitespace-nowrap rounded-full border border-white/15 px-3 py-2 text-sm font-semibold text-white transition hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] sm:inline-flex lg:hidden 2xl:inline-flex 2xl:px-4"
           >
             <Phone className="h-4 w-4 2xl:hidden" aria-hidden />
             <span className="hidden 2xl:inline">{company.phoneDisplay}</span>
           </a>
           <Link
             href="/contact-us/#quote-form"
-            className="hidden whitespace-nowrap rounded-full bg-[var(--color-red)] px-5 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white shadow-[0_18px_40px_rgba(200,16,46,0.35)] transition hover:-translate-y-0.5 hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)] sm:inline-flex"
+            className="hidden whitespace-nowrap rounded-full bg-[var(--color-red)] px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-white shadow-[0_18px_40px_rgba(200,16,46,0.35)] transition hover:-translate-y-0.5 hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)] sm:inline-flex"
           >
             Get a Quote
           </Link>
