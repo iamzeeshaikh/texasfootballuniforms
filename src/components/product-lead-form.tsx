@@ -1,9 +1,21 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
+import React, { FormEvent, useState } from "react";
+import { ArrowRight, Clock3 } from "lucide-react";
 
 import { ARTWORK_ACCEPT, MAX_ARTWORK_BYTES, artworkTooLargeMessage, readArtwork } from "@/lib/artwork";
+import {
+  FieldErrors,
+  FileField,
+  FormAlert,
+  SubmitButton,
+  TextAreaField,
+  TextField,
+  isEmail,
+  isPhone,
+  leavingForSubmit,
+} from "@/components/form-fields";
 import { company } from "@/lib/site";
 
 type ProductLeadFormProps = {
@@ -24,6 +36,35 @@ type ProductLeadFormProps = {
   gaEvent?: string;
 };
 
+type FormState = {
+  name: string;
+  email: string;
+  phone: string;
+  organization: string;
+  message: string;
+};
+
+function validate(form: FormState): FieldErrors {
+  const errors: FieldErrors = {};
+  if (!form.name.trim()) errors.name = "Tell us who to reply to.";
+  if (!form.email.trim()) errors.email = "We send the quote by email, so we need one.";
+  else if (!isEmail(form.email)) errors.email = "That email address looks incomplete.";
+  if (form.phone.trim() && !isPhone(form.phone)) errors.phone = "Check the number — that is too short to dial.";
+  if (!form.message.trim()) errors.message = "A line about roster count and colors is enough to start.";
+  else if (form.message.trim().length < 12) errors.message = "Add a little more so we can price it properly.";
+  return errors;
+}
+
+/**
+ * The lead form that sits under the hero on product, category, size-chart and
+ * city pages.
+ *
+ * The POST body, the honeypot, the artwork upload and the `data-ga-event`
+ * attribute are unchanged. What is new is the shape: visible labels, two
+ * columns from `sm` up, `email`/`tel` types with autocomplete so a phone fills
+ * them in one tap, a real focus ring, inline errors and a helper line under the
+ * message box.
+ */
 export function ProductLeadForm({
   productName,
   formId = "quote-form",
@@ -34,7 +75,7 @@ export function ProductLeadForm({
   gaEvent = "product_quote_submit",
 }: ProductLeadFormProps) {
   const router = useRouter();
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormState>({
     name: "",
     email: "",
     phone: "",
@@ -43,8 +84,32 @@ export function ProductLeadForm({
   });
   const [artwork, setArtwork] = useState<File | null>(null);
   const [artworkError, setArtworkError] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errors, setErrors] = useState<FieldErrors>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const set = (key: keyof FormState) => (value: string) => {
+    // Plain object, not a setForm updater: the updater has to stay pure, and
+    // React re-runs queued updaters on a later render — a setErrors() call
+    // inside one replayed itself after submit and wiped a field's error.
+    const next = { ...form, [key]: value };
+    setForm(next);
+    // Once a field has been flagged, re-check it on every keystroke so the
+    // message disappears the moment it is fixed.
+    if (touched[key]) setErrors((prev) => ({ ...prev, [key]: validate(next)[key] ?? "" }));
+  };
+
+  const blur =
+    (key: keyof FormState) => (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      // Never raise an error on the way to the submit button: the new line of
+      // text would push the button out from under the pointer.
+      if (leavingForSubmit(event)) return;
+      setTouched((current) => ({ ...current, [key]: true }));
+      setErrors((prev) => ({ ...prev, [key]: validate(form)[key] ?? "" }));
+    };
+
+  const errorFor = (key: keyof FormState) => errors[key] || undefined;
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -54,6 +119,22 @@ export function ProductLeadForm({
     const website = new FormData(event.currentTarget).get("website");
     if (typeof website === "string" && website.trim() !== "") {
       router.push("/thank-you/");
+      return;
+    }
+
+    const found = validate(form);
+    if (Object.keys(found).length) {
+      // Move focus BEFORE writing the errors. On macOS a button does not take
+      // focus on click, so focus() here fires the blur handler of whatever
+      // field the visitor was still in — and that handler's own setErrors
+      // landed after this one and dropped the other fields' messages.
+      // The DOM has not re-rendered with aria-invalid yet, so go by field name.
+      const firstKey = Object.keys(found)[0];
+      const first = event.currentTarget.querySelector<HTMLElement>(`[name="${firstKey}"]`);
+      first?.focus({ preventScroll: true });
+      first?.scrollIntoView({ block: "center", behavior: "smooth" });
+      setTouched({ name: true, email: true, phone: true, message: true });
+      setErrors(found);
       return;
     }
 
@@ -103,95 +184,107 @@ export function ProductLeadForm({
       id={formId}
       onSubmit={handleSubmit}
       data-ga-event={gaEvent}
-      className="surface-card scroll-mt-24 p-8"
+      noValidate
+      className="surface-card min-w-0 scroll-mt-24 p-6 sm:p-8"
     >
       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-red)]">
         {eyebrow}
       </p>
-      <h2 className="mt-3 text-4xl text-[var(--color-navy)]">{heading}</h2>
+      <h2 className="mt-3 text-3xl text-[var(--color-navy)] sm:text-4xl">{heading}</h2>
       <p className="mt-3">
         {blurb ??
           `Send your details for ${productName.toLowerCase()} and our team can review your request quickly. Minimum 10 per design, free mockup in 24 hours.`}
       </p>
 
-      <div className="mt-6 grid gap-4">
-        <input
-          required
+      <div className="mt-6 grid gap-x-5 gap-y-4 sm:grid-cols-2">
+        <TextField
+          label="Your name"
           name="name"
-          autoComplete="name"
-          className="input-shell"
-          placeholder="Your Name"
-          value={form.name}
-          onChange={(e) => setForm((c) => ({ ...c, name: e.target.value }))}
-        />
-        <input
           required
-          type="email"
+          autoComplete="name"
+          placeholder="Coach Ramirez"
+          value={form.name}
+          onChange={set("name")}
+          onBlur={blur("name")}
+          error={errorFor("name")}
+        />
+        <TextField
+          label="Email address"
           name="email"
+          type="email"
+          required
           autoComplete="email"
-          className="input-shell"
-          placeholder="Email Address"
+          placeholder="coach@school.org"
           value={form.email}
-          onChange={(e) => setForm((c) => ({ ...c, email: e.target.value }))}
+          onChange={set("email")}
+          onBlur={blur("email")}
+          error={errorFor("email")}
         />
-        <input
+        <TextField
+          label="Phone number"
           name="phone"
+          type="tel"
           autoComplete="tel"
-          className="input-shell"
-          placeholder="Phone Number"
+          placeholder="(555) 123-4567"
           value={form.phone}
-          onChange={(e) => setForm((c) => ({ ...c, phone: e.target.value }))}
+          onChange={set("phone")}
+          onBlur={blur("phone")}
+          error={errorFor("phone")}
         />
-        <input
+        <TextField
+          label={cityName ? `School or club in ${cityName}` : "School or club"}
           name="organization"
-          className="input-shell"
-          placeholder={
-            cityName
-              ? `School, Club, or League in ${cityName}`
-              : "School, Club, or Organization"
-          }
+          autoComplete="organization"
+          placeholder={cityName ? `${cityName} ISD, select or rec league` : "Lubbock Cooper HS"}
           value={form.organization}
-          onChange={(e) => setForm((c) => ({ ...c, organization: e.target.value }))}
+          onChange={set("organization")}
+          onBlur={blur("organization")}
         />
         {cityName ? <input type="hidden" name="city" value={cityName} /> : null}
-        <textarea
-          required
-          rows={5}
+
+        <TextAreaField
+          label="What do you need?"
           name="message"
-          className="input-shell"
+          required
+          wide
+          rows={5}
           placeholder={
             cityName
               ? `Tell us your team name, colors, roster count, and when you need the kit in ${cityName}.`
               : "Tell us about your quantity, design needs, and timeline."
           }
+          hint={
+            cityName
+              ? `Roster count, team colors, decoration and the date you need them in ${cityName} — that is enough for a firm quote.`
+              : "Roster count, team colors, decoration and the date you need them — that is enough for a firm quote."
+          }
           value={form.message}
-          onChange={(e) => setForm((c) => ({ ...c, message: e.target.value }))}
+          onChange={set("message")}
+          onBlur={blur("message")}
+          error={errorFor("message")}
         />
-        <label className="grid gap-2 text-sm">
-          <span className="font-semibold text-[var(--color-navy)]">
-            Upload artwork <span className="font-normal text-[var(--color-navy-soft)]">(optional, max 3 MB)</span>
-          </span>
-          <input
-            type="file"
-            name="artwork"
-            accept={ARTWORK_ACCEPT}
-            className="input-shell py-2.5"
-            onChange={(e) => {
-              const file = e.target.files?.[0] ?? null;
-              if (file && file.size > MAX_ARTWORK_BYTES) {
-                setArtwork(null);
-                setArtworkError(artworkTooLargeMessage(company.email));
-                e.target.value = "";
-                return;
-              }
-              setArtworkError("");
-              setArtwork(file);
-            }}
-          />
-          {artworkError ? (
-            <span className="font-semibold text-red-600">{artworkError}</span>
-          ) : null}
-        </label>
+
+        <FileField
+          label="Upload artwork"
+          name="artwork"
+          wide
+          accept={ARTWORK_ACCEPT}
+          fileName={artwork?.name}
+          error={artworkError || undefined}
+          hint="Logo, crest or a photo of last season's jersey. PNG, JPG, PDF, AI or SVG up to 3 MB."
+          onSelect={(input) => {
+            const file = input.files?.[0] ?? null;
+            if (file && file.size > MAX_ARTWORK_BYTES) {
+              setArtwork(null);
+              setArtworkError(artworkTooLargeMessage(company.email));
+              input.value = "";
+              return;
+            }
+            setArtworkError("");
+            setArtwork(file);
+          }}
+        />
+
         {/* Honeypot — hidden from people, irresistible to bots. */}
         <input
           type="text"
@@ -203,23 +296,17 @@ export function ProductLeadForm({
         />
       </div>
 
-      <div className="mt-5 flex flex-col gap-3">
-        {status === "sent" ? (
-          <p className="font-semibold text-green-600">Message sent! We&rsquo;ll be in touch shortly.</p>
-        ) : (
-          <>
-            {status === "error" ? (
-              <p className="font-semibold text-red-600">{errorMessage}</p>
-            ) : null}
-            <button
-              type="submit"
-              disabled={status === "sending"}
-              className="inline-flex justify-center rounded-full bg-[var(--color-red)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-[var(--color-navy)] disabled:opacity-60"
-            >
-              {status === "sending" ? "Sending…" : "Submit"}
-            </button>
-          </>
-        )}
+      <div className="mt-6 grid gap-3">
+        <FormAlert message={status === "error" ? errorMessage : ""} />
+        <div className="flex flex-col gap-3 sm:flex-row-reverse sm:items-center sm:justify-between">
+          <SubmitButton sending={status === "sending"} label="Send my quote request" inline>
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </SubmitButton>
+          <p className="flex items-center gap-2 text-sm leading-6 text-[var(--color-navy-soft)]">
+            <Clock3 className="h-4 w-4 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
+            We&rsquo;ll follow up within 1 business day.
+          </p>
+        </div>
       </div>
     </form>
   );

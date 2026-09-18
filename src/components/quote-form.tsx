@@ -1,21 +1,88 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
+import React, { FormEvent, useState } from "react";
+import { ArrowRight, Clock3 } from "lucide-react";
 
+import {
+  FieldErrors,
+  FormAlert,
+  SubmitButton,
+  TextAreaField,
+  TextField,
+  isEmail,
+  isPhone,
+  leavingForSubmit,
+} from "@/components/form-fields";
+
+type FormState = {
+  name: string;
+  organization: string;
+  email: string;
+  phone: string;
+  product: string;
+  timeline: string;
+  details: string;
+};
+
+const EMPTY: FormState = {
+  name: "",
+  organization: "",
+  email: "",
+  phone: "",
+  product: "",
+  timeline: "",
+  details: "",
+};
+
+function validate(form: FormState): FieldErrors {
+  const errors: FieldErrors = {};
+  if (!form.name.trim()) errors.name = "Tell us who to reply to.";
+  if (!form.email.trim()) errors.email = "We send the quote by email, so we need one.";
+  else if (!isEmail(form.email)) errors.email = "That email address looks incomplete.";
+  if (form.phone.trim() && !isPhone(form.phone)) errors.phone = "Check the number — that is too short to dial.";
+  if (!form.details.trim()) errors.details = "A line about quantity and colors is enough to start.";
+  else if (form.details.trim().length < 12) errors.details = "Add a little more so we can price it properly.";
+  return errors;
+}
+
+/**
+ * The quick quote form (home page and /contact-us/).
+ *
+ * The POST body, the honeypot and `data-ga-event="quote_form_submit"` are
+ * unchanged — only the shape of the form is new: visible labels, two columns
+ * from `sm` up, real `email`/`tel` types with autocomplete, a focus ring, and
+ * errors shown inline next to the field that caused them.
+ */
 export function QuoteForm() {
   const router = useRouter();
-  const [form, setForm] = useState({
-    name: "",
-    organization: "",
-    email: "",
-    phone: "",
-    product: "",
-    timeline: "",
-    details: "",
-  });
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [form, setForm] = useState<FormState>(EMPTY);
+  const [errors, setErrors] = useState<FieldErrors>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const set = (key: keyof FormState) => (value: string) => {
+    // Plain object, not a setForm updater: the updater has to stay pure, and
+    // React re-runs queued updaters on a later render — a setErrors() call
+    // inside one replayed itself after submit and wiped a field's error.
+    const next = { ...form, [key]: value };
+    setForm(next);
+    // Once a field has been flagged, re-check it on every keystroke so the
+    // message disappears the moment it is fixed.
+    if (touched[key]) setErrors((prev) => ({ ...prev, [key]: validate(next)[key] ?? "" }));
+  };
+
+  const blur =
+    (key: keyof FormState) => (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      // Never raise an error on the way to the submit button: the new line of
+      // text would push the button out from under the pointer.
+      if (leavingForSubmit(event)) return;
+      setTouched((current) => ({ ...current, [key]: true }));
+      setErrors((prev) => ({ ...prev, [key]: validate(form)[key] ?? "" }));
+    };
+
+  const errorFor = (key: keyof FormState) => errors[key] || undefined;
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -24,6 +91,22 @@ export function QuoteForm() {
     const website = new FormData(event.currentTarget).get("website");
     if (typeof website === "string" && website.trim() !== "") {
       router.push("/thank-you/");
+      return;
+    }
+
+    const found = validate(form);
+    if (Object.keys(found).length) {
+      // Move focus BEFORE writing the errors. On macOS a button does not take
+      // focus on click, so focus() here fires the blur handler of whatever
+      // field the visitor was still in — and that handler's own setErrors
+      // landed after this one and dropped the other fields' messages.
+      // The DOM has not re-rendered with aria-invalid yet, so go by field name.
+      const firstKey = Object.keys(found)[0];
+      const first = event.currentTarget.querySelector<HTMLElement>(`[name="${firstKey}"]`);
+      first?.focus({ preventScroll: true });
+      first?.scrollIntoView({ block: "center", behavior: "smooth" });
+      setTouched({ name: true, email: true, phone: true, details: true });
+      setErrors(found);
       return;
     }
 
@@ -67,77 +150,103 @@ export function QuoteForm() {
   }
 
   return (
-    <form id="quote-form" onSubmit={handleSubmit} data-ga-event="quote_form_submit" className="surface-card min-w-0 scroll-mt-24 p-6 sm:p-8">
-      <div className="grid gap-4 md:grid-cols-2">
-        <input
+    <form
+      id="quote-form"
+      onSubmit={handleSubmit}
+      data-ga-event="quote_form_submit"
+      noValidate
+      className="surface-card min-w-0 scroll-mt-24 p-6 sm:p-8"
+    >
+      <div className="grid gap-x-5 gap-y-4 sm:grid-cols-2">
+        <TextField
+          label="Your name"
+          name="name"
           required
-          className="input-shell"
-          placeholder="Your Name"
+          autoComplete="name"
+          placeholder="Coach Ramirez"
           value={form.name}
-          onChange={(e) => setForm((c) => ({ ...c, name: e.target.value }))}
+          onChange={set("name")}
+          onBlur={blur("name")}
+          error={errorFor("name")}
         />
-        <input
-          className="input-shell"
-          placeholder="School, Club, or Organization"
+        <TextField
+          label="School or club"
+          name="organization"
+          autoComplete="organization"
+          placeholder="Lubbock Cooper HS"
           value={form.organization}
-          onChange={(e) => setForm((c) => ({ ...c, organization: e.target.value }))}
+          onChange={set("organization")}
+          onBlur={blur("organization")}
         />
-        <input
-          required
+        <TextField
+          label="Email address"
+          name="email"
           type="email"
-          className="input-shell"
-          placeholder="Email Address"
+          required
+          autoComplete="email"
+          placeholder="coach@school.org"
           value={form.email}
-          onChange={(e) => setForm((c) => ({ ...c, email: e.target.value }))}
+          onChange={set("email")}
+          onBlur={blur("email")}
+          error={errorFor("email")}
         />
-        <input
-          className="input-shell"
-          placeholder="Phone Number"
+        <TextField
+          label="Phone number"
+          name="phone"
+          type="tel"
+          autoComplete="tel"
+          placeholder="(555) 123-4567"
           value={form.phone}
-          onChange={(e) => setForm((c) => ({ ...c, phone: e.target.value }))}
+          onChange={set("phone")}
+          onBlur={blur("phone")}
+          error={errorFor("phone")}
         />
-        <input
-          className="input-shell md:col-span-2"
-          placeholder="Product Interest"
+        <TextField
+          label="Product interest"
+          name="product"
+          autoComplete="off"
+          placeholder="Full uniform sets, reversible jerseys…"
           value={form.product}
-          onChange={(e) => setForm((c) => ({ ...c, product: e.target.value }))}
+          onChange={set("product")}
         />
-        <input
-          className="input-shell md:col-span-2"
-          placeholder="Target Delivery Timeline"
+        <TextField
+          label="Delivery timeline"
+          name="timeline"
+          autoComplete="off"
+          placeholder="In hand by 15 August"
           value={form.timeline}
-          onChange={(e) => setForm((c) => ({ ...c, timeline: e.target.value }))}
+          onChange={set("timeline")}
         />
+
         {/* Honeypot — hidden from people, irresistible to bots. */}
         <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
-        <textarea
+
+        <TextAreaField
+          label="Project details"
+          name="details"
           required
+          wide
           rows={6}
-          className="input-shell md:col-span-2"
           placeholder="Tell us about quantities, customization needs, and any design direction."
+          hint="The more you give us — roster count, team colors, decoration, the date you need them — the closer the first quote lands."
           value={form.details}
-          onChange={(e) => setForm((c) => ({ ...c, details: e.target.value }))}
+          onChange={set("details")}
+          onBlur={blur("details")}
+          error={errorFor("details")}
         />
       </div>
-      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        {status === "sent" ? (
-          <p className="font-semibold text-green-600">Message sent! We&rsquo;ll be in touch shortly.</p>
-        ) : status === "error" ? (
-          <p className="font-semibold text-red-600">{errorMessage}</p>
-        ) : (
-          <>
-            <p className="text-sm leading-6 text-[var(--color-navy-soft)]">
-              We&rsquo;ll follow up within 1 business day.
-            </p>
-            <button
-              type="submit"
-              disabled={status === "sending"}
-              className="inline-flex justify-center rounded-full bg-[var(--color-red)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-[var(--color-navy)] disabled:opacity-60"
-            >
-              {status === "sending" ? "Sending…" : "Send Quote Request"}
-            </button>
-          </>
-        )}
+
+      <div className="mt-6 grid gap-3">
+        <FormAlert message={status === "error" ? errorMessage : ""} />
+        <div className="flex flex-col gap-3 sm:flex-row-reverse sm:items-center sm:justify-between">
+          <SubmitButton sending={status === "sending"} label="Send quote request" inline>
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </SubmitButton>
+          <p className="flex items-center gap-2 text-sm leading-6 text-[var(--color-navy-soft)]">
+            <Clock3 className="h-4 w-4 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
+            We&rsquo;ll follow up within 1 business day.
+          </p>
+        </div>
       </div>
     </form>
   );

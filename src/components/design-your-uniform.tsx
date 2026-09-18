@@ -3,10 +3,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import React, { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Check, Sparkles } from "lucide-react";
 
 import { ARTWORK_ACCEPT, MAX_ARTWORK_BYTES, artworkTooLargeMessage, readArtwork } from "@/lib/artwork";
+import {
+  FieldErrors,
+  FileField,
+  FormAlert,
+  SubmitButton,
+  TextAreaField,
+  TextField,
+  isEmail,
+  isPhone,
+  leavingForSubmit,
+} from "@/components/form-fields";
 import type { DesignOption, DesignOptions } from "@/lib/design-tool";
 import { company } from "@/lib/site";
 
@@ -52,6 +63,16 @@ function money(value: number) {
 
 function roundedMoney(value: number) {
   return `$${Math.round(value).toLocaleString("en-US")}`;
+}
+
+function validateContact(next: Contact): FieldErrors {
+  const errors: FieldErrors = {};
+  if (!next.name.trim()) errors.name = "Tell us who to reply to.";
+  if (!next.email.trim()) errors.email = "We send the mockup by email, so we need one.";
+  else if (!isEmail(next.email)) errors.email = "That email address looks incomplete.";
+  if (next.phone.trim() && !isPhone(next.phone))
+    errors.phone = "Check the number — that is too short to dial.";
+  return errors;
 }
 
 function byId(list: DesignOption[], id: string) {
@@ -113,6 +134,37 @@ export function DesignYourUniform({
   const [summaryOpen, setSummaryOpen] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
+  const [contactErrors, setContactErrors] = useState<FieldErrors>({});
+  /**
+   * Once the tool is on screen every garment photo is rendered into the summary
+   * frame at its final size, stacked and faded out. Picking a garment then only
+   * flips which one is opaque — no new request, no decode, no layout shift.
+   */
+  const [warmPreviews, setWarmPreviews] = useState(Boolean(preselectGarment));
+
+  function blurContact(
+    key: "name" | "email" | "phone",
+    event: React.FocusEvent<HTMLInputElement>,
+  ) {
+    // Never raise an error on the way to the submit button: the new line of
+    // text would push the button out from under the pointer.
+    if (leavingForSubmit(event)) return;
+    setContactErrors((prev) => ({ ...prev, [key]: validateContact(contact)[key] ?? "" }));
+  }
+
+  /** Update one contact field and clear its error the moment it is fixed. */
+  function updateContact(key: keyof Contact, value: string) {
+    const next = { ...contact, [key]: value };
+    setContact(next);
+    setContactErrors((prev) => {
+      const flagged = Object.keys(prev).filter((name) => prev[name]);
+      if (!flagged.length) return prev;
+      const fresh = validateContact(next);
+      const out = { ...prev };
+      for (const name of flagged) out[name] = fresh[name] ?? "";
+      return out;
+    });
+  }
 
   const players = customRoster ? Number(customRoster) || 0 : roster;
 
@@ -136,6 +188,45 @@ export function DesignYourUniform({
     }, 0);
     return () => window.clearTimeout(timer);
   }, [options.garments, options.addOns, preselectGarment]);
+
+  /**
+   * Warm the preview images.
+   *
+   * The summary photo used to be a single <Image> whose `src` changed on every
+   * pick, and because it asked for a different rendition than the option card
+   * did, each pick started a fresh /_next/image request — a visible blank while
+   * the new file came down. Instead, once the tool is within a screen of the
+   * viewport, every garment photo is rendered into the summary frame at the
+   * summary's own size. Selection then changes nothing but which one is opaque.
+   */
+  useEffect(() => {
+    if (warmPreviews) return;
+    const section = sectionRef.current;
+    if (!section) return;
+    let idle = 0;
+    if (typeof IntersectionObserver === "undefined") {
+      idle = window.setTimeout(() => setWarmPreviews(true), 0);
+      return () => window.clearTimeout(idle);
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        // Wait for a quiet moment so the warm-up never competes with the
+        // page's own LCP image.
+        const start = () => setWarmPreviews(true);
+        const ric = (window as Window & { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number })
+          .requestIdleCallback;
+        idle = ric ? ric(start, { timeout: 1500 }) : window.setTimeout(start, 300);
+      },
+      { rootMargin: "100% 0px" },
+    );
+    observer.observe(section);
+    return () => {
+      observer.disconnect();
+      if (idle) window.clearTimeout(idle);
+    };
+  }, [warmPreviews]);
 
   // On phones the summary is a bar pinned above the Call/WhatsApp bar; show it
   // only while the tool itself is on screen.
@@ -208,6 +299,22 @@ export function DesignYourUniform({
     const website = new FormData(event.currentTarget).get("website");
     if (typeof website === "string" && website.trim() !== "") {
       router.push("/thank-you/");
+      return;
+    }
+
+    const found = validateContact(contact);
+    if (Object.keys(found).length) {
+      // Focus first: on macOS a button does not take focus on click, so this
+      // fires the blur handler of the field the visitor was still in, and that
+      // handler's setContactErrors must not land after the one below.
+      // The DOM has not re-rendered with aria-invalid yet, so go by field name.
+      const first = event.currentTarget.querySelector<HTMLElement>(
+        `[name="design-${Object.keys(found)[0]}"]`,
+      );
+      first?.focus({ preventScroll: true });
+      first?.scrollIntoView({ block: "center", behavior: "smooth" });
+      setError("Add your name and email so we can send the quote back.");
+      setContactErrors(found);
       return;
     }
 
@@ -425,6 +532,10 @@ export function DesignYourUniform({
           ref={formRef}
           onSubmit={handleSubmit}
           data-ga-event="design_tool_submit"
+          // The form validates itself so the messages match the rest of the
+          // site; without this the browser's own bubble fires first and the
+          // submit handler never runs.
+          noValidate
           className={`${variant === "inline" ? "mt-8" : ""} grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] lg:items-start`}
         >
           {/* Honeypot — hidden from people, irresistible to bots. */}
@@ -574,94 +685,87 @@ export function DesignYourUniform({
 
             <fieldset className="surface-card p-4 sm:p-5">
               {stepHead(7)}
-              <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <label className="grid gap-1.5 text-sm">
-                  <span className="font-semibold text-[var(--color-navy)]">Your name *</span>
-                  <input
-                    className="input-shell"
-                    name="design-name"
-                    autoComplete="name"
-                    required
-                    value={contact.name}
-                    onChange={(event) => setContact((c) => ({ ...c, name: event.target.value }))}
-                  />
-                </label>
-                <label className="grid gap-1.5 text-sm">
-                  <span className="font-semibold text-[var(--color-navy)]">Email address *</span>
-                  <input
-                    className="input-shell"
-                    type="email"
-                    name="design-email"
-                    autoComplete="email"
-                    required
-                    value={contact.email}
-                    onChange={(event) => setContact((c) => ({ ...c, email: event.target.value }))}
-                  />
-                </label>
-                <label className="grid gap-1.5 text-sm">
-                  <span className="font-semibold text-[var(--color-navy)]">Phone number</span>
-                  <input
-                    className="input-shell"
-                    type="tel"
-                    name="design-phone"
-                    autoComplete="tel"
-                    value={contact.phone}
-                    onChange={(event) => setContact((c) => ({ ...c, phone: event.target.value }))}
-                  />
-                </label>
-                <label className="grid gap-1.5 text-sm">
-                  <span className="font-semibold text-[var(--color-navy)]">School, club or program</span>
-                  <input
-                    className="input-shell"
-                    name="design-organization"
-                    autoComplete="organization"
-                    value={contact.organization}
-                    onChange={(event) => setContact((c) => ({ ...c, organization: event.target.value }))}
-                  />
-                </label>
-                <label className="grid gap-1.5 text-sm sm:col-span-2">
-                  <span className="font-semibold text-[var(--color-navy)]">When do you need them?</span>
-                  <input
-                    className="input-shell"
-                    name="design-timeline"
-                    placeholder="e.g. first game 22 August, media day 15 August"
-                    value={contact.timeline}
-                    onChange={(event) => setContact((c) => ({ ...c, timeline: event.target.value }))}
-                  />
-                </label>
-                <label className="grid gap-1.5 text-sm sm:col-span-2">
-                  <span className="font-semibold text-[var(--color-navy)]">Anything else we should know?</span>
-                  <textarea
-                    className="input-shell min-h-24"
-                    name="design-notes"
-                    placeholder="A uniform you want matched, number font, sponsor logos…"
-                    value={contact.notes}
-                    onChange={(event) => setContact((c) => ({ ...c, notes: event.target.value }))}
-                  />
-                </label>
-                <label className="grid gap-1.5 text-sm sm:col-span-2">
-                  <span className="font-semibold text-[var(--color-navy)]">
-                    Upload artwork or logo{" "}
-                    <span className="font-normal text-[var(--color-navy-soft)]">(optional, max 3 MB)</span>
-                  </span>
-                  <input
-                    type="file"
-                    name="artwork"
-                    accept={ARTWORK_ACCEPT}
-                    className="input-shell py-2.5"
-                    onChange={(event) => {
-                      const file = event.target.files?.[0] ?? null;
-                      if (file && file.size > MAX_ARTWORK_BYTES) {
-                        setArtwork(null);
-                        setError(artworkTooLargeMessage(company.email));
-                        event.target.value = "";
-                        return;
-                      }
-                      setError("");
-                      setArtwork(file);
-                    }}
-                  />
-                </label>
+              <div className="mt-4 grid gap-x-5 gap-y-4 sm:grid-cols-2">
+                <TextField
+                  label="Your name"
+                  name="design-name"
+                  required
+                  autoComplete="name"
+                  placeholder="Coach Ramirez"
+                  value={contact.name}
+                  onChange={(value) => updateContact("name", value)}
+                  onBlur={(event) => blurContact("name", event)}
+                  error={contactErrors.name || undefined}
+                />
+                <TextField
+                  label="Email address"
+                  name="design-email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  placeholder="coach@school.org"
+                  value={contact.email}
+                  onChange={(value) => updateContact("email", value)}
+                  onBlur={(event) => blurContact("email", event)}
+                  error={contactErrors.email || undefined}
+                />
+                <TextField
+                  label="Phone number"
+                  name="design-phone"
+                  type="tel"
+                  autoComplete="tel"
+                  placeholder="(555) 123-4567"
+                  value={contact.phone}
+                  onChange={(value) => updateContact("phone", value)}
+                  onBlur={(event) => blurContact("phone", event)}
+                  error={contactErrors.phone || undefined}
+                />
+                <TextField
+                  label="School or club"
+                  name="design-organization"
+                  autoComplete="organization"
+                  placeholder="Lubbock Cooper HS"
+                  value={contact.organization}
+                  onChange={(value) => updateContact("organization", value)}
+                />
+                <TextField
+                  label="When do you need them?"
+                  name="design-timeline"
+                  wide
+                  autoComplete="off"
+                  placeholder="e.g. first game 22 August, media day 15 August"
+                  value={contact.timeline}
+                  onChange={(value) => updateContact("timeline", value)}
+                />
+                <TextAreaField
+                  label="Anything else we should know?"
+                  name="design-notes"
+                  wide
+                  rows={4}
+                  placeholder="A uniform you want matched, number font, sponsor logos…"
+                  hint="Number font, sponsor logos, a jersey you want matched — anything the mockup should show."
+                  value={contact.notes}
+                  onChange={(value) => updateContact("notes", value)}
+                />
+                <FileField
+                  label="Upload artwork or logo"
+                  name="artwork"
+                  wide
+                  accept={ARTWORK_ACCEPT}
+                  fileName={artwork?.name}
+                  hint="Logo, crest or a photo of last season's jersey. PNG, JPG, PDF, AI or SVG up to 3 MB."
+                  onSelect={(input) => {
+                    const file = input.files?.[0] ?? null;
+                    if (file && file.size > MAX_ARTWORK_BYTES) {
+                      setArtwork(null);
+                      setError(artworkTooLargeMessage(company.email));
+                      input.value = "";
+                      return;
+                    }
+                    setError("");
+                    setArtwork(file);
+                  }}
+                />
               </div>
             </fieldset>
           </div>
@@ -689,18 +793,42 @@ export function DesignYourUniform({
               </button>
 
               <div id="design-summary-body" className="design-summary-body" data-open={summaryOpen}>
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[linear-gradient(180deg,#f8fafc,#eef3f8)]">
-                  {chosenGarment?.image ? (
-                    <Image
-                      src={chosenGarment.image}
-                      alt={`${chosenGarment.label} — the uniform you are designing`}
-                      width={640}
-                      height={480}
-                      sizes="(min-width: 1024px) 340px, 100vw"
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    <span className="flex h-full w-full items-center justify-center px-6 text-center text-sm text-[var(--color-navy-soft)]">
+                <div
+                  data-summary-preview
+                  className="relative aspect-[4/3] w-full overflow-hidden bg-[linear-gradient(180deg,#f8fafc,#eef3f8)]"
+                >
+                  {/* Every garment photo is in the DOM at the summary's own
+                      size, so picking one is a class change, not a fetch. The
+                      frame keeps a fixed 4:3 box either way, so nothing on the
+                      page moves when the picture appears. */}
+                  {options.garments
+                    .filter(
+                      (option) =>
+                        option.image && (warmPreviews || option.id === chosenGarment?.id),
+                    )
+                    .map((option) => {
+                      const active = option.id === chosenGarment?.id;
+                      return (
+                        <Image
+                          key={option.id}
+                          src={option.image as string}
+                          alt={active ? `${option.label} — the uniform you are designing` : ""}
+                          aria-hidden={active ? undefined : true}
+                          width={640}
+                          height={480}
+                          sizes="(min-width: 1024px) 340px, 100vw"
+                          data-active={active}
+                          // The 11 that are not on screen queue behind
+                          // everything the page actually needs to paint.
+                          fetchPriority={active ? "auto" : "low"}
+                          className={`absolute inset-0 h-full w-full object-cover ${
+                            active ? "opacity-100" : "opacity-0"
+                          }`}
+                        />
+                      );
+                    })}
+                  {chosenGarment?.image ? null : (
+                    <span className="absolute inset-0 flex items-center justify-center px-6 text-center text-sm text-[var(--color-navy-soft)]">
                       Pick a garment above and its photo appears here.
                     </span>
                   )}
@@ -761,11 +889,16 @@ export function DesignYourUniform({
               </div>
 
               <div className="design-summary-foot">
+                {/* Contrast note: the amount, the sub-line and the fine print
+                    all carry an explicit color. Without one the base `p` rule
+                    in globals.css paints them navy-soft (#30435d), which on
+                    this navy panel measured 1.64:1 — the price was the dimmest
+                    thing in its own box. White on #0b1f3a is 16.5:1. */}
                 <div
                   aria-live="polite"
-                  className="design-summary-price m-4 rounded-xl bg-[var(--color-navy)] px-4 py-4 text-center text-white"
+                  className="design-summary-price m-4 overflow-hidden rounded-2xl bg-[var(--color-navy)] bg-[linear-gradient(160deg,#0b1f3a_0%,#14345f_100%)] px-4 py-4 text-center text-white ring-1 ring-inset ring-white/10"
                 >
-                  <p className="design-summary-label text-[11px] font-semibold uppercase tracking-[0.2em] text-white/60">
+                  <p className="design-summary-label text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--color-gold)]">
                     {/* The collapsed bar has room for one line, and dropping the
                         qualifier altogether would leave a bare price on screen. */}
                     <span className="design-summary-label-short">
@@ -775,15 +908,26 @@ export function DesignYourUniform({
                       Estimate at the {options.minimumPieces}-piece minimum
                     </span>
                   </p>
-                  <p className="design-summary-amount mt-2 text-2xl font-bold">
-                    {estimate ? `${money(estimate.perPlayer)} per player` : "Choose a garment"}
+                  <p className="design-summary-amount mt-1.5 text-[30px] font-extrabold leading-none tracking-tight text-white">
+                    {estimate ? (
+                      <>
+                        {money(estimate.perPlayer)}
+                        <span className="ml-1.5 align-baseline text-[0.46em] font-semibold uppercase tracking-[0.12em] text-white">
+                          per player
+                        </span>
+                      </>
+                    ) : (
+                      <span className="text-[0.66em] font-bold uppercase tracking-[0.06em] text-white">
+                        Choose a garment
+                      </span>
+                    )}
                   </p>
                   {estimate?.total ? (
-                    <p className="design-summary-sub mt-1 text-sm text-white/80">
+                    <p className="design-summary-sub mt-1.5 text-sm font-semibold text-white">
                       about {roundedMoney(estimate.total)} for {estimate.roster} players
                     </p>
                   ) : null}
-                  <p className="design-summary-fineprint mt-2 text-[11px] leading-5 text-white/60">
+                  <p className="design-summary-fineprint mt-2.5 border-t border-white/15 pt-2.5 text-[11px] leading-5 text-white/75">
                     Published starting prices, so this is the top of the range: a bigger roster pays
                     less per piece, and stitched decoration or heavier fabric is priced in your
                     written quote. No payment is taken on this site.
@@ -791,27 +935,20 @@ export function DesignYourUniform({
                 </div>
 
                 <div className="design-summary-actions px-4 pb-4">
-                  {error ? (
-                    <p className="mb-3 rounded-xl bg-[rgba(200,16,46,0.08)] px-4 py-3 text-sm text-[var(--color-red)]">
-                      {error}
-                    </p>
-                  ) : null}
-                  <button
-                    type="submit"
-                    disabled={sending}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--color-red)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white transition hover:-translate-y-0.5 hover:bg-[var(--color-navy)] disabled:opacity-60"
-                  >
-                    {sending ? "Sending…" : "Send my spec"}
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={sending}
-                    onClick={markMockupIntent}
-                    className="design-summary-mockup mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-[var(--color-navy)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-navy)] transition hover:bg-[var(--color-navy)] hover:text-white disabled:opacity-60"
-                  >
-                    <Sparkles className="h-4 w-4" aria-hidden />
-                    Request a free mockup
-                  </button>
+                  {error ? <FormAlert message={error} /> : null}
+                  <div className={error ? "mt-3" : undefined}>
+                    <SubmitButton sending={sending} label="Send my spec" />
+                  </div>
+                  <div className="design-summary-mockup mt-2">
+                    <SubmitButton
+                      sending={sending}
+                      variant="outline"
+                      label="Request a free mockup"
+                      onClick={markMockupIntent}
+                    >
+                      <Sparkles className="h-4 w-4" aria-hidden />
+                    </SubmitButton>
+                  </div>
                   <p className="design-summary-note mt-3 text-center text-[11px] leading-4 text-[var(--color-navy-soft)]">
                     Free mockup within 24 hours. Nothing is produced until you approve the design.
                   </p>

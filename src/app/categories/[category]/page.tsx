@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { FaqAccordion } from "@/components/faq-accordion";
 import { PriceFacts, PriceNotes } from "@/components/price-facts";
 import { ProductLeadForm } from "@/components/product-lead-form";
 import {
@@ -361,19 +362,17 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
         <PriceNotes unit={priceLeader.priceUnit} minimum={moqCount(priceLeader)} />
 
-        <section className="mt-12 surface-card p-8 sm:p-10">
+        <section className="mt-12 surface-card p-6 sm:p-10">
           <div className="flex items-center gap-3">
-            <CheckCircle2 className="h-8 w-8 text-[var(--color-red)]" />
-            <h2 className="text-4xl text-[var(--color-navy)]">Frequently Asked Questions</h2>
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--color-navy)] text-[var(--color-gold)]">
+              <CheckCircle2 className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <h2 className="text-3xl text-[var(--color-navy)] sm:text-4xl">
+              Frequently Asked Questions
+            </h2>
           </div>
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
-            {faqs.map((faq) => (
-              <div key={faq.question} className="rounded-[24px] border border-[var(--color-border)] bg-white p-6">
-                <h3 className="text-2xl text-[var(--color-navy)]">{faq.question}</h3>
-                <p className="mt-3">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
+          <p className="mt-3 max-w-3xl">Tap a question to open the answer.</p>
+          <FaqAccordion faqs={faqs} className="mt-6" />
         </section>
 
         <section className="mt-12 rounded-[34px] bg-[linear-gradient(135deg,#08172c_0%,#0b1f3a_42%,#12305e_100%)] p-8 shadow-[0_24px_60px_rgba(11,31,58,0.22)] sm:p-10">

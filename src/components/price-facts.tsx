@@ -1,4 +1,4 @@
-import { BadgeDollarSign, CalendarClock, PencilRuler, Users2 } from "lucide-react";
+import { BadgeDollarSign, CalendarClock, Layers, PencilRuler, ShieldCheck, Sparkles, Users2 } from "lucide-react";
 
 const factIcons = [BadgeDollarSign, Users2, CalendarClock, PencilRuler];
 
@@ -51,44 +51,97 @@ type PriceNotesProps = {
 };
 
 /**
- * "What changes the price". A single "from" number is only honest if the page
- * says what moves it, and says which quantity the number belongs to — ours is
- * the price at the minimum, which is the most expensive tier, not the least.
+ * "What changes the price".
+ *
+ * A single "from" number is only honest if the page says what moves it, and
+ * says which quantity the number belongs to — ours is the price at the
+ * minimum, which is the most expensive tier, not the least.
+ *
+ * This was one block of prose with three sub-headings and nobody read it. It
+ * is now three cards, one per driver, with the same facts split into scannable
+ * lines. Nothing was removed and no new claim was added: every line below is
+ * the sentence that was already there.
  */
 export function PriceNotes({ unit, minimum }: PriceNotesProps) {
+  const drivers = [
+    {
+      title: "Quantity",
+      icon: Users2,
+      summary: `Bigger roster, lower price per ${unit}.`,
+      points: [
+        `Per-${unit} cost falls as the run grows.`,
+        `A ${minimum}-piece order and a 50-piece order are printed the same way, but setup is spread across more pieces, so the larger roster pays less per ${unit}.`,
+        "Tell us your real roster count and we quote that tier, not the minimum.",
+      ],
+    },
+    {
+      title: "Decoration",
+      icon: Sparkles,
+      summary: "Printed is included. Stitched is added.",
+      points: [
+        "Full sublimation is included in the starting price.",
+        "Tackle twill numbering, embroidery, applique, sewn nameplates and captain patches are stitched work on top of it, and each one adds labor per piece.",
+      ],
+    },
+    {
+      title: "Fabric",
+      icon: Layers,
+      summary: "Standard knit is the baseline.",
+      points: [
+        "The starting price is our standard performance polyester.",
+        "Heavier game-weight knits, 4-way stretch compression fabric, dazzle finishes and integrated pad panels cost more per yard and change the number.",
+      ],
+    },
+  ];
+
   return (
-    <section className="surface-card mt-8 p-8" id="what-changes-the-price">
-      <h2 className="text-4xl text-[var(--color-navy)]">What Changes the Price</h2>
-      <p className="mt-4">
+    <section className="surface-card mt-8 p-6 sm:p-8" id="what-changes-the-price">
+      <div className="flex items-center gap-3">
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--color-navy)] text-[var(--color-gold)]">
+          <BadgeDollarSign className="h-5 w-5" aria-hidden="true" />
+        </span>
+        <h2 className="text-3xl text-[var(--color-navy)] sm:text-4xl">What Changes the Price</h2>
+      </div>
+      <p className="mt-4 max-w-3xl">
         The price shown is the starting price per {unit} at our {minimum}-piece minimum, which is
         the smallest order we produce and therefore the highest per-{unit} tier. Three things move
         it from there, and a quote prices all three together.
       </p>
-      <ul className="mt-6 space-y-4">
-        {[
-          {
-            title: "Quantity",
-            text: `Per-${unit} cost falls as the run grows. A ${minimum}-piece order and a 50-piece order are printed the same way, but setup is spread across more pieces, so the larger roster pays less per ${unit}. Tell us your real roster count and we quote that tier, not the minimum.`,
-          },
-          {
-            title: "Decoration",
-            text: "Full sublimation is included in the starting price. Tackle twill numbering, embroidery, applique, sewn nameplates and captain patches are stitched work on top of it, and each one adds labor per piece.",
-          },
-          {
-            title: "Fabric",
-            text: "The starting price is our standard performance polyester. Heavier game-weight knits, 4-way stretch compression fabric, dazzle finishes and integrated pad panels cost more per yard and change the number.",
-          },
-        ].map((item) => (
-          <li key={item.title}>
-            <p className="text-base font-semibold text-[var(--color-navy)]">{item.title}</p>
-            <p className="mt-1">{item.text}</p>
-          </li>
-        ))}
-      </ul>
-      <p className="mt-6 text-sm text-[var(--color-navy-soft)]">
-        Prices are in USD and quoted per piece before tax, and shipping is free on every order.
-        Production is 1 to 2 weeks after you approve the design. We take no payment on this site: you get a written
-        quote and a free mockup first, and nothing is produced until you approve the design.
+
+      <div className="mt-6 grid gap-4 md:grid-cols-3">
+        {drivers.map((driver) => {
+          const Icon = driver.icon;
+          return (
+            <div key={driver.title} className="price-driver">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[rgba(200,16,46,0.08)] text-[var(--color-red)]">
+                <Icon className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <h3 className="mt-4 text-2xl text-[var(--color-navy)]">{driver.title}</h3>
+              <p className="mt-1 text-sm font-semibold text-[var(--color-red)]">{driver.summary}</p>
+              <ul className="mt-3 grid gap-2.5">
+                {driver.points.map((point, index) => (
+                  <li key={index} className="flex gap-2 text-sm leading-6 text-[var(--color-navy-soft)]">
+                    <span
+                      aria-hidden="true"
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-gold)]"
+                    />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
+      </div>
+
+      <p className="mt-6 flex items-start gap-2.5 rounded-2xl bg-[rgba(11,31,58,0.04)] px-4 py-3.5 text-sm leading-6 text-[var(--color-navy-soft)]">
+        <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-navy)]" aria-hidden="true" />
+        <span>
+          Prices are in USD and quoted per piece before tax, and shipping is free on every order.
+          Production is 1 to 2 weeks after you approve the design. We take no payment on this site:
+          you get a written quote and a free mockup first, and nothing is produced until you approve
+          the design.
+        </span>
       </p>
     </section>
   );

@@ -7,6 +7,7 @@ import { CheckCircle2, Layers3, Shirt, Timer, Trophy, Users2 } from "lucide-reac
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ImageCarousel } from "@/components/image-carousel";
 import { MoneySections } from "@/components/money-sections";
+import { FaqAccordion } from "@/components/faq-accordion";
 import { PriceFacts, PriceNotes } from "@/components/price-facts";
 import { ProductLeadForm } from "@/components/product-lead-form";
 import { RelatedGuides } from "@/components/related-guides";
@@ -260,19 +261,23 @@ export default async function ProductPage({ params }: ProductPageProps) {
           heading={`Design your ${product.name.toLowerCase()}`}
         />
 
-        <section className="mt-12 surface-card p-8 sm:p-10">
+        {/* The questions and answers come from the same `product.faqs` array
+            that builds the FAQPage schema below, so collapsing them cannot put
+            the markup and the visible text out of step. */}
+        <section className="mt-12 surface-card p-6 sm:p-10">
           <div className="flex items-center gap-3">
-            <Timer className="h-8 w-8 text-[var(--color-red)]" />
-            <h2 className="text-4xl text-[var(--color-navy)]">Frequently Asked Questions</h2>
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--color-navy)] text-[var(--color-gold)]">
+              <Timer className="h-5 w-5" aria-hidden="true" />
+            </span>
+            <h2 className="text-3xl text-[var(--color-navy)] sm:text-4xl">
+              Frequently Asked Questions
+            </h2>
           </div>
-          <div className="mt-8 grid gap-5">
-            {product.faqs.map((faq) => (
-              <div key={faq.question} className="rounded-[24px] border border-[var(--color-border)] bg-white p-6">
-                <h3 className="text-2xl text-[var(--color-navy)]">{faq.question}</h3>
-                <p className="mt-3">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
+          <p className="mt-3 max-w-3xl">
+            Tap a question to open the answer. Everything below is written for{" "}
+            {product.name.toLowerCase()}.
+          </p>
+          <FaqAccordion faqs={product.faqs} className="mt-6" />
         </section>
 
         <RelatedGuides guides={guides} productName={product.name} />

@@ -4,6 +4,7 @@ import { ClipboardCheck, Palette, Rocket, Ruler, Send } from "lucide-react";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { DesignYourUniform } from "@/components/design-your-uniform";
+import { FaqAccordion } from "@/components/faq-accordion";
 import { getDesignOptions } from "@/lib/design-tool";
 import { createMetadata } from "@/lib/seo";
 import { company, SITE_URL } from "@/lib/site";
@@ -226,15 +227,11 @@ export default function DesignYourUniformPage() {
         </section>
 
         <section className="mt-14 surface-card p-6 sm:p-10">
-          <h2 className="text-4xl text-[var(--color-navy)]">Uniform Designer Questions</h2>
-          <div className="mt-8 grid gap-5 md:grid-cols-2">
-            {faqs.map((faq) => (
-              <div key={faq.question} className="rounded-[24px] border border-[var(--color-border)] bg-white p-6">
-                <h3 className="text-2xl text-[var(--color-navy)]">{faq.question}</h3>
-                <p className="mt-3">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
+          <h2 className="text-3xl text-[var(--color-navy)] sm:text-4xl">
+            Uniform Designer Questions
+          </h2>
+          <p className="mt-3 max-w-3xl">Tap a question to open the answer.</p>
+          <FaqAccordion faqs={faqs} className="mt-6" />
         </section>
       </div>
 

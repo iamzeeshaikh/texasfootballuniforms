@@ -84,6 +84,156 @@
   .input-shell {
     @apply w-full rounded-2xl border border-[rgba(11,31,58,0.12)] bg-white px-4 py-3.5 text-sm text-[var(--color-navy)] shadow-[0_12px_25px_rgba(11,31,58,0.04)] placeholder:text-[var(--color-navy-soft)] focus:border-[var(--color-red)] focus:shadow-[0_0_0_4px_rgba(200,16,46,0.10)];
   }
+
+  /* ---- Lead forms ------------------------------------------------------ */
+
+  .field {
+    @apply grid min-w-0 content-start gap-1.5;
+  }
+
+  /* `block`, not flex: a label that wraps to two lines has to keep its
+     Optional / * marker next to the last word, not floated up beside line 1. */
+  .field-label {
+    @apply block text-[13px] font-semibold uppercase leading-5 tracking-[0.1em] text-[var(--color-navy)];
+  }
+
+  .field-required {
+    @apply ml-1 text-base leading-none text-[var(--color-red)];
+  }
+
+  .field-optional {
+    @apply ml-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-navy-soft)];
+  }
+
+  .field-input {
+    @apply w-full rounded-xl border border-[rgba(11,31,58,0.16)] bg-white px-4 py-3 text-[15px] text-[var(--color-navy)] shadow-[inset_0_1px_2px_rgba(11,31,58,0.05)] transition;
+    @apply placeholder:text-[rgba(48,67,93,0.62)];
+  }
+
+  .field-input:hover {
+    @apply border-[rgba(11,31,58,0.3)];
+  }
+
+  .field-input:focus,
+  .field-input:focus-visible {
+    @apply border-[var(--color-navy)] shadow-[0_0_0_3px_rgba(11,31,58,0.18)] outline-none;
+  }
+
+  .field[data-invalid="true"] .field-input {
+    @apply border-[var(--color-red)] bg-[rgba(200,16,46,0.03)];
+  }
+
+  .field[data-invalid="true"] .field-input:focus {
+    @apply shadow-[0_0_0_3px_rgba(200,16,46,0.22)];
+  }
+
+  .field-textarea {
+    @apply min-h-32 resize-y leading-6;
+  }
+
+  .field-file {
+    @apply cursor-pointer py-2.5 text-sm file:mr-3 file:cursor-pointer file:rounded-lg file:border-0 file:bg-[var(--color-navy)] file:px-3 file:py-2 file:text-xs file:font-semibold file:uppercase file:tracking-[0.1em] file:text-white;
+  }
+
+  .field-file-name {
+    @apply text-xs leading-5 text-[var(--color-navy-soft)];
+  }
+
+  .field-error {
+    @apply flex items-start gap-1.5 text-[13px] font-semibold leading-5 text-[#b00c26];
+  }
+
+  .field-hint {
+    @apply text-[13px] leading-5 text-[var(--color-navy-soft)];
+  }
+
+  .form-alert {
+    @apply flex items-start gap-2 rounded-xl border border-[rgba(200,16,46,0.3)] bg-[rgba(200,16,46,0.06)] px-4 py-3 text-sm font-semibold leading-5 text-[#b00c26];
+  }
+
+  .form-success {
+    @apply flex items-start gap-2 rounded-xl border border-[rgba(15,118,60,0.28)] bg-[rgba(15,118,60,0.07)] px-4 py-3 text-sm font-semibold leading-5 text-[#0f763c];
+  }
+
+  .btn-submit {
+    @apply inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--color-red)] px-6 py-3.5 text-sm font-semibold uppercase tracking-[0.14em] text-white shadow-[0_12px_26px_rgba(200,16,46,0.24)] transition;
+    @apply hover:-translate-y-0.5 hover:bg-[var(--color-navy)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-navy)];
+    @apply disabled:translate-y-0 disabled:cursor-not-allowed disabled:opacity-70;
+  }
+
+  /* Two classes on purpose: this has to beat .btn-submit's own w-full. */
+  .btn-submit.is-inline {
+    @apply sm:w-auto;
+  }
+
+  .btn-submit-outline {
+    @apply inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-[var(--color-navy)] px-6 py-3.5 text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-navy)] transition;
+    @apply hover:bg-[var(--color-navy)] hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-navy)];
+    @apply disabled:cursor-not-allowed disabled:opacity-70;
+  }
+
+  /* ---- FAQ accordion ---------------------------------------------------- */
+
+  .faq-item {
+    @apply overflow-hidden rounded-[22px] border border-[var(--color-border)] bg-white transition;
+  }
+
+  .faq-item[data-open="true"] {
+    @apply border-[rgba(200,16,46,0.35)] shadow-[0_10px_30px_rgba(11,31,58,0.08)];
+  }
+
+  .faq-trigger {
+    @apply flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition sm:px-6 sm:py-5;
+    @apply hover:bg-[rgba(11,31,58,0.03)] focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[var(--color-navy)];
+  }
+
+  .faq-question {
+    @apply font-display text-lg uppercase leading-6 tracking-[0.04em] text-[var(--color-navy)] sm:text-xl;
+  }
+
+  .faq-icon {
+    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--color-border)] text-[var(--color-red)] transition-transform duration-200;
+  }
+
+  .faq-item[data-open="true"] .faq-icon {
+    @apply rotate-180 border-[var(--color-red)] bg-[var(--color-red)] text-white;
+  }
+
+  .faq-panel {
+    @apply grid transition-[grid-template-rows] duration-200 ease-out;
+    grid-template-rows: 0fr;
+  }
+
+  .faq-item[data-open="true"] .faq-panel {
+    grid-template-rows: 1fr;
+  }
+
+  .faq-panel > div {
+    @apply min-h-0 overflow-hidden;
+  }
+
+  .faq-answer {
+    @apply px-5 pb-5 text-[15px] leading-7 text-[var(--color-navy-soft)] sm:px-6 sm:pb-6;
+  }
+
+  /* ---- Price drivers ---------------------------------------------------- */
+
+  .price-driver {
+    @apply flex min-w-0 flex-col rounded-[22px] border border-[var(--color-border)] bg-white p-5 shadow-[0_8px_24px_rgba(11,31,58,0.05)] transition sm:p-6;
+  }
+
+  .price-driver:hover {
+    @apply -translate-y-0.5 border-[rgba(200,16,46,0.28)] shadow-[0_16px_34px_rgba(11,31,58,0.10)];
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-panel {
+    transition: none;
+  }
+  .faq-icon {
+    transition: none;
+  }
 }
 
 .design-summary-label-short {
