@@ -232,8 +232,8 @@ export function CartDrawer() {
             </div>
             <p className="mt-3 flex gap-2 text-[12px] leading-4 text-[var(--color-navy-soft)]">
               <Banknote className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
-              Cash on delivery or bank transfer after we invoice you. No payment is taken on this
-              site.
+              Cash on delivery, or a PayPal invoice after you approve your design proof. No
+              payment is taken on this site.
             </p>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">
               <Link

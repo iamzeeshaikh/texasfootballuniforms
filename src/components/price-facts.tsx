@@ -139,8 +139,8 @@ export function PriceNotes({ unit, minimum }: PriceNotesProps) {
         <span>
           Prices are in USD and quoted per piece before tax, and shipping is free on every order.
           Production is 1 to 2 weeks after you approve the design. No online payment: you pay cash
-          on delivery or by bank transfer after we invoice you, and nothing is produced until you
-          approve a free mockup.
+          on delivery, or against a PayPal invoice we email after you approve your free design
+          proof, and nothing is produced until you approve it.
         </span>
       </p>
     </section>

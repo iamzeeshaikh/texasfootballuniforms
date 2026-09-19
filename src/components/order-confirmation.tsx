@@ -19,24 +19,46 @@ type StoredOrder = {
 /** Older than this and it belongs to an earlier visit, not the order just placed. */
 const MAX_AGE_MS = 30 * 60 * 1000;
 
-const STEPS = [
-  {
-    title: "Free mockup within 24 hours",
-    text: "A designer draws your uniform in your colors, with your names, numbers and logo, and emails it to you.",
-  },
-  {
-    title: "You approve it",
-    text: "Ask for changes as many times as you need. Nothing is cut or printed until you say yes.",
-  },
-  {
-    title: "Production, 1 to 2 weeks",
-    text: "The run starts the day you approve the design, not the day you ordered.",
-  },
-  {
-    title: "Free shipping",
-    text: "Every order ships free, anywhere in the US, and you get tracking when it leaves us.",
-  },
-];
+/**
+ * What happens next, in the order it happens — with the money step shown where
+ * it really falls for the method the buyer picked, never at checkout.
+ */
+function stepsFor(payment?: PaymentMethod) {
+  return [
+    {
+      title: "Free design proof within 24 hours",
+      text: "A designer draws your uniform in your colors, with your names, numbers and logo, and emails it to you.",
+    },
+    {
+      title: "You approve it",
+      text: "Ask for changes as many times as you need. Nothing is cut or printed until you say yes.",
+    },
+    ...(payment === "paypal"
+      ? [
+          {
+            title: "We email you a PayPal invoice",
+            text: "It goes out once you have approved the proof — never before, and never from this website.",
+          },
+        ]
+      : []),
+    {
+      title: "Production, 1 to 2 weeks",
+      text: "The run starts the day you approve the design, not the day you ordered.",
+    },
+    {
+      title: "Free shipping",
+      text: "Every order ships free, anywhere in the US, and you get tracking when it leaves us.",
+    },
+    ...(payment === "cod"
+      ? [
+          {
+            title: "Pay the driver on delivery",
+            text: "Cash, when your order reaches you. Nothing is charged before then.",
+          },
+        ]
+      : []),
+  ];
+}
 
 /**
  * /order-confirmed/ — the reference, what happens next, and the moment the cart
@@ -74,6 +96,7 @@ export function OrderConfirmation() {
   }, []);
 
   const payment = order?.paymentMethod;
+  const steps = stepsFor(payment);
 
   return (
     <div className="mx-auto max-w-3xl px-4 sm:px-6">
@@ -139,15 +162,15 @@ export function OrderConfirmation() {
             <span>
               <strong className="text-[var(--color-navy)]">{paymentMethodLabel(payment)}.</strong>{" "}
               {payment === "cod"
-                ? "You pay the driver in cash when the boxes reach you. Nothing has been charged, and this site never asked for a card."
-                : "We email an itemized invoice with the transfer details once your mockup is approved. Nothing has been charged, and this site never asked for a card."}
+                ? "You pay the driver in cash when your order arrives. Nothing has been charged, and this site never asked for a card."
+                : "We email you a PayPal invoice once you approve your design proof. Nothing has been charged, and this site never asked for a card."}
             </span>
           </p>
         ) : null}
       </div>
 
       <ol className="mt-8 grid gap-4">
-        {STEPS.map((step, index) => (
+        {steps.map((step, index) => (
           <li key={step.title} className="surface-card flex gap-4 p-5 text-left">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-navy)] text-sm font-bold text-[var(--color-gold)]">
               {index + 1}

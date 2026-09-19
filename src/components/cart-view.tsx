@@ -344,9 +344,11 @@ export function CartView() {
             <p className="flex gap-2.5 text-[13px] leading-5 text-[var(--color-navy-soft)]">
               <Banknote className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
               <span>
-                <strong className="text-[var(--color-navy)]">Cash on delivery</strong> — pay when the
-                boxes arrive, or <strong className="text-[var(--color-navy)]">bank transfer</strong>{" "}
-                against an invoice we email. No card details are collected anywhere on this site.
+                <strong className="text-[var(--color-navy)]">Cash on delivery</strong> — pay the
+                driver when your order arrives, or{" "}
+                <strong className="text-[var(--color-navy)]">PayPal</strong> — we email you an
+                invoice once you approve your design proof. No card details are collected anywhere
+                on this site.
               </span>
             </p>
             <p className="flex gap-2.5 text-[13px] leading-5 text-[var(--color-navy-soft)]">

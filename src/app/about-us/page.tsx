@@ -72,7 +72,7 @@ const fabrics = [
 const notDone = [
   "We do not sell single pieces at retail. Everything is made to order against a roster, and the smallest order is 10 of one design.",
   "We do not sell licensed fan merchandise. There is no NFL, no college licensing and no reselling of another brand's gear — every garment carries your program's own identity.",
-  "We do not take payment online. You can place an order on the site, but there is no gateway and no card field anywhere on it: an order is settled in cash when it is delivered, or by bank transfer against an invoice we email. That is also why no card details are ever collected here.",
+  "We do not take payment online. You can place an order on the site, but there is no gateway, no card field and no PayPal button anywhere on it: an order is settled in cash when it is delivered, or against a PayPal invoice we email once you have approved your design proof. That is also why no card details are ever collected here.",
   "We do not print artwork we have no right to print. If a logo belongs to a school district, a league or a third party, we need the program's confirmation that it may be reproduced.",
 ];
 
@@ -153,9 +153,9 @@ export default function AboutUsPage() {
                 then it is made. You can order that directly here — the cart is built for a
                 34-player varsity order with a mixed size run, not for a single shirt, so it
                 asks for a size breakdown rather than a size. Payment happens off the site:
-                cash on delivery, or a bank transfer against an invoice we email. If you would
-                rather have a written quote in front of you first, that path has not gone
-                anywhere.
+                cash on delivery, or a PayPal invoice we email once you have approved your
+                design proof. If you would rather have a written quote in front of you first,
+                that path has not gone anywhere.
               </p>
               <div className="mt-8 rounded-[24px] border border-[var(--color-border)] bg-white p-6">
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--color-red)]">

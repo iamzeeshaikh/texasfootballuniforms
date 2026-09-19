@@ -25,7 +25,7 @@ import { gaEvent } from "@/lib/ga";
  * Nothing about payment happens in this component or anywhere else on the site.
  * The line goes into a cart, the cart goes to a checkout that collects an
  * address and a payment preference, and the money changes hands either at the
- * door or against an invoice we email.
+ * door or against a PayPal invoice sent after the design proof is approved.
  */
 export function AddToCart({ product }: { product: CartProduct }) {
   const { addLine } = useCart();
@@ -107,8 +107,8 @@ export function AddToCart({ product }: { product: CartProduct }) {
       <p className="mt-4 max-w-3xl">
         {formatMoney(product.fromPrice)} per {product.priceUnit} at the {product.minimum}-piece
         minimum, sizes {product.sizesLabel.toLowerCase()}. Set the roster count, split it across the
-        sizes your players actually wear, and add it to the cart — you pay cash on delivery or by
-        bank transfer after we invoice you, never on this site.
+        sizes your players actually wear, and add it to the cart — you pay cash on delivery, or
+        against a PayPal invoice we email after you approve your design proof, never on this site.
       </p>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)]">
@@ -228,7 +228,7 @@ export function AddToCart({ product }: { product: CartProduct }) {
 
       <div className="mt-5 grid gap-2.5 sm:grid-cols-3">
         {[
-          { icon: Banknote, text: "Cash on delivery or bank transfer — no card, no online payment" },
+          { icon: Banknote, text: "Cash on delivery or a PayPal invoice after proof approval — nothing charged on this site" },
           { icon: BadgeCheck, text: "Free mockup in 24 hours; nothing is printed until you approve" },
           { icon: Truck, text: "Free shipping, production 1 to 2 weeks after approval" },
         ].map(({ icon: Icon, text }) => (

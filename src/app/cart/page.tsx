@@ -27,7 +27,7 @@ export default function CartPage() {
           <p className="mt-5 max-w-3xl text-lg">
             Every design needs a size breakdown that adds up to its quantity — that is the roster we
             cut and print against. Minimum 10 per design, mixed sizes all count toward the same 10,
-            and shipping is free. You pay cash on delivery or by bank transfer once we invoice you.
+            and shipping is free. You pay cash on delivery, or against a PayPal invoice we email once you approve your design proof.
           </p>
           <p className="mt-4 max-w-3xl text-sm">
             Prefer a written price first?{" "}

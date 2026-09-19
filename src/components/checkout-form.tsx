@@ -19,12 +19,14 @@ import {
 } from "@/components/form-fields";
 import { ARTWORK_ACCEPT, MAX_ARTWORK_BYTES, artworkTooLargeMessage, readArtwork } from "@/lib/artwork";
 import {
+  DEFAULT_PAYMENT_METHOD,
   ORDER_STORAGE_KEY,
   PAYMENT_METHODS,
   type PaymentMethod,
   formatMoney,
   gaItems,
   lineSubtotal,
+  paymentMethodLabel,
   sizeSummary,
 } from "@/lib/cart";
 import { gaEvent } from "@/lib/ga";
@@ -78,16 +80,18 @@ function validate(form: Form): FieldErrors {
  * /checkout/ — an address, a delivery date and how the order gets paid for.
  *
  * There is no card field on this page and no payment gateway behind it, by the
- * owner's decision: an order is settled in cash on delivery, or by bank
- * transfer against an invoice we email. No bank account details appear on the
- * site; they go in that invoice.
+ * owner's decision: an order is settled in cash on delivery, or against a
+ * PayPal invoice the owner emails once the buyer has approved their design
+ * proof. That is deliberate — charging before the proof is signed off is what
+ * loses PayPal disputes on made-to-order goods — so there is no PayPal button
+ * and no redirect to PayPal here.
  */
 export function CheckoutForm() {
   const router = useRouter();
   const { lines, catalog, total, count, ready } = useCart();
 
   const [form, setForm] = useState<Form>(EMPTY);
-  const [payment, setPayment] = useState<PaymentMethod | "">("");
+  const [payment, setPayment] = useState<PaymentMethod>(DEFAULT_PAYMENT_METHOD);
   const [paymentError, setPaymentError] = useState("");
   const [artwork, setArtwork] = useState<File | null>(null);
   const [artworkError, setArtworkError] = useState("");
@@ -123,7 +127,8 @@ export function CheckoutForm() {
     }
 
     const found = validate(form);
-    const missingPayment = payment === "";
+    // A radio is preselected, so this only fires if something cleared it.
+    const missingPayment = !PAYMENT_METHODS.some((option) => option.id === payment);
     if (Object.keys(found).length || missingPayment) {
       if (Object.keys(found).length) {
         const firstKey = Object.keys(found)[0];
@@ -197,7 +202,7 @@ export function CheckoutForm() {
       currency: "USD",
       value: total,
       transaction_id: body.reference,
-      payment_type: payment === "cod" ? "Cash on delivery" : "Bank transfer",
+      payment_type: paymentMethodLabel(payment),
       items: gaItems(lines, catalog),
     });
 
@@ -404,8 +409,8 @@ export function CheckoutForm() {
         <section className="surface-card p-6 sm:p-8" id="payment-method">
           <h2 className="text-3xl text-[var(--color-navy)]">How you pay</h2>
           <p className="mt-2 text-sm">
-            No online payment and no card details — this site never asks for them. Pick the option
-            that suits your program.
+            Nothing is charged on this site and no card details are asked for. You are never billed
+            before you have approved your design proof — pick the option that suits your program.
           </p>
           <fieldset className="mt-5 grid gap-3">
             <legend className="sr-only">Payment method</legend>
@@ -414,7 +419,7 @@ export function CheckoutForm() {
               return (
                 <label
                   key={option.id}
-                  className={`flex cursor-pointer gap-3 rounded-[20px] border p-4 transition ${
+                  className={`payment-option flex min-h-[44px] cursor-pointer gap-3 rounded-[20px] border p-4 transition ${
                     selected
                       ? "border-[var(--color-navy)] bg-[rgba(11,31,58,0.04)] shadow-[0_10px_24px_rgba(11,31,58,0.08)]"
                       : "border-[var(--color-border)] bg-white hover:border-[rgba(11,31,58,0.3)]"
@@ -434,9 +439,9 @@ export function CheckoutForm() {
                   <span className="min-w-0">
                     <span className="flex items-center gap-2 text-base font-semibold text-[var(--color-navy)]">
                       {option.id === "cod" ? (
-                        <Banknote className="h-4 w-4 text-[var(--color-red)]" aria-hidden="true" />
+                        <Banknote className="h-4 w-4 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
                       ) : (
-                        <Receipt className="h-4 w-4 text-[var(--color-red)]" aria-hidden="true" />
+                        <Receipt className="h-4 w-4 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
                       )}
                       {option.label}
                     </span>

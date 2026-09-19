@@ -3,8 +3,8 @@
 > Custom football uniforms, jerseys, practice gear and sideline apparel made to
 > order for football programs across Texas. Order online or ask for a quote
 > first; either way there is no online payment — an order is settled in cash on
-> delivery or by bank transfer against an invoice we email, and every order gets
-> a free design mockup before anything is printed.
+> delivery, or against a PayPal invoice we email once the design proof has been
+> approved, and every order gets a free design proof before anything is printed.
 
 Site: https://texasfootballuniforms.com/
 Contact: info@texasfootballuniforms.com · (213) 449-3746 · WhatsApp +1 213-449-3746
@@ -28,7 +28,7 @@ Two routes, and both end at the same mockup.
 
 Order on the site:
 1. Pick the design, set the roster count (minimum 10 per design) and enter a size breakdown that adds up to it.
-2. Check out with a shipping address and a payment method: cash on delivery, or bank transfer against an invoice we email. No card is asked for and no payment is taken on the site.
+2. Check out with a shipping address and a payment method: cash on delivery, or PayPal. No card is asked for, no payment is taken on the site, and there is no PayPal button or redirect anywhere on it.
 3. We email a free digital mockup, normally within 24 hours. Nothing is printed before you approve it.
 4. Production runs and ships free.
 
@@ -68,9 +68,10 @@ youth-block products stop at youth XL. Measurements are at /size-chart/.
 
 **How do we order?** Two ways, and both end with a free mockup. Order on the site: pick
 the design, set the roster count, split it across sizes and check out with cash on
-delivery or bank transfer — no card is asked for. Or send your roster count, colors and
-date and we reply with a written quote and a free mockup, normally within 24 hours.
-Either way you approve the proof before production runs, and shipping is free.
+delivery or PayPal — no card is asked for and nothing is charged on the site. Or send
+your roster count, colors and date and we reply with a written quote and a free mockup,
+normally within 24 hours. Either way you approve the proof before production runs, and
+shipping is free.
 
 ## Other facts people ask for
 
@@ -78,7 +79,7 @@ Either way you approve the proof before production runs, and shipping is free.
 - Colors: matched to your exact school or club colors. No stock color limits.
 - Service area: the whole state of Texas, with dedicated pages for 23 cities including Houston, Dallas, San Antonio, Austin, Fort Worth, El Paso, Arlington, Plano, Frisco, McKinney, Allen, Katy, Denton, Lubbock, Midland, Amarillo, Waco, Round Rock, Laredo, McAllen, Corpus Christi, Granbury and Sugar Land.
 - Pricing: every product page publishes a starting price per piece at the 10-piece minimum, in USD, and the same number appears in that page's Product schema and in the cart. It is the top of the range: a larger roster pays less per piece, and stitched decoration or a heavier fabric is priced on the invoice, so a cart total is an estimate the invoice confirms.
-- Payment: cash on delivery, or bank transfer against an invoice we email. There is no payment gateway, no card field and no stored card anywhere on the site, and no bank account details are published on it.
+- Payment: cash on delivery, or a PayPal invoice we email once you have approved your design proof. Money is only ever asked for after that approval, because these are made-to-order goods. There is no payment gateway, no card field, no PayPal button and no stored card anywhere on the site.
 - Reply time: quote requests are answered within one business day.
 - What we do NOT do: no retail single-piece sales, no licensed fan merchandise, and no online payment — nothing on this website charges a card.
 

@@ -188,7 +188,7 @@ const homeFaqs: {
   {
     question: "Can we see a mockup before we order?",
     answer:
-      "Yes, and it is free. Send your colors, logo and roster count and we return a digital mockup on the garment you picked, normally within 24 hours. Nothing is printed until you approve that proof, and nothing is charged to get one — orders are paid in cash on delivery or by bank transfer after we invoice you.",
+      "Yes, and it is free. Send your colors, logo and roster count and we return a digital mockup on the garment you picked, normally within 24 hours. Nothing is printed until you approve that proof, and nothing is charged to get one — orders are paid in cash on delivery, or against a PayPal invoice we email after you approve the proof.",
   },
   {
     question: "What sizes do you make football uniforms in?",
@@ -209,12 +209,12 @@ const homeFaqs: {
   {
     question: "How do we order custom football uniforms?",
     answer:
-      "Two ways, and both end with a free mockup. Order on the site: pick the design, set the roster count, split it across sizes and check out with cash on delivery or bank transfer — no card is asked for. Or send your roster count, colors and date and we reply with a written quote and a free mockup, normally within 24 hours. Either way you approve the proof before production runs, and shipping is free.",
+      "Two ways, and both end with a free mockup. Order on the site: pick the design, set the roster count, split it across sizes and check out with cash on delivery or PayPal — no card is asked for and nothing is charged on the site. Or send your roster count, colors and date and we reply with a written quote and a free mockup, normally within 24 hours. Either way you approve the proof before production runs, and shipping is free.",
     body: (
       <>
         Two ways, and both end with a free mockup. Order on the site: pick the design, set
-        the roster count, split it across sizes and check out with cash on delivery or bank
-        transfer — no card is asked for. Or send your roster count, colors and date and we
+        the roster count, split it across sizes and check out with cash on delivery or
+        PayPal — no card is asked for. Or send your roster count, colors and date and we
         reply with a written quote and a free mockup, normally within 24 hours. Either way
         you approve the proof before production runs, and you can build the spec yourself in{" "}
         <Link href="/design-your-uniform/" className="font-semibold text-[var(--color-red)]">

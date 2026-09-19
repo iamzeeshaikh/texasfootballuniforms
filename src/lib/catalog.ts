@@ -4402,12 +4402,14 @@ export function buildProductSchema(product: Product) {
       },
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
-      // The only two ways an order is settled: cash when the boxes arrive, or
-      // a bank transfer against the invoice we email. No card is taken and no
-      // payment happens on this site, so nothing here promises a gateway.
+      // The only two ways an order is settled: cash when the order arrives, or
+      // a PayPal invoice sent after the design proof is approved. No card is
+      // taken and no payment happens on this site, so nothing here promises a
+      // gateway or a checkout button.
       acceptedPaymentMethod: [
         "http://purl.org/goodrelations/v1#COD",
         "http://purl.org/goodrelations/v1#Cash",
+        "http://purl.org/goodrelations/v1#PayPal",
         "http://purl.org/goodrelations/v1#ByInvoice",
       ],
       shippingDetails: {
@@ -4578,7 +4580,7 @@ export function buildLocalBusinessSchema() {
     areaServed,
     knowsAbout,
     // Written the way the checkout offers it. There is no card processing here.
-    paymentAccepted: "Cash on delivery, bank transfer against an emailed invoice",
+    paymentAccepted: "Cash on delivery, PayPal invoice emailed after design proof approval",
     currenciesAccepted: "USD",
     sameAs: socialProfiles,
   };

@@ -134,9 +134,9 @@ export default function ContactUsPage() {
                   Talk to Us About Your Team&rsquo;s Kit
                 </h1>
                 <p className="mt-5 text-lg">
-                  You can order straight from the site and pay cash on delivery or by bank
-                  transfer once we invoice you — but plenty of programs would rather talk
-                  first, and this is where that starts. Tell us the roster count, your colors
+                  You can order straight from the site and pay cash on delivery, or against a
+                  PayPal invoice we email once you approve your design proof — but plenty of
+                  programs would rather talk first, and this is where that starts. Tell us the roster count, your colors
                   and the date you need the uniforms on the field, and the reply comes back
                   with a written quote and a free design mockup — normally within 24 hours,
                   and always within one business day.

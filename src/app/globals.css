@@ -105,8 +105,12 @@
     @apply ml-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-navy-soft)];
   }
 
+  /* 16px on phones and 15px from `sm` up: iOS Safari zooms the whole page in
+     when a focused field's text is under 16px, and the zoom does not undo on
+     blur — so the checkout ends up scrolled sideways mid-form. The desktop size
+     is unchanged. */
   .field-input {
-    @apply w-full rounded-xl border border-[rgba(11,31,58,0.16)] bg-white px-4 py-3 text-[15px] text-[var(--color-navy)] shadow-[inset_0_1px_2px_rgba(11,31,58,0.05)] transition;
+    @apply w-full rounded-xl border border-[rgba(11,31,58,0.16)] bg-white px-4 py-3 text-base text-[var(--color-navy)] shadow-[inset_0_1px_2px_rgba(11,31,58,0.05)] transition sm:text-[15px];
     @apply placeholder:text-[rgba(48,67,93,0.62)];
   }
 
@@ -132,7 +136,7 @@
   }
 
   .field-file {
-    @apply cursor-pointer py-2.5 text-sm file:mr-3 file:cursor-pointer file:rounded-lg file:border-0 file:bg-[var(--color-navy)] file:px-3 file:py-2 file:text-xs file:font-semibold file:uppercase file:tracking-[0.1em] file:text-white;
+    @apply cursor-pointer py-2.5 text-base sm:text-sm file:mr-3 file:cursor-pointer file:rounded-lg file:border-0 file:bg-[var(--color-navy)] file:px-3 file:py-2 file:text-xs file:font-semibold file:uppercase file:tracking-[0.1em] file:text-white;
   }
 
   .field-file-name {
@@ -145,6 +149,15 @@
 
   .field-hint {
     @apply text-[13px] leading-5 text-[var(--color-navy-soft)];
+  }
+
+  /* The checkout's payment radios. Written as plain CSS rather than a
+     `focus-within:outline-[...]` utility because that utility set the ring's
+     style and width but left its color as currentColor — a navy ring on a navy
+     card, which is not a visible focus indicator. */
+  .payment-option:focus-within {
+    outline: 2px solid var(--color-red);
+    outline-offset: 2px;
   }
 
   .form-alert {

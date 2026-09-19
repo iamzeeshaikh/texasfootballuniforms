@@ -10,7 +10,7 @@ import { CheckoutForm } from "@/components/checkout-form";
 export const metadata: Metadata = {
   title: "Checkout | Texas Football Uniforms",
   description:
-    "Place your custom football uniform order: shipping address, needed-by date and payment by cash on delivery or bank transfer. No card details are collected.",
+    "Place your custom football uniform order: shipping address, needed-by date and payment by cash on delivery or a PayPal invoice we email after proof approval. No card details are collected.",
   robots: { index: false, follow: true },
 };
 
@@ -24,9 +24,10 @@ export default function CheckoutPage() {
           </p>
           <h1 className="mt-4 text-5xl text-[var(--color-navy)] sm:text-6xl">Place Your Order</h1>
           <p className="mt-5 max-w-3xl text-lg">
-            No online payment and no card fields. Choose cash on delivery or a bank transfer against
-            the invoice we email you, and nothing is charged before you have approved your free
-            mockup. Shipping is free, and production runs 1 to 2 weeks after you approve the design.
+            No online payment and no card fields. Choose cash on delivery or PayPal — with PayPal
+            we email you an invoice once you have approved your free design proof, so nothing is
+            charged before then. Shipping is free, and production runs 1 to 2 weeks after you
+            approve the design.
           </p>
           <p className="mt-4 max-w-3xl text-sm">
             Would rather talk it through first?{" "}

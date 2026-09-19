@@ -50,24 +50,54 @@ export type CartProduct = {
 
 export type CartCatalog = Record<string, CartProduct>;
 
-export type PaymentMethod = "cod" | "bank-transfer";
+/**
+ * The two ways an order is settled, and neither of them happens here.
+ *
+ * There is no PayPal button, no PayPal SDK, no client id and no redirect to
+ * paypal.com anywhere on this site, by the owner's decision: these are
+ * made-to-order goods, so money is asked for only after the buyer has approved
+ * their design proof. The PayPal invoice is sent by hand from PayPal Business
+ * after that approval. Anything that would charge at checkout belongs nowhere
+ * in this file.
+ */
+export type PaymentMethod = "cod" | "paypal";
 
-export const PAYMENT_METHODS: { id: PaymentMethod; label: string; detail: string }[] = [
+export const PAYMENT_METHODS: {
+  id: PaymentMethod;
+  label: string;
+  detail: string;
+  /** The line the order email leads with — it decides what happens next. */
+  ownerLine: string;
+}[] = [
   {
     id: "cod",
     label: "Cash on delivery",
-    detail: "Pay the driver in cash when the boxes reach you. Nothing is charged before then.",
+    detail: "Pay the driver in cash when your order arrives. Nothing is charged before then.",
+    ownerLine: "Cash on delivery",
   },
   {
-    id: "bank-transfer",
-    label: "Bank transfer (we email an invoice)",
+    id: "paypal",
+    label: "PayPal",
     detail:
-      "We email an itemized invoice with the transfer details once your mockup is approved. No account numbers are published on this site.",
+      "We email you a PayPal invoice once you approve your design proof. Nothing is charged on this site.",
+    ownerLine: "PayPal — invoice after proof approval",
   },
 ];
 
+/** The default: the owner's most common order, and it asks nothing of the buyer. */
+export const DEFAULT_PAYMENT_METHOD: PaymentMethod = "cod";
+
+export function isPaymentMethod(value: unknown): value is PaymentMethod {
+  return PAYMENT_METHODS.some((option) => option.id === value);
+}
+
 export function paymentMethodLabel(method: PaymentMethod) {
   return PAYMENT_METHODS.find((option) => option.id === method)?.label ?? method;
+}
+
+/** `PAYMENT: PayPal — invoice after proof approval` / `PAYMENT: Cash on delivery`. */
+export function paymentOwnerLine(method: PaymentMethod) {
+  return PAYMENT_METHODS.find((option) => option.id === method)?.ownerLine ?? method;
 }
 
 export function formatMoney(value: number) {

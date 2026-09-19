@@ -2,7 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 import { getOrderableProducts } from "@/lib/catalog";
-import { formatMoney, paymentMethodLabel, type PaymentMethod } from "@/lib/cart";
+import {
+  formatMoney,
+  isPaymentMethod,
+  paymentMethodLabel,
+  paymentOwnerLine,
+  type PaymentMethod,
+} from "@/lib/cart";
 import { company } from "@/lib/site";
 import { isUsState } from "@/lib/us-states";
 
@@ -10,10 +16,11 @@ import { isUsState } from "@/lib/us-states";
  * Order intake.
  *
  * What this endpoint does NOT do is take money. There is no gateway, no card
- * field and no stored payment instrument anywhere on the site: an order is
- * settled in cash when it is delivered, or by bank transfer against an invoice
- * we email afterwards. The bank details live in that invoice and are never
- * published here.
+ * field, no PayPal SDK and no stored payment instrument anywhere on the site:
+ * an order is settled in cash when it is delivered, or against a PayPal invoice
+ * the owner sends by hand once the buyer has approved their design proof.
+ * Charging before the proof is approved is what loses disputes on made-to-order
+ * goods, which is why the money comes after it and never from this route.
  *
  * Prices are never read from the request. The browser posts a slug, a quantity
  * and a size breakdown; every dollar in the mail below is looked up from the
@@ -196,12 +203,23 @@ ${rows}
 </table>`;
 }
 
-const NEXT_STEPS = [
-  "A designer draws your free mockup and emails it, normally within 24 hours.",
-  "You approve the mockup, or ask for changes — nothing is cut or printed before you do.",
-  "Production runs 1 to 2 weeks after you approve the design.",
-  "Shipping is free, anywhere in the US.",
-];
+/**
+ * The buyer's sequence, in the order it actually happens — including where the
+ * money is asked for, which is different for each method and is never at
+ * checkout.
+ */
+function nextSteps(paymentMethod: PaymentMethod) {
+  return [
+    "A designer draws your free design proof and emails it, normally within 24 hours.",
+    "You approve the proof, or ask for changes — nothing is cut or printed before you do.",
+    ...(paymentMethod === "paypal"
+      ? ["We email you a PayPal invoice once you have approved the proof."]
+      : []),
+    "Production runs 1 to 2 weeks after you approve the design.",
+    "Shipping is free, anywhere in the US.",
+    ...(paymentMethod === "cod" ? ["You pay the driver in cash when your order is delivered."] : []),
+  ];
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -264,13 +282,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const paymentMethod = str(data.paymentMethod, 20) as PaymentMethod;
-    if (paymentMethod !== "cod" && paymentMethod !== "bank-transfer") {
+    // Exactly two methods are accepted. Anything else — an old cached bundle
+    // still posting "bank-transfer", or someone posting "card" by hand — is
+    // rejected rather than defaulted, because the method decides what the team
+    // does next with the order.
+    const posted = str(data.paymentMethod, 20);
+    if (!isPaymentMethod(posted)) {
       return NextResponse.json(
-        { ok: false, error: "Please choose cash on delivery or bank transfer." },
+        { ok: false, error: "Please choose cash on delivery or PayPal." },
         { status: 400 },
       );
     }
+    const paymentMethod: PaymentMethod = posted;
 
     const priced = priceLines(data.lines);
     if ("error" in priced) {
@@ -287,7 +310,7 @@ export async function POST(req: NextRequest) {
 
     const ownerText = [
       `NEW ORDER ${reference}`,
-      `Payment: ${paymentLabel}`,
+      `PAYMENT: ${paymentOwnerLine(paymentMethod)}`,
       `Estimated total: ${formatMoney(priced.total)} (free shipping)`,
       "",
       "CONTACT",
@@ -309,12 +332,14 @@ export async function POST(req: NextRequest) {
       "",
       "--- where this came from ---",
       "Page URL: https://texasfootballuniforms.com/checkout/",
-      "No payment was taken. Invoice or collect on delivery.",
+      "No payment was taken on the site. Collect on delivery, or send the PayPal",
+      "invoice by hand once the design proof is approved.",
     ].join("\n");
 
     const ownerHtml = `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;color:#0b1f3a">
 <p style="margin:0 0 4px;font-size:18px"><strong>New order ${escapeHtml(reference)}</strong></p>
-<p style="margin:0 0 16px;color:#30435d">${escapeHtml(paymentLabel)} · estimated total <strong>${formatMoney(priced.total)}</strong> · free shipping</p>
+<p style="margin:0 0 12px;padding:10px 12px;background:#0b1f3a;border-radius:6px;color:#ffffff;font-size:15px"><strong>PAYMENT: ${escapeHtml(paymentOwnerLine(paymentMethod))}</strong></p>
+<p style="margin:0 0 16px;color:#30435d">Estimated total <strong>${formatMoney(priced.total)}</strong> · free shipping</p>
 <h3 style="margin:0 0 6px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#c8102e">Contact</h3>
 <p style="margin:0 0 16px;color:#0b1f3a">${escapeHtml(name)}<br>${escapeHtml(email)}<br>${escapeHtml(phone)}${organization ? `<br>${escapeHtml(organization)}` : ""}</p>
 <h3 style="margin:0 0 6px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#c8102e">Ship to</h3>
@@ -323,7 +348,7 @@ export async function POST(req: NextRequest) {
 ${linesHtmlBlock(priced.lines, priced.total)}
 ${orderNotes ? `<h3 style="margin:18px 0 6px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#c8102e">Notes</h3><p style="margin:0 0 16px;white-space:pre-wrap;color:#0b1f3a">${escapeHtml(orderNotes)}</p>` : ""}
 ${artwork ? `<p style="margin:16px 0 0;color:#30435d">Artwork attached: ${escapeHtml(artwork.name)}</p>` : ""}
-<p style="margin:18px 0 0;color:#30435d;font-size:12px">--- where this came from ---<br>Page URL: <a href="https://texasfootballuniforms.com/checkout/">https://texasfootballuniforms.com/checkout/</a><br>No payment was taken on the site. Invoice or collect on delivery.</p>
+<p style="margin:18px 0 0;color:#30435d;font-size:12px">--- where this came from ---<br>Page URL: <a href="https://texasfootballuniforms.com/checkout/">https://texasfootballuniforms.com/checkout/</a><br>No payment was taken on the site. Collect on delivery, or send the PayPal invoice by hand once the design proof is approved.</p>
 </div>`;
 
     await transporter.sendMail({
@@ -342,8 +367,10 @@ ${artwork ? `<p style="margin:16px 0 0;color:#30435d">Artwork attached: ${escape
     // fails the order: the order is already with the team by this point.
     const payLine =
       paymentMethod === "cod"
-        ? "You pay cash on delivery — nothing is charged before the boxes reach you."
-        : "You pay by bank transfer. We email an itemized invoice with the transfer details once your mockup is approved; we never publish account details on the website.";
+        ? "You pay the driver in cash when your order arrives — nothing is charged before then."
+        : "We email you a PayPal invoice once you have approved your design proof. Nothing was charged on the website and nothing is charged before that approval.";
+
+    const steps = nextSteps(paymentMethod);
 
     const buyerText = [
       `Thank you — we have your order, ${reference}.`,
@@ -352,7 +379,7 @@ ${artwork ? `<p style="margin:16px 0 0;color:#30435d">Artwork attached: ${escape
       payLine,
       "",
       "WHAT HAPPENS NEXT",
-      ...NEXT_STEPS.map((step, index) => `  ${index + 1}. ${step}`),
+      ...steps.map((step, index) => `  ${index + 1}. ${step}`),
       "",
       "YOUR ORDER",
       linesTextBlock(priced.lines),
@@ -374,7 +401,7 @@ ${artwork ? `<p style="margin:16px 0 0;color:#30435d">Artwork attached: ${escape
 <p style="margin:0 0 18px;color:#30435d">Your reference is <strong style="color:#0b1f3a">${escapeHtml(reference)}</strong>. Quote it when you call or write to us.</p>
 <p style="margin:0 0 18px;padding:12px 14px;background:#f6f8fb;border-radius:8px;color:#0b1f3a"><strong>${escapeHtml(paymentLabel)}.</strong> ${escapeHtml(payLine)}</p>
 <h3 style="margin:0 0 6px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#c8102e">What happens next</h3>
-<ol style="margin:0 0 18px;padding-left:20px;color:#0b1f3a">${NEXT_STEPS.map((step) => `<li style="margin-bottom:4px">${escapeHtml(step)}</li>`).join("")}</ol>
+<ol style="margin:0 0 18px;padding-left:20px;color:#0b1f3a">${steps.map((step) => `<li style="margin-bottom:4px">${escapeHtml(step)}</li>`).join("")}</ol>
 <h3 style="margin:0 0 6px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#c8102e">Your order</h3>
 ${linesHtmlBlock(priced.lines, priced.total)}
 <p style="margin:10px 0 18px;color:#30435d;font-size:13px">The final amount is confirmed on your invoice — stitched decoration or a heavier fabric is priced there, and a larger roster lowers the price per piece.</p>
