@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
-import { Banknote, Receipt, ShieldCheck, ShoppingCart, Truck } from "lucide-react";
+import { Receipt, ShieldCheck, ShoppingCart, Truck } from "lucide-react";
 
 import { useCart } from "@/components/cart-provider";
 import {
@@ -80,7 +80,7 @@ function validate(form: Form): FieldErrors {
  * /checkout/ — an address, a delivery date and how the order gets paid for.
  *
  * There is no card field on this page and no payment gateway behind it, by the
- * owner's decision: an order is settled in cash on delivery, or against a
+ * owner's decision: an order is settled online, against a
  * PayPal invoice the owner emails once the buyer has approved their design
  * proof. That is deliberate — charging before the proof is signed off is what
  * loses PayPal disputes on made-to-order goods — so there is no PayPal button
@@ -438,11 +438,7 @@ export function CheckoutForm() {
                   />
                   <span className="min-w-0">
                     <span className="flex items-center gap-2 text-base font-semibold text-[var(--color-navy)]">
-                      {option.id === "cod" ? (
-                        <Banknote className="h-4 w-4 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
-                      ) : (
-                        <Receipt className="h-4 w-4 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
-                      )}
+                      <Receipt className="h-4 w-4 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
                       {option.label}
                     </span>
                     <span className="mt-1 block text-[13px] leading-5 text-[var(--color-navy-soft)]">

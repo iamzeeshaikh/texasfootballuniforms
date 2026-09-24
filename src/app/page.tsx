@@ -20,6 +20,8 @@ import {
 
 import { ImageCarousel } from "@/components/image-carousel";
 import { QuoteForm } from "@/components/quote-form";
+import { DesignYourUniform } from "@/components/design-your-uniform";
+import { getDesignOptions } from "@/lib/design-tool";
 import { getAllProducts } from "@/lib/catalog";
 import { company } from "@/lib/site";
 
@@ -188,7 +190,7 @@ const homeFaqs: {
   {
     question: "Can we see a mockup before we order?",
     answer:
-      "Yes, and it is free. Send your colors, logo and roster count and we return a digital mockup on the garment you picked, normally within 24 hours. Nothing is printed until you approve that proof, and nothing is charged to get one — orders are paid in cash on delivery, or against a PayPal invoice we email after you approve the proof.",
+      "Yes, and it is free. Send your colors, logo and roster count and we return a digital mockup on the garment you picked, normally within 24 hours. Nothing is printed until you approve that proof, and nothing is charged to get one — orders are paid against a PayPal invoice we email after you approve the proof, by PayPal or by card.",
   },
   {
     question: "What sizes do you make football uniforms in?",
@@ -209,12 +211,12 @@ const homeFaqs: {
   {
     question: "How do we order custom football uniforms?",
     answer:
-      "Two ways, and both end with a free mockup. Order on the site: pick the design, set the roster count, split it across sizes and check out with cash on delivery or PayPal — no card is asked for and nothing is charged on the site. Or send your roster count, colors and date and we reply with a written quote and a free mockup, normally within 24 hours. Either way you approve the proof before production runs, and shipping is free.",
+      "Two ways, and both end with a free mockup. Order on the site: pick the design, set the roster count, split it across sizes and check out — payment is the PayPal invoice we email after proof approval, so no card is asked for on the site. Or send your roster count, colors and date and we reply with a written quote and a free mockup, normally within 24 hours. Either way you approve the proof before production runs, and shipping is free.",
     body: (
       <>
         Two ways, and both end with a free mockup. Order on the site: pick the design, set
-        the roster count, split it across sizes and check out with cash on delivery or
-        PayPal — no card is asked for. Or send your roster count, colors and date and we
+        the roster count, split it across sizes and check out — payment is the PayPal
+        invoice we email after proof approval, so no card is asked for here. Or send your roster count, colors and date and we
         reply with a written quote and a free mockup, normally within 24 hours. Either way
         you approve the proof before production runs, and you can build the spec yourself in{" "}
         <Link href="/design-your-uniform/" className="font-semibold text-[var(--color-red)]">
@@ -445,6 +447,18 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* The uniform designer runs on the home page too (owner, 2026-09-24):
+          it was one click away and most visitors never took it. */}
+      <section className="section-space pt-0">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <DesignYourUniform
+            options={getDesignOptions()}
+            heading="Design Your Uniform"
+            intro="Pick the garment, your colors and the decoration, and we draw a free mockup from it — usually within 24 hours. Minimum 10 per design, and nothing is printed until you approve the proof."
+          />
         </div>
       </section>
 

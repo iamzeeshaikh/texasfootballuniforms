@@ -4580,7 +4580,7 @@ export function buildLocalBusinessSchema() {
     areaServed,
     knowsAbout,
     // Written the way the checkout offers it. There is no card processing here.
-    paymentAccepted: "Cash on delivery, PayPal invoice emailed after design proof approval",
+    paymentAccepted: "PayPal invoice emailed after design proof approval, payable by PayPal or card",
     currenciesAccepted: "USD",
     sameAs: socialProfiles,
   };

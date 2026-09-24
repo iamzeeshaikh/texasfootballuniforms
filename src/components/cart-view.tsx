@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useId, useState } from "react";
-import { Banknote, Minus, Pencil, Plus, ShoppingCart, Trash2, Truck } from "lucide-react";
+import { Minus, Pencil, Plus, Receipt, ShoppingCart, Trash2, Truck } from "lucide-react";
 
 import { QuantityStepper, SizeGrid } from "@/components/size-picker";
 import { useCart } from "@/components/cart-provider";
@@ -35,7 +35,9 @@ function LineEditor({
   const [colors, setColors] = useState(line.colors);
   const [notes, setNotes] = useState(line.notes);
 
-  const balanced = sizeTotal(sizes) === quantity;
+  const assigned = sizeTotal(sizes);
+  // Sizes are optional until production; a partial breakdown still blocks.
+  const balanced = assigned === 0 || assigned === quantity;
 
   return (
     <div className="mt-4 grid gap-5 rounded-[22px] border border-[var(--color-border)] bg-[rgba(11,31,58,0.02)] p-4 sm:p-5">
@@ -342,13 +344,11 @@ export function CartView() {
           <h2 className="text-2xl text-[var(--color-navy)]">How you pay</h2>
           <div className="mt-4 grid gap-3">
             <p className="flex gap-2.5 text-[13px] leading-5 text-[var(--color-navy-soft)]">
-              <Banknote className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
+              <Receipt className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
               <span>
-                <strong className="text-[var(--color-navy)]">Cash on delivery</strong> — pay the
-                driver when your order arrives, or{" "}
-                <strong className="text-[var(--color-navy)]">PayPal</strong> — we email you an
-                invoice once you approve your design proof. No card details are collected anywhere
-                on this site.
+                <strong className="text-[var(--color-navy)]">PayPal invoice</strong> — we email it
+                once you approve your design proof, and you pay it by PayPal or by card. No card
+                details are collected anywhere on this site.
               </span>
             </p>
             <p className="flex gap-2.5 text-[13px] leading-5 text-[var(--color-navy-soft)]">

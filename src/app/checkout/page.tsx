@@ -10,7 +10,7 @@ import { CheckoutForm } from "@/components/checkout-form";
 export const metadata: Metadata = {
   title: "Checkout | Texas Football Uniforms",
   description:
-    "Place your custom football uniform order: shipping address, needed-by date and payment by cash on delivery or a PayPal invoice we email after proof approval. No card details are collected.",
+    "Place your custom football uniform order: shipping address, needed-by date and payment by the PayPal invoice we email after proof approval. No card details are collected.",
   robots: { index: false, follow: true },
 };
 
@@ -24,7 +24,7 @@ export default function CheckoutPage() {
           </p>
           <h1 className="mt-4 text-5xl text-[var(--color-navy)] sm:text-6xl">Place Your Order</h1>
           <p className="mt-5 max-w-3xl text-lg">
-            No online payment and no card fields. Choose cash on delivery or PayPal — with PayPal
+            No card fields on this site. Payment is the PayPal invoice we email you — with it
             we email you an invoice once you have approved your free design proof, so nothing is
             charged before then. Shipping is free, and production runs 1 to 2 weeks after you
             approve the design.

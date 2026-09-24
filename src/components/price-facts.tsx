@@ -138,7 +138,7 @@ export function PriceNotes({ unit, minimum }: PriceNotesProps) {
         <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-navy)]" aria-hidden="true" />
         <span>
           Prices are in USD and quoted per piece before tax, and shipping is free on every order.
-          Production is 1 to 2 weeks after you approve the design. No online payment: you pay cash
+          Production is 1 to 2 weeks after you approve the design. Payment is online, after approval: you pay the invoice
           on delivery, or against a PayPal invoice we email after you approve your free design
           proof, and nothing is produced until you approve it.
         </span>

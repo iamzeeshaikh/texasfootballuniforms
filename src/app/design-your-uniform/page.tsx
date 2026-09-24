@@ -44,7 +44,7 @@ const faqs = [
   {
     question: "Is the price in the uniform designer the real price?",
     answer:
-      "Yes. Each garment card carries the same published starting price as its product page, quoted per piece at our 10-piece minimum — the smallest order we produce and therefore the highest per-piece tier. A larger roster pays less per piece, and stitched decoration or a heavier fabric is priced in your written quote. No payment is taken on this site: orders are settled in cash on delivery, or against a PayPal invoice we email after you approve your design proof.",
+      "Yes. Each garment card carries the same published starting price as its product page, quoted per piece at our 10-piece minimum — the smallest order we produce and therefore the highest per-piece tier. A larger roster pays less per piece, and stitched decoration or a heavier fabric is priced in your written quote. No payment is taken on this site: orders are settled against a PayPal invoice we email after you approve your design proof, payable by PayPal or by card.",
   },
   {
     question: "What is the minimum order?",

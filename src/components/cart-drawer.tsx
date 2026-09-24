@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { Banknote, Minus, Plus, ShoppingCart, Trash2, X } from "lucide-react";
+import { Minus, Plus, Receipt, ShoppingCart, Trash2, X } from "lucide-react";
 
 import { useCart } from "@/components/cart-provider";
 import { formatMoney, gaItems, lineSubtotal, sizeSummary } from "@/lib/cart";
@@ -231,8 +231,8 @@ export function CartDrawer() {
               </p>
             </div>
             <p className="mt-3 flex gap-2 text-[12px] leading-4 text-[var(--color-navy-soft)]">
-              <Banknote className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
-              Cash on delivery, or a PayPal invoice after you approve your design proof. No
+              <Receipt className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
+              A PayPal invoice after you approve your design proof, payable by PayPal or card. No
               payment is taken on this site.
             </p>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">

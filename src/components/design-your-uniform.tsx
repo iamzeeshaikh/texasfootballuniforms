@@ -930,7 +930,7 @@ export function DesignYourUniform({
                   <p className="design-summary-fineprint mt-2.5 border-t border-white/15 pt-2.5 text-[11px] leading-5 text-white/75">
                     Published starting prices, so this is the top of the range: a bigger roster pays
                     less per piece, and stitched decoration or heavier fabric is priced in your
-                    written quote. No online payment: cash on delivery, or a PayPal invoice we email
+                    written quote. Payment is online: a PayPal invoice we email
                     after you approve your design proof.
                   </p>
                 </div>

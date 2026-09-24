@@ -134,7 +134,11 @@ function priceLines(raw: unknown): { lines: PricedLine[]; total: number } | { er
     if (unknown.length) {
       return { error: `${product.name} is not made in ${unknown[0]}. Please re-check the sizes.` };
     }
-    if (assigned !== quantity) {
+    // An empty breakdown is allowed: the owner asked for the ordering block to
+    // be short (2026-09-24), so sizes can be settled with the roster before
+    // production. A PARTIAL breakdown is still an error — that is a mistake,
+    // not a decision.
+    if (assigned !== 0 && assigned !== quantity) {
       return {
         error: `The size breakdown for ${product.name} adds up to ${assigned}, not ${quantity}.`,
       };
@@ -217,7 +221,6 @@ function nextSteps(paymentMethod: PaymentMethod) {
       : []),
     "Production runs 1 to 2 weeks after you approve the design.",
     "Shipping is free, anywhere in the US.",
-    ...(paymentMethod === "cod" ? ["You pay the driver in cash when your order is delivered."] : []),
   ];
 }
 
@@ -289,7 +292,7 @@ export async function POST(req: NextRequest) {
     const posted = str(data.paymentMethod, 20);
     if (!isPaymentMethod(posted)) {
       return NextResponse.json(
-        { ok: false, error: "Please choose cash on delivery or PayPal." },
+        { ok: false, error: "Payment is by the PayPal invoice we email after proof approval." },
         { status: 400 },
       );
     }
@@ -366,9 +369,7 @@ ${artwork ? `<p style="margin:16px 0 0;color:#30435d">Artwork attached: ${escape
     // The buyer's copy. Sent after the one that matters, and its failure never
     // fails the order: the order is already with the team by this point.
     const payLine =
-      paymentMethod === "cod"
-        ? "You pay the driver in cash when your order arrives — nothing is charged before then."
-        : "We email you a PayPal invoice once you have approved your design proof. Nothing was charged on the website and nothing is charged before that approval.";
+      "We email you a PayPal invoice once you have approved your design proof, payable by PayPal or by card. Nothing was charged on the website and nothing is charged before that approval.";
 
     const steps = nextSteps(paymentMethod);
 

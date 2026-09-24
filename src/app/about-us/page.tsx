@@ -153,7 +153,7 @@ export default function AboutUsPage() {
                 then it is made. You can order that directly here — the cart is built for a
                 34-player varsity order with a mixed size run, not for a single shirt, so it
                 asks for a size breakdown rather than a size. Payment happens off the site:
-                cash on delivery, or a PayPal invoice we email once you have approved your
+                the PayPal invoice we email once you have approved your
                 design proof. If you would rather have a written quote in front of you first,
                 that path has not gone anywhere.
               </p>

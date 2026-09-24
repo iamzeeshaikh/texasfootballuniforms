@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Banknote, Check, Copy, Receipt } from "lucide-react";
+import { Check, Copy, Receipt } from "lucide-react";
 
 import { useCart } from "@/components/cart-provider";
 import { ORDER_STORAGE_KEY, type PaymentMethod, formatMoney, paymentMethodLabel } from "@/lib/cart";
@@ -49,11 +49,11 @@ function stepsFor(payment?: PaymentMethod) {
       title: "Free shipping",
       text: "Every order ships free, anywhere in the US, and you get tracking when it leaves us.",
     },
-    ...(payment === "cod"
+    ...(false
       ? [
           {
-            title: "Pay the driver on delivery",
-            text: "Cash, when your order reaches you. Nothing is charged before then.",
+            title: "",
+            text: "",
           },
         ]
       : []),
@@ -154,16 +154,10 @@ export function OrderConfirmation() {
 
         {payment ? (
           <p className="mx-auto mt-6 flex max-w-xl items-start gap-3 rounded-[20px] bg-[rgba(11,31,58,0.04)] p-4 text-left text-sm leading-6">
-            {payment === "cod" ? (
-              <Banknote className="mt-0.5 h-5 w-5 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
-            ) : (
-              <Receipt className="mt-0.5 h-5 w-5 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
-            )}
+            <Receipt className="mt-0.5 h-5 w-5 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
             <span>
               <strong className="text-[var(--color-navy)]">{paymentMethodLabel(payment)}.</strong>{" "}
-              {payment === "cod"
-                ? "You pay the driver in cash when your order arrives. Nothing has been charged, and this site never asked for a card."
-                : "We email you a PayPal invoice once you approve your design proof. Nothing has been charged, and this site never asked for a card."}
+              {"We email you a PayPal invoice once you approve your design proof, payable by PayPal or card. Nothing has been charged, and this site never asked for a card."}
             </span>
           </p>
         ) : null}

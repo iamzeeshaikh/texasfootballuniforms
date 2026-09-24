@@ -2,13 +2,13 @@
  * Payment guard. Run after `next build` (npm run check:payment, and as part of
  * `npm run build`).
  *
- * The owner's decision, 2026-09-19: an order is settled in **cash on delivery**
- * or against a **PayPal invoice emailed after the buyer approves their design
- * proof**. Two methods, nothing charged on the site, and no PayPal button, SDK,
- * client id or redirect anywhere on it — charging up front is what loses PayPal
- * disputes on made-to-order goods. Bank transfer is gone: the owner has never
- * supplied bank details, so offering it promised an invoice that could not be
- * sent.
+ * The owner's decision, 2026-09-24: an order is settled **online**, against a
+ * **PayPal invoice emailed after the buyer approves their design proof** and
+ * payable by PayPal or by card. One method, nothing charged on the site, and no
+ * PayPal button, SDK, client id or redirect anywhere on it — charging up front
+ * is what loses PayPal disputes on made-to-order goods. Cash on delivery was
+ * withdrawn on the same day; bank transfer went earlier, because the owner has
+ * never supplied bank details.
  *
  * Three things are asserted, and all three are asserted against BUILT output
  * (prerendered HTML, the client bundles, public/llms.txt) rather than the
@@ -16,7 +16,7 @@
  *
  *   1. No page and no shipped script offers bank transfer, a wire, a card or
  *      payment before production.
- *   2. The checkout carries exactly the two methods, with `cod` as the default.
+ *   2. The checkout carries exactly one method, the PayPal invoice.
  *   3. Nothing anywhere loads PayPal's SDK or links out to paypal.com.
  *
  * Each rule was watched failing against a planted defect before it was trusted
@@ -86,17 +86,16 @@ for (const file of [...htmlFiles, ...scriptFiles, ...publicFiles]) {
 }
 
 /* ------------------------------------------------------------------ *
- * 2. The checkout carries exactly the two methods, COD first and default.
+ * 2. The checkout carries exactly one method, the PayPal invoice.
  *
  * The checkout form is a client component that renders "Loading your order…"
  * until the cart is read from storage, so the radios are not in the prerendered
  * HTML — the array that builds them ships in the checkout's JS chunk, and that
  * is what is read here.
  * ------------------------------------------------------------------ */
-const EXPECTED = [
-  { id: "cod", label: "Cash on delivery" },
-  { id: "paypal", label: "PayPal" },
-];
+// Cash on delivery was withdrawn by the owner on 2026-09-24: payment is the
+// PayPal invoice sent after proof approval, payable by PayPal or by card.
+const EXPECTED = [{ id: "paypal", label: "PayPal invoice" }];
 
 const checkoutChunks = scriptFiles.filter((file) => file.includes("/app/checkout/"));
 if (checkoutChunks.length === 0) {
@@ -143,8 +142,8 @@ for (const file of checkoutChunks) {
     }
   });
   // The default the radio group starts on. It follows the array in the bundle.
-  if (!/\bDEFAULT_PAYMENT_METHOD\b/.test(text) && !/\],\s*[A-Za-z$_]+\s*=\s*"cod"/.test(text)) {
-    fail("checkout-methods", `${where} does not default the payment choice to "cod"`);
+  if (!/\bDEFAULT_PAYMENT_METHOD\b/.test(text) && !/\],\s*[A-Za-z$_]+\s*=\s*"paypal"/.test(text)) {
+    fail("checkout-methods", `${where} does not default the payment choice to "paypal"`);
   }
   // The PayPal explanation has to say when the invoice arrives, or the page is
   // back to implying a charge at checkout.
@@ -183,5 +182,5 @@ if (failures.length) {
 }
 
 console.log(
-  `${GREEN}✓ payment check passed${OFF} — ${htmlFiles.length} pages, ${scriptFiles.length} scripts: two methods (cash on delivery, PayPal), no bank transfer, no PayPal SDK.`,
+  `${GREEN}✓ payment check passed${OFF} — ${htmlFiles.length} pages, ${scriptFiles.length} scripts: one method (PayPal invoice after proof approval), no cash on delivery, no bank transfer, no PayPal SDK.`,
 );

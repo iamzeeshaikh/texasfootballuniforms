@@ -60,7 +60,7 @@ export type CartCatalog = Record<string, CartProduct>;
  * after that approval. Anything that would charge at checkout belongs nowhere
  * in this file.
  */
-export type PaymentMethod = "cod" | "paypal";
+export type PaymentMethod = "paypal";
 
 export const PAYMENT_METHODS: {
   id: PaymentMethod;
@@ -70,22 +70,15 @@ export const PAYMENT_METHODS: {
   ownerLine: string;
 }[] = [
   {
-    id: "cod",
-    label: "Cash on delivery",
-    detail: "Pay the driver in cash when your order arrives. Nothing is charged before then.",
-    ownerLine: "Cash on delivery",
-  },
-  {
     id: "paypal",
-    label: "PayPal",
+    label: "PayPal invoice",
     detail:
-      "We email you a PayPal invoice once you approve your design proof. Nothing is charged on this site.",
+      "We email you a PayPal invoice once you approve your design proof — pay it by PayPal or by card. Nothing is charged on this site.",
     ownerLine: "PayPal — invoice after proof approval",
   },
 ];
 
-/** The default: the owner's most common order, and it asks nothing of the buyer. */
-export const DEFAULT_PAYMENT_METHOD: PaymentMethod = "cod";
+export const DEFAULT_PAYMENT_METHOD: PaymentMethod = "paypal";
 
 export function isPaymentMethod(value: unknown): value is PaymentMethod {
   return PAYMENT_METHODS.some((option) => option.id === value);
@@ -95,7 +88,7 @@ export function paymentMethodLabel(method: PaymentMethod) {
   return PAYMENT_METHODS.find((option) => option.id === method)?.label ?? method;
 }
 
-/** `PAYMENT: PayPal — invoice after proof approval` / `PAYMENT: Cash on delivery`. */
+/** `PAYMENT: PayPal — invoice after proof approval`. */
 export function paymentOwnerLine(method: PaymentMethod) {
   return PAYMENT_METHODS.find((option) => option.id === method)?.ownerLine ?? method;
 }
@@ -145,8 +138,16 @@ export function cartCount(lines: CartLine[]) {
   return lines.reduce((total, line) => total + line.quantity, 0);
 }
 
+/**
+ * A line is balanced when its size breakdown adds up to its quantity — or when
+ * no sizes have been entered at all. Sizes became optional at the ordering
+ * block on 2026-09-24 (owner: keep it short) and are settled with the roster
+ * before production; a PARTIAL breakdown is still refused, because that is a
+ * slip rather than a decision. api/order/route.ts applies the same rule.
+ */
 export function isLineBalanced(line: Pick<CartLine, "quantity" | "sizes">) {
-  return sizeTotal(line.sizes) === line.quantity;
+  const assigned = sizeTotal(line.sizes);
+  return assigned === 0 || assigned === line.quantity;
 }
 
 function biggestSize(sizes: SizeBreakdown, sizeRun: string[]) {
@@ -234,7 +235,9 @@ function normalizeLine(raw: unknown, catalog: CartCatalog): CartLine | null {
     (value.sizes && typeof value.sizes === "object" ? value.sizes : {}) as SizeBreakdown,
     product.sizeRun,
   );
-  if (sizeTotal(sizes) !== quantity) return null;
+  // Same rule as isLineBalanced: a whole breakdown or none at all. A stored
+  // line with no sizes is a line whose roster is still being collected.
+  if (sizeTotal(sizes) !== 0 && sizeTotal(sizes) !== quantity) return null;
 
   return {
     id: typeof value.id === "string" && value.id ? value.id : newLineId(),
