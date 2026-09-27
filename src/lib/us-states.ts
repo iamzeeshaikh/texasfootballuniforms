@@ -1,5 +1,5 @@
 /**
- * Shipping is free anywhere in the United States, so the state dropdown is the
+ * Shipping is free to every city in Texas, so the state dropdown is the
  * 50 states plus DC. Texas is first in the list as well as in its alphabetical
  * place because all but a handful of orders ship inside the state.
  */

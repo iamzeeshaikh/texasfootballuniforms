@@ -47,7 +47,7 @@ function stepsFor(payment?: PaymentMethod) {
     },
     {
       title: "Free shipping",
-      text: "Every order ships free, anywhere in the US, and you get tracking when it leaves us.",
+      text: "Every order ships free to every city in Texas, and you get tracking when it leaves us.",
     },
     ...(false
       ? [

@@ -315,7 +315,7 @@ export function CheckoutForm() {
 
         <section className="surface-card p-6 sm:p-8">
           <h2 className="text-3xl text-[var(--color-navy)]">Where it ships</h2>
-          <p className="mt-2 text-sm">Shipping is free on every order, anywhere in the US.</p>
+          <p className="mt-2 text-sm">Shipping is free on every order, to every city in Texas.</p>
           <div className="mt-5 grid gap-x-5 gap-y-4 sm:grid-cols-2">
             <TextField
               label="Street address"

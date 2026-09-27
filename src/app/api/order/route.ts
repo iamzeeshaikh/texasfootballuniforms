@@ -220,7 +220,7 @@ function nextSteps(paymentMethod: PaymentMethod) {
       ? ["We email you a PayPal invoice once you have approved the proof."]
       : []),
     "Production runs 1 to 2 weeks after you approve the design.",
-    "Shipping is free, anywhere in the US.",
+    "Shipping is free to every city in Texas.",
   ];
 }
 

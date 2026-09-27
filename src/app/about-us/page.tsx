@@ -47,7 +47,7 @@ const orderSteps = [
   },
   {
     title: "Production runs and the order ships",
-    text: "Production runs 1 to 2 weeks after you approve the design, whatever the garment. Shipping is free on every order.",
+    text: "Production runs 1 to 2 weeks after you approve the design, whatever the garment. Shipping is free on every order, to every city in Texas.",
   },
 ];
 
