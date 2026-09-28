@@ -4387,6 +4387,43 @@ function parseTurnaroundDays(turnaround: string) {
   return { minDays: minWeeks * 7, maxDays: maxWeeks * 7 };
 }
 
+/** The returns page. One constant, so the route, the footer link, the sitemap
+ * entry and the merchantReturnLink in every Offer can never point at different
+ * URLs — the whole defect being fixed here was schema pointing at a 404. */
+export const RETURN_POLICY_PATH = "/return-policy/";
+
+/**
+ * The return policy every product Offer declares, and the same node the
+ * /return-policy/ page publishes.
+ *
+ * `MerchantReturnNotPermitted` is kept, because it is true of the only kind of
+ * return Google's returnPolicyCategory describes: a consumer sending goods back
+ * because they changed their mind. Every garment here is sublimated with one
+ * program's names, numbers and colors after that program has approved a proof,
+ * so there is no remorse return and never has been.
+ *
+ * What was wrong was not the value, it was that the claim stood alone. Google
+ * accepts either applicableCountry + returnPolicyCategory, or merchantReturnLink;
+ * this sends all three, so the strongest claim on the page now resolves to a
+ * document a buyer — or a PayPal dispute — can read. Until 2026-09-28 that link
+ * would have 404ed, which is what scripts/check-returns.mjs now prevents.
+ *
+ * Not sent, deliberately: merchantReturnDays, returnFees, returnMethod,
+ * refundType and the remorse/defect fee fields. Google documents those for the
+ * finite and unlimited-window categories, and filling them in under
+ * MerchantReturnNotPermitted would describe a return window that does not exist.
+ * The remedy this business does give — a remake or a refund when the fault is
+ * ours — is a warranty remedy, not a return, and the page says so in those words.
+ */
+export function buildReturnPolicySchema() {
+  return {
+    "@type": "MerchantReturnPolicy",
+    applicableCountry: "US",
+    returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
+    merchantReturnLink: `${SITE_URL}${RETURN_POLICY_PATH}`,
+  };
+}
+
 /**
  * Merchant-listing Product schema.
  *
@@ -4394,9 +4431,9 @@ function parseTurnaroundDays(turnaround: string) {
  * - aggregateRating / review: the site has no on-site product reviews or
  *   rated testimonials, so any rating value would be fabricated.
  * - shippingRate: no shipping price is published anywhere on the site.
- * hasMerchantReturnPolicy is declared as MerchantReturnNotPermitted: the site
- * publishes no returns/refund page and every order is quote-based,
- * made-to-order custom apparel, so no return offer exists to describe.
+ * hasMerchantReturnPolicy comes from buildReturnPolicySchema(), which also
+ * carries the merchantReturnLink to /return-policy/ — the page that states the
+ * same thing in words.
  * handlingTime is derived from each product's published turnaround spec.
  */
 export function buildProductSchema(product: Product) {
@@ -4461,11 +4498,7 @@ export function buildProductSchema(product: Product) {
           },
         },
       },
-      hasMerchantReturnPolicy: {
-        "@type": "MerchantReturnPolicy",
-        applicableCountry: "US",
-        returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted",
-      },
+      hasMerchantReturnPolicy: buildReturnPolicySchema(),
     },
     url,
   };

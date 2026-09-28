@@ -37,6 +37,7 @@ const SOURCES = {
   blog: ["src/app/blog/page.tsx", "src/data/blogPosts.ts"],
   about: ["src/app/about-us/page.tsx"],
   contact: ["src/app/contact-us/page.tsx", "src/components/quote-form.tsx"],
+  returns: ["src/app/return-policy/page.tsx"],
   privacy: ["src/app/privacy-policy/page.tsx"],
   terms: ["src/app/terms-conditions/page.tsx"],
 };

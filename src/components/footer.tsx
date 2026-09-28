@@ -75,6 +75,9 @@ export function Footer() {
             <Link href="/contact-us/" className="transition hover:text-[var(--color-gold)]">
               Contact Us
             </Link>
+            <Link href="/return-policy/" className="transition hover:text-[var(--color-gold)]">
+              Return Policy
+            </Link>
             <Link href="/privacy-policy/" className="transition hover:text-[var(--color-gold)]">
               Privacy Policy
             </Link>

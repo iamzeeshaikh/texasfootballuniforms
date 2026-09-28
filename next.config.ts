@@ -41,6 +41,11 @@ const nextConfig: NextConfig = {
         destination: "/corpus-christi-football-uniforms",
         permanent: true,
       },
+      // The two other paths a buyer or a crawler guesses for this document.
+      // Both were 404 while every product page's schema claimed a return
+      // policy; the policy now lives at /return-policy/ and these lead to it.
+      { source: "/returns", destination: "/return-policy/", permanent: true },
+      { source: "/refund-policy", destination: "/return-policy/", permanent: true },
     ];
   },
 };

@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack --hostname 127.0.0.1 --port 3002",
-    "build": "next build --webpack && node scripts/check-payment.mjs && node scripts/check-turnaround.mjs",
+    "build": "next build --webpack && node scripts/check-payment.mjs && node scripts/check-turnaround.mjs && node scripts/check-returns.mjs",
     "check:payment": "node scripts/check-payment.mjs",
     "check:turnaround": "node scripts/check-turnaround.mjs",
+    "check:returns": "node scripts/check-returns.mjs",
     "start": "next start",
     "lint": "eslint .",
     "indexnow": "node scripts/indexnow.mjs",

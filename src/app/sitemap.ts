@@ -27,12 +27,13 @@ const PAGE_LASTMOD: Record<string, Date> = {
   "/contact-us/": at("contact"),
   "/size-chart/": at("products"),
   "/design-your-uniform/": at("designTool"),
+  "/return-policy/": at("returns"),
   "/privacy-policy/": at("privacy"),
   "/terms-conditions/": at("terms"),
 };
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["/", "/all-categories/", "/design-your-uniform/", "/blog/", "/about-us/", "/contact-us/", "/size-chart/", "/privacy-policy/", "/terms-conditions/"];
+  const staticPages = ["/", "/all-categories/", "/design-your-uniform/", "/blog/", "/about-us/", "/contact-us/", "/size-chart/", "/return-policy/", "/privacy-policy/", "/terms-conditions/"];
 
   const pageEntries: MetadataRoute.Sitemap = staticPages.map((page) => ({
     url: `${SITE_URL}${page}`,
