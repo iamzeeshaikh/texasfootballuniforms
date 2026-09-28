@@ -24,9 +24,9 @@ export default function CheckoutPage() {
           </p>
           <h1 className="mt-4 text-5xl text-[var(--color-navy)] sm:text-6xl">Place Your Order</h1>
           <p className="mt-5 max-w-3xl text-lg">
-            No card fields on this site. Payment is the PayPal invoice we email you — with it
-            we email you an invoice once you have approved your free design proof, so nothing is
-            charged before then. Shipping is free, and production runs 1 to 2 weeks after you
+            One way to pay, and no card fields on this site. You approve your free design proof
+            first, then we email you a PayPal invoice you can pay by PayPal or by card — so nothing
+            is charged before then. Shipping is free, and production runs 1 to 2 weeks after you
             approve the design.
           </p>
           <p className="mt-4 max-w-3xl text-sm">

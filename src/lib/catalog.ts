@@ -4435,13 +4435,12 @@ export function buildProductSchema(product: Product) {
       },
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
-      // The only two ways an order is settled: cash when the order arrives, or
-      // a PayPal invoice sent after the design proof is approved. No card is
-      // taken and no payment happens on this site, so nothing here promises a
-      // gateway or a checkout button.
+      // The one way an order is settled: a PayPal invoice sent after the design
+      // proof is approved, payable by PayPal or by card. Cash on delivery was
+      // withdrawn by the owner in September 2026, so COD and Cash must not come
+      // back here. No card is taken and no payment happens on this site, so
+      // nothing here promises a gateway or a checkout button either.
       acceptedPaymentMethod: [
-        "http://purl.org/goodrelations/v1#COD",
-        "http://purl.org/goodrelations/v1#Cash",
         "http://purl.org/goodrelations/v1#PayPal",
         "http://purl.org/goodrelations/v1#ByInvoice",
       ],

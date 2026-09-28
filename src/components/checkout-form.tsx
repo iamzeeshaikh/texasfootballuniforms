@@ -66,7 +66,7 @@ function validate(form: Form): FieldErrors {
   if (!form.name.trim()) errors.name = "Tell us who to reply to.";
   if (!form.email.trim()) errors.email = "The order confirmation goes here.";
   else if (!isEmail(form.email)) errors.email = "That email address looks incomplete.";
-  if (!form.phone.trim()) errors.phone = "The driver needs a number on delivery day.";
+  if (!form.phone.trim()) errors.phone = "A number we can reach you on about the order.";
   else if (!isPhone(form.phone)) errors.phone = "Check the number — that is too short to dial.";
   if (!form.address1.trim()) errors.address1 = "Street address, please.";
   if (!form.city.trim()) errors.city = "Which city?";
@@ -80,19 +80,26 @@ function validate(form: Form): FieldErrors {
  * /checkout/ — an address, a delivery date and how the order gets paid for.
  *
  * There is no card field on this page and no payment gateway behind it, by the
- * owner's decision: an order is settled online, against a
- * PayPal invoice the owner emails once the buyer has approved their design
- * proof. That is deliberate — charging before the proof is signed off is what
- * loses PayPal disputes on made-to-order goods — so there is no PayPal button
- * and no redirect to PayPal here.
+ * owner's decision: an order is settled online, against a PayPal invoice the
+ * owner emails once the buyer has approved their design proof. That is
+ * deliberate — charging before the proof is signed off is what loses PayPal
+ * disputes on made-to-order goods — so there is no PayPal button and no
+ * redirect to PayPal here.
+ *
+ * That is the ONLY method (cash on delivery was withdrawn on 2026-09-24), so
+ * the page states it instead of offering it: no radio group, no default to
+ * pick, nothing on the page that implies a second way to pay. The method still
+ * travels to /api/order/ in the payload, because the order email leads with it
+ * and the endpoint rejects anything else rather than defaulting.
  */
 export function CheckoutForm() {
   const router = useRouter();
   const { lines, catalog, total, count, ready } = useCart();
 
   const [form, setForm] = useState<Form>(EMPTY);
-  const [payment, setPayment] = useState<PaymentMethod>(DEFAULT_PAYMENT_METHOD);
-  const [paymentError, setPaymentError] = useState("");
+  // Not a choice and not state: one method, fixed, sent with the order.
+  const payment: PaymentMethod = DEFAULT_PAYMENT_METHOD;
+  const paymentMethod = PAYMENT_METHODS[0];
   const [artwork, setArtwork] = useState<File | null>(null);
   const [artworkError, setArtworkError] = useState("");
   const [errors, setErrors] = useState<FieldErrors>({});
@@ -127,21 +134,13 @@ export function CheckoutForm() {
     }
 
     const found = validate(form);
-    // A radio is preselected, so this only fires if something cleared it.
-    const missingPayment = !PAYMENT_METHODS.some((option) => option.id === payment);
-    if (Object.keys(found).length || missingPayment) {
-      if (Object.keys(found).length) {
-        const firstKey = Object.keys(found)[0];
-        const first = formEl.querySelector<HTMLElement>(`[name="${firstKey}"]`);
-        first?.focus({ preventScroll: true });
-        first?.scrollIntoView({ block: "center", behavior: "smooth" });
-      }
+    if (Object.keys(found).length) {
+      const firstKey = Object.keys(found)[0];
+      const first = formEl.querySelector<HTMLElement>(`[name="${firstKey}"]`);
+      first?.focus({ preventScroll: true });
+      first?.scrollIntoView({ block: "center", behavior: "smooth" });
       setTouched(Object.fromEntries(Object.keys(EMPTY).map((key) => [key, true])));
       setErrors(found);
-      setPaymentError(missingPayment ? "Choose how you would like to pay." : "");
-      if (missingPayment && !Object.keys(found).length) {
-        document.getElementById("payment-method")?.scrollIntoView({ block: "center", behavior: "smooth" });
-      }
       return;
     }
 
@@ -411,51 +410,24 @@ export function CheckoutForm() {
         <section className="surface-card p-6 sm:p-8" id="payment-method">
           <h2 className="text-3xl text-[var(--color-navy)]">How you pay</h2>
           <p className="mt-2 text-sm">
-            Nothing is charged on this site and no card details are asked for. You are never billed
-            before you have approved your design proof — pick the option that suits your program.
+            One method, and it comes after the proof: you pay online once you have approved your
+            free design proof. Nothing is charged on this website, and no card details are asked
+            for at any point.
           </p>
-          <fieldset className="mt-5 grid gap-3">
-            <legend className="sr-only">Payment method</legend>
-            {PAYMENT_METHODS.map((option) => {
-              const selected = payment === option.id;
-              return (
-                <label
-                  key={option.id}
-                  className={`payment-option flex min-h-[44px] cursor-pointer gap-3 rounded-[20px] border p-4 transition ${
-                    selected
-                      ? "border-[var(--color-navy)] bg-[rgba(11,31,58,0.04)] shadow-[0_10px_24px_rgba(11,31,58,0.08)]"
-                      : "border-[var(--color-border)] bg-white hover:border-[rgba(11,31,58,0.3)]"
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value={option.id}
-                    checked={selected}
-                    onChange={() => {
-                      setPayment(option.id);
-                      setPaymentError("");
-                    }}
-                    className="mt-1 h-5 w-5 shrink-0 accent-[var(--color-red)]"
-                  />
-                  <span className="min-w-0">
-                    <span className="flex items-center gap-2 text-base font-semibold text-[var(--color-navy)]">
-                      <Receipt className="h-4 w-4 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
-                      {option.label}
-                    </span>
-                    <span className="mt-1 block text-[13px] leading-5 text-[var(--color-navy-soft)]">
-                      {option.detail}
-                    </span>
-                  </span>
-                </label>
-              );
-            })}
-          </fieldset>
-          {paymentError ? (
-            <p role="alert" className="field-error mt-3">
-              {paymentError}
-            </p>
-          ) : null}
+          <div className="mt-5 flex min-w-0 gap-3 rounded-[20px] border border-[var(--color-navy)] bg-[rgba(11,31,58,0.04)] p-4">
+            <Receipt
+              className="mt-0.5 h-5 w-5 shrink-0 text-[var(--color-red)]"
+              aria-hidden="true"
+            />
+            <div className="min-w-0">
+              <p className="text-base font-semibold text-[var(--color-navy)]">
+                {paymentMethod.label}
+              </p>
+              <p className="mt-1 text-[13px] leading-5 text-[var(--color-navy-soft)]">
+                {paymentMethod.detail}
+              </p>
+            </div>
+          </div>
         </section>
 
         <section className="surface-card p-6 sm:p-8">
@@ -487,7 +459,7 @@ export function CheckoutForm() {
               wide
               rows={4}
               placeholder="Roster sheet is coming by email, home jersey navy with gold numbers, sponsor logo on the left sleeve."
-              hint="Anything the designer or the driver should know — a delivery window, a purchase order number, a second color for the away set."
+              hint="Anything the designer or our shipping team should know — a delivery window, a purchase order number, a second color for the away set."
               value={form.notes}
               onChange={set("notes")}
               onBlur={blur("notes")}

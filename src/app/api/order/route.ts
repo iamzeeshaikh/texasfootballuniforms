@@ -208,17 +208,16 @@ ${rows}
 }
 
 /**
- * The buyer's sequence, in the order it actually happens — including where the
- * money is asked for, which is different for each method and is never at
- * checkout.
+ * The buyer's sequence, in the order it actually happens. The money step falls
+ * after proof approval and never at checkout, and there is only one of them:
+ * free design proof → you approve it → we email your PayPal invoice →
+ * production → free shipping.
  */
-function nextSteps(paymentMethod: PaymentMethod) {
+function nextSteps() {
   return [
     "A designer draws your free design proof and emails it, normally within 24 hours.",
     "You approve the proof, or ask for changes — nothing is cut or printed before you do.",
-    ...(paymentMethod === "paypal"
-      ? ["We email you a PayPal invoice once you have approved the proof."]
-      : []),
+    "We email you a PayPal invoice once you have approved the proof. Pay it by PayPal or by card.",
     "Production runs 1 to 2 weeks after you approve the design.",
     "Shipping is free to every city in Texas.",
   ];
@@ -267,7 +266,7 @@ export async function POST(req: NextRequest) {
     }
     if (phone.replace(/\D/g, "").length < 7) {
       return NextResponse.json(
-        { ok: false, error: "A phone number is how the driver reaches you on delivery day." },
+        { ok: false, error: "A phone number is how we reach you about the order and the delivery." },
         { status: 400 },
       );
     }
@@ -285,10 +284,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Exactly two methods are accepted. Anything else — an old cached bundle
-    // still posting "bank-transfer", or someone posting "card" by hand — is
-    // rejected rather than defaulted, because the method decides what the team
-    // does next with the order.
+    // Exactly one method is accepted. Anything else — an old cached bundle
+    // still posting "cod" or "bank-transfer", or someone posting "card" by hand
+    // — is rejected rather than defaulted, because accepting it would put a
+    // payment promise in the order email that the business will not honor.
     const posted = str(data.paymentMethod, 20);
     if (!isPaymentMethod(posted)) {
       return NextResponse.json(
@@ -335,8 +334,9 @@ export async function POST(req: NextRequest) {
       "",
       "--- where this came from ---",
       "Page URL: https://texasfootballuniforms.com/checkout/",
-      "No payment was taken on the site. Collect on delivery, or send the PayPal",
-      "invoice by hand once the design proof is approved.",
+      "No payment was taken on the site. Send the PayPal invoice by hand from PayPal",
+      "Business once the design proof is approved — that is the only way this order",
+      "gets paid.",
     ].join("\n");
 
     const ownerHtml = `<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;color:#0b1f3a">
@@ -351,7 +351,7 @@ export async function POST(req: NextRequest) {
 ${linesHtmlBlock(priced.lines, priced.total)}
 ${orderNotes ? `<h3 style="margin:18px 0 6px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#c8102e">Notes</h3><p style="margin:0 0 16px;white-space:pre-wrap;color:#0b1f3a">${escapeHtml(orderNotes)}</p>` : ""}
 ${artwork ? `<p style="margin:16px 0 0;color:#30435d">Artwork attached: ${escapeHtml(artwork.name)}</p>` : ""}
-<p style="margin:18px 0 0;color:#30435d;font-size:12px">--- where this came from ---<br>Page URL: <a href="https://texasfootballuniforms.com/checkout/">https://texasfootballuniforms.com/checkout/</a><br>No payment was taken on the site. Collect on delivery, or send the PayPal invoice by hand once the design proof is approved.</p>
+<p style="margin:18px 0 0;color:#30435d;font-size:12px">--- where this came from ---<br>Page URL: <a href="https://texasfootballuniforms.com/checkout/">https://texasfootballuniforms.com/checkout/</a><br>No payment was taken on the site. Send the PayPal invoice by hand from PayPal Business once the design proof is approved — that is the only way this order gets paid.</p>
 </div>`;
 
     await transporter.sendMail({
@@ -371,7 +371,7 @@ ${artwork ? `<p style="margin:16px 0 0;color:#30435d">Artwork attached: ${escape
     const payLine =
       "We email you a PayPal invoice once you have approved your design proof, payable by PayPal or by card. Nothing was charged on the website and nothing is charged before that approval.";
 
-    const steps = nextSteps(paymentMethod);
+    const steps = nextSteps();
 
     const buyerText = [
       `Thank you — we have your order, ${reference}.`,

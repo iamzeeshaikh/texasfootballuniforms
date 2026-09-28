@@ -20,10 +20,11 @@ type StoredOrder = {
 const MAX_AGE_MS = 30 * 60 * 1000;
 
 /**
- * What happens next, in the order it happens — with the money step shown where
- * it really falls for the method the buyer picked, never at checkout.
+ * What happens next, in the order it happens — with the money step where it
+ * really falls, after proof approval and never at checkout. One payment step,
+ * because there is one payment method.
  */
-function stepsFor(payment?: PaymentMethod) {
+function nextSteps() {
   return [
     {
       title: "Free design proof within 24 hours",
@@ -33,14 +34,10 @@ function stepsFor(payment?: PaymentMethod) {
       title: "You approve it",
       text: "Ask for changes as many times as you need. Nothing is cut or printed until you say yes.",
     },
-    ...(payment === "paypal"
-      ? [
-          {
-            title: "We email you a PayPal invoice",
-            text: "It goes out once you have approved the proof — never before, and never from this website.",
-          },
-        ]
-      : []),
+    {
+      title: "We email you a PayPal invoice",
+      text: "It goes out once you have approved the proof — never before, and never from this website. Pay it by PayPal or by card.",
+    },
     {
       title: "Production, 1 to 2 weeks",
       text: "The run starts the day you approve the design, not the day you ordered.",
@@ -49,14 +46,6 @@ function stepsFor(payment?: PaymentMethod) {
       title: "Free shipping",
       text: "Every order ships free to every city in Texas, and you get tracking when it leaves us.",
     },
-    ...(false
-      ? [
-          {
-            title: "",
-            text: "",
-          },
-        ]
-      : []),
   ];
 }
 
@@ -96,7 +85,7 @@ export function OrderConfirmation() {
   }, []);
 
   const payment = order?.paymentMethod;
-  const steps = stepsFor(payment);
+  const steps = nextSteps();
 
   return (
     <div className="mx-auto max-w-3xl px-4 sm:px-6">
