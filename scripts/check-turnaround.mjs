@@ -210,8 +210,14 @@ for (const { where, pieces } of surfaces) {
  * denial is one careless edit away from "no rush fee under two weeks". Copy
  * that needs to reassure should say the site publishes no rush pricing, which
  * is what public/llms.txt does.
+ *
+ * "increases cost" is in the list because that is the form the claim actually
+ * took on this site: two product pages advised planning early to avoid "a rush
+ * timeline that increases cost and reduces quality". Nobody wrote a price list,
+ * but the page still told a buyer that asking costs money, which is a thing the
+ * owner has never said.
  * ------------------------------------------------------------------ */
-const MONEY = String.raw`fees?|charges?|surcharges?|upcharges?|premiums?|costs?\s+(?:more|extra)|extra\s+costs?|additional\s+(?:costs?|charges?)|\$\s?\d`;
+const MONEY = String.raw`fees?|charges?|surcharges?|upcharges?|premiums?|costs?\s+(?:more|extra)|extra\s+costs?|additional\s+(?:costs?|charges?)|increases?\s+(?:the\s+)?costs?|costs?\s+increases?|\$\s?\d`;
 const RUSH_FEE = [
   new RegExp(String.raw`\b(?:rush|expedited?)\b[^.!?]{0,40}?\b(?:${MONEY})`, "i"),
   new RegExp(String.raw`\b(?:${MONEY})\b[^.!?]{0,40}?\b(?:rush|expedited?)\b`, "i"),

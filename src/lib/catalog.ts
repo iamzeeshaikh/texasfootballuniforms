@@ -822,7 +822,7 @@ const productLongSections: Record<string, (l: ContentLinks) => LongSection[]> = 
       subheading: "Tournament deadlines are fixed. Production should align with them.",
       paragraphs: [
         {
-          lead: `Unlike school uniforms with flexible delivery windows, 7-on-7 tournament gear has a hard deadline: the first event on the schedule. We use the tournament calendar as the production anchor, working backward from the event date to define the latest viable approval window and building buffer time for any revisions. Starting the quote process early enough to leave that buffer in place prevents the rush-order situations that reduce quality and increase cost.`,
+          lead: `Unlike school uniforms with flexible delivery windows, 7-on-7 tournament gear has a hard deadline: the first event on the schedule. We use the tournament calendar as the production anchor, working backward from the event date to define the latest viable approval window and building buffer time for any revisions. Starting the quote process early enough to leave that buffer in place is what keeps the revision rounds unhurried. If your first event is closer than that, say so anyway: we do take rush orders and will confirm what's possible against your date.`,
         },
         {
           lead: `Programs running multiple age groups or divisions from the same organization benefit from ordering uniformly so all groups share the same color values and visual framework. That consistency creates a stronger brand presence at large events where multiple teams from the same program may be competing simultaneously.`,
@@ -1794,7 +1794,7 @@ const productLongSections: Record<string, (l: ContentLinks) => LongSection[]> = 
       subheading: "Start earlier than the first game requires.",
       paragraphs: [
         {
-          lead: `Flag football league schedules are often set with shorter lead times than high school football calendars, which creates a compressed window between when teams are confirmed and when the first game is played. Starting the jersey order conversation at least four to six weeks before the first scheduled game provides enough time for design, approval, and production without requiring a rush timeline that increases cost and reduces quality.`,
+          lead: `Flag football league schedules are often set with shorter lead times than high school football calendars, which creates a compressed window between when teams are confirmed and when the first game is played. Starting the jersey order conversation at least four to six weeks before the first scheduled game leaves room for design, approval, and production at an unhurried pace. Shorter than that is not a closed door: we do take rush orders and will confirm what's possible against your first game date.`,
         },
         {
           lead: `Programs running recurring seasonal leagues benefit from establishing a jersey template that can be reused with roster personalization updates rather than redesigning from scratch each season. That approach reduces lead time and cost while maintaining consistent program branding across multiple seasons.`,
@@ -2617,9 +2617,9 @@ const productLongSections: Record<string, (l: ContentLinks) => LongSection[]> = 
     },
     {
       heading: "Ordering Sublimated Jerseys With Adequate Lead Time",
-      subheading: "Sublimation production cannot be rushed without quality consequences.",
+      subheading: "Sublimation rewards the programs that leave room for proofing.",
       paragraphs: [
-        { lead: `Sublimated jersey production involves artwork preparation, color proofing, fabric cutting, printing, and garment assembly in a sequence that requires adequate time at each stage to produce results that match the approved design accurately. Compressing that timeline by reducing proofing iterations or rushing production stages consistently results in quality compromises that show up in the delivered jersey. Programs should plan sublimated jersey orders with at least one to two weeks of production time after you approve the design.` },
+        { lead: `Sublimated jersey production involves artwork preparation, color proofing, fabric cutting, printing, and garment assembly in a sequence that requires adequate time at each stage to produce results that match the approved design accurately. Cutting the proofing iterations short is what shows up in the delivered jersey, which is why a tight date is a conversation to have with us rather than a corner to cut quietly. Programs should plan sublimated jersey orders with at least one to two weeks of production time after you approve the design.` },
         { lead: `Programs with complex design directions — gradients, detailed mascots, pattern work, or multiple color zones — benefit from additional proofing time at the artwork stage. The investment in thorough proofing prevents the production of jerseys that need to be corrected, which is far more expensive than the time spent on proper proofing.` },
       ],
     },
