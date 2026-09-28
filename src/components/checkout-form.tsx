@@ -400,7 +400,9 @@ export function CheckoutForm() {
               />
               <p className="field-hint">
                 Production is 1 to 2 weeks after you approve the mockup. Tell us the game date and we
-                will say straight away whether it works.
+                will say straight away whether it works — and we do take rush orders, so put the date
+                in even if it looks tight and we&rsquo;ll confirm what&rsquo;s possible before you pay
+                anything.
               </p>
             </div>
           </div>

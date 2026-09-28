@@ -22,7 +22,7 @@ import { ImageCarousel } from "@/components/image-carousel";
 import { QuoteForm } from "@/components/quote-form";
 import { DesignYourUniform } from "@/components/design-your-uniform";
 import { getDesignOptions } from "@/lib/design-tool";
-import { getAllProducts } from "@/lib/catalog";
+import { getAllProducts, rushOrders } from "@/lib/catalog";
 import { company } from "@/lib/site";
 
 const whyChooseUs = [
@@ -155,14 +155,16 @@ const uniformCluster = [
 ];
 
 /**
- * The six questions every quote email opens with, answered in under 60 words
- * each so an answer engine can lift one whole and still be correct.
+ * The questions every quote email opens with, answered in under 60 words each
+ * so an answer engine can lift one whole and still be correct.
  *
  * Every number here is the number the rest of the site publishes: the prices
- * are product.fromPrice, the minimum is the catalog MOQ, and the turnaround
- * range is the real spread across the 28 blueprints (1 to 2 weeks on most
- * jerseys, 3-4 on full uniform programs and college builds). Change a price in
- * catalog.ts and this block has to move with it.
+ * are product.fromPrice, the minimum is the catalog MOQ, and the turnaround is
+ * the one window all 28 blueprints publish (1 to 2 weeks after you approve the
+ * design). Change a price in catalog.ts and this block has to move with it.
+ *
+ * The rush answer is the exception that proves the rule: it carries no window
+ * at all, because the owner takes rush orders and will not commit to days.
  *
  * `answer` is plain text on purpose — it is what goes into FAQPage schema —
  * and `body` is the rendered version, which may carry one link.
@@ -186,6 +188,15 @@ const homeFaqs: {
     question: "How long do custom football uniforms take to make?",
     answer:
       "One to two weeks after you approve the design, whatever the garment. The clock starts at approval, not at the quote, so sending your colors and roster early is what protects a game date.",
+  },
+  {
+    // Rush orders. Straight after the turnaround answer, because the coach who
+    // reads "one to two weeks" and has a game sooner than that is the one who
+    // otherwise closes the tab. Wording and the FAQ pair come from
+    // `rushOrders` in catalog.ts, so this answer, every product page's answer,
+    // both FAQPage blocks and llms.txt are one sentence, not four.
+    question: rushOrders.question,
+    answer: rushOrders.answer,
   },
   {
     question: "Can we see a mockup before we order?",
@@ -569,7 +580,7 @@ export default function HomePage() {
             Custom Football Uniforms: Price, Minimum, Turnaround
           </h2>
           <p className="mt-5 max-w-3xl text-lg">
-            The six questions that open almost every quote email, answered with the same
+            The questions that open almost every quote email, answered with the same
             numbers the product pages publish.
           </p>
 

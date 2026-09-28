@@ -214,6 +214,7 @@ export function QuoteForm() {
           name="timeline"
           autoComplete="off"
           placeholder="In hand by 15 August"
+          hint="Production is 1 to 2 weeks after you approve the design, and we do take rush orders — put your real date here and we'll confirm what's possible."
           value={form.timeline}
           onChange={set("timeline")}
         />

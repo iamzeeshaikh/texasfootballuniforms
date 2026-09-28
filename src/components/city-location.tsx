@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ProductLeadForm } from "@/components/product-lead-form";
-import { getPriceFacts, getProductBySlug } from "@/lib/catalog";
+import { getPriceFacts, getProductBySlug, rushOrders } from "@/lib/catalog";
 import { SITE_URL } from "@/lib/site";
 import {
   getNearbyCities,
@@ -119,6 +119,14 @@ export function CityLocation({ loc }: { loc: LocationCity }) {
                 ))}
               </div>
             ) : null}
+            {/* Rush orders, on the dark hero, right under the turnaround fact —
+                a city page is where a coach checks the date against a schedule.
+                Same sentence as every other page (`rushOrders` in catalog.ts);
+                only the colors change because this block sits on navy. */}
+            <p data-rush-note className="mt-3 max-w-xl text-sm leading-6 text-white/75">
+              <strong className="font-semibold text-[var(--color-gold)]">{rushOrders.heading}</strong>{" "}
+              {rushOrders.line}
+            </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a href="#quote-form" className="rounded-full bg-[var(--color-red)] px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:bg-[var(--color-gold)] hover:text-[var(--color-navy)]">Get a Team Quote</a>
               <Link href="/locations/" className="rounded-full border border-white/25 px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-white transition hover:border-[var(--color-gold)]">All Texas Cities</Link>

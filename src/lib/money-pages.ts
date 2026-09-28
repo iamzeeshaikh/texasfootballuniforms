@@ -85,7 +85,7 @@ export const moneyPages: Record<string, MoneyPage> = {
           "Larger rosters pay less per jersey. The setup work for a reversible is done once for the design, not once per piece, so a 30-player order spreads it further than a 10-player order.",
           "Tackle twill numbering is available on the outward face only. Stitched numbers on a reversible face would show through the reverse side, which is why the standard build is full sublimation on both faces.",
           "Two colorways is the standard. A third color as trim on either face costs nothing extra in sublimation; it changes the artwork, not the process.",
-          "Turnaround is the same as a single-layer jersey — three weeks after you approve the design — because the extra work is in the build, not the queue.",
+          "Turnaround is the same as a single-layer jersey — one to two weeks after you approve the design — because the extra work is in the build, not the queue.",
         ],
       },
     ],
@@ -125,7 +125,7 @@ export const moneyPages: Record<string, MoneyPage> = {
       {
         question: "How long do reversible football jerseys take to make?",
         answer:
-          "Three weeks after you approve the artwork. Both faces are proofed before production starts, so allow a few days for that review on top — programs that send colors and roster data early usually approve within 48 hours of receiving the free mockup.",
+          "One to two weeks after you approve the artwork. Both faces are proofed before production starts, so allow a little time for that review on top — programs that send colors and roster data early usually approve within 48 hours of receiving the free mockup.",
       },
       {
         question: "Can both sides have player names and numbers?",
@@ -233,7 +233,7 @@ export const moneyPages: Record<string, MoneyPage> = {
       {
         question: "How long does a sublimated football order take?",
         answer:
-          "Three weeks after you approve the design for jerseys, one to two weeks for a full uniform. You get a free mockup within 24 hours of sending your colors and logo, and the production clock starts when you approve it.",
+          "One to two weeks after you approve the design, for a jersey run and for a full uniform alike. You get a free mockup within 24 hours of sending your colors and logo, and the production clock starts when you approve it.",
       },
       {
         question: "Will sublimated names and numbers peel off?",

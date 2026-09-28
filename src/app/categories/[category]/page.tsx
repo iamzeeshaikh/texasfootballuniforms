@@ -113,7 +113,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             <h1 className="mt-5 text-5xl text-[var(--color-navy)] sm:text-6xl">
               {categoryPage.title}
             </h1>
-            <PriceFacts facts={getPriceFacts(priceLeader)} />
+            <PriceFacts facts={getPriceFacts(priceLeader)} rush />
             <p className="mt-6 text-lg">{categoryPage.intro}</p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {[

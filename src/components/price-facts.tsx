@@ -1,6 +1,32 @@
-import { BadgeDollarSign, CalendarClock, Layers, PencilRuler, ShieldCheck, Sparkles, Users2 } from "lucide-react";
+import { BadgeDollarSign, CalendarClock, Layers, PencilRuler, ShieldCheck, Sparkles, Timer, Users2 } from "lucide-react";
+
+import { rushOrders } from "@/lib/catalog";
 
 const factIcons = [BadgeDollarSign, Users2, CalendarClock, PencilRuler];
+
+/**
+ * Rush orders, directly under the turnaround fact and nowhere near the H1,
+ * title or schema — it is body copy, not a delivery promise.
+ *
+ * The wording lives in one place (`rushOrders` in catalog.ts) so the chip, the
+ * FAQ, the FAQPage schema, the checkout hint and llms.txt cannot drift apart,
+ * and so the build guard has a single string to assert against. It carries no
+ * day count and no fee on purpose; see that export for why.
+ */
+export function RushNote({ className = "" }: { className?: string }) {
+  return (
+    <p
+      data-rush-note
+      className={`flex items-start gap-2.5 text-sm leading-6 text-[var(--color-navy-soft)] ${className}`}
+    >
+      <Timer className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
+      <span>
+        <strong className="font-semibold text-[var(--color-navy)]">{rushOrders.heading}</strong>{" "}
+        {rushOrders.line}
+      </span>
+    </p>
+  );
+}
 
 /**
  * The four buying facts that sit directly under an H1: starting price,
@@ -12,34 +38,39 @@ const factIcons = [BadgeDollarSign, Users2, CalendarClock, PencilRuler];
  * impressions and no clicks. The strip and the schema now read the same
  * number from `product.fromPrice`.
  */
-export function PriceFacts({ facts }: { facts: string[] }) {
+export function PriceFacts({ facts, rush = false }: { facts: string[]; rush?: boolean }) {
   return (
     <div
       data-price-facts
-      className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-3 rounded-[22px] border border-[var(--color-border)] bg-[linear-gradient(180deg,#ffffff_0%,#f6f8fb_100%)] px-5 py-4 shadow-[0_10px_24px_rgba(11,31,58,0.05)]"
+      className="mt-6 rounded-[22px] border border-[var(--color-border)] bg-[linear-gradient(180deg,#ffffff_0%,#f6f8fb_100%)] px-5 py-4 shadow-[0_10px_24px_rgba(11,31,58,0.05)]"
     >
-      {facts.map((fact, index) => {
-        const Icon = factIcons[index % factIcons.length];
-        return (
-          <span key={fact} className="flex items-center gap-2">
-            {index > 0 ? (
-              <span aria-hidden="true" className="hidden pr-1 text-[var(--color-border)] sm:inline">
-                ·
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-3">
+        {facts.map((fact, index) => {
+          const Icon = factIcons[index % factIcons.length];
+          return (
+            <span key={fact} className="flex items-center gap-2">
+              {index > 0 ? (
+                <span aria-hidden="true" className="hidden pr-1 text-[var(--color-border)] sm:inline">
+                  ·
+                </span>
+              ) : null}
+              <Icon className="h-4 w-4 shrink-0 text-[var(--color-red)]" />
+              <span
+                className={
+                  index === 0
+                    ? "text-base font-semibold text-[var(--color-navy)]"
+                    : "text-sm font-semibold text-[var(--color-navy-soft)]"
+                }
+              >
+                {fact}
               </span>
-            ) : null}
-            <Icon className="h-4 w-4 shrink-0 text-[var(--color-red)]" />
-            <span
-              className={
-                index === 0
-                  ? "text-base font-semibold text-[var(--color-navy)]"
-                  : "text-sm font-semibold text-[var(--color-navy-soft)]"
-              }
-            >
-              {fact}
             </span>
-          </span>
-        );
-      })}
+          );
+        })}
+      </div>
+      {rush ? (
+        <RushNote className="mt-3 border-t border-[var(--color-border)] pt-3" />
+      ) : null}
     </div>
   );
 }

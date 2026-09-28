@@ -98,7 +98,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <h1 className="mt-5 text-5xl text-[var(--color-navy)] sm:text-6xl">
                 {product.name}
               </h1>
-              <PriceFacts facts={getPriceFacts(product)} />
+              <PriceFacts facts={getPriceFacts(product)} rush />
               <p className="mt-6 text-lg">{product.shortDescription}</p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <a

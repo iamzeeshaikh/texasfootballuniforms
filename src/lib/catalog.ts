@@ -2875,7 +2875,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "What makes adult football jerseys different from youth jerseys?", answer: "Adult jerseys use longer body lengths, wider shoulder profiles, heavier fabric tension, and size ranges that accommodate the physical diversity of adult rosters — differences that generic sizing does not address in products designed primarily for younger athletes." },
     { question: "Can adult jerseys include player names and numbers?", answer: "Yes. Variable-data names and numbers are produced as part of the standard order workflow with consistent placement and formatting across every size in the roster." },
     { question: "What size range is available?", answer: "Adult jerseys are available in Adult S through 5XL, covering the full physical range found in competitive adult football programs from skill positions to linemen." },
-    { question: "How long does production take?", answer: "Standard turnaround is three weeks after design approval. Complex personalization or larger roster sizes may affect timing." },
+    { question: "How long does production take?", answer: "Standard turnaround is 1 to 2 weeks after you approve the design. Complex personalization or larger roster sizes may affect timing." },
     { question: "Do these jerseys hold up to repeated washing and contact?", answer: "Yes. Our heavyweight polyester knit construction is specifically selected for its ability to maintain shape, color, and decoration quality through the repeated washing and physical stress that adult football programs generate over a full season." },
     { question: "Can I match existing program colors for a mid-season reorder?", answer: "Yes. We maintain Pantone references and production records from initial orders so mid-season additions and replacement jerseys match the original run accurately." },
     { question: "What decoration methods are available for adult jerseys?", answer: "We offer sublimation, screen print, and heat transfer options. Sublimation is recommended for programs that want the longest-lasting decoration quality and the widest range of color and graphic options." },
@@ -2938,7 +2938,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "How are alternate uniform programs handled?", answer: "Alternate looks are designed as planned variations within the same project so they share visual DNA with the primary uniform and maintain the program's identity consistency rather than functioning as completely independent designs." },
     { question: "What size range is available?", answer: "College uniforms are available in Adult S through 5XL to accommodate the full physical range of college football rosters including skill positions, linemen, and walk-on athletes at various development stages." },
     { question: "Can compliance review be incorporated into the approval process?", answer: "Yes. We structure the approval timeline to accommodate the review stages that college programs require, including athletic department sign-off and any conference compliance confirmations that affect design decisions." },
-    { question: "How long does a college uniform order take?", answer: "College uniform programs typically require four weeks after final approval due to the complexity of the design, personalization volume, and quality standards applied at this level." },
+    { question: "How long does a college uniform order take?", answer: "College uniform programs run 1 to 2 weeks after final approval. The complexity of the design, personalization volume, and the quality standards applied at this level are the reasons we ask for approval early rather than late." },
     { question: "Can the uniform design support recruiting photography and media use?", answer: "Yes. Design decisions in college uniform programs should and do account for how the uniform reads in recruiting photography, broadcast coverage, and social media content where the program's visual identity reaches audiences beyond game-day attendees." },
     { question: "Do you support programs refreshing an established uniform identity?", answer: "Yes. Refresh programs that carry forward the established visual equity while updating materials, decoration methods, and design details are one of our most common college uniform project types." },
     { question: "How do we start the college uniform design process?", answer: `Contact us through any Get a Quote link on the site, call ${company.phoneDisplay}, or email ${company.email}. We will begin with your program's identity direction and work through the design, compliance, and production requirements together.` },
@@ -2951,7 +2951,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "What sizes are available for named jerseys?", answer: "Custom name jerseys are available in Youth XS through Adult 5XL. Name placement and scale adjustments are made proportionally for each size so smaller jerseys look as intentional as larger ones." },
     { question: "Can the jersey include both name and number?", answer: "Yes. Name and number are standard elements in the same production run. We confirm their placement relationship to each other during the artwork review so both elements are balanced correctly on the jersey." },
     { question: "What is the minimum order quantity for named jerseys?", answer: "The minimum is 10 jerseys per design. Programs with smaller roster sizes should discuss their situation during the quote process." },
-    { question: "How long does a named jersey order take to produce?", answer: "Named jersey orders typically require three weeks after you approve the design. The data review stage before artwork confirmation should be factored into the planning timeline." },
+    { question: "How long does a named jersey order take to produce?", answer: "Named jersey orders run 1 to 2 weeks after you approve the design. The data review stage before artwork confirmation should be factored into the planning timeline." },
     { question: "Can late-joining roster members be added after the main order?", answer: "Yes. Add-on jerseys for late additions can be produced from the original order's artwork and production records. Per-unit cost for small add-on runs is higher than in the original order." },
     { question: "How do I submit roster data for a named jersey order?", answer: `After your quote is confirmed, we provide a roster template for name, number, and size data. Contact us through any Get a Quote link, call ${company.phoneDisplay}, or email ${company.email} to begin.` },
   ],
@@ -2961,7 +2961,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "How do you ensure number color contrast is sufficient?", answer: "We flag contrast problems between number color and jersey body color during the artwork review stage so issues are identified and corrected before production rather than discovered at delivery." },
     { question: "Can we use both sublimation and twill numbers in the same order?", answer: "Orders typically use one primary decoration method across all jerseys for consistency. Programs that want a specific subset of jerseys with a different number method should discuss that during the quote." },
     { question: "What if two athletes have the same number in our roster data?", answer: "We flag number conflicts during the data review stage before artwork is finalized. Number assignment confirmation is one of the standard checks in our pre-production workflow." },
-    { question: "How long does a custom number jersey order take?", answer: "Three weeks after you approve the design is the standard timeline. Larger rosters or complex number arrangements may affect timing." },
+    { question: "How long does a custom number jersey order take?", answer: "1 to 2 weeks after you approve the design is the standard timeline. Larger rosters or complex number arrangements may affect timing." },
     { question: "Can replacement jerseys be produced for a single number change?", answer: "Yes. Individual jersey replacements with a specific number can be produced from the original artwork records with the number adjusted. Single-unit production costs more per unit than the original roster run." },
     { question: "Do numbers hold their quality through a full season of washing and contact?", answer: "Yes. Sublimated numbers are permanently embedded in the fabric and cannot crack or peel. Twill numbers are sewn or heat-applied with commercial-grade adhesion and are designed for full-season durability under game conditions." },
     { question: "What size range is available?", answer: "Custom number jerseys are available in Youth XS through Adult 5XL with proportional number sizing adjustments maintained across the full size range." },
@@ -2973,7 +2973,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "What decoration methods are available for warm-up suits?", answer: "Sublimation, embroidery, and heat transfer are available depending on the garment construction and logo complexity. We recommend the method that best matches the logo detail and color requirements of your program." },
     { question: "What material is used in warm-up suit construction?", answer: "Brushed tricot and performance fleece blends are the primary construction materials, selected for their combination of warmth, movement flexibility, and the polished appearance needed for travel and pregame environments." },
     { question: "What size range is available?", answer: "Warm-up suits are available in Youth XS through Adult 4XL to accommodate both athlete and staff needs within the same order." },
-    { question: "How long does warm-up suit production take?", answer: "Standard production runs three weeks after artwork and order confirmation." },
+    { question: "How long does warm-up suit production take?", answer: "Standard production runs 1 to 2 weeks after artwork and order confirmation." },
     { question: "Can coaching staff be included in the same warm-up suit order?", answer: "Yes. Staff warm-ups can be produced in the same order with separate sizing and any title customization that distinguishes them from athlete pieces." },
     { question: "How do warm-up suit colors match the game jersey?", answer: "When warm-up suits are ordered in the same production conversation as the primary jersey or uniform, color values are confirmed across all pieces simultaneously. This produces the most accurate match between suit and jersey colors." },
     { question: "Can warm-up suits be reordered for roster additions?", answer: "Yes. The original production records enable accurate reorders for new athletes, though per-unit cost for small additions is higher than the original bulk run." },
@@ -2987,7 +2987,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "Can multiple design variations be produced in the same order?", answer: "Yes. Home, away, and alternate versions can be developed within the same project with shared design DNA so all versions feel like part of the same identity rather than independent designs." },
     { question: "How are player names and numbers handled?", answer: "Personalization is managed as an integrated part of the production file so names, numbers, and any other athlete-specific elements are produced simultaneously with the base jersey design." },
     { question: "What size range is available?", answer: "Custom team jerseys are available in Youth XS through Adult 5XL with proportional design adjustments maintained across the full size range." },
-    { question: "How long does a fully custom jersey order take?", answer: "Custom jersey orders typically require three weeks after you approve the design. Complex design directions with multiple revision rounds may extend the pre-production timeline." },
+    { question: "How long does a fully custom jersey order take?", answer: "Custom jersey orders run 1 to 2 weeks after you approve the design. Complex design directions with multiple revision rounds may extend the pre-production timeline." },
     { question: "Can I provide existing artwork for the design?", answer: "Yes. Programs with established brand assets — vector logos, color specifications, previous jersey artwork — can provide those files as starting points. We work from existing assets where they are available rather than rebuilding everything from scratch." },
     { question: "How do I start a custom team jersey project?", answer: `Contact us through any Get a Quote link on the site, call ${company.phoneDisplay}, or email ${company.email}. Bring your color palette, logo files, and any design ideas you want to discuss.` },
   ],
@@ -3080,7 +3080,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "Can coach titles be embroidered on sideline jackets?", answer: "Yes. Staff title embroidery — head coach, offensive coordinator, defensive coordinator, training staff — is a standard customization available for sideline jackets." },
     { question: "What decoration methods are available?", answer: "Embroidery and heat transfer are the primary decoration methods for sideline jackets. The softshell outer surface supports both methods with good adhesion and durability." },
     { question: "What size range is available?", answer: "Sideline jackets are available in Adult S through 5XL to accommodate the full range of coaching staff body types." },
-    { question: "How long does jacket production take?", answer: "Standard production runs three weeks after artwork and order confirmation." },
+    { question: "How long does jacket production take?", answer: "Standard production runs 1 to 2 weeks after artwork and order confirmation." },
     { question: "Can colors be matched to our team jerseys?", answer: "Yes. We confirm jacket color values against the team's established palette. Ordering jackets in the same production conversation as warm-up suits produces the most accurate color alignment across both outerwear pieces." },
     { question: "Can sideline jackets be reordered for new staff additions?", answer: "Yes. Individual jackets for new staff members can be produced from the original order's color and style records." },
     { question: "Are these jackets water-resistant?", answer: "Yes. The softshell outer layer provides meaningful water resistance for the typical rain and mist conditions encountered during Texas fall football. Extended heavy rain may eventually penetrate, but the jacket handles standard game-day weather conditions effectively." },
@@ -3142,7 +3142,7 @@ const productFaqs: Record<string, { question: string; answer: string }[]> = {
     { question: "Is the fabric breathable on both sides?", answer: "Yes. The double-layer breathable polyester maintains airflow properties on both sides so the jersey performs consistently regardless of which side is facing out." },
     { question: "What size range is available?", answer: "Reversible jerseys are available in Youth XS through Adult 4XL to accommodate the full range of practice roster sizes." },
     { question: "What is the minimum order quantity?", answer: "The minimum is 10 jerseys. Most practice programs order quantities that cover their full active roster." },
-    { question: "How long does reversible jersey production take?", answer: "Standard production runs three weeks after you approve the design. The double-sided artwork process requires an additional review step so both sides are confirmed before production begins." },
+    { question: "How long does reversible jersey production take?", answer: "Standard production runs 1 to 2 weeks after you approve the design. The double-sided artwork process requires an additional review step so both sides are confirmed before production begins." },
     { question: "How durable are reversible jerseys through a full practice season?", answer: "The double-layer construction gives reversible jerseys greater durability than single-layer practice jerseys. Sublimation on both sides maintains color and number legibility through the full season of daily washing and use." },
     { question: "Can the same reversible jersey be used for both offense and defense?", answer: "Yes. The jersey is flipped to indicate unit assignment, so one jersey serves as an offensive jersey in one color and a defensive jersey in the other. The coaching staff determines the assignment convention that works best for their practice structure." },
     { question: "How do I order reversible football jerseys?", answer: `Contact us through any Get a Quote link on the site, call ${company.phoneDisplay}, or email ${company.email} with your roster size and preferred color combination.` },
@@ -3193,6 +3193,10 @@ function buildFaqs(product: ProductBlueprint): { question: string; answer: strin
   const extra = moneyPages[product.slug]?.faqs ?? [];
   return [
     ...extra,
+    // Rush orders sit next to the turnaround answers, because "how long" and
+    // "can it be sooner" are the same decision for a coach with a game date.
+    // One object feeds the accordion and the FAQPage schema (see `rushOrders`).
+    { question: rushOrders.question, answer: rushOrders.answer },
     ...(productFaqs[product.slug] ?? [
       { question: `Can I fully customize ${product.name.toLowerCase()} with our team colors and logo?`, answer: `Yes. Every quote is built around your color palette, logo placement, numbers, and player details so the final ${product.name.toLowerCase()} match your program identity.` },
       { question: `What is the minimum order?`, answer: `The minimum is ${product.moq} per design. Discuss unusual structures during the quote process.` },
@@ -4260,6 +4264,35 @@ export function turnaroundLabel(product: Pick<Product, "turnaround">) {
   const dashed = product.turnaround.replace(/(\d+)\s+to\s+(\d+)/, "$1–$2");
   return /\bafter\b/i.test(dashed) ? dashed : `${dashed} after you approve the design`;
 }
+
+/**
+ * Rush orders — one wording, exported once.
+ *
+ * The owner's position, 2026-09-28: **we do take rush orders, and we will not
+ * commit to a number of days.** Both halves matter. A rush sweep in September
+ * deleted the service from the site on the assumption that it did not exist,
+ * which was wrong; what does not exist is a published rush window.
+ *
+ * So the copy below is an invitation to ask, never a promise:
+ *  - no day count, week count, "X days faster" or percentage, anywhere;
+ *  - no rush fee, surcharge or "charges may apply" — the owner said nothing
+ *    about money, so the site says nothing about money;
+ *  - "we'll confirm what's possible" is load-bearing. A bare "rush available"
+ *    is the version that over-promises, and `scripts/check-turnaround.mjs`
+ *    fails the build on any of the above.
+ *
+ * It never replaces or qualifies the standard turnaround, which stays exactly
+ * as every blueprint publishes it: 1 to 2 weeks after you approve the design.
+ * `question` / `answer` go into the FAQ accordion and the FAQPage schema from
+ * this one object, so the visible answer and the structured one cannot drift.
+ */
+export const rushOrders = {
+  heading: "Need them sooner?",
+  line: "We do take rush orders. Tell us the date you need them and we'll confirm what's possible before you order.",
+  question: "Can you make them faster?",
+  answer:
+    "Often, yes — we do take rush orders. We will not put a window on it in advance, because what is possible depends on your roster size, the decoration you pick and what is already on the production floor that week. Tell us the date you need them and we'll confirm what's possible before you order, rather than after.",
+} as const;
 
 
 /**
