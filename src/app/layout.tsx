@@ -71,13 +71,34 @@ export default function RootLayout({
           src="https://www.googletagmanager.com/gtag/js?id=G-J277MJQFD0"
           strategy="afterInteractive"
         />
-        <Script id="ga4" strategy="afterInteractive">
-          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-J277MJQFD0');`}
-        </Script>
+        {/* Inline third-party snippets go in via dangerouslySetInnerHTML, the
+            form next/script documents, not JSX children. */}
+        <Script
+          id="ga4"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-J277MJQFD0');`,
+          }}
+        />
         <Script src="/ga4-events.js" strategy="afterInteractive" />
-        <Script id="clarity" strategy="afterInteractive">
-          {`(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yk7eoybep1");`}
-        </Script>
+        {/* The id MUST NOT be "clarity". next/script sets the id on the script
+            element before it appends it to the document, and an element with an
+            id becomes a named property of `window` — so `<Script id="clarity">`
+            made `window.clarity` the HTMLScriptElement itself. The snippet's
+            `c[a]=c[a]||function(){...}` then saw a truthy value, never installed
+            the queue stub, and www.clarity.ms/tag threw
+            "a[c] is not a function" before it could load 0.8.70/clarity.js:
+            no recording, on every page. Loading the tag URL as `src` with no
+            inline stub is not an alternative — the tag reads `window.clarity.v`
+            on its first line and throws on undefined. Verified 2026-09-29;
+            scripts/check-analytics.mjs guards both halves. */}
+        <Script
+          id="ms-clarity"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","yk7eoybep1");`,
+          }}
+        />
         <CartProvider catalog={cartCatalog}>
           <Header />
           <main>{children}</main>

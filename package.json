@@ -4,10 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev --webpack --hostname 127.0.0.1 --port 3002",
-    "build": "next build --webpack && node scripts/check-payment.mjs && node scripts/check-turnaround.mjs && node scripts/check-returns.mjs",
+    "build": "next build --webpack && node scripts/check-payment.mjs && node scripts/check-turnaround.mjs && node scripts/check-returns.mjs && node scripts/check-analytics.mjs",
     "check:payment": "node scripts/check-payment.mjs",
     "check:turnaround": "node scripts/check-turnaround.mjs",
     "check:returns": "node scripts/check-returns.mjs",
+    "check:analytics": "node scripts/check-analytics.mjs",
+    "check:analytics:live": "node scripts/check-analytics.mjs --live",
     "start": "next start",
     "lint": "eslint .",
     "indexnow": "node scripts/indexnow.mjs",
@@ -29,6 +31,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
+    "puppeteer-core": "^24.43.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
