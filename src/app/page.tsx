@@ -1,3 +1,4 @@
+import { withExtras } from "@/lib/page-faqs";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -201,7 +202,7 @@ const homeFaqs: {
   {
     question: "Can we see a mockup before we order?",
     answer:
-      "Yes, and it is free. Send your colors, logo and roster count and we return a digital mockup on the garment you picked, normally within 24 hours. Nothing is printed until you approve that proof, and nothing is charged to get one — orders are paid against a PayPal invoice we email after you approve the proof, by PayPal or by card.",
+      "Yes, and it is free. Send your colors, logo and roster count and we return a digital mockup on the garment you picked, normally within 24 hours. Nothing is printed until you approve that proof, and nothing is charged to get one — orders are paid against a PayPal invoice we email after you approve the proof, through PayPal.",
   },
   {
     question: "What sizes do you make football uniforms in?",
@@ -242,7 +243,7 @@ const homeFaqs: {
 const homeFaqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: homeFaqs.map((faq) => ({
+  mainEntity: withExtras("/", homeFaqs).map((faq) => ({
     "@type": "Question",
     name: faq.question,
     acceptedAnswer: { "@type": "Answer", text: faq.answer },
@@ -585,7 +586,7 @@ export default function HomePage() {
           </p>
 
           <div className="mt-10 grid gap-5 lg:grid-cols-2">
-            {homeFaqs.map((faq) => (
+            {withExtras("/", homeFaqs).map((faq) => (
               <div key={faq.question} className="surface-card p-7 sm:p-8">
                 <h3 className="text-2xl text-[var(--color-navy)]">{faq.question}</h3>
                 <p className="mt-3">{faq.body ?? faq.answer}</p>

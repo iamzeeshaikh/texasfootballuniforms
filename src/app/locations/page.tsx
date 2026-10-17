@@ -1,3 +1,4 @@
+import { ExtraFaqs } from "@/components/extra-faqs";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -96,6 +97,7 @@ export default function LocationsHubPage() {
           </div>
         </div>
       </section>
+      <ExtraFaqs route="/locations/" />
     </>
   );
 }

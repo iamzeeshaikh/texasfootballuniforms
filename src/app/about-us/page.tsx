@@ -1,3 +1,4 @@
+import { ExtraFaqs } from "@/components/extra-faqs";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -72,7 +73,7 @@ const fabrics = [
 const notDone = [
   "We do not sell single pieces at retail. Everything is made to order against a roster, and the smallest order is 10 of one design.",
   "We do not sell licensed fan merchandise. There is no NFL, no college licensing and no reselling of another brand's gear — every garment carries your program's own identity.",
-  "We do not take payment on this website. You can place an order on the site, but there is no gateway, no card field and no PayPal button anywhere on it: an order is settled against a PayPal invoice we email once you have approved your design proof, which you pay by PayPal or by card. That is also why no card details are ever collected here.",
+  "We do not take payment on this website. You can place an order on the site, but there is no gateway, no card field and no PayPal button anywhere on it: an order is settled against a PayPal invoice we email once you have approved your design proof, which you pay through PayPal. That is also why no card details are ever collected here.",
   "We do not print artwork we have no right to print. If a logo belongs to a school district, a league or a third party, we need the program's confirmation that it may be reproduced.",
 ];
 
@@ -154,7 +155,7 @@ export default function AboutUsPage() {
                 34-player varsity order with a mixed size run, not for a single shirt, so it
                 asks for a size breakdown rather than a size. You pay online, but not on this
                 website: there is one method and no choice to make — a PayPal invoice we email
-                once you have approved your design proof, payable by PayPal or by card. If you
+                once you have approved your design proof, payable through PayPal. If you
                 would rather have a written quote in front of you first, that path has not gone
                 anywhere.
               </p>
@@ -410,6 +411,7 @@ export default function AboutUsPage() {
           </div>
         </div>
       </section>
+      <ExtraFaqs route="/about-us/" />
     </>
   );
 }

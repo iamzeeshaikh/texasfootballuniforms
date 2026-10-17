@@ -217,7 +217,7 @@ function nextSteps() {
   return [
     "A designer draws your free design proof and emails it, normally within 24 hours.",
     "You approve the proof, or ask for changes — nothing is cut or printed before you do.",
-    "We email you a PayPal invoice once you have approved the proof. Pay it by PayPal or by card.",
+    "We email you a PayPal invoice once you have approved the proof. Pay it through PayPal.",
     "Production runs 1 to 2 weeks after you approve the design.",
     "Shipping is free to every city in Texas.",
   ];
@@ -369,7 +369,7 @@ ${artwork ? `<p style="margin:16px 0 0;color:#30435d">Artwork attached: ${escape
     // The buyer's copy. Sent after the one that matters, and its failure never
     // fails the order: the order is already with the team by this point.
     const payLine =
-      "We email you a PayPal invoice once you have approved your design proof, payable by PayPal or by card. Nothing was charged on the website and nothing is charged before that approval.";
+      "We email you a PayPal invoice once you have approved your design proof, payable through PayPal. Nothing was charged on the website and nothing is charged before that approval.";
 
     const steps = nextSteps();
 

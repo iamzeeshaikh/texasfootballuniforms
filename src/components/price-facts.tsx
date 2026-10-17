@@ -170,7 +170,7 @@ export function PriceNotes({ unit, minimum }: PriceNotesProps) {
         <span>
           Prices are in USD and quoted per piece before tax, and shipping is free on every order.
           Production is 1 to 2 weeks after you approve the design. You pay online after you approve
-          your free design proof: we email a PayPal invoice you can pay by PayPal or by card.
+          your free design proof: we email a PayPal invoice you pay through PayPal.
           Nothing is charged on this website, and nothing is produced until you approve the proof.
         </span>
       </p>

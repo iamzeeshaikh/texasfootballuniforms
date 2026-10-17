@@ -73,7 +73,7 @@ export const PAYMENT_METHODS: {
     id: "paypal",
     label: "PayPal invoice",
     detail:
-      "We email you a PayPal invoice once you approve your design proof — pay it by PayPal or by card. Nothing is charged on this site.",
+      "We email you a PayPal invoice once you approve your design proof — pay it through PayPal. Nothing is charged on this site.",
     ownerLine: "PayPal — invoice after proof approval",
   },
 ];

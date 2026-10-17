@@ -36,7 +36,7 @@ function nextSteps() {
     },
     {
       title: "We email you a PayPal invoice",
-      text: "It goes out once you have approved the proof — never before, and never from this website. Pay it by PayPal or by card.",
+      text: "It goes out once you have approved the proof — never before, and never from this website. Pay it through PayPal.",
     },
     {
       title: "Production, 1 to 2 weeks",
@@ -146,7 +146,7 @@ export function OrderConfirmation() {
             <Receipt className="mt-0.5 h-5 w-5 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
             <span>
               <strong className="text-[var(--color-navy)]">{paymentMethodLabel(payment)}.</strong>{" "}
-              {"We email you a PayPal invoice once you approve your design proof, payable by PayPal or card. Nothing has been charged, and this site never asked for a card."}
+              {"We email you a PayPal invoice once you approve your design proof, payable through PayPal. Nothing has been charged, and this site never asked for a card."}
             </span>
           </p>
         ) : null}

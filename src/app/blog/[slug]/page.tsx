@@ -1,3 +1,4 @@
+import { extraFaqs } from "@/lib/page-faqs";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -88,10 +89,11 @@ export default async function BlogPostPage({
       url: `${SITE_URL}/${item.slug}/`,
     })),
   };
+  const postFaqs = [...post.faq, ...extraFaqs(`/blog/${post.slug}/`).filter((x) => !post.faq.some((f) => f.q.trim().toLowerCase() === x.question.trim().toLowerCase())).map((x) => ({ q: x.question, a: x.answer }))];
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: post.faq.map((f) => ({
+    mainEntity: postFaqs.map((f) => ({
       "@type": "Question",
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: f.a },
@@ -167,7 +169,7 @@ export default async function BlogPostPage({
           <section className="mt-14">
             <h2 className="text-2xl font-bold text-neutral-900">Frequently asked questions</h2>
             <div className="mt-6 space-y-4">
-              {post.faq.map((f) => (
+              {postFaqs.map((f) => (
                 <div key={f.q} className="rounded-2xl border border-neutral-200 p-5">
                   <h3 className="text-base font-semibold text-neutral-900">{f.q}</h3>
                   <p className="mt-2 text-sm leading-7 text-neutral-600">{f.a}</p>

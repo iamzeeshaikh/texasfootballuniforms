@@ -232,7 +232,7 @@ export function CartDrawer() {
             </div>
             <p className="mt-3 flex gap-2 text-[12px] leading-4 text-[var(--color-navy-soft)]">
               <Receipt className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
-              A PayPal invoice after you approve your design proof, payable by PayPal or card. No
+              A PayPal invoice after you approve your design proof, payable through PayPal. No
               payment is taken on this site.
             </p>
             <div className="mt-4 grid gap-2 sm:grid-cols-2">

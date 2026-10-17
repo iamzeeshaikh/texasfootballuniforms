@@ -1,3 +1,4 @@
+import { withExtras } from "@/lib/page-faqs";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Ruler } from "lucide-react";
@@ -195,7 +196,7 @@ export default function SizeChartPage() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
+    mainEntity: withExtras("/size-chart/", faqs).map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: { "@type": "Answer", text: faq.answer },
@@ -291,7 +292,7 @@ export default function SizeChartPage() {
           <div className="surface-card p-8">
             <h2 className="text-4xl text-[var(--color-navy)]">Sizing FAQs</h2>
             <div className="mt-6 space-y-5">
-              {faqs.map((faq) => (
+              {withExtras("/size-chart/", faqs).map((faq) => (
                 <div key={faq.question}>
                   <h3 className="text-2xl text-[var(--color-navy)]">{faq.question}</h3>
                   <p className="mt-2">{faq.answer}</p>

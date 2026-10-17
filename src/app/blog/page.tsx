@@ -1,3 +1,4 @@
+import { ExtraFaqs } from "@/components/extra-faqs";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -127,6 +128,7 @@ export default function BlogIndexPage() {
           </div>
         </div>
       </section>
+      <ExtraFaqs route="/blog/" />
     </>
   );
 }

@@ -1,3 +1,4 @@
+import { withExtras } from "@/lib/page-faqs";
 import fs from "fs";
 import path from "path";
 
@@ -4150,7 +4151,7 @@ export function getCategoryFaqs(category: CategoryPage): CategoryFaq[] {
     ],
   };
 
-  return faqs[category.group];
+  return withExtras(`/categories/${category.slug}/`, faqs[category.group]);
 }
 
 export function buildCategoryFaqSchema(category: CategoryPage) {
@@ -4473,7 +4474,7 @@ export function buildProductSchema(product: Product) {
       availability: "https://schema.org/InStock",
       itemCondition: "https://schema.org/NewCondition",
       // The one way an order is settled: a PayPal invoice sent after the design
-      // proof is approved, payable by PayPal or by card. Cash on delivery was
+      // proof is approved, payable through PayPal. Cash on delivery was
       // withdrawn by the owner in September 2026, so COD and Cash must not come
       // back here. No card is taken and no payment happens on this site, so
       // nothing here promises a gateway or a checkout button either.
@@ -4645,7 +4646,7 @@ export function buildLocalBusinessSchema() {
     areaServed,
     knowsAbout,
     // Written the way the checkout offers it. There is no card processing here.
-    paymentAccepted: "PayPal invoice emailed after design proof approval, payable by PayPal or card",
+    paymentAccepted: "PayPal invoice emailed after design proof approval, payable through PayPal",
     currenciesAccepted: "USD",
     sameAs: socialProfiles,
   };

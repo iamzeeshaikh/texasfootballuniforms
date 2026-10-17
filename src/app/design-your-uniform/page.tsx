@@ -1,3 +1,4 @@
+import { withExtras } from "@/lib/page-faqs";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ClipboardCheck, Palette, Rocket, Ruler, Send } from "lucide-react";
@@ -44,7 +45,7 @@ const faqs = [
   {
     question: "Is the price in the uniform designer the real price?",
     answer:
-      "Yes. Each garment card carries the same published starting price as its product page, quoted per piece at our 10-piece minimum — the smallest order we produce and therefore the highest per-piece tier. A larger roster pays less per piece, and stitched decoration or a heavier fabric is priced in your written quote. No payment is taken on this site: orders are settled against a PayPal invoice we email after you approve your design proof, payable by PayPal or by card.",
+      "Yes. Each garment card carries the same published starting price as its product page, quoted per piece at our 10-piece minimum — the smallest order we produce and therefore the highest per-piece tier. A larger roster pays less per piece, and stitched decoration or a heavier fabric is priced in your written quote. No payment is taken on this site: orders are settled against a PayPal invoice we email after you approve your design proof, payable through PayPal.",
   },
   {
     question: "What is the minimum order?",
@@ -86,7 +87,7 @@ export default function DesignYourUniformPage() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
+    mainEntity: withExtras("/design-your-uniform/", faqs).map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: { "@type": "Answer", text: faq.answer },
@@ -231,7 +232,7 @@ export default function DesignYourUniformPage() {
             Uniform Designer Questions
           </h2>
           <p className="mt-3 max-w-3xl">Tap a question to open the answer.</p>
-          <FaqAccordion faqs={faqs} className="mt-6" />
+          <FaqAccordion faqs={withExtras("/design-your-uniform/", faqs)} className="mt-6" />
         </section>
       </div>
 

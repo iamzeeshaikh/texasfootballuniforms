@@ -1,3 +1,4 @@
+import { ExtraFaqs } from "@/components/extra-faqs";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +18,7 @@ export default function AllCategoriesPage() {
   const groupedProducts = getProductsByCategoryGroup();
 
   return (
+    <>
     <section className="section-space">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="surface-card p-8 sm:p-10">
@@ -87,5 +89,7 @@ export default function AllCategoriesPage() {
         </div>
       </div>
     </section>
+      <ExtraFaqs route="/all-categories/" />
+    </>
   );
 }

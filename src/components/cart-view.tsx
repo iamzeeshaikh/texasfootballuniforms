@@ -347,7 +347,7 @@ export function CartView() {
               <Receipt className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
               <span>
                 <strong className="text-[var(--color-navy)]">PayPal invoice</strong> — we email it
-                once you approve your design proof, and you pay it by PayPal or by card. No card
+                once you approve your design proof, and you pay it through PayPal. No card
                 details are collected anywhere on this site.
               </span>
             </p>

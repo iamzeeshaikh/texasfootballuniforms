@@ -1,3 +1,4 @@
+import { ExtraFaqs } from "@/components/extra-faqs";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Mail, MessageCircle, Phone } from "lucide-react";
@@ -234,6 +235,7 @@ export default function ContactUsPage() {
           </div>
         </div>
       </section>
+      <ExtraFaqs route="/contact-us/" />
     </>
   );
 }
