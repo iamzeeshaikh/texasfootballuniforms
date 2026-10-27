@@ -4456,7 +4456,7 @@ export function buildProductSchema(product: Product) {
     "@context": "https://schema.org",
     "@type": "Product",
     name: `${product.name} | Texas Football Uniforms`,
-    image: product.images.map((image) => `${SITE_URL}${image}`),
+    image: product.images.map((image) => encodeURI(`${SITE_URL}${image}`)),
     description: product.shortDescription,
     brand: {
       "@type": "Brand",

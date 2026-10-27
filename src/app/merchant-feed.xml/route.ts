@@ -18,7 +18,7 @@ export function GET() {
     .filter((p) => p.images.length)
     .map((p) => {
       const n = moqCount(p);
-      const imgs = p.images.slice(0, 6).map((i) => `${SITE_URL}${i}`);
+      const imgs = p.images.slice(0, 6).map((i) => encodeURI(`${SITE_URL}${i}`));
       return `  <item>
     <g:id>TFU-${x(p.slug)}</g:id>
     <title>${x(`${p.name} - Custom, Set of ${n}`)}</title>
