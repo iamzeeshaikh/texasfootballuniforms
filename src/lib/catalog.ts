@@ -4302,10 +4302,21 @@ export const rushOrders = {
  * while its Product schema quietly carried numbers that appeared nowhere on
  * the page.
  */
+/**
+ * The smallest order the site takes, priced: the minimum quantity times the
+ * per-piece price, which is exactly what the cart charges for it. This is the
+ * price the Product Offer and the Merchant feed list (owner 2026-10-27: a
+ * listing price must be one a buyer can actually pay), so it is printed in the
+ * fact strip as well.
+ */
+export function packPrice(product: Pick<Product, "fromPrice" | "moq">) {
+  return Math.round(moqCount(product) * product.fromPrice * 100) / 100;
+}
+
 export function getPriceFacts(product: Pick<Product, "fromPrice" | "priceUnit" | "moq" | "turnaround">) {
   return [
     fromPriceLabel(product),
-    `Minimum ${moqCount(product)} per design`,
+    `Minimum ${product.moq} per design: ${formatPrice(packPrice(product))}`,
     turnaroundLabel(product),
     "Free mockup in 24 hours",
   ];
@@ -4462,13 +4473,14 @@ export function buildProductSchema(product: Product) {
       "@type": "Offer",
       url,
       priceCurrency: "USD",
-      // Must equal the number printed in the on-page fact strip. Both come
-      // from product.fromPrice for exactly that reason.
-      price: product.fromPrice.toFixed(2),
+      // The minimum order, priced (packPrice): printed in the on-page fact
+      // strip and listed in /merchant-feed.xml with g:multipack, so the page,
+      // the schema and the Merchant listing all quote the same number.
+      price: packPrice(product).toFixed(2),
       priceValidUntil: priceValidUntil(),
       eligibleQuantity: {
         "@type": "QuantitativeValue",
-        minValue: moqCount(product),
+        value: moqCount(product),
         unitText: product.priceUnit,
       },
       availability: "https://schema.org/InStock",
@@ -4482,12 +4494,14 @@ export function buildProductSchema(product: Product) {
         "http://purl.org/goodrelations/v1#PayPal",
         "http://purl.org/goodrelations/v1#ByInvoice",
       ],
+      // Free shipping anywhere in the US (owner 2026-10-27), 2 to 5 business
+      // days in transit after the production window.
       shippingDetails: {
         "@type": "OfferShippingDetails",
+        shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "USD" },
         shippingDestination: {
           "@type": "DefinedRegion",
           addressCountry: "US",
-          addressRegion: "TX",
         },
         deliveryTime: {
           "@type": "ShippingDeliveryTime",
@@ -4495,6 +4509,12 @@ export function buildProductSchema(product: Product) {
             "@type": "QuantitativeValue",
             minValue: minDays,
             maxValue: maxDays,
+            unitCode: "DAY",
+          },
+          transitTime: {
+            "@type": "QuantitativeValue",
+            minValue: 2,
+            maxValue: 5,
             unitCode: "DAY",
           },
         },

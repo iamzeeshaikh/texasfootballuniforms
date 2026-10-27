@@ -355,7 +355,7 @@ export function CartView() {
               <Truck className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-red)]" aria-hidden="true" />
               <span>
                 Free mockup within 24 hours, production 1 to 2 weeks after you approve it, free
-                shipping to every city in Texas.
+                shipping anywhere in the US.
               </span>
             </p>
           </div>

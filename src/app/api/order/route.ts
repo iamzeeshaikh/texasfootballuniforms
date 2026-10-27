@@ -219,7 +219,7 @@ function nextSteps() {
     "You approve the proof, or ask for changes — nothing is cut or printed before you do.",
     "We email you a PayPal invoice once you have approved the proof. Pay it through PayPal.",
     "Production runs 1 to 2 weeks after you approve the design.",
-    "Shipping is free to every city in Texas.",
+    "Shipping is free anywhere in the US.",
   ];
 }
 

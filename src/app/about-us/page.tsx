@@ -48,7 +48,7 @@ const orderSteps = [
   },
   {
     title: "Production runs and the order ships",
-    text: "Production runs 1 to 2 weeks after you approve the design, whatever the garment. Shipping is free on every order, to every city in Texas.",
+    text: "Production runs 1 to 2 weeks after you approve the design, whatever the garment. Shipping is free on every order, anywhere in the US, and usually arrives 2 to 5 business days after dispatch.",
   },
 ];
 
