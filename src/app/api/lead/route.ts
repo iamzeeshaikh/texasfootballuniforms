@@ -115,11 +115,9 @@ export async function POST(req: NextRequest) {
       spec?: unknown;
     };
 
-    // Honeypot: the field is hidden from people, so a filled one is a bot.
-    // Answer 200 so the bot has nothing to learn from the response.
-    if (typeof website === "string" && website.trim() !== "") {
-      return NextResponse.json({ ok: true });
-    }
+    // Honeypot: the field is hidden from people, so a filled one is probably a
+    // bot. The request still reaches the team, labelled "[Possible spam]".
+    const possibleSpam = typeof website === "string" && website.trim() !== "";
 
     const spec = readSpec(rawSpec);
 
@@ -200,8 +198,8 @@ ${artwork ? `<p style="margin:0 0 18px;color:#30435d">Artwork attached: ${escape
       from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
       to: process.env.SMTP_TO,
       replyTo: str("email") || undefined,
-      subject: (fields.subject as string) || "New Quote Request – Texas Football Uniforms",
-      text: textParts.join("\n"),
+      subject: `${possibleSpam ? "[Possible spam] " : ""}${(fields.subject as string) || "New Quote Request – Texas Football Uniforms"}`,
+      text: `${possibleSpam ? "[Possible spam] hidden field filled\n\n" : ""}${textParts.join("\n")}`,
       html,
       attachments: artwork
         ? [{ filename: artwork.name, content: Buffer.from(artwork.data, "base64"), contentType: artwork.type }]

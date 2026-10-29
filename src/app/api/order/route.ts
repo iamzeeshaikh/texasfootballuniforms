@@ -242,12 +242,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ ok: false, error: "We could not read that order." }, { status: 400 });
     }
 
-    // Honeypot: hidden from people, so a filled one is a bot. Answer 200 with a
-    // reference-shaped nothing so the bot learns nothing from the response.
+    // Honeypot: hidden from people, so a filled one is probably a bot. The
+    // order still goes to the team, labelled "[Possible spam]" (never drop a
+    // lead: autofill can fill hidden fields for a real buyer too).
     const website = data.website;
-    if (typeof website === "string" && website.trim() !== "") {
-      return NextResponse.json({ ok: true, reference: orderReference() });
-    }
+    const possibleSpam = typeof website === "string" && website.trim() !== "";
 
     const contact = (data.contact ?? {}) as Record<string, unknown>;
     const shipping = (data.shipping ?? {}) as Record<string, unknown>;
@@ -358,9 +357,9 @@ ${artwork ? `<p style="margin:16px 0 0;color:#30435d">Artwork attached: ${escape
       from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
       to: process.env.SMTP_TO,
       replyTo: email,
-      subject: `New Order ${reference} – ${formatMoney(priced.total)} – Texas Football Uniforms`,
-      text: ownerText,
-      html: ownerHtml,
+      subject: `${possibleSpam ? "[Possible spam] " : ""}New Order ${reference} – ${formatMoney(priced.total)} – Texas Football Uniforms`,
+      text: possibleSpam ? `[Possible spam] hidden field filled\n\n${ownerText}` : ownerText,
+      html: possibleSpam ? `<p style="color:#c8102e"><strong>[Possible spam]</strong> hidden field filled</p>${ownerHtml}` : ownerHtml,
       attachments: artwork
         ? [{ filename: artwork.name, content: Buffer.from(artwork.data, "base64"), contentType: artwork.type }]
         : undefined,
@@ -411,7 +410,8 @@ ${linesHtmlBlock(priced.lines, priced.total)}
 <p style="margin:0;color:#30435d">Questions? Call <a href="${company.phoneHref}">${escapeHtml(company.phoneDisplay)}</a> or reply to this email.<br>${escapeHtml(company.name)}</p>
 </div>`;
 
-    try {
+    // No buyer copy for a possible bot: its address is usually someone else's.
+    if (!possibleSpam) try {
       await transporter.sendMail({
         from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
         to: email,
